@@ -175,9 +175,10 @@ function spawnPower(){
 }
 function spawnGate(){
   var qq=makeQuestion();
-  var n=qq.options.length>2 && Math.random()<0.45 ? 3 : 2;
-  var opts=qq.options.slice(0,n);
-  if(opts.length<n){ opts=qq.options.slice(); }
+  var good=qq.options.filter(function(o){return o.correct;})[0];
+  var bad=shuffle(qq.options.filter(function(o){return !o.correct;}));
+  var n=bad.length>1 && Math.random()<0.45 ? 3 : 2;
+  var opts=shuffle([good].concat(bad.slice(0,n-1)));
   var lanes=[0,1,2].slice(0,opts.length);
   var x=S.cam+W+30;
   var bubbles=opts.map(function(op,i){
