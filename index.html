@@ -32,12 +32,9 @@ main{position:relative;z-index:1;width:100%;max-width:1080px;display:flex;flex-d
 h1{margin:0;font-size:clamp(32px,5.5vw,48px);font-weight:900;letter-spacing:-.02em;line-height:1.02;
   background:linear-gradient(90deg,#9effc8,#ffe08a 50%,#ffab6b);-webkit-background-clip:text;background-clip:text;color:transparent}
 p.lede{margin:0;max-width:560px;font-size:clamp(17px,2.4vw,20px);line-height:1.45;color:#d5dbff}
-.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;width:100%}
-@media (min-width:980px){
-  .games{grid-template-columns:repeat(6,1fr)}
-  a.game{grid-column:span 2}
-  a.game:nth-child(4){grid-column:2 / span 2}
-  a.game:nth-child(5){grid-column:4 / span 2}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
+@media (min-width:900px){
+  .games{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 a.game{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;text-decoration:none;color:var(--text);
   border-radius:28px;padding:16px 18px;border:1px solid var(--line);min-height:0;box-shadow:0 18px 40px rgba(0,0,0,.35);
@@ -56,6 +53,8 @@ a.joke{background:linear-gradient(140deg,rgba(255,134,189,.26),rgba(16,22,58,.88
 a.cards .go{background:var(--gold);color:#3a2600}
 a.quiz .go{background:#7cc8ff;color:#062033}
 a.joke .go{background:#ff86bd;color:#3a0b24}
+a.run{background:linear-gradient(140deg,rgba(255,154,74,.28),rgba(16,22,58,.88) 62%)}
+a.run .go{background:#ff9a4a;color:#3a1600}
 .tip{font-size:15px;color:var(--muted);font-weight:600;max-width:560px;line-height:1.45}
 </style>
 </head>
@@ -80,6 +79,7 @@ a.joke .go{background:#ff86bd;color:#3a0b24}
     <a class="game cards" href="zib-flashcards.html"><span class="ic">🃏</span><span class="t">Zib's Flashcards</span><span class="d">Flip cards, then sort them into Got it or Study again.</span><span class="go">Play ›</span></a>
     <a class="game quiz" href="zib-quiz.html"><span class="ic">✳️</span><span class="t">Zib's Quiz</span><span class="d">Old school A, B, C, D. Tap an answer and see it right away.</span><span class="go">Play ›</span></a>
     <a class="game joke" href="zib-joke-machine.html"><span class="ic">😄</span><span class="t">Zib's Joke Machine</span><span class="d">Setups, punchlines, and a laugh from Zib.</span><span class="go">Play ›</span></a>
+    <a class="game run" href="zib-runner.html"><span class="ic">🏃</span><span class="t">Zib's Desert Run</span><span class="d">Endless runner. Jump, slide, and grab stars over the mesas.</span><span class="go">Play ›</span></a>
   </div>
   <p class="tip">Tip: in Safari, tap Share, then "Add to Home Screen" to get a game icon. Progress saves on this iPad.</p>
 </main>
