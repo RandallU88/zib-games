@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Zib Games">
+<meta name="theme-color" content="#070b1f">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-180.png">
+<title>Zib's Space Games</title>
+<style>
+:root{--text:#eef1ff;--muted:#aab2da;--line:rgba(255,255,255,.16);--green:#5ef0a0;--violet:#b69cff;--gold:#ffd166;
+  --font:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#070b1f}
+body{font-family:var(--font);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:max(20px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+  background:radial-gradient(ellipse 90% 45% at 50% 105%,rgba(255,140,80,.30),transparent 60%),linear-gradient(180deg,#050817 0%,#0b1233 42%,#1d1745 78%,#33204d 100%);background-attachment:fixed}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.st{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:.95}}
+.moon{position:fixed;top:6%;right:8%;width:min(16vw,92px);height:min(16vw,92px);border-radius:50%;z-index:0;
+  background:radial-gradient(circle at 36% 34%,#fffdf0,#f6e7b8 55%,#dcc68a);box-shadow:0 0 70px 14px rgba(255,236,170,.22)}
+.land{position:fixed;left:0;right:0;bottom:0;width:100%;height:22vh;min-height:110px;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;width:100%;max-width:880px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.ufo{width:min(220px,50vw);animation:hover 4s ease-in-out infinite}
+@keyframes hover{50%{transform:translateY(-10px)}}
+h1{margin:0;font-size:clamp(40px,8vw,68px);font-weight:900;letter-spacing:-.02em;line-height:1.02;
+  background:linear-gradient(90deg,#9effc8,#ffe08a 50%,#ffab6b);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.lede{margin:0;max-width:560px;font-size:clamp(17px,2.4vw,20px);line-height:1.45;color:#d5dbff}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;width:100%}
+a.game{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;text-decoration:none;color:var(--text);
+  border-radius:28px;padding:24px;border:1px solid var(--line);min-height:170px;box-shadow:0 18px 40px rgba(0,0,0,.35);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:transform .1s}
+a.game:active{transform:scale(.98)}
+a.quest{background:linear-gradient(140deg,rgba(94,240,160,.24),rgba(16,22,58,.88) 62%)}
+a.catch{background:linear-gradient(140deg,rgba(182,156,255,.28),rgba(16,22,58,.88) 62%)}
+.ic{font-size:44px;line-height:1}
+.t{font-size:clamp(26px,3.6vw,32px);font-weight:900}
+.d{font-size:17px;color:#cfd5f7;line-height:1.4;font-weight:600}
+.go{margin-top:auto;font-weight:900;font-size:19px;padding:12px 22px;border-radius:16px;color:#06210f;background:var(--green);box-shadow:0 5px 0 rgba(0,0,0,.28)}
+a.catch .go{background:var(--violet);color:#1c0f45}
+.tip{font-size:15px;color:var(--muted);font-weight:600;max-width:560px;line-height:1.45}
+</style>
+</head>
+<body>
+<div id="sky"></div><div class="moon"></div>
+<svg class="land" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 190 L110 192 L140 140 L320 138 L352 196 L500 204 L548 108 L742 106 L780 200 L900 196 L930 162 L1060 160 L1092 204 L1200 200 L1200 300 L0 300Z" fill="#1b1338"/>
+  <path d="M0 236 Q260 214 560 240 T1200 228 L1200 300 L0 300Z" fill="#110b26"/>
+  <g fill="#e8742a"><ellipse cx="180" cy="262" rx="14" ry="10"/><ellipse cx="860" cy="258" rx="15" ry="11"/><ellipse cx="560" cy="272" rx="12" ry="9"/></g>
+</svg>
+<main>
+  <svg class="ufo" viewBox="0 0 200 130" aria-hidden="true"><defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ef0a0" stop-opacity=".55"/><stop offset="1" stop-color="#5ef0a0" stop-opacity="0"/></linearGradient><linearGradient id="h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3e8ff"/><stop offset="1" stop-color="#7d86b3"/></linearGradient></defs>
+    <path d="M70 78 L48 130 L152 130 L130 78Z" fill="url(#b)"/><path d="M64 52 Q100 4 136 52Z" fill="rgba(150,220,255,.45)" stroke="#bfe9ff" stroke-width="2"/>
+    <g transform="translate(100 40) scale(.24)"><path d="M0-40c22 0 34 15 34 34 0 22-17 38-34 38S-34 16-34-6c0-19 12-34 34-34z" fill="#5ef0a0"/><ellipse cx="-13" cy="-4" rx="8" ry="12" fill="#0b1026"/><ellipse cx="13" cy="-4" rx="8" ry="12" fill="#0b1026"/></g>
+    <ellipse cx="100" cy="64" rx="92" ry="22" fill="url(#h)"/><ellipse cx="100" cy="58" rx="92" ry="13" fill="#eef1ff" opacity=".55"/>
+    <g fill="#ffd166"><circle cx="40" cy="66" r="6.5"/><circle cx="70" cy="66" r="6.5"/><circle cx="100" cy="66" r="6.5"/><circle cx="130" cy="66" r="6.5"/><circle cx="160" cy="66" r="6.5"/></g></svg>
+  <h1>Zib's Space Games</h1>
+  <p class="lede">Zib the alien needs your help over the New Mexico desert. Pick a game to play.</p>
+  <div class="games">
+    <a class="game quest" href="ufo-harvest-quest.html"><span class="ic">🎃</span><span class="t">UFO Harvest Quest</span><span class="d">Missions to fix Zib's ship: math, reading, cursive, and stories.</span><span class="go">Play ›</span></a>
+    <a class="game catch" href="zib-sky-catcher.html"><span class="ic">🛸</span><span class="t">Zib's Sky Catcher</span><span class="d">Arcade game: steer the UFO and catch the right answers.</span><span class="go">Play ›</span></a>
+  </div>
+  <p class="tip">Tip: in Safari, tap Share, then "Add to Home Screen" to get a game icon. Progress saves on this iPad.</p>
+</main>
+<script>
+(function(){ var s=document.getElementById('sky'); for(var i=0;i<90;i++){ var d=document.createElement('div'); d.className='st'; var z=Math.random()<.85?(Math.random()<.5?1:2):3;
+  d.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*100)+'%;top:'+(Math.random()*70)+'%;animation-delay:'+(Math.random()*4).toFixed(2)+'s'; s.appendChild(d); } })();
+</script>
+</body>
+</html>
