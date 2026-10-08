@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#070b1f">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-180.png">
+<title>Zib's Joke Machine</title>
+<style>
+:root{--text:#eef1ff;--muted:#aab2da;--line:rgba(255,255,255,.16);--pink:#ff86bd;--gold:#ffd166;--ink:#3a0b24;
+  --font:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#070b1f}
+body{font-family:var(--font);color:var(--text);min-height:100vh;min-height:100dvh;-webkit-user-select:none;user-select:none;
+  background:radial-gradient(ellipse 90% 45% at 50% 105%,rgba(255,140,80,.28),transparent 60%),linear-gradient(180deg,#050817,#0b1233 42%,#1d1745 78%,#33204d);background-attachment:fixed}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.st{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:.95}}
+.moon{position:fixed;top:5%;right:6%;width:min(13vw,72px);height:min(13vw,72px);border-radius:50%;z-index:0;background:radial-gradient(circle at 36% 34%,#fffdf0,#f6e7b8 55%,#dcc68a);box-shadow:0 0 50px 10px rgba(255,236,170,.2)}
+#app{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:max(14px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));display:flex;flex-direction:column;gap:14px}
+h1{margin:0;font-size:clamp(32px,6vw,48px);font-weight:900;background:linear-gradient(90deg,#ffd0e6,#ffb088);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{appearance:none;border:0;text-decoration:none;font:inherit;font-weight:800;font-size:20px;min-height:60px;padding:12px 18px;border-radius:18px;cursor:pointer;color:var(--ink);background:var(--pink);box-shadow:0 4px 0 rgba(0,0,0,.28)}
+.btn:active{transform:translateY(2px)}
+.btn.ghost{background:rgba(32,40,90,.92);color:var(--text);border:1px solid var(--line);box-shadow:none}
+.btn.gold{background:var(--gold);color:#3a2600}
+.btn[disabled]{opacity:.4}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1px solid var(--line);background:rgba(16,22,58,.8);color:var(--text);font:inherit;font-weight:800;font-size:16px;min-height:48px;padding:8px 14px;border-radius:999px;cursor:pointer}
+.chip.on{background:var(--pink);color:var(--ink);border-color:transparent}
+.stage{background:rgba(16,22,58,.88);border:1px solid var(--line);border-radius:28px;padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;min-height:280px}
+.cat{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.setup{font-size:clamp(26px,4.4vw,38px);font-weight:900;line-height:1.25;margin:0}
+.tools{display:flex;gap:10px;align-items:center}
+.heart,.speak{appearance:none;width:56px;height:56px;border-radius:16px;border:1px solid var(--line);background:rgba(32,40,90,.92);color:var(--text);font-size:26px;cursor:pointer}
+.heart.on{background:rgba(255,134,189,.25);border-color:var(--pink)}
+.zrow{display:flex;gap:12px;align-items:center}
+.zib{width:92px;flex:none;transform-origin:50% 80%}
+.zib.laugh{animation:giggle .7s ease}
+@keyframes giggle{0%{transform:rotate(0) scale(1)} 20%{transform:rotate(-10deg) scale(1.08)} 45%{transform:rotate(10deg) scale(1.12)} 70%{transform:rotate(-6deg) scale(1.05)} 100%{transform:rotate(0) scale(1)}}
+.punch{margin:0;font-size:clamp(22px,3.4vw,30px);font-weight:800;line-height:1.35;color:#ffe9f4;background:rgba(255,134,189,.12);border:1px solid rgba(255,134,189,.45);border-radius:18px;padding:14px 16px}
+.punch[hidden]{display:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.actions .btn{flex:1;min-width:180px}
+.switch{appearance:none;border:1px solid var(--line);background:rgba(16,22,58,.8);color:var(--text);border-radius:16px;min-height:52px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:10px}
+.switch .tr{width:54px;height:32px;border-radius:999px;background:rgba(255,255,255,.18);position:relative;flex:none}
+.switch .tr:after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff}
+.switch.on .tr{background:var(--pink)}
+.switch.on .tr:after{left:26px}
+#toast{position:fixed;left:50%;top:12px;transform:translate(-50%,-140%);background:rgba(14,20,52,.95);border:1px solid var(--line);border-radius:999px;padding:12px 18px;font-weight:800;z-index:5;transition:transform .2s}
+#toast.show{transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div id="sky"></div><div class="moon"></div>
+<div id="app"></div>
+<div id="toast"></div>
+<script>
+(function(){
+'use strict';
+var JOKES = [{"cat": "Animals", "setup": "Why did the cow cross the road?", "punch": "To get to the udder side."}, {"cat": "Animals", "setup": "What do you call a sleeping bull?", "punch": "A bulldozer."}, {"cat": "Animals", "setup": "Why do bees have sticky hair?", "punch": "They use a honeycomb."}, {"cat": "Animals", "setup": "What do you call a fish with no eyes?", "punch": "A fsh."}, {"cat": "Animals", "setup": "Why did the chicken join the band?", "punch": "She had the drumsticks."}, {"cat": "Animals", "setup": "What do frogs wear on their feet?", "punch": "Open toad shoes."}, {"cat": "Animals", "setup": "Why did the pony visit the nurse?", "punch": "It was a little hoarse."}, {"cat": "Animals", "setup": "What do you call a bear with no teeth?", "punch": "A gummy bear."}, {"cat": "Animals", "setup": "What is a cat's favorite color?", "punch": "Purr ple."}, {"cat": "Animals", "setup": "What do you call a pig that knows karate?", "punch": "A pork chop."}, {"cat": "Animals", "setup": "Why do seagulls fly over the sea?", "punch": "If they flew over the bay, they would be bagels."}, {"cat": "Animals", "setup": "What did the dog say to the tree?", "punch": "Bark."}, {"cat": "Animals", "setup": "What is a snake's favorite class?", "punch": "Hiss tory."}, {"cat": "Animals", "setup": "What did the buffalo say to his son?", "punch": "Bison."}, {"cat": "Animals", "setup": "What do you call an alligator in a vest?", "punch": "An investigator."}, {"cat": "Animals", "setup": "Why don't oysters share?", "punch": "Because they are shellfish."}, {"cat": "Animals", "setup": "What do cows put on breakfast?", "punch": "Moosli."}, {"cat": "Animals", "setup": "What do you call a horse next door?", "punch": "A neigh bor."}, {"cat": "Animals", "setup": "Why are fish so smart?", "punch": "They live in schools."}, {"cat": "Animals", "setup": "What do you call a fly with no wings?", "punch": "A walk."}, {"cat": "Animals", "setup": "Why did the spider buy a computer?", "punch": "To build a web site."}, {"cat": "Animals", "setup": "What do you call rabbits hopping backward?", "punch": "A receding hare line."}, {"cat": "Animals", "setup": "Why did the duck bring a pencil?", "punch": "For a quick quack at writing."}, {"cat": "Animals", "setup": "Why did the lamb bring a map?", "punch": "It did not want to get lost in the flock."}, {"cat": "Animals", "setup": "Why did the owl start a club?", "punch": "It wanted a hoot of a time."}, {"cat": "Animals", "setup": "What did the penguin wear to the party?", "punch": "An ice cap."}, {"cat": "School", "setup": "Why was the math book unhappy?", "punch": "It had too many problems."}, {"cat": "School", "setup": "What did the pencil say to the paper?", "punch": "Write on!"}, {"cat": "School", "setup": "Why did the student eat the homework?", "punch": "The teacher said it was a piece of cake."}, {"cat": "School", "setup": "Why did the music teacher need a ladder?", "punch": "To reach the high notes."}, {"cat": "School", "setup": "Why did the computer go to class?", "punch": "It wanted a little byte of knowledge."}, {"cat": "School", "setup": "What is a witch's favorite subject?", "punch": "Spelling."}, {"cat": "School", "setup": "Why was the clock sent to the office?", "punch": "It tocked too much in class."}, {"cat": "School", "setup": "What did the zero say to the eight?", "punch": "Nice belt!"}, {"cat": "School", "setup": "Why was the broom late for school?", "punch": "It over swept."}, {"cat": "School", "setup": "What is a long word you learn at school?", "punch": "Smiles. There is a mile between the first letter and the last."}, {"cat": "School", "setup": "Why did the glue stay in its seat?", "punch": "It was stuck on the lesson."}, {"cat": "School", "setup": "Why bring a ladder to class?", "punch": "Someone said it was high school."}, {"cat": "School", "setup": "What do librarians take fishing?", "punch": "Bookworms."}, {"cat": "School", "setup": "Why did the calendar look so busy?", "punch": "Its days were numbered."}, {"cat": "School", "setup": "What did one book say to the other?", "punch": "Want to share a story?"}, {"cat": "School", "setup": "Why was the equal sign so calm?", "punch": "It knew it was never less than anyone."}, {"cat": "School", "setup": "What is a science teacher's favorite dog?", "punch": "A lab."}, {"cat": "School", "setup": "What do you call a number that will not sit still?", "punch": "A roamin' numeral."}, {"cat": "School", "setup": "Why did the eraser take a break?", "punch": "It was rubbed the wrong way."}, {"cat": "School", "setup": "What did the paper say to the pencil?", "punch": "You are write for me."}, {"cat": "School", "setup": "Why did the backpack visit the nurse?", "punch": "It was carrying too much."}, {"cat": "School", "setup": "What is a pirate's favorite letter?", "punch": "You might think it is R, but it is the C."}, {"cat": "School", "setup": "Why did the triangle sit in art class?", "punch": "It wanted to be well rounded."}, {"cat": "School", "setup": "What do you get from a teacher and a clock?", "punch": "A class that is right on time."}, {"cat": "School", "setup": "Why did the ruler get along with everyone?", "punch": "It measured each friend the same."}, {"cat": "School", "setup": "Why was the globe the best student?", "punch": "It knew its way around."}, {"cat": "Silly", "setup": "Why did the cookie go to the doctor?", "punch": "It felt crummy."}, {"cat": "Silly", "setup": "What do you call cheese that is not yours?", "punch": "Nacho cheese."}, {"cat": "Silly", "setup": "Why did the banana go to the doctor?", "punch": "It was not peeling well."}, {"cat": "Silly", "setup": "What did the grape say when it got stepped on?", "punch": "Nothing. It just let out a little wine."}, {"cat": "Silly", "setup": "Why can't you tell a joke to an egg?", "punch": "It might crack up."}, {"cat": "Silly", "setup": "What do you call a fake noodle?", "punch": "An impasta."}, {"cat": "Silly", "setup": "Why did the picture go to jail?", "punch": "It was framed."}, {"cat": "Silly", "setup": "What did the ocean say to the shore?", "punch": "Nothing. It just waved."}, {"cat": "Silly", "setup": "Why did the scarecrow win a prize?", "punch": "He was outstanding in his field."}, {"cat": "Silly", "setup": "What do you call a boomerang that will not come back?", "punch": "A stick."}, {"cat": "Silly", "setup": "Why did the bicycle fall over?", "punch": "It was two tired."}, {"cat": "Silly", "setup": "What do you call a shoe made of a banana?", "punch": "A slipper."}, {"cat": "Silly", "setup": "Why did the teddy bear skip dessert?", "punch": "It was stuffed."}, {"cat": "Silly", "setup": "What did the wall say to the other wall?", "punch": "I'll meet you at the corner."}, {"cat": "Silly", "setup": "Why did the tomato turn red?", "punch": "It saw the salad dressing."}, {"cat": "Silly", "setup": "What do you call a belt made of watches?", "punch": "A waist of time."}, {"cat": "Silly", "setup": "Why did the kid throw the clock out the window?", "punch": "To see time fly."}, {"cat": "Silly", "setup": "What did one hat say to the other?", "punch": "You stay here. I'll go on ahead."}, {"cat": "Silly", "setup": "Why did the light bulb get an award?", "punch": "It was a bright idea."}, {"cat": "Silly", "setup": "What do you call a snowman in July?", "punch": "A puddle."}, {"cat": "Silly", "setup": "Why did the broom get a medal?", "punch": "It swept the contest."}, {"cat": "Silly", "setup": "What did the big bucket say to the little bucket?", "punch": "You look a little pail."}, {"cat": "Silly", "setup": "Why did the computer sneeze?", "punch": "It had a virus. Just kidding. It needed a tissue."}, {"cat": "Silly", "setup": "What do you call a sleeping pizza?", "punch": "A piZZZZa."}, {"cat": "Silly", "setup": "Why did the sock go to school?", "punch": "It wanted to be a pair of smarty pants."}, {"cat": "Silly", "setup": "What did the zero say to the number one?", "punch": "You're odd, and I am nothing but fun."}, {"cat": "Space", "setup": "Why did Zib bring a broom to the Moon?", "punch": "To sweep the craters."}, {"cat": "Space", "setup": "What is a rocket's favorite song?", "punch": "The hokey pokey. You put your whole ship in."}, {"cat": "Space", "setup": "Why did the sun go to school?", "punch": "To get a little brighter."}, {"cat": "Space", "setup": "What do you call a star that tells jokes?", "punch": "A comic comet."}, {"cat": "Space", "setup": "How do you organize a space party?", "punch": "You planet."}, {"cat": "Space", "setup": "Why did Zib's ship sit down?", "punch": "It needed a launch break."}, {"cat": "Space", "setup": "What is an alien's favorite candy?", "punch": "A Mars bar. Or a star burst."}, {"cat": "Space", "setup": "Why don't aliens eat lunch on the Moon?", "punch": "It has no atmosphere, and the snacks float off."}, {"cat": "Space", "setup": "What did the Moon say to Zib?", "punch": "You light up my night."}, {"cat": "Space", "setup": "Why was the telescope happy?", "punch": "It had a stellar view."}, {"cat": "Space", "setup": "What do planets do when they get tired?", "punch": "They take an Earth nap. They revolve and rest."}, {"cat": "Space", "setup": "Why did the meteor go to the doctor?", "punch": "It had a glowing feeling."}, {"cat": "Space", "setup": "What is Zib's favorite part of a book?", "punch": "The space between the words."}, {"cat": "Space", "setup": "Why did the constellation get lost?", "punch": "It took a wrong turn at Orion's belt."}, {"cat": "Space", "setup": "What do you call a sheep in a rocket?", "punch": "A baa lance."}, {"cat": "Space", "setup": "Why did the astronaut bring a blanket?", "punch": "Space nights are chilly."}, {"cat": "Fall", "setup": "Why did the pumpkin sit on the porch?", "punch": "It wanted to be outstanding in its field."}, {"cat": "Fall", "setup": "What is a ghost's favorite dessert?", "punch": "I scream. Boo berry, of course."}, {"cat": "Fall", "setup": "Why did the leaf go to the doctor?", "punch": "It was feeling green, then it turned over a new color."}, {"cat": "Fall", "setup": "What do you call a friendly ghost who tells jokes?", "punch": "A boo ster of fun."}, {"cat": "Fall", "setup": "Why did the scarecrow get invited to the harvest?", "punch": "He was outstanding in his field, and he brought the snacks."}, {"cat": "Fall", "setup": "What did the pie say to the pumpkin?", "punch": "You are the filling to my day."}, {"cat": "Fall", "setup": "Why do leaves make good friends?", "punch": "They always fall for you."}, {"cat": "Fall", "setup": "What is a mummy's favorite music?", "punch": "Wrap."}, {"cat": "Fall", "setup": "Why did the corn tell a joke?", "punch": "It wanted to be a corny star."}, {"cat": "Fall", "setup": "What do you call a witch's garage?", "punch": "A broom closet."}, {"cat": "Fall", "setup": "Why did Zib pick pumpkins at night?", "punch": "The patch had the best star light."}, {"cat": "Fall", "setup": "What did the owl say on Halloween?", "punch": "Happy hoot oweeen. Have a hoot of a night."}, {"cat": "Fall", "setup": "Why was the apple so good at fall sports?", "punch": "It had a core of helpers."}, {"cat": "Fall", "setup": "What do friendly ghosts drink?", "punch": "Boo juice."}, {"cat": "Fall", "setup": "Why did the rake get an award?", "punch": "It gathered the best crowd of leaves."}, {"cat": "Fall", "setup": "What is a pumpkin's favorite sport?", "punch": "Squash."}];
+var CATS = ['All','Animals','School','Silly','Space','Fall'];
+var KEY='zibJokeMachine.v1';
+var fav = {};
+try { fav = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) { fav = {}; }
+function saveFav(){ try { localStorage.setItem(KEY, JSON.stringify(fav)); } catch(e) {} }
+function idOf(j){ return j.cat + '|' + j.setup; }
+var cat = 'All', order = [], pos = -1, shown = false, autoRead = false, lastId = '';
+function $(s){ return document.querySelector(s); }
+function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function pool(){ return cat==='All' ? JOKES : JOKES.filter(function(j){ return j.cat===cat; }); }
+function deal(){
+  var p = pool();
+  order = shuffle(p);
+  if (order.length > 1 && idOf(order[0]) === lastId) { var t=order[0]; order[0]=order[1]; order[1]=t; }
+  pos = 0;
+}
+function toast(m){ var t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){ t.classList.remove('show'); }, 1400); }
+function speak(text){
+  if (!window.speechSynthesis) { toast('Read aloud is not available here'); return; }
+  try { speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(text); u.rate=0.95; speechSynthesis.speak(u); } catch(e) { toast('Read aloud is not available here'); }
+}
+function zib(){ return '<svg class="zib" id="zib" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="zg" cx="40%" cy="35%"><stop offset="0" stop-color="#c4ffdc"/><stop offset="1" stop-color="#2fbf78"/></radialGradient></defs><path d="M46 24 L36 7" stroke="#5ef0a0" stroke-width="3.5" stroke-linecap="round"/><circle cx="36" cy="7" r="5.5" fill="#ffd166"/><path d="M74 24 L84 7" stroke="#5ef0a0" stroke-width="3.5" stroke-linecap="round"/><circle cx="84" cy="7" r="5.5" fill="#ffd166"/><path d="M60 18c27 0 41 18 41 41 0 27-21 47-41 47S19 86 19 59c0-23 14-41 41-41z" fill="url(#zg)"/><ellipse cx="44" cy="58" rx="10" ry="15" fill="#0b1026" transform="rotate(-18 44 58)"/><ellipse cx="76" cy="58" rx="10" ry="15" fill="#0b1026" transform="rotate(18 76 58)"/><circle cx="47" cy="52" r="3.4" fill="#fff"/><circle cx="79" cy="52" r="3.4" fill="#fff"/><path d="M50 85q10 7 20 0" stroke="#0b1026" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>'; }
+function current(){ return order[pos]; }
+function render(){
+  var j = current();
+  var loved = !!fav[idOf(j)];
+  document.getElementById('app').innerHTML =
+    '<div class="top"><a class="btn ghost" href="index.html">‹ Games</a><h1>Zib\'s Joke Machine</h1></div>'+
+    '<div class="chips">'+CATS.map(function(c){ return '<button class="chip'+(c===cat?' on':'')+'" data-cat="'+c+'">'+c+'</button>'; }).join('')+'</div>'+
+    '<button class="switch'+(autoRead?' on':'')+'" id="auto"><span class="tr"></span><span>Read aloud</span></button>'+
+    '<div class="stage"><div class="cat">'+j.cat+' · '+(pos+1)+' of '+order.length+'</div>'+
+    '<div class="zrow">'+zib()+'<p class="setup" id="setup"></p></div>'+
+    '<p class="punch" id="punch"'+(shown?'':' hidden')+'></p>'+
+    '<div class="tools"><button class="heart'+(loved?' on':'')+'" id="heart" aria-label="Favorite">'+(loved?'♥':'♡')+'</button><button class="speak" id="speak" aria-label="Read this joke">🔊</button></div></div>'+
+    '<div class="actions"><button class="btn gold" id="reveal"'+(shown?' disabled':'')+'>Show punchline</button><button class="btn" id="next">Next joke</button></div>';
+  document.getElementById('setup').textContent = j.setup;
+  document.getElementById('punch').textContent = j.punch;
+  document.querySelectorAll('.chip').forEach(function(b){ b.addEventListener('click', function(){ setCat(b.dataset.cat); }); });
+  document.getElementById('auto').addEventListener('click', function(){ autoRead=!autoRead; this.classList.toggle('on', autoRead); if(autoRead) speak(j.setup + (shown?(' '+j.punch):'')); });
+  document.getElementById('heart').addEventListener('click', function(){ var k=idOf(j); if(fav[k]) delete fav[k]; else fav[k]=1; saveFav(); render(); });
+  document.getElementById('speak').addEventListener('click', function(){ speak(j.setup + (shown?(' '+j.punch):'')); });
+  document.getElementById('reveal').addEventListener('click', reveal);
+  document.getElementById('next').addEventListener('click', next);
+}
+function reveal(){
+  if (shown) return;
+  shown = true;
+  var j = current();
+  var p = document.getElementById('punch');
+  p.hidden = false;
+  var z = document.getElementById('zib');
+  z.classList.remove('laugh'); void z.offsetWidth; z.classList.add('laugh');
+  document.getElementById('reveal').disabled = true;
+  if (autoRead) speak(j.punch);
+}
+function next(){
+  if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch(e) {} }
+  pos++;
+  if (pos >= order.length) deal();
+  lastId = idOf(current());
+  shown = false;
+  render();
+  if (autoRead) speak(current().setup);
+}
+function setCat(c){
+  if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch(e) {} }
+  cat = c; shown = false; deal(); lastId = idOf(current()); render();
+  if (autoRead) speak(current().setup);
+}
+var sky=document.getElementById('sky');
+for (var i=0;i<60;i++){ var d=document.createElement('div'); d.className='st'; var z=Math.random()<.8?1:2; d.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*100)+'%;top:'+(Math.random()*65)+'%;animation-delay:'+(Math.random()*4).toFixed(2)+'s'; sky.appendChild(d); }
+window.__jokes = { jokes: JOKES, counts: CATS.filter(function(c){return c!=='All';}).reduce(function(m,c){ m[c]=JOKES.filter(function(j){return j.cat===c;}).length; return m; }, {}) };
+deal(); lastId = idOf(current()); render();
+})();
+</script>
+</body>
+</html>

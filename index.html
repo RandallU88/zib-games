@@ -17,7 +17,7 @@
   --font:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;background:#070b1f}
-body{font-family:var(--font);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+body{font-family:var(--font);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;
   padding:max(20px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
   background:radial-gradient(ellipse 90% 45% at 50% 105%,rgba(255,140,80,.30),transparent 60%),linear-gradient(180deg,#050817 0%,#0b1233 42%,#1d1745 78%,#33204d 100%);background-attachment:fixed}
 #sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -32,17 +32,23 @@ main{position:relative;z-index:1;width:100%;max-width:1080px;display:flex;flex-d
 h1{margin:0;font-size:clamp(32px,5.5vw,48px);font-weight:900;letter-spacing:-.02em;line-height:1.02;
   background:linear-gradient(90deg,#9effc8,#ffe08a 50%,#ffab6b);-webkit-background-clip:text;background-clip:text;color:transparent}
 p.lede{margin:0;max-width:560px;font-size:clamp(17px,2.4vw,20px);line-height:1.45;color:#d5dbff}
-.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;width:100%}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;width:100%}
+@media (min-width:980px){
+  .games{grid-template-columns:repeat(6,1fr)}
+  a.game{grid-column:span 2}
+  a.game:nth-child(4){grid-column:2 / span 2}
+  a.game:nth-child(5){grid-column:4 / span 2}
+}
 a.game{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;text-decoration:none;color:var(--text);
-  border-radius:28px;padding:16px 18px;border:1px solid var(--line);min-height:132px;box-shadow:0 18px 40px rgba(0,0,0,.35);
+  border-radius:28px;padding:16px 18px;border:1px solid var(--line);min-height:0;box-shadow:0 18px 40px rgba(0,0,0,.35);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:transform .1s}
 a.game:active{transform:scale(.98)}
 a.quest{background:linear-gradient(140deg,rgba(94,240,160,.24),rgba(16,22,58,.88) 62%)}
 a.catch{background:linear-gradient(140deg,rgba(182,156,255,.28),rgba(16,22,58,.88) 62%)}
-.ic{font-size:44px;line-height:1}
-.t{font-size:clamp(26px,3.6vw,32px);font-weight:900}
-.d{font-size:17px;color:#cfd5f7;line-height:1.4;font-weight:600}
-.go{margin-top:auto;font-weight:900;font-size:19px;padding:12px 22px;border-radius:16px;color:#06210f;background:var(--green);box-shadow:0 5px 0 rgba(0,0,0,.28)}
+.ic{font-size:30px;line-height:1}
+.t{font-size:clamp(20px,2.4vw,24px);font-weight:900}
+.d{font-size:15px;color:#cfd5f7;line-height:1.35;font-weight:600}
+.go{margin-top:auto;font-weight:900;font-size:16px;padding:8px 16px;border-radius:14px;color:#06210f;background:var(--green);box-shadow:0 4px 0 rgba(0,0,0,.28)}
 a.catch .go{background:var(--violet);color:#1c0f45}
 a.cards{background:linear-gradient(140deg,rgba(255,209,102,.24),rgba(16,22,58,.88) 62%)}
 a.quiz{background:linear-gradient(140deg,rgba(124,200,255,.26),rgba(16,22,58,.88) 62%)}
@@ -73,6 +79,7 @@ a.joke .go{background:#ff86bd;color:#3a0b24}
     <a class="game catch" href="zib-sky-catcher.html"><span class="ic">🛸</span><span class="t">Zib's Sky Catcher</span><span class="d">Arcade game: steer the UFO and catch the right answers.</span><span class="go">Play ›</span></a>
     <a class="game cards" href="zib-flashcards.html"><span class="ic">🃏</span><span class="t">Zib's Flashcards</span><span class="d">Flip cards, then sort them into Got it or Study again.</span><span class="go">Play ›</span></a>
     <a class="game quiz" href="zib-quiz.html"><span class="ic">✳️</span><span class="t">Zib's Quiz</span><span class="d">Old school A, B, C, D. Tap an answer and see it right away.</span><span class="go">Play ›</span></a>
+    <a class="game joke" href="zib-joke-machine.html"><span class="ic">😄</span><span class="t">Zib's Joke Machine</span><span class="d">Setups, punchlines, and a laugh from Zib.</span><span class="go">Play ›</span></a>
   </div>
   <p class="tip">Tip: in Safari, tap Share, then "Add to Home Screen" to get a game icon. Progress saves on this iPad.</p>
 </main>
