@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -22,7 +22,9 @@
   --cursive: "Snell Roundhand", "Apple Chancery", "Dancing Script", "Brush Script MT", "Segoe Script", cursive;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;min-height:100%;background:#140b24}
+html,body{margin:0;min-height:100%;background:#140b24;overscroll-behavior:none}
+html{touch-action:manipulation}
+button,a,[data-k],.pumpkin,.basket,.w{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body{font-family:var(--font);color:var(--text);touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overflow-x:hidden;-webkit-text-size-adjust:100%}
 body.kid-savannah{--accent:var(--violet);--accent-ink:#1c0f45}
 button{font-family:inherit;color:inherit}
@@ -954,6 +956,21 @@ function runLog(ctx){
 /* ================= go ================= */
 T.go={start:renderStart, hub:renderHub, mission:function(k,id){ var f=findMission(k,id); startMission(k,f[0],f[1]); }};
 renderStart();
+})();
+</script>
+<script>
+/* Stop iPad and iPhone zoom: no pinch, no double-tap zoom. Rapid taps on buttons still count. Text boxes keep their normal behavior. */
+(function(){var nf={passive:false},last=0,sx=0,sy=0,moved=false;
+  function el(t){return t&&t.closest?t:(t&&t.parentElement)||null;}
+  function typing(t){t=el(t);return !!(t&&t.closest('textarea,input,select,[contenteditable="true"]'));}
+  ['gesturestart','gesturechange','gestureend'].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault();},nf);});
+  document.addEventListener('dblclick',function(e){if(!typing(e.target))e.preventDefault();},nf);
+  document.addEventListener('touchstart',function(e){var t=e.touches[0];if(t){sx=t.clientX;sy=t.clientY;}moved=false;if(e.touches.length>1)e.preventDefault();},nf);
+  document.addEventListener('touchmove',function(e){var t=e.touches[0];if(t&&Math.abs(t.clientX-sx)+Math.abs(t.clientY-sy)>10)moved=true;if(e.touches.length>1)e.preventDefault();},nf);
+  document.addEventListener('touchend',function(e){var now=Date.now();
+    if(now-last<400&&!moved&&e.touches.length===0&&!typing(e.target)){e.preventDefault();var t=el(e.target);
+      if(t&&!t.closest('canvas'))t.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window}));}
+    last=now;},nf);
 })();
 </script>
 </body>
