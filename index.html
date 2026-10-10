@@ -55,6 +55,12 @@ a.quiz .go{background:#7cc8ff;color:#062033}
 a.joke .go{background:#ff86bd;color:#3a0b24}
 a.run{background:linear-gradient(140deg,rgba(255,154,74,.28),rgba(16,22,58,.88) 62%)}
 a.run .go{background:#ff9a4a;color:#3a1600}
+a.patch{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;padding:14px 18px;border-color:rgba(255,154,74,.55);
+  background:linear-gradient(120deg,rgba(255,130,40,.42),rgba(60,24,80,.9) 55%,rgba(40,16,56,.92));box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 26px rgba(255,140,50,.22)}
+a.patch .ic{font-size:40px}
+a.patch .pt{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+a.patch .new{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#ffd166}
+a.patch .go{margin-top:0;background:#ff9a4a;color:#3a1600;white-space:nowrap}
 .tip{font-size:15px;color:var(--muted);font-weight:600;max-width:560px;line-height:1.45}
 </style>
 </head>
@@ -74,6 +80,7 @@ a.run .go{background:#ff9a4a;color:#3a1600}
   <h1>Zib's Space Games</h1>
   <p class="lede">Zib the alien needs your help over the New Mexico desert. Pick a game to play.</p>
   <div class="games">
+    <a class="game patch" href="pumpkin-patch-quest.html"><span class="ic">🎃</span><span class="pt"><span class="new">New for Halloween</span><span class="t">Pumpkin Patch Quest</span><span class="d">Help Hazel the friendly witch get the Harvest Festival ready: math, reading, cursive, and stories.</span></span><span class="go">Play ›</span></a>
     <a class="game quest" href="ufo-harvest-quest.html"><span class="ic">🎃</span><span class="t">UFO Harvest Quest</span><span class="d">Missions to fix Zib's ship: math, reading, cursive, and stories.</span><span class="go">Play ›</span></a>
     <a class="game catch" href="zib-sky-catcher.html"><span class="ic">🛸</span><span class="t">Zib's Sky Catcher</span><span class="d">Arcade game: steer the UFO and catch the right answers.</span><span class="go">Play ›</span></a>
     <a class="game cards" href="zib-flashcards.html"><span class="ic">🃏</span><span class="t">Zib's Flashcards</span><span class="d">Flip cards, then sort them into Got it or Study again.</span><span class="go">Play ›</span></a>

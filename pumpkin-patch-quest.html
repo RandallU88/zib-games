@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pumpkin Quest">
+<meta name="theme-color" content="#140b24">
+<meta name="robots" content="noindex, nofollow">
+<link rel="apple-touch-icon" href="pumpkin-icon-180.png">
+<link rel="icon" href="pumpkin-icon-180.png">
+<title>Pumpkin Patch Quest</title>
+<style>
+:root{
+  --text:#eef1ff; --muted:#aab2da; --line:rgba(255,255,255,.14);
+  --card:rgba(34,20,58,.66); --card2:rgba(255,255,255,.06);
+  --green:#5ef0a0; --orange:#ff9a4a; --violet:#b69cff; --gold:#ffd166; --pink:#ff86bd; --sky:#7cc8ff;
+  --accent:var(--orange); --accent-ink:#3a1600;
+  --font: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --cursive: "Snell Roundhand", "Apple Chancery", "Dancing Script", "Brush Script MT", "Segoe Script", cursive;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#140b24}
+body{font-family:var(--font);color:var(--text);touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body.kid-savannah{--accent:var(--violet);--accent-ink:#1c0f45}
+button{font-family:inherit;color:inherit}
+textarea{-webkit-user-select:text;user-select:text}
+
+/* ---------- background ---------- */
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:radial-gradient(ellipse 90% 50% at 50% 105%,rgba(255,140,60,.32) 0%,transparent 60%),
+             linear-gradient(180deg,#0d0820 0%,#1b1036 40%,#2c1840 75%,#43203f 100%)}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:.95}}
+#moon{position:absolute;top:5%;right:7%;opacity:.22;transition:opacity .6s;width:min(13vw,96px);height:min(13vw,96px);border-radius:50%;
+  background:radial-gradient(circle at 36% 34%,#fffdf0 0%,#f6e7b8 55%,#dcc68a 100%);box-shadow:0 0 70px 14px rgba(255,236,170,.22)}
+body.home #moon{opacity:1}
+#moon::after{content:"";position:absolute;width:22%;height:22%;left:55%;top:52%;border-radius:50%;background:rgba(180,150,90,.25)}
+.bat{position:absolute;left:-12%;width:54px;opacity:0;animation:batfly 16s linear infinite}
+.bat svg{width:100%;display:block;animation:flap .35s ease-in-out infinite alternate;transform-origin:50% 50%}
+@keyframes batfly{0%{opacity:0;transform:translate(0,0)}3%{opacity:.85}45%{transform:translate(60vw,-6vh)}55%{opacity:.85}60%{opacity:0;transform:translate(125vw,4vh)}100%{opacity:0;transform:translate(125vw,4vh)}}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.55)}}
+#land{position:absolute;left:0;right:0;bottom:0;width:100%;height:26vh;min-height:130px}
+
+#app{position:relative;z-index:1;min-height:100vh;min-height:100dvh;max-width:1120px;margin:0 auto;display:flex;flex-direction:column;
+  padding:max(14px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(22px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.screen{display:flex;flex-direction:column;gap:16px;flex:1;animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- generic ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.btn{appearance:none;border:0;font-weight:800;font-size:20px;color:var(--accent-ink);background:var(--accent);border-radius:18px;
+  padding:14px 24px;min-height:58px;min-width:58px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.28),0 10px 22px rgba(0,0,0,.25);
+  transition:transform .08s,box-shadow .08s,opacity .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.28)}
+.btn.ghost{background:rgba(52,32,84,.92);color:var(--text);border:1px solid var(--line);box-shadow:none}
+.btn.small{font-size:17px;min-height:48px;padding:10px 16px;border-radius:14px}
+.btn.gold{background:var(--gold);color:#3a2600}
+.btn[disabled]{opacity:.38;pointer-events:none}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}.row.center{justify-content:center}
+.muted{color:var(--muted)}
+.tag{display:inline-block;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;
+  background:rgba(255,209,102,.16);color:var(--gold);border:1px solid rgba(255,209,102,.35);vertical-align:middle}
+.tag.req{background:rgba(94,240,160,.12);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.iconbtn{appearance:none;border:1px solid var(--line);background:rgba(52,32,84,.92);border-radius:14px;width:52px;height:52px;font-size:24px;cursor:pointer}
+h1,h2,h3{margin:0}
+.stars{color:var(--gold);letter-spacing:2px}
+.stars .off{color:rgba(255,255,255,.18)}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;top:max(14px,env(safe-area-inset-top));transform:translate(-50%,-140%);z-index:50;pointer-events:none;
+  background:rgba(14,20,52,.94);border:1px solid var(--line);color:var(--text);font-weight:800;font-size:22px;padding:14px 26px;border-radius:999px;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);transition:transform .25s ease;max-width:90vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+#toast.good{border-color:var(--green);color:var(--green)}
+#toast.nudge{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- start ---------- */
+.topright{display:flex;justify-content:flex-end;gap:10px}
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:-6px}
+.hero-art{width:min(300px,62vw)}
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero h1{font-size:clamp(40px,7vw,68px);font-weight:900;letter-spacing:-.02em;line-height:1;
+  background:linear-gradient(90deg,#ffb35c,#ffe08a 50%,#d6a6ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px rgba(255,150,60,.3))}
+.lede{max-width:640px;font-size:clamp(17px,2.2vw,20px);line-height:1.45;color:#d5dbff;margin:4px 0 0}
+.kids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:8px}
+.kidcard{appearance:none;text-align:left;cursor:pointer;border-radius:28px;padding:22px;border:1px solid var(--line);color:var(--text);
+  display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;column-gap:18px;row-gap:6px;align-items:center;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 40px rgba(0,0,0,.3);transition:transform .1s}
+.kidcard:active{transform:scale(.98)}
+.kidcard.logan{background:linear-gradient(140deg,rgba(255,154,74,.26),rgba(30,18,52,.75) 60%)}
+.kidcard.savannah{background:linear-gradient(140deg,rgba(182,156,255,.26),rgba(30,18,52,.75) 60%)}
+.kc-avatar{grid-row:1/4;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:900;color:#0a0f24}
+.logan .kc-avatar{background:radial-gradient(circle at 35% 30%,#ffd9b0,#f07f2a);box-shadow:0 0 0 4px rgba(255,154,74,.25),0 0 30px rgba(255,154,74,.35)}
+.savannah .kc-avatar{background:radial-gradient(circle at 35% 30%,#ece4ff,#8f6cf5);box-shadow:0 0 0 4px rgba(182,156,255,.25),0 0 30px rgba(182,156,255,.35)}
+.kc-name{font-size:30px;font-weight:900}
+.kc-sub{font-size:16px;color:var(--muted);font-weight:600}
+.kc-meta{display:flex;gap:14px;flex-wrap:wrap;font-weight:700;font-size:16px;color:#dfe4ff}
+.kc-meta .stars{letter-spacing:0}
+.parent-row{display:flex;justify-content:center;margin-top:auto;padding-top:18px}
+.hold{position:relative;overflow:hidden;appearance:none;border:1px solid var(--line);background:rgba(10,14,40,.6);color:var(--muted);
+  border-radius:999px;padding:12px 22px;min-height:50px;font-size:15px;font-weight:700;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hold .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,209,102,.3)}
+.hold.holding .fill{width:100%;transition:width 2s linear}
+.hold .lbl{position:relative}
+
+/* ---------- hub ---------- */
+.hubhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hubhead .who{display:flex;align-items:center;gap:14px;flex:1;min-width:220px}
+.hubhead .kc-avatar{width:62px;height:62px;font-size:30px;grid-row:auto}
+.hubhead h2{font-size:30px;font-weight:900}
+.hubhead .sub{color:var(--muted);font-weight:700}
+.repair{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:20px;align-items:center}
+.repair h3{font-size:22px;margin-bottom:6px}
+.pbar{height:16px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin:10px 0}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:999px;transition:width .6s}
+.parts{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:15px;font-weight:700;padding:7px 12px;border-radius:999px;border:1px dashed rgba(255,255,255,.25);color:var(--muted)}
+.chip.on{border-style:solid;border-color:var(--accent);color:var(--text);background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.sect{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px}
+.sect h3{font-size:24px;font-weight:900}
+.sect p{margin:0;color:var(--muted);font-weight:600;flex-basis:100%}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.mcard{appearance:none;text-align:left;cursor:pointer;display:flex;gap:14px;align-items:flex-start;position:relative;
+  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;min-height:120px;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .1s}
+.mcard:active{transform:scale(.98)}
+.mcard.done{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.mcard.locked{opacity:.5}
+.mcard.adv{background:linear-gradient(140deg,rgba(255,209,102,.10),var(--card) 55%)}
+.mc-icon{font-size:34px;width:58px;height:58px;flex:none;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.08)}
+.mc-title{font-size:20px;font-weight:900;margin-bottom:4px}
+.mc-num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;font-size:14px;background:var(--accent);color:var(--accent-ink);margin-right:8px;vertical-align:2px}
+.mc-blurb{font-size:16px;color:#cfd5f7;line-height:1.35}
+.mc-stars{margin-top:8px;font-size:20px}
+.mc-check{position:absolute;top:12px;right:14px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:900}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{display:flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.35);font-weight:800;font-size:15px}
+.badge .bi{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,209,102,.2);font-size:19px}
+.badge.lockedb{opacity:.35;filter:grayscale(1)}
+
+/* ---------- mission ---------- */
+.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mtitle{font-size:22px;font-weight:900;flex:1;min-width:200px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.prog{display:flex;align-items:center;gap:10px;min-width:170px}
+.prog .pbar{width:130px;margin:0;height:12px}
+.prog .count{font-weight:800;color:var(--muted);min-width:44px}
+.stage{flex:1;display:flex;flex-direction:column;gap:16px}
+.qwrap{display:grid;grid-template-columns:1fr;gap:16px;align-items:start}
+@media (min-aspect-ratio:5/4) and (min-width:800px){
+  .qwrap{grid-template-columns:1.2fr 1fr}
+  .qwrap.wide{grid-template-columns:1fr}
+}
+.qpanel{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+.qlabel{font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.prompt{font-size:clamp(20px,2.6vw,25px);line-height:1.4;font-weight:700;margin:0;max-width:640px}
+.bigq{font-size:clamp(54px,9vw,84px);font-weight:900;letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1.05}
+.ans{min-width:150px;min-height:78px;padding:6px 18px;border-radius:18px;border:3px dashed color-mix(in srgb,var(--accent) 60%,transparent);
+  font-size:52px;font-weight:900;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;background:rgba(0,0,0,.18)}
+.ans.ok,.slot.ok{border-style:solid;border-color:var(--green);color:var(--green);background:rgba(94,240,160,.1)}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.hint{display:none;font-size:20px;line-height:1.45;font-weight:600;background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.35);color:#ffe9b0;
+  border-radius:16px;padding:12px 16px;max-width:600px;text-align:left}
+.hint.show{display:block;animation:fadein .3s}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:420px;margin:0 auto}
+.key{appearance:none;border:1px solid var(--line);background:rgba(56,34,88,.92);border-radius:18px;font-size:32px;font-weight:800;
+  height:clamp(60px,9.4vh,82px);cursor:pointer;transition:transform .06s,background .1s}
+.key:active{transform:scale(.95);background:rgba(70,80,150,.95)}
+.key.fn{font-size:26px;color:var(--muted)}
+.key.go{background:var(--accent);color:var(--accent-ink);font-size:22px;border:0}
+.choices{display:grid;grid-template-columns:1fr;gap:12px}
+.choice{appearance:none;border:1px solid var(--line);background:rgba(56,34,88,.92);border-radius:18px;font-size:22px;font-weight:800;
+  min-height:68px;padding:12px 18px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px}
+.choice:active{transform:scale(.98)}
+.choice.right{background:rgba(94,240,160,.18);border-color:var(--green)}
+.choice.dim{opacity:.35}
+
+/* vertical math */
+.vert{display:grid;grid-template-columns:auto auto;column-gap:16px;font-size:clamp(54px,8.5vw,78px);font-weight:900;line-height:1.1;
+  font-variant-numeric:tabular-nums;letter-spacing:.12em;justify-content:center;align-items:center}
+.vert .num{text-align:right}
+.vert .op{color:var(--accent)}
+.vert .vline{grid-column:1/-1;height:6px;border-radius:3px;background:var(--text);margin:6px 0}
+.vert .slot{min-height:1.15em;min-width:3.2ch;border:3px dashed color-mix(in srgb,var(--accent) 60%,transparent);border-radius:14px;padding:0 8px}
+
+/* shop */
+.snack{display:flex;align-items:center;gap:16px;justify-content:center}
+.snack .em{font-size:64px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.35))}
+.pricetag{font-size:32px;font-weight:900;background:var(--gold);color:#3a2600;padding:6px 16px;border-radius:12px;transform:rotate(-3deg)}
+.tray{width:100%;min-height:96px;border-radius:18px;border:2px dashed rgba(255,255,255,.22);background:rgba(0,0,0,.2);padding:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;justify-content:center}
+.tray .empty{color:var(--muted);font-weight:700;align-self:center;font-size:17px}
+.wallet{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mbtn{appearance:none;border:1px solid var(--line);background:rgba(56,34,88,.92);border-radius:18px;min-height:96px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-weight:800;font-size:16px;padding:8px}
+.mbtn:active{transform:scale(.95)}
+.coin{border-radius:50%;display:grid;place-items:center;font-weight:900;color:#1e1e1e;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),inset 0 0 0 3px rgba(255,255,255,.25)}
+.coin.penny{width:46px;height:46px;background:radial-gradient(circle at 35% 30%,#f2b48a,#b8673b);font-size:15px}
+.coin.nickel{width:52px;height:52px;background:radial-gradient(circle at 35% 30%,#f4f6fa,#a6adb9);font-size:15px}
+.coin.dime{width:42px;height:42px;background:radial-gradient(circle at 35% 30%,#f7f8fb,#b4bac6);font-size:14px}
+.coin.quarter{width:58px;height:58px;background:radial-gradient(circle at 35% 30%,#f7f8fb,#9aa2b0);font-size:16px}
+.bill{width:84px;height:44px;border-radius:7px;background:linear-gradient(135deg,#bfe8c0,#7cc28a);color:#14361b;display:grid;place-items:center;
+  font-weight:900;font-size:20px;box-shadow:inset 0 0 0 3px rgba(255,255,255,.35),inset 0 0 0 6px rgba(20,54,27,.25)}
+.bill.five{background:linear-gradient(135deg,#d8e7c0,#a3c27c)}
+.tray .coin,.tray .bill{cursor:pointer;animation:pop .2s}
+@keyframes pop{from{transform:scale(.5)}to{transform:scale(1)}}
+
+/* skip counting */
+.cells{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.cell{position:relative;min-width:92px;height:118px;border-radius:16px;display:grid;place-items:center;font-size:38px;font-weight:900;
+  background:linear-gradient(180deg,rgba(255,170,70,.38),rgba(255,120,40,.10));border:2px solid rgba(255,170,70,.75);font-variant-numeric:tabular-nums;padding:0 8px;box-shadow:0 0 22px rgba(255,150,60,.25)}
+.cell::before{content:"";position:absolute;top:-10px;left:50%;width:30px;height:10px;transform:translateX(-50%);border-radius:5px 5px 0 0;background:#3a2a1a}
+.cell.blank{background:rgba(0,0,0,.25);border:3px dashed rgba(255,255,255,.35);cursor:pointer}
+.cell.blank::before{background:rgba(255,255,255,.3)}
+.cell.active{border-color:var(--gold);box-shadow:0 0 0 4px rgba(255,209,102,.25),0 0 24px rgba(255,209,102,.35)}
+.cell.filled{border-style:solid;border-color:var(--green);background:rgba(94,240,160,.2)}
+
+/* pumpkins */
+.patch{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%}
+.pumpkin{appearance:none;border:0;background:rgba(255,255,255,.05);border-radius:20px;padding:8px;cursor:pointer;transition:transform .15s,opacity .3s;min-height:96px}
+.pumpkin svg{width:100%;max-width:110px;height:auto;display:block;margin:0 auto}
+.pumpkin.sel{background:rgba(255,209,102,.18);box-shadow:0 0 0 3px var(--gold);transform:scale(1.05)}
+.pumpkin.gone{opacity:0;pointer-events:none;transform:scale(.6)}
+.baskets{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
+.basket{appearance:none;cursor:pointer;border-radius:24px;border:2px solid var(--line);background:rgba(255,255,255,.07);min-height:150px;padding:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.basket .bl{font-size:30px;font-weight:900;letter-spacing:.08em}
+.basket .bc{font-size:22px;letter-spacing:2px;min-height:30px}
+.basket.even{border-color:rgba(124,200,255,.55);background:linear-gradient(180deg,rgba(40,70,130,.95),rgba(24,34,80,.95))}
+.basket.odd{border-color:rgba(255,134,189,.55);background:linear-gradient(180deg,rgba(110,44,96,.95),rgba(40,26,78,.95))}
+.basket:active{transform:scale(.98)}
+
+/* reading */
+.story{font-size:clamp(28px,3.6vw,36px);line-height:1.6;font-weight:700;text-align:left;max-width:760px;margin:0 auto}
+.story .w{padding:0 2px;border-radius:8px;cursor:pointer}
+.story .w.said{background:rgba(255,209,102,.3)}
+.pagepic{font-size:64px;text-align:center;letter-spacing:8px}
+.pagedots{display:flex;gap:8px;justify-content:center}
+.pagedots i{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.2)}
+.pagedots i.on{background:var(--accent)}
+
+/* multiplication dots */
+.dots{display:inline-grid;gap:6px;padding:12px;border-radius:14px;background:rgba(0,0,0,.2);margin-top:8px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--violet);display:block}
+.dots i.g{margin-left:8px}
+.gauge{width:100%;max-width:420px;height:20px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.gauge i{display:block;height:100%;background:linear-gradient(90deg,var(--violet),var(--pink),var(--gold));transition:width .5s}
+
+/* writing */
+.paper{position:relative;width:100%;height:clamp(240px,42vh,380px);border-radius:22px;background:#fbf7ee;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 14px 30px rgba(0,0,0,.3);touch-action:none}
+.paper.tall{height:clamp(280px,46vh,420px)}
+.paper canvas{position:absolute;inset:0;touch-action:none}
+.model{font-family:var(--cursive);font-size:clamp(34px,5vw,50px);color:#fff;text-align:center;line-height:1.3;padding:6px 10px}
+.wtools{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+textarea.log{width:100%;min-height:230px;border-radius:18px;border:1px solid var(--line);background:rgba(6,10,30,.6);color:var(--text);
+  font:600 20px/1.55 var(--font);padding:16px;resize:vertical;outline:none}
+textarea.log:focus{border-color:var(--accent)}
+.counter{font-weight:800;color:var(--muted)}
+.counter.ok{color:var(--green)}
+details.saved{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:8px}
+details.saved summary{font-weight:800;cursor:pointer;min-height:36px;display:flex;align-items:center}
+details.saved p{white-space:pre-wrap;line-height:1.5;-webkit-user-select:text;user-select:text}
+.switch{display:flex;align-items:center;gap:14px;font-weight:800;font-size:20px;cursor:pointer;background:none;border:0;padding:8px 0;min-height:56px;text-align:left}
+.switch .tr{width:66px;height:38px;border-radius:999px;background:rgba(255,255,255,.18);position:relative;transition:background .2s;flex:none}
+.switch .tr::after{content:"";position:absolute;top:4px;left:4px;width:30px;height:30px;border-radius:50%;background:#fff;transition:left .2s}
+.switch.on .tr{background:var(--accent)}
+.switch.on .tr::after{left:32px}
+.timer{font-weight:900;font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums}
+
+/* results */
+.results{align-items:center;text-align:center;justify-content:center}
+.results .bigstars{font-size:72px;letter-spacing:8px}
+.results .bigstars span{display:inline-block;animation:starin .5s backwards}
+@keyframes starin{from{transform:scale(0) rotate(-90deg)}to{transform:none}}
+.results h2{font-size:clamp(36px,5vw,48px);font-weight:900}
+.results .lines{font-size:20px;line-height:1.6;max-width:640px}
+.unlock{background:linear-gradient(120deg,rgba(255,209,102,.18),rgba(94,240,160,.14));border:1px solid rgba(255,209,102,.5);border-radius:20px;padding:16px 20px;font-weight:700;font-size:19px;max-width:640px}
+.confetti{position:fixed;top:-40px;z-index:40;pointer-events:none;font-size:26px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+
+/* parent */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(3,5,16,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow:auto;padding:max(18px,env(safe-area-inset-top)) 16px 30px}
+.overlay .inner{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+table.pt{width:100%;border-collapse:collapse;font-size:16px}
+table.pt td,table.pt th{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left}
+table.pt th{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.btn.danger{background:#ff8a8a;color:#3a0b0b}
+.guide{width:86px;flex:none}
+.speech{display:flex;gap:14px;align-items:center}
+.speech .bubble{background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:18px;padding:12px 16px;font-weight:700;font-size:18px;line-height:1.4}
+@media (max-width:640px){
+  .repair{grid-template-columns:1fr}
+  .patch{grid-template-columns:repeat(4,1fr)}
+  .wallet{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="sky">
+  <div id="moon"></div><div class="bat" style="top:14%;animation-delay:2s"><svg viewBox="0 0 60 26" aria-hidden="true"><path d="M30 9c-2-4-5-5-7-3-3-5-12-6-21 2 6-1 9 2 9 6 3-3 7-2 9 2 2-3 6-4 10-1 4-3 8-2 10 1 2-4 6-5 9-2 0-4 3-7 9-6-9-8-18-7-21-2-2-2-5-1-7 3z" fill="#120a1e"/></svg></div><div class="bat" style="top:24%;width:38px;animation-delay:9s"><svg viewBox="0 0 60 26" aria-hidden="true"><path d="M30 9c-2-4-5-5-7-3-3-5-12-6-21 2 6-1 9 2 9 6 3-3 7-2 9 2 2-3 6-4 10-1 4-3 8-2 10 1 2-4 6-5 9-2 0-4 3-7 9-6-9-8-18-7-21-2-2-2-5-1-7 3z" fill="#120a1e"/></svg></div>
+  <svg id="land" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 170 Q200 120 420 160 T820 150 T1200 140 L1200 300 L0 300Z" fill="#24143a"/>
+    <g fill="#160c26"><rect x="930" y="96" width="120" height="70"/><path d="M920 100 L990 52 L1060 100Z"/><rect x="1030" y="60" width="22" height="50"/><path d="M1026 62 L1041 30 L1056 62Z"/>
+      <rect x="400" y="150" width="6" height="40"/><path d="M403 150 l-30 -26 M403 158 l26 -30 M403 140 l-12 -24 M403 140 l14 -20" stroke="#160c26" stroke-width="5" stroke-linecap="round"/></g>
+    <g fill="#ffb347" opacity=".85"><rect x="948" y="112" width="16" height="16" rx="2"/><rect x="1012" y="112" width="16" height="16" rx="2"/><rect x="980" y="140" width="14" height="26" rx="2" fill="#ff9a4a"/></g>
+    <path d="M0 236 Q260 214 560 240 T1200 228 L1200 300 L0 300Z" fill="#170d27"/>
+    <g stroke="#3a2a1a" stroke-width="4"><path d="M0 222 L1200 214"/><path d="M0 238 L1200 230"/></g>
+    <g fill="#3a2a1a"><rect x="40" y="208" width="6" height="40"/><rect x="200" y="206" width="6" height="40"/><rect x="360" y="204" width="6" height="40"/><rect x="760" y="210" width="6" height="40"/><rect x="1100" y="206" width="6" height="40"/></g>
+    <g fill="#e8742a" opacity=".95"><ellipse cx="180" cy="262" rx="16" ry="11"/><ellipse cx="216" cy="270" rx="11" ry="8"/><ellipse cx="860" cy="258" rx="17" ry="12"/><ellipse cx="1010" cy="266" rx="12" ry="9"/><ellipse cx="560" cy="272" rx="13" ry="9"/><ellipse cx="640" cy="266" rx="9" ry="7"/></g>
+    <g stroke="#3d6b34" stroke-width="3" stroke-linecap="round"><path d="M180 251 l3 -7"/><path d="M860 246 l3 -7"/><path d="M560 263 l3 -6"/><path d="M1010 257 l3 -6"/></g>
+  </svg>
+</div>
+<div id="app"></div>
+<script>
+(function(){
+'use strict';
+/* ================= helpers ================= */
+var $ = function(s, el){ return (el||document).querySelector(s); };
+var $$ = function(s, el){ return Array.prototype.slice.call((el||document).querySelectorAll(s)); };
+var app = document.getElementById('app');
+function el(html){ var t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; }
+function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function starStr(n){ var s=''; for(var i=0;i<3;i++) s += i<n ? '<span>★</span>' : '<span class="off">★</span>'; return '<span class="stars">'+s+'</span>'; }
+function money(c){ return c<100 ? c+'¢' : '$'+(c/100).toFixed(2); }
+var T = window.__ppq = { answer:null, log:[] };   // small hook used by automated tests
+
+/* background stars */
+(function(){ var sky=document.getElementById('sky'); for(var i=0;i<110;i++){ var s=document.createElement('div'); s.className='star'; var z=Math.random()<.85?rand(1,2):3;
+  s.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*100)+'%;top:'+(Math.random()*72)+'%;animation-delay:'+(Math.random()*4).toFixed(2)+'s;animation-duration:'+(3+Math.random()*3).toFixed(2)+'s';
+  sky.appendChild(s);} })();
+
+/* ================= storage ================= */
+var KEY='pumpkinPatchQuest.v1.';
+var mem={};
+function fresh(){ return {missions:{}, badges:[], logs:[], draft:'', draftPrompt:null, lightningBest:null, lastPlayed:null}; }
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function load(kid){ if(mem[kid]) return mem[kid]; var s=null; try{ s=JSON.parse(lsGet(KEY+kid)); }catch(e){} var f=fresh(); if(s&&typeof s==='object'){ for(var k in s) f[k]=s[k]; } mem[kid]=f; return f; }
+function save(kid){ lsSet(KEY+kid, JSON.stringify(mem[kid])); }
+function resetKid(kid){ mem[kid]=fresh(); save(kid); }
+T.load=load;
+
+/* ================= sound ================= */
+var soundOn = lsGet(KEY+'sound')!=='off'; var actx=null;
+function tone(freqs,dur,type,vol){ if(!soundOn) return; try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume();
+  var t=actx.currentTime; freqs.forEach(function(f,i){ var o=actx.createOscillator(), g=actx.createGain(); o.type=type||'sine'; o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,t+i*dur); g.gain.exponentialRampToValueAtTime(vol||.06,t+i*dur+.02); g.gain.exponentialRampToValueAtTime(0.0001,t+i*dur+dur);
+  o.connect(g); g.connect(actx.destination); o.start(t+i*dur); o.stop(t+i*dur+dur+.05); }); }catch(e){} }
+var sfx={ tap:function(){tone([620],.05,'triangle',.035);}, good:function(){tone([660,880,1320],.09,'sine',.06);}, soft:function(){tone([392,349],.13,'sine',.045);}, win:function(){tone([523,659,784,1047,1319],.11,'triangle',.06);} };
+
+/* ================= toast + confetti ================= */
+var toastEl=document.createElement('div'); toastEl.id='toast'; document.body.appendChild(toastEl); var toastT;
+function toast(msg,kind){ toastEl.className='show '+(kind||''); toastEl.innerHTML=msg; clearTimeout(toastT); toastT=setTimeout(function(){toastEl.className='';},1900); }
+function confetti(){ var bits=['🎃','🍂','🦇','🍬','🍁','✨']; for(var i=0;i<34;i++){ var c=document.createElement('div'); c.className='confetti'; c.textContent=pick(bits);
+  c.style.left=(Math.random()*100)+'vw'; c.style.animationDuration=(1.8+Math.random()*1.6)+'s'; c.style.animationDelay=(Math.random()*.6)+'s'; document.body.appendChild(c);
+  setTimeout(function(n){ return function(){ n.remove(); }; }(c),4200); } }
+
+var PRAISE=['Nice work!','You got it!','Spooktacular!','Sharp thinking!','Hazel is impressed!','Right on target!','Great job!','Bewitching work!','Nailed it!','Pumpkin perfect!','Wonderful!'];
+var NUDGE=['Not quite yet. Here is a clue.','Close! Check the hint.','Good try. Look at this clue.','Almost there. Try again.'];
+var INK_PRAISE=['Beautiful loops!','Smooth strokes!','Lovely work!','So elegant!','Your cursive looks sharp!','Graceful!'];
+
+/* ================= art ================= */
+function guideSvg(){ return '<svg class="guide" viewBox="0 0 120 120" aria-hidden="true">'+
+ '<ellipse cx="60" cy="72" rx="34" ry="32" fill="#ffd9b8"/>'+
+ '<path d="M24 66c-4 18 0 34 8 44l6-30zM96 66c4 18 0 34-8 44l-6-30z" fill="#e2552f"/>'+
+ '<path d="M8 58 Q60 40 112 58 Q60 66 8 58z" fill="#3b1f63"/><path d="M34 54 L66 4 Q72 2 74 10 L86 54z" fill="#5b2f94"/><path d="M36 50 Q60 42 84 50 L86 56 Q60 48 34 56z" fill="#ff9a4a"/><rect x="54" y="45" width="12" height="9" rx="2" fill="#ffd166"/>'+
+ '<ellipse cx="47" cy="74" rx="5" ry="6" fill="#2b1a3d"/><ellipse cx="73" cy="74" rx="5" ry="6" fill="#2b1a3d"/><circle cx="49" cy="72" r="1.8" fill="#fff"/><circle cx="75" cy="72" r="1.8" fill="#fff"/>'+
+ '<circle cx="39" cy="86" r="5" fill="#ff9e9e" opacity=".6"/><circle cx="81" cy="86" r="5" fill="#ff9e9e" opacity=".6"/>'+
+ '<path d="M50 90q10 8 20 0" stroke="#2b1a3d" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>'; }
+function houseSvg(on,total){ var n=total||5, wins='';
+ var spots= n===3?[[60,70],[100,70],[140,70]] : n===5?[[60,70],[100,70],[140,70],[60,100],[140,100]] : [[52,70],[84,70],[116,70],[148,70],[52,100],[148,100],[84,100],[116,100]];
+ for(var i=0;i<n;i++){ var p=spots[i%spots.length], lit=on==null||i<on;
+   wins+='<rect x="'+(p[0]-9)+'" y="'+(p[1]-10)+'" width="18" height="20" rx="3" fill="'+(lit?'#ffc861':'#2a1d3b')+'"'+(lit?' filter="url(#hg)"':'')+'/>'+(lit?'<path d="M'+p[0]+' '+(p[1]-10)+' v20 M'+(p[0]-9)+' '+p[1]+' h18" stroke="#5a3a1a" stroke-width="1.6"/>':''); }
+ return '<svg viewBox="0 0 200 150" aria-hidden="true"><defs><filter id="hg"><feGaussianBlur stdDeviation="2.2"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+
+ '<path d="M30 132 L30 52 L100 18 L170 52 L170 132Z" fill="#3a2550"/><path d="M22 56 L100 14 L178 56 L170 58 L100 22 L30 58Z" fill="#24163a"/>'+
+ '<rect x="140" y="18" width="20" height="28" fill="#2c1c42"/><path d="M136 20 L150 3 L164 20Z" fill="#24163a"/>'+
+ '<rect x="88" y="104" width="24" height="28" rx="12" fill="#24163a"/><circle cx="107" cy="119" r="1.8" fill="#ffd166"/>'+wins+
+ '<path d="M10 132 H190 V140 H10Z" fill="#24163a"/>'+
+ '<g transform="translate(150 118)"><ellipse cx="0" cy="8" rx="13" ry="10" fill="#ff8f3d"/><path d="M0 -1 l2 -6" stroke="#4d7c3a" stroke-width="3" stroke-linecap="round"/><path d="M-6 5 l3 -3 l3 3z M3 5 l3 -3 l3 3z" fill="#5a2a00"/><path d="M-6 11 q6 4 12 0" stroke="#5a2a00" stroke-width="2" fill="none"/></g>'+
+ '<g transform="translate(46 116)"><ellipse cx="0" cy="10" rx="10" ry="8" fill="#e8742a"/><path d="M0 2 l2 -5" stroke="#4d7c3a" stroke-width="3" stroke-linecap="round"/></g>'+
+ '<g transform="translate(66 128)" fill="#111"><ellipse cx="0" cy="0" rx="7" ry="5"/><circle cx="7" cy="-5" r="4"/><path d="M5 -8 l1 -4 l2 3z M8 -8 l2 -4 l1 4z"/><path d="M-7 0 q-6 -2 -4 -9" stroke="#111" stroke-width="2" fill="none"/><circle cx="8.5" cy="-5.5" r=".9" fill="#ffd166"/></g></svg>'; }
+function pumpkinSvg(n){ return '<svg viewBox="0 0 100 92" aria-hidden="true"><path d="M50 22 q1-13 11-16" stroke="#4d7c3a" stroke-width="6" fill="none" stroke-linecap="round"/>'+
+ '<ellipse cx="29" cy="56" rx="24" ry="30" fill="#d9692a"/><ellipse cx="71" cy="56" rx="24" ry="30" fill="#d9692a"/><ellipse cx="50" cy="56" rx="25" ry="33" fill="#ff8f3d"/>'+
+ '<ellipse cx="42" cy="40" rx="6" ry="10" fill="#ffb47a" opacity=".55"/><text x="50" y="68" text-anchor="middle" font-size="32" font-weight="900" fill="#2a1406" font-family="-apple-system,system-ui,sans-serif">'+n+'</text></svg>'; }
+
+/* ================= kids + missions ================= */
+var KIDS={
+  logan:{name:'Logan', initial:'L', role:'Harvest Crew Chief'},
+  savannah:{name:'Savannah', initial:'S', role:'Spellbook Scribe'}
+};
+var FEST_BADGE=['Festival Lights On','🏮'];
+var MISSIONS={
+ logan:{
+  standard:[
+   {id:'shop', title:'Candy Corner Shop', icon:'🍬', blurb:'Pay for fall treats and make change with coins and bills.', part:'Candy Corn Jar', badge:['Coin Captain','🪙'], run:function(c){ runShop(c,false); }},
+   {id:'addsub', title:'Hay Bale Math', icon:'🧮', blurb:'Add and subtract within 100 with regrouping.', part:'Hay Bale Maze', badge:['Hay Bale Calculator','🧮'], run:runAddSub},
+   {id:'skip', title:'Lantern Lineup', icon:'🏮', blurb:'Skip count by 2s, 5s, and 10s to light the lanterns.', part:'Porch Lanterns', badge:['Lantern Counter','🏮'], run:runSkip},
+   {id:'evenodd', title:'Pumpkin Sort', icon:'🎃', blurb:'Sort the pumpkins into even and odd baskets.', part:'Pumpkin Wagon', badge:['Patch Sorter','🎃'], run:runEvenOdd},
+   {id:'read', title:'Story Scroll', icon:'📜', blurb:'Read a short fall story and answer questions.', part:'Story Corner', badge:['Scroll Reader','📜'], run:runReading}
+  ],
+  advanced:[
+   {id:'add3', title:'Big Number Harvest', icon:'🌽', blurb:'Add 3-digit numbers with regrouping.', badge:['Hundreds Hero','💯'], run:runAdd3},
+   {id:'graph', title:'Harvest Graph', icon:'📊', blurb:'Read a bar graph of pumpkins the helpers picked.', badge:['Data Detective','📊'], run:runGraph},
+   {id:'shop2', title:'Harvest Trading Post', icon:'💵', blurb:'Make change from $5 and $10 bills.', badge:['Trade Master','💵'], run:function(c){ runShop(c,true); }}
+  ]},
+ savannah:{
+  standard:[
+   {id:'mult', title:'Cauldron Multiplication', icon:'🧪', blurb:'Add ingredients to Hazel\u2019s bubbling cauldron with multiplication facts.', part:'Cider Cauldron', badge:['Potion Master','🧪'], run:runMult},
+   {id:'trace', title:'Cursive Spell Tracing', icon:'✒️', blurb:'Trace cursive letters and fall words with your finger or pencil.', part:'Welcome Sign', badge:['Moonlight Scribe','✒️'], run:runTrace},
+   {id:'log', title:'Spellbook Story', icon:'📖', blurb:'Write a story page for Hazel\u2019s spellbook.', part:'Spellbook', badge:['Spellbook Storyteller','📖'], run:runLog}
+  ],
+  advanced:[
+   {id:'lightning', title:'Lightning Round', icon:'⚡', blurb:'10 Set B facts in a row. Stopwatch is optional.', badge:['Lightning Brewer','⚡'], run:runLightning},
+   {id:'copy', title:'Cursive Copy', icon:'🖋️', blurb:'Copy a full sentence in cursive on lined paper.', badge:['Fine Penmanship','🖋️'], run:runCopy}
+  ]}
+};
+function progressOf(k){ var s=load(k), M=MISSIONS[k], stars=0, std=0, adv=0;
+  M.standard.forEach(function(m){ var r=s.missions[m.id]; if(r){ stars+=r.stars; if(r.done) std++; } });
+  M.advanced.forEach(function(m){ var r=s.missions[m.id]; if(r){ stars+=r.stars; if(r.done) adv++; } });
+  return {stars:stars, std:std, adv:adv, stdTotal:M.standard.length, advTotal:M.advanced.length}; }
+function findMission(k,id){ var M=MISSIONS[k]; for(var i=0;i<M.standard.length;i++) if(M.standard[i].id===id) return [M.standard[i],false]; for(i=0;i<M.advanced.length;i++) if(M.advanced[i].id===id) return [M.advanced[i],true]; return null; }
+
+/* ================= screens ================= */
+var cleanups=[];
+function runCleanups(){ cleanups.forEach(function(f){ try{f();}catch(e){} }); cleanups=[]; }
+function show(v){ runCleanups(); app.replaceChildren(v); window.scrollTo(0,0); }
+
+function renderStart(){
+  document.body.className='home';
+  var cards=['logan','savannah'].map(function(k){ var K=KIDS[k], p=progressOf(k);
+    return '<button class="kidcard '+k+'" data-kid="'+k+'"><div class="kc-avatar">'+K.initial+'</div><div class="kc-name">'+K.name+'</div><div class="kc-sub">'+K.role+'</div>'+
+      '<div class="kc-meta"><span class="stars">★ '+p.stars+'</span><span>'+p.std+' of '+p.stdTotal+' festival items</span>'+(p.adv?'<span>'+p.adv+' stretch</span>':'')+'</div></button>'; }).join('');
+  var v=el('<div class="screen start"><div class="topright"><button class="iconbtn" data-act="sound" aria-label="Sound">'+(soundOn?'🔊':'🔇')+'</button></div>'+
+    '<header class="hero"><div class="hero-art">'+houseSvg(null,6)+'</div><h1>Pumpkin Patch Quest</h1>'+
+    '<p class="lede">Hazel the friendly witch is getting the old farm ready for the Harvest Festival. The pumpkins are ripe, the lanterns are dark, and she needs helpers. Choose a helper to begin.</p></header>'+
+    '<div class="kids">'+cards+'</div>'+
+    '<div class="parent-row"><button class="hold" id="parentHold"><span class="fill"></span><span class="lbl">🔒 Parents: press and hold 2 seconds</span></button></div></div>');
+  $$('.kidcard',v).forEach(function(b){ b.addEventListener('click',function(){ sfx.tap(); renderHub(b.dataset.kid); }); });
+  $('[data-act=sound]',v).addEventListener('click',function(e){ soundOn=!soundOn; lsSet(KEY+'sound',soundOn?'on':'off'); e.currentTarget.textContent=soundOn?'🔊':'🔇'; sfx.tap(); });
+  setupHold($('#parentHold',v));
+  show(v);
+}
+
+function setupHold(btn){ var t=null;
+  function start(e){ e.preventDefault(); btn.classList.add('holding'); clearTimeout(t); t=setTimeout(function(){ btn.classList.remove('holding'); renderParent(); },2000); }
+  function stop(){ clearTimeout(t); btn.classList.remove('holding'); }
+  btn.addEventListener('pointerdown',start); ['pointerup','pointerleave','pointercancel'].forEach(function(ev){ btn.addEventListener(ev,stop); });
+  btn.addEventListener('contextmenu',function(e){ e.preventDefault(); });
+  btn.addEventListener('click',function(){ if(!t) return; toast('Keep holding for 2 seconds',''); });
+}
+
+function renderHub(k){
+  document.body.className='kid-'+k;
+  var K=KIDS[k], s=load(k), M=MISSIONS[k], p=progressOf(k), unlocked=p.std===p.stdTotal;
+  var parts=M.standard.map(function(m){ var r=s.missions[m.id]; return '<span class="chip'+(r&&r.done?' on':'')+'">'+(r&&r.done?'✓ ':'')+m.part+'</span>'; }).join('');
+  function card(m,i,adv){ var r=s.missions[m.id], done=r&&r.done, locked=adv&&!unlocked;
+    return '<button class="mcard'+(done?' done':'')+(locked?' locked':'')+(adv?' adv':'')+'" data-mid="'+m.id+'"><div class="mc-icon">'+(locked?'🔒':m.icon)+'</div><div class="mc-body"><div class="mc-title">'+(adv?'':'<span class="mc-num">'+(i+1)+'</span>')+m.title+'</div>'+
+      '<div class="mc-blurb">'+m.blurb+'</div><div class="mc-stars">'+starStr(r?r.stars:0)+'</div></div>'+(done?'<div class="mc-check">✓</div>':'')+'</button>'; }
+  var allBadges=M.standard.concat([{id:'festival',badge:FEST_BADGE}]).concat(M.advanced);
+  var badges=allBadges.map(function(m){ var got=s.badges.indexOf(m.id)>=0; return '<span class="badge'+(got?'':' lockedb')+'"><span class="bi">'+m.badge[1]+'</span>'+m.badge[0]+'</span>'; }).join('');
+  var msg = unlocked ? 'The festival lights are on! Try the optional Advanced Stretch, or replay any mission for more stars.' :
+    (p.std===0 ? 'Hi '+K.name+'! I am Hazel. Will you help me get the Harvest Festival ready? Each mission sets up one part of the festival.' : 'Great progress! '+(p.stdTotal-p.std)+' more festival item'+(p.stdTotal-p.std===1?'':'s')+' to set up.');
+  var v=el('<div class="screen hub"><div class="hubhead"><div class="who"><div class="kc-avatar '+k+'" style="display:grid">'+K.initial+'</div><div><h2>'+K.name+'</h2><div class="sub">'+K.role+' · <span class="stars">★</span> '+p.stars+' stars</div></div></div>'+
+    '<button class="iconbtn" data-act="sound" aria-label="Sound">'+(soundOn?'🔊':'🔇')+'</button><button class="btn ghost small" data-act="home">Switch player</button></div>'+
+    '<div class="card repair"><div>'+houseSvg(p.std,p.stdTotal)+'</div><div><h3>Festival Prep</h3><div class="speech">'+guideSvg()+'<div class="bubble">'+msg+'</div></div>'+
+    '<div class="pbar"><i style="width:'+(100*p.std/p.stdTotal)+'%"></i></div><div class="parts">'+parts+'</div></div></div>'+
+    '<div class="sect"><h3>Standard Missions</h3><span class="tag req">Required</span><p>Finish these to set up every festival item and turn on the festival lights.</p></div>'+
+    '<div class="mgrid">'+M.standard.map(function(m,i){return card(m,i,false);}).join('')+'</div>'+
+    '<div class="sect"><h3>Advanced Stretch</h3><span class="tag">Optional bonus</span><p>'+(unlocked?'Extra challenges for when you want more. Totally optional.':'Unlocks after all standard missions are done. Always optional.')+'</p></div>'+
+    '<div class="mgrid">'+M.advanced.map(function(m,i){return card(m,i,true);}).join('')+'</div>'+
+    '<div class="sect"><h3>Badges</h3></div><div class="badges">'+badges+'</div></div>');
+  $('.hubhead .kc-avatar',v).className='kc-avatar'; $('.hubhead .who',v).classList.add(k);
+  $('[data-act=home]',v).addEventListener('click',function(){ sfx.tap(); renderStart(); });
+  $('[data-act=sound]',v).addEventListener('click',function(e){ soundOn=!soundOn; lsSet(KEY+'sound',soundOn?'on':'off'); e.currentTarget.textContent=soundOn?'🔊':'🔇'; });
+  $$('.mcard',v).forEach(function(b){ b.addEventListener('click',function(){ var f=findMission(k,b.dataset.mid);
+    if(f[1]&&!unlocked){ sfx.soft(); toast('Finish the standard missions first','nudge'); return; } sfx.tap(); startMission(k,f[0],f[1]); }); });
+  show(v);
+}
+
+function startMission(k,m,adv){
+  document.body.className='kid-'+k; $$('.confetti').forEach(function(n){ n.remove(); });
+  var v=el('<div class="screen mission"><div class="topbar"><button class="btn ghost small" data-act="back">‹ Patch</button>'+
+    '<div class="mtitle"><span>'+m.icon+' '+m.title+'</span>'+(adv?'<span class="tag">Advanced Stretch · optional</span>':'')+'<span class="timer" hidden></span></div>'+
+    '<div class="prog"><div class="pbar"><i style="width:0%"></i></div><span class="count"></span></div></div><div class="stage"></div></div>');
+  $('[data-act=back]',v).addEventListener('click',function(){ sfx.tap(); renderHub(k); });
+  var ctx={ kid:k, m:m, adv:adv, view:v, stage:$('.stage',v), stats:{first:0,total:0},
+    progress:function(i,n){ $('.prog i',v).style.width=(100*i/n)+'%'; $('.prog .count',v).textContent=Math.min(i+1,n)+' / '+n; },
+    record:function(first){ this.stats.total++; if(first) this.stats.first++; },
+    finish:function(extra){ $('.prog i',v).style.width='100%'; completeMission(k,m,adv,this.stats,extra||{}); },
+    timerEl:$('.timer',v) };
+  show(v);
+  T.mission=m.id; T.answer=null;
+  m.run(ctx);
+}
+
+function completeMission(k,m,adv,stats,extra){
+  var s=load(k), rec=s.missions[m.id]||{stars:0,done:0};
+  var stars = extra.stars || (stats.total ? (stats.first/stats.total>=0.7?3:2) : 3);
+  rec.stars=Math.max(rec.stars,stars); rec.done=(rec.done||0)+1; rec.last=Date.now(); s.missions[m.id]=rec;
+  var newBadges=[], unlockedNow=false;
+  if(s.badges.indexOf(m.id)<0){ s.badges.push(m.id); newBadges.push(m.badge); }
+  var M=MISSIONS[k];
+  if(!adv && s.badges.indexOf('festival')<0 && M.standard.every(function(x){ return s.missions[x.id]&&s.missions[x.id].done; })){ s.badges.push('festival'); newBadges.push(FEST_BADGE); unlockedNow=true; }
+  s.lastPlayed=Date.now(); save(k);
+  var lines=[];
+  if(extra.summary) lines.push(extra.summary);
+  else if(stats.total){ lines.push('You solved '+stats.total+' problems'+(k==='logan'?', '+stats.first+' on the first try.':'. Every one of them!')); }
+  if(!adv) lines.push('Festival item ready: <b>'+m.part+'</b>');
+  (extra.lines||[]).forEach(function(l){ lines.push(l); });
+  if(stars<3) lines.push('<span class="muted">Replay any time to aim for 3 stars.</span>');
+  var v=el('<div class="screen results"><div class="card" style="display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;width:100%;margin:auto">'+
+    '<div style="width:110px">'+guideSvg()+'</div><div class="bigstars">'+[0,1,2].map(function(i){ return '<span style="animation-delay:'+(i*.18)+'s" class="'+(i<stars?'':'off')+'">★</span>'; }).join('')+'</div>'+
+    '<h2>'+pick(['Mission complete!','Mission accomplished!','Spooktacular!'])+'</h2><div class="lines">'+lines.join('<br>')+'</div>'+
+    (newBadges.length?'<div class="badges" style="justify-content:center">'+newBadges.map(function(b){ return '<span class="badge"><span class="bi">'+b[1]+'</span>New badge: '+b[0]+'</span>'; }).join('')+'</div>':'')+
+    (unlockedNow?'<div class="unlock">🏮 The festival lights are on! Hazel\u2019s Harvest Festival is ready. The <b>Advanced Stretch</b> missions are now open. They are optional bonus challenges.</div>':'')+
+    '<div class="row center"><button class="btn ghost" data-act="again">Play again</button><button class="btn" data-act="base">Back to the patch</button></div></div></div>');
+  $('.bigstars',v).classList.add('stars');
+  $('[data-act=again]',v).addEventListener('click',function(){ sfx.tap(); startMission(k,m,adv); });
+  $('[data-act=base]',v).addEventListener('click',function(){ sfx.tap(); renderHub(k); });
+  show(v); sfx.win(); confetti();
+}
+
+function renderParent(){
+  var o=el('<div class="overlay" id="parent"><div class="inner"><div class="row"><h2 style="flex:1">Parent Area</h2><button class="btn ghost small" data-act="close">Close</button></div><div class="pbody"></div></div></div>');
+  function fmt(t){ if(!t) return ''; var d=new Date(t); return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}); }
+  function draw(){ var body=$('.pbody',o); body.innerHTML='';
+    ['logan','savannah'].forEach(function(k){ var s=load(k), M=MISSIONS[k], p=progressOf(k);
+      var rows=function(list,label){ return list.map(function(m){ var r=s.missions[m.id]||{}; return '<tr><td>'+m.icon+' '+m.title+'</td><td>'+label+'</td><td>'+(r.done?'✓ Done':'Not yet')+'</td><td>'+starStr(r.stars||0)+'</td><td>'+(r.done||0)+'</td><td>'+fmt(r.last)+'</td></tr>'; }).join(''); };
+      var extra='';
+      if(k==='savannah'){
+        extra+='<p><b>Lightning Round best time:</b> '+(s.lightningBest?fmtTime(s.lightningBest):'none yet (stopwatch is optional)')+'</p>';
+        extra+='<h3 style="margin-top:6px">Spellbook stories ('+s.logs.length+')</h3>'+(s.logs.length?s.logs.slice().reverse().map(function(l,i){ return '<details class="saved"><summary>'+fmt(l.t)+' · '+l.text.split(/\s+/).filter(Boolean).length+' words</summary><p class="muted">'+esc(l.prompt)+'</p><p>'+esc(l.text)+'</p><button class="btn ghost small" data-copy="'+(s.logs.length-1-i)+'">Copy text</button></details>'; }).join(''):'<p class="muted">No saved stories yet.</p>');
+      }
+      var c=el('<div class="card"><div class="row"><h2 style="flex:1">'+KIDS[k].name+'</h2><span class="stars">★</span><b>'+p.stars+' stars</b></div>'+
+        '<p>Standard: <b>'+p.std+' of '+p.stdTotal+'</b> · Advanced Stretch: <b>'+p.adv+' of '+p.advTotal+'</b> · Badges: <b>'+s.badges.length+'</b> · Last played: '+(fmt(s.lastPlayed)||'never')+'</p>'+
+        '<div style="overflow-x:auto"><table class="pt"><tr><th>Mission</th><th>Type</th><th>Status</th><th>Best</th><th>Plays</th><th>Last</th></tr>'+rows(M.standard,'Standard')+rows(M.advanced,'Advanced')+'</table></div>'+extra+
+        '<div class="row end" style="margin-top:12px"><button class="btn danger small" data-reset="'+k+'">Reset '+KIDS[k].name+'\u2019s progress</button></div></div>');
+      $$('[data-copy]',c).forEach(function(b){ b.addEventListener('click',function(){ copyText(s.logs[+b.dataset.copy].text).then(function(ok){ toast(ok?'Copied':'Select the text to copy it', ok?'good':''); }); }); });
+      var rb=$('[data-reset]',c), armed=false;
+      rb.addEventListener('click',function(){ if(!armed){ armed=true; rb.textContent='Tap again to confirm reset'; setTimeout(function(){ if(armed){ armed=false; rb.textContent='Reset '+KIDS[k].name+'\u2019s progress'; } },4000); return; }
+        resetKid(k); toast(KIDS[k].name+'\u2019s progress was reset'); draw(); });
+      body.appendChild(c);
+    });
+    body.appendChild(el('<p class="muted" style="text-align:center">Progress is saved on this device in this browser only. Clearing Safari website data will erase it.</p>'));
+  }
+  draw();
+  $('[data-act=close]',o).addEventListener('click',function(){ o.remove(); renderStart(); });
+  document.body.appendChild(o);
+}
+function fmtTime(ms){ var s=Math.round(ms/1000); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+function copyText(t){ function fallback(){ var ta=document.createElement('textarea'); ta.value=t; ta.setAttribute('readonly',''); ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,t.length); var ok=false; try{ ok=document.execCommand('copy'); }catch(e){} ta.remove(); return ok; }
+  if(navigator.clipboard&&window.isSecureContext){ return navigator.clipboard.writeText(t).then(function(){return true;},function(){ return fallback(); }); }
+  return Promise.resolve(fallback()); }
+/* ================= question helpers ================= */
+function numpadEl(onKey){
+  var pad=el('<div class="numpad">'+[1,2,3,4,5,6,7,8,9].map(function(n){ return '<button class="key" data-k="'+n+'">'+n+'</button>'; }).join('')+
+    '<button class="key fn" data-k="del" aria-label="Delete">⌫</button><button class="key" data-k="0">0</button><button class="key go" data-k="ok">Check</button></div>');
+  pad.addEventListener('click',function(e){ var b=e.target.closest('[data-k]'); if(!b) return; sfx.tap(); onKey(b.dataset.k); });
+  return pad;
+}
+function series(ctx,n,ask){ var i=0; (function next(){ if(i>=n){ ctx.finish(); return; } ctx.progress(i,n); var cur=i++; ask(cur,next); })(); }
+function revealText(ans){ return 'The answer is <b>'+ans+'</b>. Type it in to lock it in. You will remember it next time!'; }
+
+/* Number answer with a keypad. opts: html, answer, hints[], maxLen, label */
+function askNumber(ctx,opts,done){
+  var w=el('<div class="qwrap"><div class="card qpanel">'+(opts.label?'<div class="qlabel">'+opts.label+'</div>':'')+opts.html+
+    '<div class="ansrow"><div class="ans"><span class="val"></span></div></div><div class="hint"></div></div><div class="apanel"></div></div>');
+  var slot=$('.slot',w), valEl=slot||$('.val',w), box=slot||$('.ans',w), hintEl=$('.hint',w);
+  if(slot) $('.ansrow',w).remove();
+  var val='', tries=0, locked=false, maxLen=opts.maxLen||4;
+  T.answer=opts.answer;
+  function upd(){ valEl.textContent=val; }
+  $('.apanel',w).appendChild(numpadEl(function(k){
+    if(locked) return;
+    if(k==='del'){ val=val.slice(0,-1); upd(); return; }
+    if(k==='ok'){ if(!val){ toast('Tap the numbers to type an answer'); return; } check(); return; }
+    if(val.length<maxLen){ val+=k; upd(); }
+  }));
+  function check(){
+    if(parseInt(val,10)===opts.answer){ locked=true; box.classList.add('ok'); sfx.good(); toast(pick(PRAISE),'good'); ctx.record(tries===0); setTimeout(done,1000); }
+    else{ tries++; sfx.soft(); box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
+      var hs=opts.hints||[]; hintEl.innerHTML='💡 '+(tries<=hs.length?hs[tries-1]:revealText(opts.answer)); hintEl.classList.add('show');
+      toast(pick(NUDGE),'nudge'); val=''; upd(); }
+  }
+  ctx.stage.replaceChildren(w);
+}
+/* Multiple choice. opts: html, choices[], answer (string), hints[] */
+function askChoice(ctx,opts,done){
+  var w=el('<div class="qwrap"><div class="card qpanel">'+(opts.label?'<div class="qlabel">'+opts.label+'</div>':'')+opts.html+'<div class="hint"></div></div><div class="choices"></div></div>');
+  var tries=0, locked=false, hintEl=$('.hint',w);
+  T.answer=opts.answer;
+  opts.choices.forEach(function(c){ var b=el('<button class="choice"></button>'); b.innerHTML=c; b.dataset.v=c;
+    b.addEventListener('click',function(){ if(locked||b.classList.contains('dim')) return;
+      if(c===opts.answer){ locked=true; b.classList.add('right'); sfx.good(); toast(pick(PRAISE),'good'); ctx.record(tries===0); setTimeout(done,1000); }
+      else{ tries++; b.classList.add('dim'); sfx.soft(); var hs=opts.hints||[]; hintEl.innerHTML='💡 '+(hs[Math.min(tries,hs.length)-1]||'Try another choice.'); hintEl.classList.add('show'); toast(pick(NUDGE),'nudge'); }
+    }); $('.choices',w).appendChild(b); });
+  ctx.stage.replaceChildren(w);
+}
+function vertHtml(a,b,op){ return '<div class="vert"><div></div><div class="num">'+a+'</div><div class="op">'+(op==='-'?'−':'+')+'</div><div class="num">'+b+'</div><div class="vline"></div><div></div><div class="num slot"></div></div>'; }
+
+/* ================= LOGAN ================= */
+var SNACKS=[['Caramel Apple','🍎'],['Candy Corn Bag','🍬'],['Pumpkin Bread','🍞'],['Lollipop','🍭'],['Kettle Corn','🍿'],['Apple Cider','🧃'],['Pumpkin Pie Slice','🥧'],['Cider Donut','🍩'],['Hot Cocoa','☕'],['Ghost Cookie','🍪'],['Pumpkin Muffin','🧁'],['Soft Pretzel','🥨']];
+var DENOMS=[{v:1,lab:'1¢',name:'penny',k:'coin penny'},{v:5,lab:'5¢',name:'nickel',k:'coin nickel'},{v:10,lab:'10¢',name:'dime',k:'coin dime'},{v:25,lab:'25¢',name:'quarter',k:'coin quarter'},{v:100,lab:'$1',name:'$1 bill',k:'bill'},{v:500,lab:'$5',name:'$5 bill',k:'bill five'}];
+function moneyBits(d){ return d.v>=100 ? '<div class="'+d.k+'">'+d.lab+'</div>' : '<div class="'+d.k+'">'+d.lab+'</div>'; }
+function breakdown(c,denoms){ var out=[]; denoms.slice().sort(function(a,b){return b.v-a.v;}).forEach(function(d){ var n=Math.floor(c/d.v); if(n){ c-=n*d.v; out.push(n+' '+(d.v>=100?d.name+(n>1?'s':''):(n>1?(d.name==='penny'?'pennies':d.name+'s'):d.name))); } }); return out.join(', '); }
+
+function runShop(ctx,adv){
+  var types = adv ? ['ch5','ch5','ch5','ch10','ch10'] : shuffle(['pay','pay','change','change','dollars','dollars']);
+  var used=shuffle(SNACKS);
+  series(ctx,types.length,function(i,done){
+    var t=types[i], sn=used[i%used.length], price, paid=0, target, prompt, denoms;
+    if(t==='pay'){ price=rand(11,99); target=price; denoms=DENOMS.slice(0,4); prompt='Midnight the cat wants a <b>'+sn[0]+'</b>. Tap coins to pay exactly <b>'+money(price)+'</b>.'; }
+    else if(t==='change'){ price=5*rand(3,19); paid=100; target=paid-price; denoms=DENOMS.slice(0,4); prompt='Hazel buys a <b>'+sn[0]+'</b> for <b>'+money(price)+'</b> and pays with a <b>$1 bill</b>. Tap coins to give Hazel the change.'; }
+    else if(t==='dollars'){ price=100*rand(1,3)+5*rand(1,19); target=price; denoms=DENOMS.slice(0,5); prompt='A <b>'+sn[0]+'</b> costs <b>'+money(price)+'</b>. Tap bills and coins to pay exactly.'; }
+    else { paid=t==='ch5'?500:1000; price=t==='ch5'?rand(101,489):rand(512,949); target=paid-price; denoms=DENOMS.slice(0,6);
+      prompt='The Trading Post sells a <b>'+sn[0]+'</b> for <b>'+money(price)+'</b>. Boo the ghost pays with a <b>'+money(paid).replace('.00','')+' bill</b>. Give Boo the exact change.'; }
+    T.answer=target; T.denoms=denoms.map(function(d){return d.v;});
+    var tray=[], tries=0, locked=false;
+    var w=el('<div class="qwrap"><div class="card qpanel"><div class="qlabel">'+(paid?'Make change':'Pay the shopkeeper')+'</div>'+
+      '<div class="snack"><span class="em">'+sn[1]+'</span><span class="pricetag">'+money(price)+'</span></div><p class="prompt">'+prompt+'</p>'+
+      '<div class="tray" aria-label="Your tray"></div><div class="hint"></div></div>'+
+      '<div><div class="wallet"></div><div class="row center" style="margin-top:14px"><button class="btn ghost" data-act="clear">Clear tray</button><button class="btn" data-act="check">Check</button></div></div></div>');
+    var trayEl=$('.tray',w), hintEl=$('.hint',w);
+    function drawTray(){ trayEl.innerHTML= tray.length ? '' : '<span class="empty">Tap money below to put it here. Tap money here to take it back.</span>';
+      tray.forEach(function(d,idx){ var m=el(moneyBits(d)); m.addEventListener('click',function(){ if(locked) return; tray.splice(idx,1); sfx.tap(); drawTray(); }); trayEl.appendChild(m); }); }
+    denoms.forEach(function(d){ var b=el('<button class="mbtn" data-v="'+d.v+'">'+moneyBits(d)+'<span>'+d.name+'</span></button>');
+      b.addEventListener('click',function(){ if(locked) return; if(tray.length>=30){ toast('The tray is full'); return; } sfx.tap(); tray.push(d); drawTray(); }); $('.wallet',w).appendChild(b); });
+    $('[data-act=clear]',w).addEventListener('click',function(){ if(locked) return; tray=[]; drawTray(); hintEl.classList.remove('show'); });
+    $('[data-act=check]',w).addEventListener('click',function(){ if(locked) return;
+      var total=tray.reduce(function(a,d){return a+d.v;},0);
+      if(!tray.length){ toast('Tap some money first'); return; }
+      if(total===target){ locked=true; trayEl.style.borderColor='var(--green)'; sfx.good(); toast(pick(PRAISE),'good'); ctx.record(tries===0); setTimeout(done,1100); return; }
+      tries++; sfx.soft(); toast(pick(NUDGE),'nudge');
+      var h= total<target ? 'You put in <b>'+money(total)+'</b>. You need <b>'+money(target)+'</b>. Add <b>'+money(target-total)+'</b> more.'
+                          : 'You put in <b>'+money(total)+'</b>. That is <b>'+money(total-target)+'</b> too much. Tap money in the tray to take some back.';
+      if(paid && tries===1) h+='<br>Change means: '+money(paid)+' minus '+money(price)+'. Count up from '+money(price)+' to '+money(paid)+'.';
+      if(tries>=2) h+='<br>One way: '+breakdown(target,denoms)+'.';
+      hintEl.innerHTML='💡 '+h; hintEl.classList.add('show');
+    });
+    drawTray(); ctx.stage.replaceChildren(w);
+  });
+}
+
+function runAddSub(ctx){
+  var ops=shuffle(['+','+','+','+','-','-','-']);
+  series(ctx,ops.length,function(i,done){ var a,b,op=ops[i],ans,hints;
+    if(op==='+'){ do{ a=rand(12,78); b=rand(11,78); }while((a%10)+(b%10)<10 || a+b>99); ans=a+b;
+      var o=(a%10)+(b%10); hints=['Start with the ones: '+(a%10)+' + '+(b%10)+' = '+o+'. Write the '+(o%10)+' and carry 1 ten.','Now the tens: '+Math.floor(a/10)+' + '+Math.floor(b/10)+' + 1 carried = '+(Math.floor(a/10)+Math.floor(b/10)+1)+' tens.']; }
+    else { do{ a=rand(31,99); b=rand(11,a-10); }while((a%10)>=(b%10)); ans=a-b;
+      hints=['You can\u2019t take '+(b%10)+' from '+(a%10)+'. Trade 1 ten for 10 ones: '+(a%10+10)+' − '+(b%10)+' = '+(a%10+10-b%10)+'.','Now the tens: you have '+(Math.floor(a/10)-1)+' tens left. '+(Math.floor(a/10)-1)+' − '+Math.floor(b/10)+' = '+(Math.floor(a/10)-1-Math.floor(b/10))+'.']; }
+    askNumber(ctx,{label:op==='+'?'Add':'Subtract', html:'<p class="prompt muted">Hazel is counting hay bales for the maze.</p>'+vertHtml(a,b,op), answer:ans, hints:hints, maxLen:3},done);
+  });
+}
+
+function runAdd3(ctx){
+  series(ctx,6,function(i,done){ var a,b; do{ a=rand(105,789); b=rand(105,789); }while(a+b>999 || ((a%10)+(b%10)<10 && (Math.floor(a/10)%10)+(Math.floor(b/10)%10)<10));
+    var o=a%10+b%10, c1=o>=10?1:0, t=Math.floor(a/10)%10+Math.floor(b/10)%10+c1, c2=t>=10?1:0, hh=Math.floor(a/100)+Math.floor(b/100)+c2;
+    var hints=['Ones: '+(a%10)+' + '+(b%10)+' = '+o+(c1?'. Write '+(o%10)+', carry 1.':'.'),
+      'Tens: '+(Math.floor(a/10)%10)+' + '+(Math.floor(b/10)%10)+(c1?' + 1':'')+' = '+t+(c2?'. Write '+(t%10)+', carry 1.':'.')+' Hundreds: '+Math.floor(a/100)+' + '+Math.floor(b/100)+(c2?' + 1':'')+' = '+hh+'.'];
+    askNumber(ctx,{label:'3-digit harvest', html:vertHtml(a,b,'+'), answer:a+b, hints:hints, maxLen:4},done);
+  });
+}
+
+function runSkip(ctx){
+  var steps=shuffle([2,2,5,5,10,10]);
+  series(ctx,steps.length,function(qi,done){
+    var step=steps[qi], start=step*rand(step===10?0:1, step===2?30:step===5?11:4), len=6, seq=[];
+    for(var k=0;k<len;k++) seq.push(start+k*step);
+    var nb=qi<2?1:2, pos=shuffle([2,3,4,5]).slice(0,nb).sort(), filled={}, active=0, val='', tries=0, firstOk=true, locked=false;
+    T.answer=pos.map(function(p){return seq[p];});
+    var w=el('<div class="qwrap"><div class="card qpanel"><div class="qlabel">Count by '+step+'s</div><p class="prompt">Light the empty lanterns. Each lantern goes up by the same amount.</p><div class="cells"></div><div class="hint"></div></div><div class="apanel"></div></div>');
+    var cellsEl=$('.cells',w), hintEl=$('.hint',w);
+    function draw(){ cellsEl.innerHTML=''; seq.forEach(function(n,k){ var bi=pos.indexOf(k), c;
+      if(bi<0) c=el('<div class="cell">'+n+'</div>');
+      else if(filled[k]) c=el('<div class="cell filled">'+n+'</div>');
+      else { c=el('<div class="cell blank'+(bi===active?' active':'')+'">'+(bi===active?val:'')+'</div>'); }
+      cellsEl.appendChild(c); }); }
+    $('.apanel',w).appendChild(numpadEl(function(k){ if(locked) return;
+      if(k==='del'){ val=val.slice(0,-1); draw(); return; }
+      if(k==='ok'){ if(!val){ toast('Type a number for the glowing lantern'); return; }
+        var p=pos[active];
+        if(parseInt(val,10)===seq[p]){ filled[p]=true; active++; val=''; sfx.good(); hintEl.classList.remove('show'); tries=0;
+          if(active>=pos.length){ locked=true; draw(); toast(pick(PRAISE),'good'); ctx.record(firstOk); setTimeout(done,1000); } else { toast('Lantern lit! One more.','good'); draw(); } }
+        else { tries++; firstOk=false; sfx.soft(); toast(pick(NUDGE),'nudge'); val=''; draw();
+          hintEl.innerHTML='💡 '+(tries===1?'The numbers go up by <b>'+step+'</b> each time.':tries===2?'The cell before is <b>'+seq[p-1]+'</b>. What is '+seq[p-1]+' + '+step+'?':revealText(seq[p])); hintEl.classList.add('show'); }
+        return; }
+      if(val.length<3){ val+=k; draw(); } }));
+    draw(); ctx.stage.replaceChildren(w);
+  });
+}
+
+function runEvenOdd(ctx){
+  var nums; do{ nums=shuffle(Array.from({length:98},function(_,i){return i+2;})).slice(0,8); var ev=nums.filter(function(n){return n%2===0;}).length; }while(ev<3||ev>5);
+  var sel=null, sorted=0, missed={}, total=nums.length;
+  T.answer=nums.slice();
+  var w=el('<div class="qwrap"><div class="card qpanel"><div class="qlabel">Even or odd?</div><p class="prompt">Tap a pumpkin, then tap the basket where it belongs.</p><div class="patch"></div><div class="hint"></div></div>'+
+    '<div class="baskets"><button class="basket even" data-b="even"><span style="font-size:42px">🧺</span><span class="bl">EVEN</span><span class="bc"></span></button><button class="basket odd" data-b="odd"><span style="font-size:42px">🧺</span><span class="bl">ODD</span><span class="bc"></span></button></div></div>');
+  var hintEl=$('.hint',w);
+  nums.forEach(function(n){ var p=el('<button class="pumpkin" data-n="'+n+'" aria-label="Pumpkin '+n+'">'+pumpkinSvg(n)+'</button>');
+    p.addEventListener('click',function(){ if(p.classList.contains('gone')) return; sfx.tap(); $$('.pumpkin',w).forEach(function(x){x.classList.remove('sel');}); p.classList.add('sel'); sel=p; });
+    $('.patch',w).appendChild(p); });
+  $$('.basket',w).forEach(function(b){ b.addEventListener('click',function(){
+    if(!sel){ toast('Tap a pumpkin first'); return; }
+    var n=+sel.dataset.n, isEven=n%2===0, want=b.dataset.b==='even';
+    if(isEven===want){ sel.classList.remove('sel'); sel.classList.add('gone'); $('.bc',b).textContent+='🎃'; sfx.good(); toast(pick(PRAISE),'good'); hintEl.classList.remove('show');
+      ctx.record(!missed[n]); sorted++; sel=null; ctx.progress(Math.min(sorted,total-1),total); $('.prog .count',ctx.view).textContent=sorted+' / '+total;
+      if(sorted===total){ setTimeout(function(){ ctx.finish(); },900); } }
+    else { missed[n]=true; sfx.soft(); toast(pick(NUDGE),'nudge'); sel.classList.remove('shake'); void sel.offsetWidth; sel.classList.add('shake');
+      hintEl.innerHTML='💡 Look at the ones digit of <b>'+n+'</b>: it is <b>'+(n%10)+'</b>. Even numbers end in 0, 2, 4, 6, or 8. Odd numbers end in 1, 3, 5, 7, or 9.'; hintEl.classList.add('show'); }
+  }); });
+  ctx.progress(0,total); $('.prog .count',ctx.view).textContent='0 / '+total;
+  ctx.stage.replaceChildren(w);
+}
+
+var STORIES=[
+ {title:'Hazel and the Big Pumpkin', pics:['🧙‍♀️🎃','🎃💪','🐈‍⬛🧹','🎃🎉'], pages:[
+   'Hazel is a kind witch. She has a black cat. His name is Midnight. They live on a farm with a big pumpkin patch.',
+   'One pumpkin is the biggest. Hazel tugs on it. It will not budge! Midnight tugs on it too. It still sits.',
+   'Hazel has a plan. She gets her broom and a rope. She ties the rope to the broom. Then she and Midnight lift off.',
+   'Up, up the pumpkin goes! They set it by the barn. "This is the best pumpkin for the fest," Hazel said.'],
+  qs:[{q:'What is the name of the cat?', a:'Midnight', w:['Boo','Hazel'], page:0},
+      {q:'Why did Hazel need a plan?', a:'The pumpkin would not budge', w:['The pumpkin was lost','The cat ran off'], page:1},
+      {q:'Where did they set the pumpkin?', a:'By the barn', w:['In the pond','On the roof'], page:3}]},
+ {title:'The Lost Hat', pics:['🧙‍♀️❓','🦇🦇','🌽🎩','🧙‍♀️🙂'], pages:[
+   'It is a cool fall night. Hazel wants to fly, but her hat is not on her desk. Her best hat is lost!',
+   'Three bats flap past. "We can help," said the bats. They zip up and look down at the farm.',
+   'The bats spot a tip of a hat in the corn. It is stuck on a tall stalk. A crow is resting on it!',
+   'The crow hops off. Hazel puts her hat back on. "Thank you, bats," Hazel said. Then she flew over the farm.'],
+  qs:[{q:'What did Hazel lose?', a:'Her hat', w:['Her broom','Her cat'], page:0},
+      {q:'Who helped Hazel look?', a:'Three bats', w:['A dog','Two ghosts'], page:1},
+      {q:'Where was the hat?', a:'In the corn', w:['In the barn','Under the bed'], page:2}]},
+ {title:'Boo Sets Up the Fest', pics:['👻🏚️','👻🏮','🏮🏮🏮','🎃👻🎉'], pages:[
+   'Boo is a friendly ghost. He lives in the old house on the hill. Boo likes to hum and help.',
+   'The Harvest Fest is at six. Boo must hang the lanterns. He floats up and hangs them on the porch.',
+   'He hangs one, then two, then ten! But the lanterns are dark. Boo needs a light. He asks Hazel.',
+   'Hazel waves her hand. Pop! The lanterns glow. Kids come up the hill to the fest. Boo hums a happy tune.'],
+  qs:[{q:'Where does Boo live?', a:'In the old house on the hill', w:['In a cave','In a tree'], page:0},
+      {q:'What did Boo hang?', a:'Lanterns', w:['Hats','Socks'], page:1},
+      {q:'Who made the lanterns glow?', a:'Hazel', w:['Midnight','The kids'], page:3}]}
+];
+function runReading(ctx){
+  var st=pick(STORIES), page=0, total=st.pages.length+st.qs.length; T.story=st.title;
+  var canSpeak='speechSynthesis' in window;
+  function drawPage(){ ctx.progress(page,total);
+    var words=st.pages[page].split(' ').map(function(wd){ return '<span class="w" data-w="'+esc(wd.replace(/[^A-Za-z']/g,''))+'">'+esc(wd)+'</span>'; }).join(' ');
+    var w=el('<div class="qwrap wide"><div class="card qpanel"><div class="qlabel">'+esc(st.title)+' · Page '+(page+1)+' of '+st.pages.length+'</div><div class="pagepic">'+st.pics[page]+'</div>'+
+      '<div class="story">'+words+'</div>'+(canSpeak?'<p class="muted" style="margin:0">Stuck on a word? Tap it to hear it.</p>':'')+
+      '<div class="pagedots">'+st.pages.map(function(_,i){return '<i class="'+(i===page?'on':'')+'"></i>';}).join('')+'</div>'+
+      '<div class="row center"><button class="btn ghost" data-act="prev"'+(page===0?' disabled':'')+'>‹ Back</button><button class="btn" data-act="next">'+(page===st.pages.length-1?'Answer questions ›':'Next page ›')+'</button></div></div></div>');
+    $$('.w',w).forEach(function(s){ s.addEventListener('click',function(){ if(!canSpeak) return; try{ speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(s.dataset.w); u.rate=.8; speechSynthesis.speak(u); }catch(e){} s.classList.add('said'); setTimeout(function(){s.classList.remove('said');},900); }); });
+    $('[data-act=prev]',w).addEventListener('click',function(){ if(page>0){ page--; sfx.tap(); drawPage(); } });
+    $('[data-act=next]',w).addEventListener('click',function(){ sfx.tap(); if(page<st.pages.length-1){ page++; drawPage(); } else questions(); });
+    ctx.stage.replaceChildren(w); }
+  function questions(){ var qs=st.qs, qi=0;
+    (function next(){ if(qi>=qs.length){ ctx.finish({summary:'You read all of <b>'+esc(st.title)+'</b> and answered '+qs.length+' questions.'}); return; }
+      ctx.progress(st.pages.length+qi,total); var q=qs[qi++];
+      askChoice(ctx,{label:'Story question', html:'<p class="prompt" style="font-size:30px">'+q.q+'</p>', choices:shuffle([q.a].concat(q.w)), answer:q.a,
+        hints:['Look back at page '+(q.page+1)+': <i>'+esc(st.pages[q.page])+'</i>']},next); })();
+  }
+  drawPage();
+}
+
+function runGraph(ctx){
+  var crew=[['Hazel','🧙‍♀️','#b69cff'],['Boo','👻','#c9d0ec'],['Logan','🧑‍🌾','#7cc8ff'],['Midnight','🐈‍⬛','#ff9a4a']];
+  var vals=shuffle([2,3,4,5,6,7,8,9,10]).slice(0,4); var data=crew.map(function(c,i){ return {n:c[0],i:c[1],c:c[2],v:vals[i]}; });
+  var byV=data.slice().sort(function(a,b){return b.v-a.v;}), mx=byV[0], mn=byV[3];
+  var x=pick(data), pair=shuffle(data).slice(0,2);
+  function svg(){ var W=440,H=320,L=44,B=250,Tp=18,bw=62,gap=(W-L-14-4*bw)/4, s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:520px" font-family="-apple-system,system-ui,sans-serif">';
+    for(var g=0;g<=10;g++){ var y=B-g*(B-Tp)/10; s+='<line x1="'+L+'" x2="'+(W-8)+'" y1="'+y+'" y2="'+y+'" stroke="rgba(255,255,255,'+(g%2?'.08':'.18')+')"/><text x="'+(L-8)+'" y="'+(y+5)+'" fill="#aab2da" font-size="14" text-anchor="end">'+g+'</text>'; }
+    data.forEach(function(d,i){ var bx=L+gap/2+i*(bw+gap), bh=d.v*(B-Tp)/10; s+='<rect x="'+bx+'" y="'+(B-bh)+'" width="'+bw+'" height="'+bh+'" rx="8" fill="'+d.c+'" opacity=".9"/>'+
+      '<text x="'+(bx+bw/2)+'" y="'+(B+28)+'" text-anchor="middle" font-size="22">'+d.i+'</text><text x="'+(bx+bw/2)+'" y="'+(B+52)+'" text-anchor="middle" fill="#eef1ff" font-size="16" font-weight="800">'+d.n+'</text>'; });
+    return s+'<text x="12" y="'+(Tp+(B-Tp)/2)+'" fill="#aab2da" font-size="13" transform="rotate(-90 12 '+(Tp+(B-Tp)/2)+')" text-anchor="middle">Pumpkins</text></svg>'; }
+  var head='<p class="prompt" style="font-size:20px">Pumpkins the helpers picked today</p>'+svg();
+  var Q=[
+   function(d){ askChoice(ctx,{label:'Harvest graph', html:head+'<p class="prompt">Who picked the <b>most</b> pumpkins?</p>', choices:data.map(function(z){return z.i+' '+z.n;}), answer:mx.i+' '+mx.n, hints:['Find the tallest bar.']},d); },
+   function(d){ askNumber(ctx,{label:'Harvest graph', html:head+'<p class="prompt">How many pumpkins did <b>'+x.n+'</b> pick?</p>', answer:x.v, maxLen:2, hints:['Find '+x.n+'\u2019s bar. Slide your finger from the top of the bar to the numbers on the left.']},d); },
+   function(d){ askChoice(ctx,{label:'Harvest graph', html:head+'<p class="prompt">Who picked the <b>fewest</b> pumpkins?</p>', choices:data.map(function(z){return z.i+' '+z.n;}), answer:mn.i+' '+mn.n, hints:['Find the shortest bar.']},d); },
+   function(d){ askNumber(ctx,{label:'Harvest graph', html:head+'<p class="prompt">How many <b>more</b> did '+mx.n+' pick than '+mn.n+'?</p>', answer:mx.v-mn.v, maxLen:2, hints:[mx.n+' has '+mx.v+'. '+mn.n+' has '+mn.v+'. Count up from '+mn.v+' to '+mx.v+'.']},d); },
+   function(d){ askNumber(ctx,{label:'Harvest graph', html:head+'<p class="prompt">How many did <b>'+pair[0].n+'</b> and <b>'+pair[1].n+'</b> pick <b>in all</b>?</p>', answer:pair[0].v+pair[1].v, maxLen:2, hints:[pair[0].n+' has '+pair[0].v+'. '+pair[1].n+' has '+pair[1].v+'. Add them together.']},d); }
+  ];
+  series(ctx,Q.length,function(i,d){ Q[i](d); });
+}
+
+/* ================= SAVANNAH ================= */
+var SETB=[[4,4],[4,5],[7,3],[7,4],[8,5],[8,7],[9,3],[9,4],[9,5],[5,4],[3,7],[4,7],[5,8],[7,8],[3,9],[4,9],[5,9]];
+var SETA=[[3,3],[6,6],[5,3],[8,4],[8,8],[3,4],[5,5],[9,9],[6,4],[3,5],[4,8],[4,3],[4,6]];
+function multHint(a,b){
+  var n;
+  if(a===9||b===9){ n=a===9?b:a; return 'Nines trick: 10 × '+n+' = '+(10*n)+'. Then take away one '+n+'.'; }
+  if(a===5||b===5){ n=a===5?b:a; return 'Count by 5s, '+n+' times: 5, 10, 15, and keep going.'; }
+  if(a===4||b===4){ n=a===4?b:a; return 'Double '+n+' to get '+(2*n)+'. Then double '+(2*n)+' again.'; }
+  if(a===3||b===3){ n=a===3?b:a; return 'Three groups of '+n+': '+n+' + '+n+' + '+n+'.'; }
+  var big=Math.max(a,b), small=Math.min(a,b);
+  return 'You know 5 × '+big+' = '+(5*big)+'. Add '+(small-5)+' more group'+(small-5===1?'':'s')+' of '+big+'.';
+}
+function dotsHtml(a,b){ var s='<div class="dots" style="grid-template-columns:repeat('+b+',auto)">'; for(var r=0;r<a;r++) for(var c=0;c<b;c++) s+='<i'+(c===5?' class="g"':'')+'></i>'; return s+'</div>'; }
+function multQ(ctx,f,i,n,done,label){
+  var a=f[0], b=f[1];
+  askNumber(ctx,{label:label, html:'<div class="gauge"><i style="width:'+(100*i/n)+'%"></i></div><div class="bigq">'+a+' × '+b+' =</div>', answer:a*b, maxLen:3,
+    hints:[multHint(a,b), 'Here is '+a+' × '+b+' as '+a+' rows of '+b+'. Count by '+b+'s down the rows.<br>'+dotsHtml(a,b)]}, done);
+}
+function runMult(ctx){
+  var b=shuffle(SETB), a=shuffle(SETA);
+  var facts=[a[0],b[0],b[1],b[2],a[1],b[3],b[4],b[5]];   /* warm up with a mastered fact, then mostly Set B */
+  T.facts=facts;
+  series(ctx,facts.length,function(i,done){ multQ(ctx,facts[i],i,facts.length,done,'Ingredient '+(i+1)); });
+}
+function runLightning(ctx){
+  var s=load('savannah'), useTimer=false;
+  var w=el('<div class="qwrap wide"><div class="card qpanel"><div style="font-size:64px">⚡</div><h2>Lightning Round</h2><p class="prompt">10 facts from Set B, one after another. Hints are always here if you want them.</p>'+
+    '<button class="switch" data-act="timer" aria-pressed="false"><span class="tr"></span><span>Use a stopwatch (optional, just for fun)</span></button>'+
+    (s.lightningBest?'<p class="muted" style="margin:0">Your best time so far: '+fmtTime(s.lightningBest)+'</p>':'')+
+    '<button class="btn" data-act="go" style="min-width:220px">Start ›</button></div></div>');
+  var sw=$('[data-act=timer]',w);
+  sw.addEventListener('click',function(){ useTimer=!useTimer; sw.classList.toggle('on',useTimer); sw.setAttribute('aria-pressed',useTimer); sfx.tap(); });
+  $('[data-act=go]',w).addEventListener('click',function(){ sfx.tap();
+    var facts=shuffle(SETB).slice(0,10), t0=Date.now(), iv=null;
+    if(useTimer){ ctx.timerEl.hidden=false; ctx.timerEl.textContent='⏱ 0:00'; iv=setInterval(function(){ ctx.timerEl.textContent='⏱ '+fmtTime(Date.now()-t0); },500); cleanups.push(function(){ clearInterval(iv); }); }
+    var i=0, finishOrig=ctx.finish;
+    (function next(){ if(i>=facts.length){ clearInterval(iv);
+        var extra={summary:'You powered through 10 Set B facts!'};
+        if(useTimer){ var ms=Date.now()-t0, best=s.lightningBest; extra.lines=['Your time: <b>'+fmtTime(ms)+'</b>'+(!best||ms<best?' · New personal best!':'')]; if(!best||ms<best){ s.lightningBest=ms; save('savannah'); } }
+        finishOrig.call(ctx,extra); return; }
+      ctx.progress(i,facts.length); var cur=i++; multQ(ctx,facts[cur],cur,facts.length,next,'Lightning '+(cur+1)); })();
+  });
+  ctx.progress(0,10); ctx.stage.replaceChildren(w);
+}
+
+/* ---------- drawing pad ---------- */
+function makePad(holder,opts){
+  var wrap=el('<div class="paper'+(opts.tall?' tall':'')+'"><canvas></canvas></div>'); holder.appendChild(wrap);
+  var cv=$('canvas',wrap), c=cv.getContext('2d'), strokes=[], cur=null, penSeen=false, W=0, H=0, dpr=1, guide=opts.guide||'';
+  var INK='#3b2a8f';
+  function resize(){ var r=wrap.getBoundingClientRect(); if(!r.width) return; W=r.width; H=r.height; dpr=Math.min(window.devicePixelRatio||1,3);
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); cv.style.width=W+'px'; cv.style.height=H+'px'; redraw(); }
+  function rows(){ return opts.lines||1; }
+  function drawLines(){ var n=rows(), rh=H/n;
+    for(var r=0;r<n;r++){ var top=r*rh+rh*.18, mid=r*rh+rh*.45, base=r*rh+rh*.72, desc=r*rh+rh*.92;
+      c.setLineDash([]); c.lineWidth=2; c.strokeStyle='rgba(84,120,200,.55)'; line(top); line(base);
+      c.setLineDash([10,9]); c.lineWidth=1.6; c.strokeStyle='rgba(230,90,140,.5)'; line(mid);
+      c.setLineDash([]); c.lineWidth=1; c.strokeStyle='rgba(84,120,200,.22)'; line(desc); }
+    c.setLineDash([]); }
+  function line(y){ c.beginPath(); c.moveTo(16,y); c.lineTo(W-16,y); c.stroke(); }
+  function drawGuide(){ if(!guide) return; var rh=H, top=rh*.18, base=rh*.72, size=(base-top)*1.25;
+    var font=function(sz){ return sz+'px "Snell Roundhand","Apple Chancery","Dancing Script","Brush Script MT","Segoe Script",cursive'; };
+    c.font=font(size); var mw=c.measureText(guide).width; if(mw>W*.9){ size=size*W*.9/mw; c.font=font(size); mw=c.measureText(guide).width; }
+    c.textAlign='center'; c.textBaseline='alphabetic';
+    c.fillStyle='rgba(90,70,160,.13)'; c.fillText(guide,W/2,base);
+    c.setLineDash([2,5]); c.lineWidth=Math.max(1.6,size/45); c.strokeStyle='rgba(90,70,160,.6)'; c.strokeText(guide,W/2,base); c.setLineDash([]); }
+  function drawStroke(s){ c.strokeStyle=INK; c.fillStyle=INK; c.lineCap='round'; c.lineJoin='round';
+    if(s.length===1){ c.beginPath(); c.arc(s[0].x*W,s[0].y*H,wid(s[0])/2,0,Math.PI*2); c.fill(); return; }
+    for(var i=1;i<s.length;i++){ c.beginPath(); c.lineWidth=wid(s[i]); c.moveTo(s[i-1].x*W,s[i-1].y*H); c.lineTo(s[i].x*W,s[i].y*H); c.stroke(); } }
+  function wid(p){ return Math.max(2.5,Math.min(W,H)*.012)*(0.55+p.p*0.9); }
+  function redraw(){ c.setTransform(dpr,0,0,dpr,0,0); c.clearRect(0,0,W,H); drawLines(); drawGuide(); strokes.forEach(drawStroke); }
+  function pt(e){ var r=cv.getBoundingClientRect(); return {x:(e.clientX-r.left)/W, y:(e.clientY-r.top)/H, p:e.pointerType==='pen'?(e.pressure||.5):.5}; }
+  cv.addEventListener('pointerdown',function(e){ if(e.pointerType==='pen') penSeen=true; if(penSeen&&e.pointerType==='touch') return; /* palm rejection once a pencil is used */
+    e.preventDefault(); try{ cv.setPointerCapture(e.pointerId); }catch(_){} cur=[pt(e)]; cur.id=e.pointerId; strokes.push(cur); drawStroke(cur); });
+  cv.addEventListener('pointermove',function(e){ if(!cur||e.pointerId!==cur.id) return; e.preventDefault();
+    var evs=e.getCoalescedEvents?e.getCoalescedEvents():[e]; if(!evs.length) evs=[e];
+    evs.forEach(function(ev){ var p=pt(ev), last=cur[cur.length-1]; cur.push(p); c.beginPath(); c.strokeStyle=INK; c.lineCap='round'; c.lineWidth=wid(p); c.moveTo(last.x*W,last.y*H); c.lineTo(p.x*W,p.y*H); c.stroke(); }); });
+  function end(e){ if(cur&&e.pointerId===cur.id){ cur=null; if(opts.onStroke) opts.onStroke(strokes.length); } }
+  cv.addEventListener('pointerup',end); cv.addEventListener('pointercancel',end);
+  ['touchstart','touchmove'].forEach(function(ev){ cv.addEventListener(ev,function(e){ e.preventDefault(); },{passive:false}); });
+  var ro=null; if(window.ResizeObserver){ ro=new ResizeObserver(resize); ro.observe(wrap); } else { window.addEventListener('resize',resize); }
+  cleanups.push(function(){ if(ro) ro.disconnect(); else window.removeEventListener('resize',resize); });
+  requestAnimationFrame(resize);
+  var api={ clear:function(){ strokes=[]; redraw(); }, setGuide:function(g){ guide=g; strokes=[]; redraw(); }, count:function(){ return strokes.length; }, canvas:cv };
+  T.pad=api; return api;
+}
+
+function runTrace(ctx){
+  var groups=shuffle(['a  c  d','e  l  b','m  n  u','o  w  v','g  q  y','t  i  r','h  k  f']).slice(0,2);
+  var words=shuffle(['pumpkin','ghost','witch','broom','cider','harvest','lantern','autumn','candy','acorn','maple','cauldron','owl','hayride','cozy','moonlight']).slice(0,4);
+  var items=groups.concat(words), idx=0, traced=0, tracedThis=false;
+  var w=el('<div class="qwrap wide"><div class="card qpanel" style="align-items:stretch"><div class="row"><div class="qlabel" style="flex:1;text-align:left">Trace the dotted cursive</div><span class="counter"></span></div>'+
+    '<p class="prompt" style="text-align:left;max-width:none">Use your finger or Apple Pencil to trace over the dotted letters. Take your time and enjoy the curves.</p><div class="padhold"></div>'+
+    '<div class="wtools"><button class="btn ghost" data-act="clear">Clear</button><div class="row"><button class="btn ghost" data-act="done">Done</button><button class="btn" data-act="next">Next ›</button></div></div></div></div>');
+  var pad=makePad($('.padhold',w),{guide:items[0],lines:1,onStroke:function(){ tracedThis=true; }});
+  function upd(){ $('.counter',w).textContent=(idx+1)+' of '+items.length; ctx.progress(idx,items.length); $('[data-act=next]',w).textContent=idx===items.length-1?'Finish ›':'Next ›'; }
+  function finish(){ var n=traced; ctx.finish({stars:3, summary:'You traced '+n+' cursive '+(n===1?'item':'items')+'. '+pick(INK_PRAISE)}); }
+  $('[data-act=clear]',w).addEventListener('click',function(){ sfx.tap(); pad.clear(); tracedThis=false; });
+  $('[data-act=next]',w).addEventListener('click',function(){
+    if(!pad.count()){ toast('Give it a try first. Trace the dotted letters.'); return; }
+    traced++; tracedThis=false; sfx.good(); toast(pick(INK_PRAISE),'good');
+    if(idx>=items.length-1){ setTimeout(finish,600); return; }
+    idx++; pad.setGuide(items[idx]); upd(); });
+  $('[data-act=done]',w).addEventListener('click',function(){ if(pad.count()) traced++; if(!traced){ toast('Trace at least one, then tap Done.'); return; } finish(); });
+  upd(); ctx.stage.replaceChildren(w);
+}
+
+var SENTENCES=['The moon glows over the pumpkin patch.','Hazel flew home on her broom.','Pumpkins shine in the cool fall night.','A black cat naps on the porch swing.','A friendly ghost hums a quiet song.','Bats swoop over the old red barn.'];
+function runCopy(ctx){
+  var list=shuffle(SENTENCES).slice(0,3), idx=0, copied=0;
+  var w=el('<div class="qwrap wide"><div class="card qpanel" style="align-items:stretch"><div class="row"><div class="qlabel" style="flex:1;text-align:left">Copy the sentence in cursive</div><span class="counter"></span></div>'+
+    '<div class="model"></div><div class="padhold"></div>'+
+    '<div class="wtools"><button class="btn ghost" data-act="clear">Clear</button><div class="row"><button class="btn ghost" data-act="done">Done</button><button class="btn" data-act="next">Next sentence ›</button></div></div></div></div>');
+  var pad=makePad($('.padhold',w),{lines:2,tall:true});
+  function upd(){ $('.model',w).textContent=list[idx]; $('.counter',w).textContent=(idx+1)+' of '+list.length; ctx.progress(idx,list.length); $('[data-act=next]',w).textContent=idx===list.length-1?'Finish ›':'Next sentence ›'; }
+  function finish(){ ctx.finish({stars:3, summary:'You copied '+copied+' sentence'+(copied===1?'':'s')+' in cursive. '+pick(INK_PRAISE)}); }
+  $('[data-act=clear]',w).addEventListener('click',function(){ sfx.tap(); pad.clear(); });
+  $('[data-act=next]',w).addEventListener('click',function(){ if(!pad.count()){ toast('Write the sentence on the lines first.'); return; }
+    copied++; sfx.good(); toast(pick(INK_PRAISE),'good'); if(idx>=list.length-1){ setTimeout(finish,600); return; } idx++; pad.clear(); upd(); });
+  $('[data-act=done]',w).addEventListener('click',function(){ if(pad.count()) copied++; if(!copied){ toast('Write one sentence, then tap Done.'); return; } finish(); });
+  upd(); ctx.stage.replaceChildren(w);
+}
+
+var PROMPTS=[
+ 'Hazel\u2019s spellbook has a blank page called \u201cThe Night the Pumpkins Glowed.\u201d Write that story. What did you see, hear, and smell?',
+ 'A friendly ghost has lived in the old farmhouse for 100 years. Write the story of the night you first met and what you talked about.',
+ 'Hazel\u2019s broom refuses to fly on the night of the Harvest Festival. Write the story of how the problem gets solved.',
+ 'Midnight the black cat wanders into the corn maze and finds something no one expected. Write the story from Midnight\u2019s point of view.',
+ 'Write the story of the best Harvest Festival ever: the hayride, the treats, the costumes, and one surprise.',
+ 'A family of bats asks Hazel for help getting ready for winter. Write the spellbook page that tells what happened.'
+];
+function countSentences(t){ return t.split(/[.!?]+(?:["\u201d\u2019')\]]*)(?:\s+|$)/).filter(function(x){ return x.trim().split(/\s+/).filter(Boolean).length>=2; }).length; }
+function runLog(ctx){
+  var s=load('savannah'), MIN=3;
+  var pi = s.draftPrompt!=null ? s.draftPrompt : rand(0,PROMPTS.length-1);
+  var w=el('<div class="qwrap wide"><div class="card qpanel" style="align-items:stretch;text-align:left"><div class="qlabel">Spellbook story prompt</div>'+
+    '<div class="speech">'+guideSvg()+'<div class="bubble prm"></div></div>'+
+    '<div class="row"><button class="btn ghost small" data-act="newp">↻ Different prompt</button></div>'+
+    '<textarea class="log" placeholder="Once upon a crisp fall night... Write at least '+MIN+' sentences." autocapitalize="sentences" spellcheck="true"></textarea>'+
+    '<div class="wtools"><span class="counter"></span><div class="row"><button class="btn ghost" data-act="copy">Copy text</button><button class="btn ghost" data-act="save">Save story</button><button class="btn" data-act="finish" disabled>Finish story ›</button></div></div>'+
+    '<div class="savedlist"></div></div></div>');
+  var ta=$('textarea',w), cnt=$('.counter',w), fin=$('[data-act=finish]',w), lastSaved=null;
+  ta.value=s.draft||'';
+  function setPrompt(){ $('.prm',w).textContent=PROMPTS[pi]; }
+  function upd(){ var n=countSentences(ta.value), words=ta.value.split(/\s+/).filter(Boolean).length;
+    cnt.textContent='Sentences: '+n+' of '+MIN+' · Words: '+words; cnt.classList.toggle('ok',n>=MIN); fin.disabled=n<MIN;
+    s.draft=ta.value; s.draftPrompt=pi; save('savannah'); }
+  function savedList(){ var L=$('.savedlist',w); L.innerHTML= s.logs.length?'<div class="qlabel" style="margin-top:6px">Saved stories</div>':'';
+    s.logs.slice(-5).reverse().forEach(function(l){ L.appendChild(el('<details class="saved"><summary>'+new Date(l.t).toLocaleDateString(undefined,{month:'short',day:'numeric'})+' · '+esc(l.text.slice(0,40))+'...</summary><p>'+esc(l.text)+'</p></details>')); }); }
+  function doSave(){ var t=ta.value.trim(); if(!t){ toast('Write something first'); return false; } if(t===lastSaved) return true;
+    s.logs.push({t:Date.now(), prompt:PROMPTS[pi], text:t}); if(s.logs.length>40) s.logs.shift(); lastSaved=t; save('savannah'); savedList(); return true; }
+  ta.addEventListener('input',upd);
+  $('[data-act=newp]',w).addEventListener('click',function(){ sfx.tap(); var o=pi; while(pi===o) pi=rand(0,PROMPTS.length-1); setPrompt(); upd(); });
+  $('[data-act=save]',w).addEventListener('click',function(){ if(doSave()){ sfx.good(); toast('Story saved in the spellbook','good'); } });
+  $('[data-act=copy]',w).addEventListener('click',function(){ if(!ta.value.trim()){ toast('Write something first'); return; } copyText(ta.value).then(function(ok){ toast(ok?'Copied! Paste it anywhere.':'Press and hold the text to copy it', ok?'good':''); }); });
+  fin.addEventListener('click',function(){ if(countSentences(ta.value)<MIN) return; doSave(); var words=ta.value.split(/\s+/).filter(Boolean).length;
+    s.draft=''; s.draftPrompt=null; save('savannah'); ctx.finish({stars:3, summary:'Your '+words+'-word spellbook story is saved. What a story!'}); });
+  setPrompt(); upd(); savedList(); ctx.progress(0,1); $('.prog .count',ctx.view).textContent='';
+  ctx.stage.replaceChildren(w);
+}
+
+/* ================= go ================= */
+T.go={start:renderStart, hub:renderHub, mission:function(k,id){ var f=findMission(k,id); startMission(k,f[0],f[1]); }};
+renderStart();
+})();
+</script>
+</body>
+</html>
