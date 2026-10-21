@@ -30,6 +30,12 @@ class GameScene extends Phaser.Scene{
   init(d){ this.levelNum=d.level||1; this.L=OBIE.LEVELS[this.levelNum-1]; this.score=d.score||0; this.lives=d.lives!=null?d.lives:3;
     this.startBoss=!!d.boss; this.hearts=3; this.maxHearts=3; this.ammo=8; this.levelStartScore=this.score; }
   create(){
+    // Guard: one bad effect or callback must never stall the game loop
+    const warn=(e)=>{ this._errs=(this._errs||0)+1; if(this._errs<8) console.warn('Recovered from callback error:',e&&e.message); };
+    const wrap=f=>typeof f==='function'?function(...a){ try{ return f.apply(this,a); }catch(e){ warn(e); } }:f;
+    const F=this.physics.add; if(!F._wrapped){ const o=F.overlap.bind(F), c=F.collider.bind(F); F.overlap=(a,b,cb,pc,cx)=>o(a,b,wrap(cb),wrap(pc),cx); F.collider=(a,b,cb,pc,cx)=>c(a,b,wrap(cb),wrap(pc),cx); F._wrapped=true; }
+    const T=this.time; if(!T._wrapped){ const d=T.delayedCall.bind(T); T.delayedCall=(ms,cb,args,cx)=>d(ms,wrap(cb),args,cx); T._wrapped=true; }
+    document.body.classList.remove('menu');
     const L=this.L, G=L.ground, H=OBIE.H; this.G=G;
     this.lv=OBIE.buildLevel(L); const lv=this.lv; this.worldW=lv.worldW;
     this.scene.launch('BG',{level:this.levelNum}); this.scene.sendToBack('BG');
@@ -110,7 +116,7 @@ class GameScene extends Phaser.Scene{
     this.physics.add.collider(this.enemies,this.solids); this.physics.add.collider(this.enemies,this.plats);
     lv.enemies.forEach(e=>this.spawnEnemy(e.type,e.x,G-20));
     this.physics.add.overlap(p,this.enemies,(pl,e)=>this.touchEnemy(e));
-    this.physics.add.overlap(this.balls,this.enemies,(b,e)=>{ if(!b.active||e.dead) return; this.impact(b); this.damageEnemy(e,1,b.body.velocity.x>0?1:-1); });
+    this.physics.add.overlap(this.balls,this.enemies,(b,e)=>{ if(!b.active||!e.active||e.dead||b.hit) return; b.hit=true; const dir=(b.body&&b.body.velocity.x<0)?-1:1; this.impact(b); this.damageEnemy(e,1,dir); });
     this.physics.add.overlap(p,this.bossShots,(pl,s)=>{ if(!s.active) return; this.hurt(s.x); if(!s.persist){ s.destroy(); } });
     // FX
     this.fxSpark=this.add.particles(0,0,'spark',{speed:{min:120,max:380},lifespan:500,scale:{start:0.5,end:0},tint:[OBIE.C.orange,OBIE.C.gold,OBIE.C.bone],emitting:false,blendMode:'ADD'}).setDepth(20);
@@ -158,6 +164,9 @@ class GameScene extends Phaser.Scene{
     return e;
   }
   update(time,dt){
+    try{ this.update2(time,dt); }catch(err){ this._errs=(this._errs||0)+1; if(this._errs<5) console.warn('Recovered from update error:',err&&err.message); }
+  }
+  update2(time,dt){
     if(this.done) return; const p=this.player, k=this.keys, I=OBIE.input, s=dt/1000;
     const left=k.l.isDown||k.a.isDown||I.left, right=k.r.isDown||k.d.isDown||I.right;
     const jump=k.up.isDown||k.w.isDown||k.sp.isDown||k.z.isDown||I.jump, thr=k.x.isDown||k.j.isDown||k.k.isDown||I.throw;
@@ -168,10 +177,10 @@ class GameScene extends Phaser.Scene{
       else { p.body.setAccelerationX(0); p.body.velocity.x*=onGround?0.75:0.94; if(Math.abs(p.body.velocity.x)<8) p.body.velocity.x=0; }
       p.body.velocity.x=Phaser.Math.Clamp(p.body.velocity.x,-max,max);
       if(onGround){ if(p.airT>0.25){ this.fxDust.explode(6,p.x,p.y); this.tweens.add({targets:p,scaleY:0.52,scaleX:0.64,duration:70,yoyo:true}); } p.coyote=0.1; p.airT=0; } else { p.coyote-=s; p.airT+=s; }
-      const JD=Phaser.Input.Keyboard.JustDown; const jp=JD(k.up)|JD(k.w)|JD(k.sp)|JD(k.z)|(I.jump&&!this.prevTJump); if(jp) p.jumpBuf=0.12; else p.jumpBuf-=s;
+      const JD=Phaser.Input.Keyboard.JustDown; const jp=JD(k.up)|JD(k.w)|JD(k.sp)|JD(k.z)|(I.jump&&!this.prevTJump)|!!I.jumpTap; I.jumpTap=false; if(jp) p.jumpBuf=0.12; else p.jumpBuf-=s;
       if(p.jumpBuf>0 && p.coyote>0){ p.body.setVelocityY(-720); p.coyote=0; p.jumpBuf=0; p.jumpT=time; SFX.play('jump'); this.fxDust.explode(4,p.x,p.y); }
       if(!jump && p.body.velocity.y<-250) p.body.velocity.y*=0.55; // variable jump height
-      if(JD(k.x)|JD(k.j)|JD(k.k)|(I.throw&&!this.prevTThrow)) this.tryThrow();
+      if(JD(k.x)|JD(k.j)|JD(k.k)|(I.throw&&!this.prevTThrow)|!!I.throwTap) this.tryThrow(); I.throwTap=false;
       if(this.onMover && onGround){ p.x+=this.onMover.body.velocity.x*s; }
       this.onMover=null;
     }
@@ -253,7 +262,7 @@ class GameScene extends Phaser.Scene{
   spawnBall(){
     const p=this.player; if(this.ammo<=0) return; this.ammo--; SFX.play('throw');
     const b=this.balls.create(p.x+p.facing*40,p.y-95,'football_proj').setScale(0.5).setDepth(12);
-    b.body.setSize(40,28); b.body.setVelocity(p.facing*680,-30); b.setAngularVelocity(720*p.facing); b.die=this.time.now+1100;
+    b.body.setSize(40,28); let vy=-30; const bo=this.boss; if(bo&&!bo.dead&&bo.hover&&Math.sign(bo.x-p.x)===p.facing){ const t=Math.abs(bo.x-b.x)/680; vy=Phaser.Math.Clamp(((bo.y-110)-b.y)/Math.max(t,0.2),-420,300); } b.body.setVelocity(p.facing*680,vy); b.setAngularVelocity(720*p.facing); b.die=this.time.now+1100;
     const trail=this.add.particles(0,0,'spark',{follow:b,lifespan:200,scale:{start:0.25,end:0},alpha:{start:0.6,end:0},tint:OBIE.C.ember,frequency:20,blendMode:'ADD'}).setDepth(11);
     b.once('destroy',()=>{ trail.stop(); this.time.delayedCall(250,()=>trail.destroy()); });
   }
@@ -434,6 +443,9 @@ class HUDScene extends Phaser.Scene{
       mk('btn_left',L+40,B-40,80,'left'); mk('btn_right',L+40+80+16,B-40,80,'right');
       mk('btn_jump',R-44,B-44,88,'jump'); mk('btn_throw',R-88-16-44,B-44,88,'throw');
       this.input.addPointer(4);
+      // latch quick taps so a tap shorter than one frame still counts
+      this.input.on('pointerdown',(ptr)=>{ if(this.pause.visible) return; const wp=this.cameras.main.getWorldPoint(ptr.x,ptr.y);
+        this.btns.forEach(b=>{ const r=b.size/2+12; if(Math.abs(wp.x-b.x)<r&&Math.abs(wp.y-b.y)<r){ if(b.act==='jump') OBIE.input.jumpTap=true; if(b.act==='throw') OBIE.input.throwTap=true; } }); });
     }
     // title card and banners
     this.card=this.add.container(W/2,H*0.3).setAlpha(0).setDepth(50);
@@ -457,6 +469,7 @@ class HUDScene extends Phaser.Scene{
     if(this.scene.isPaused('Game')) this.showPause(true);
     this._rs=()=>this.scene.restart(); this.game.events.on('obie-resize',this._rs); this.events.once('shutdown',()=>this.game.events.off('obie-resize',this._rs));
   }
+  btnPos(act){ const b=this.btns.find(b=>b.act===act); return b?{x:b.x,y:b.y}:null; }
   updateMute(){ const m=SFX.isMuted(); if(this.pMute) this.pMute.label.setText(m?'SOUND: OFF':'SOUND: ON'); }
   showPause(on){ this.pause.setVisible(on); this.btns.forEach(b=>b.setVisible(!on)); }
   sync(g){

@@ -8,6 +8,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#111014">
+<meta name="apple-mobile-web-app-title" content="Obie">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
 <title>OBIE: Gridiron Fright</title>
 <style>
 @font-face{font-family:Bungee;src:url(fonts/Bungee-Regular.ttf)}
@@ -24,6 +28,17 @@ html,body{margin:0;width:100%;height:100%;background:#111014;overflow:hidden;ove
 #rotate p{font-size:22px;margin:0;opacity:.85;max-width:80vw}
 @keyframes rot{0%,25%{transform:rotate(0)}55%,100%{transform:rotate(90deg)}}
 @media (orientation:portrait){#rotate{display:flex}}
+#fsbtn{position:fixed;z-index:20;top:calc(12px + env(safe-area-inset-top));left:calc(16px + env(safe-area-inset-left));width:48px;height:48px;border-radius:12px;border:2px solid #F2B233;background:rgba(35,33,41,.85);color:#F3EBDD;display:none;align-items:center;justify-content:center;padding:0;touch-action:manipulation}
+#fsbtn svg{width:26px;height:26px}
+body.menu #fsbtn.show{display:flex}
+#tip{position:fixed;z-index:30;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translateX(-50%);max-width:min(560px,92vw);display:none;align-items:center;gap:14px;
+ padding:12px 14px 12px 18px;background:rgba(35,33,41,.96);border:2px solid #F2B233;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.5);color:#F3EBDD;font-family:"Barlow Condensed",sans-serif;font-weight:700}
+#tip.show{display:flex}
+#tip b{font-family:Bungee,sans-serif;font-weight:400;color:#FF7A1A;font-size:16px;display:block;margin-bottom:2px}
+#tip span{font-size:18px;line-height:1.2}
+#tip .sh{display:inline-block;width:18px;height:18px;vertical-align:-3px}
+#tip button{flex:none;width:44px;height:44px;border-radius:50%;border:2px solid #F2B233;background:#111014;color:#F3EBDD;font:700 22px "Barlow Condensed",sans-serif;touch-action:manipulation}
+
 #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#FF7A1A;font:700 28px "Barlow Condensed",sans-serif;z-index:5;pointer-events:none}
 </style>
 </head>
@@ -38,6 +53,24 @@ html,body{margin:0;width:100%;height:100%;background:#111014;overflow:hidden;ove
 document.addEventListener('touchmove',function(e){e.preventDefault();},{passive:false});
 var lastTouch=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-lastTouch<350)e.preventDefault();lastTouch=n;},{passive:false});
 document.addEventListener('contextmenu',function(e){e.preventDefault();});
+</script>
+<button id="fsbtn" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+<div id="tip" role="dialog"><div><b>PLAY FULL SCREEN</b><span>For full screen: tap Share <svg class="sh" viewBox="0 0 24 24" fill="none" stroke="#F2B233" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v12M8 7l4-4 4 4M5 11v9h14v-9"/></svg>, then Add to Home Screen</span></div><button id="tipx" aria-label="Close">X</button></div>
+<script>
+(function(){
+  var d=document, el=d.documentElement, fsb=d.getElementById('fsbtn'), tip=d.getElementById('tip');
+  var standalone=window.navigator.standalone||matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: standalone)').matches;
+  var canFS=!!(d.fullscreenEnabled||d.webkitFullscreenEnabled)&&!!(el.requestFullscreen||el.webkitRequestFullscreen);
+  var isFS=function(){return !!(d.fullscreenElement||d.webkitFullscreenElement);};
+  var upd=function(){ fsb.classList.toggle('show',canFS&&!standalone&&!isFS()); };
+  fsb.addEventListener('click',function(){ var r=el.requestFullscreen||el.webkitRequestFullscreen; try{ var p=r.call(el,{navigationUI:'hide'}); if(p&&p.then) p.then(function(){ try{ screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape').catch(function(){}); }catch(e){} },function(){}); }catch(e){} });
+  d.addEventListener('fullscreenchange',upd); d.addEventListener('webkitfullscreenchange',upd); upd();
+  var ios=/iPhone|iPod/.test(navigator.userAgent)||(/iPad|Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+  var seen=false; try{ seen=localStorage.getItem('obie_fs_tip')==='1'; }catch(e){}
+  if(ios&&!standalone&&!canFS&&!seen){ setTimeout(function(){ tip.classList.add('show'); },1500); }
+  d.getElementById('tipx').addEventListener('click',function(){ tip.classList.remove('show'); try{ localStorage.setItem('obie_fs_tip','1'); }catch(e){} });
+  window.OBIE_FS={isFS:isFS};
+})();
 </script>
 <script src="vendor/phaser.min.js"></script>
 <script src="js/audio.js"></script>

@@ -1,6 +1,6 @@
 // Boot, Title, Level Select, Settings, Results scenes.
 const UI = {
-  fix(scene){ const v=OBIE.view(OBIE.W,OBIE.H); const c=scene.cameras.main; c.setZoom(v.z); c.centerOn(OBIE.W/2, OBIE.H/2); scene.view=v;
+  fix(scene){ document.body.classList.add('menu'); const v=OBIE.view(OBIE.W,OBIE.H); const c=scene.cameras.main; c.setZoom(v.z); c.centerOn(OBIE.W/2, OBIE.H/2); scene.view=v;
     if(!scene._rs){ scene._rs=()=>{ if(scene.sys.isActive()) scene.scene.restart(scene.sys.settings.data); }; scene.game.events.on('obie-resize',scene._rs);
       scene.events.once('shutdown',()=>{ scene.game.events.off('obie-resize',scene._rs); scene._rs=null; }); }
     return c; },
