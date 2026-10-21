@@ -1,0 +1,334 @@
+{
+ "props": {
+  "pumpkin_platform_left": {
+   "file": "game/props/pumpkin_platform_left@2x.png",
+   "file1x": "game/props/pumpkin_platform_left.png",
+   "size2x": [
+    232,
+    202
+   ]
+  },
+  "pumpkin_platform_mid": {
+   "file": "game/props/pumpkin_platform_mid@2x.png",
+   "file1x": "game/props/pumpkin_platform_mid.png",
+   "size2x": [
+    272,
+    192
+   ],
+   "repeatX": true
+  },
+  "pumpkin_platform_right": {
+   "file": "game/props/pumpkin_platform_right@2x.png",
+   "file1x": "game/props/pumpkin_platform_right.png",
+   "size2x": [
+    224,
+    212
+   ]
+  },
+  "pumpkin_ground_cap_right": {
+   "file": "game/props/pumpkin_ground_cap_right@2x.png",
+   "file1x": "game/props/pumpkin_ground_cap_right.png",
+   "size2x": [
+    260,
+    512
+   ]
+  },
+  "pumpkin_ground_cap_left": {
+   "file": "game/props/pumpkin_ground_cap_left@2x.png",
+   "file1x": "game/props/pumpkin_ground_cap_left.png",
+   "size2x": [
+    280,
+    512
+   ]
+  },
+  "corn_platform_left": {
+   "file": "game/props/corn_platform_left@2x.png",
+   "file1x": "game/props/corn_platform_left.png",
+   "size2x": [
+    280,
+    210
+   ]
+  },
+  "corn_platform_mid": {
+   "file": "game/props/corn_platform_mid@2x.png",
+   "file1x": "game/props/corn_platform_mid.png",
+   "size2x": [
+    250,
+    192
+   ],
+   "repeatX": true
+  },
+  "corn_platform_right": {
+   "file": "game/props/corn_platform_right@2x.png",
+   "file1x": "game/props/corn_platform_right.png",
+   "size2x": [
+    278,
+    204
+   ]
+  },
+  "corn_ground_cap_right": {
+   "file": "game/props/corn_ground_cap_right@2x.png",
+   "file1x": "game/props/corn_ground_cap_right.png",
+   "size2x": [
+    374,
+    512
+   ]
+  },
+  "corn_ground_cap_left": {
+   "file": "game/props/corn_ground_cap_left@2x.png",
+   "file1x": "game/props/corn_ground_cap_left.png",
+   "size2x": [
+    374,
+    512
+   ]
+  },
+  "graveyard_platform_left": {
+   "file": "game/props/graveyard_platform_left@2x.png",
+   "file1x": "game/props/graveyard_platform_left.png",
+   "size2x": [
+    250,
+    224
+   ]
+  },
+  "graveyard_platform_mid": {
+   "file": "game/props/graveyard_platform_mid@2x.png",
+   "file1x": "game/props/graveyard_platform_mid.png",
+   "size2x": [
+    254,
+    192
+   ],
+   "repeatX": true
+  },
+  "graveyard_platform_right": {
+   "file": "game/props/graveyard_platform_right@2x.png",
+   "file1x": "game/props/graveyard_platform_right.png",
+   "size2x": [
+    256,
+    230
+   ]
+  },
+  "graveyard_ground_cap_right": {
+   "file": "game/props/graveyard_ground_cap_right@2x.png",
+   "file1x": "game/props/graveyard_ground_cap_right.png",
+   "size2x": [
+    374,
+    512
+   ]
+  },
+  "graveyard_ground_cap_left": {
+   "file": "game/props/graveyard_ground_cap_left@2x.png",
+   "file1x": "game/props/graveyard_ground_cap_left.png",
+   "size2x": [
+    366,
+    512
+   ]
+  },
+  "stadium_platform_left": {
+   "file": "game/props/stadium_platform_left@2x.png",
+   "file1x": "game/props/stadium_platform_left.png",
+   "size2x": [
+    320,
+    250
+   ]
+  },
+  "stadium_platform_mid": {
+   "file": "game/props/stadium_platform_mid@2x.png",
+   "file1x": "game/props/stadium_platform_mid.png",
+   "size2x": [
+    440,
+    192
+   ],
+   "repeatX": true
+  },
+  "stadium_platform_right": {
+   "file": "game/props/stadium_platform_right@2x.png",
+   "file1x": "game/props/stadium_platform_right.png",
+   "size2x": [
+    302,
+    248
+   ]
+  },
+  "stadium_ground_cap_right": {
+   "file": "game/props/stadium_ground_cap_right@2x.png",
+   "file1x": "game/props/stadium_ground_cap_right.png",
+   "size2x": [
+    754,
+    512
+   ]
+  },
+  "stadium_ground_cap_left": {
+   "file": "game/props/stadium_ground_cap_left@2x.png",
+   "file1x": "game/props/stadium_ground_cap_left.png",
+   "size2x": [
+    730,
+    512
+   ]
+  },
+  "pumpkin_hazard_thorns": {
+   "file": "game/props/pumpkin_hazard_thorns@2x.png",
+   "file1x": "game/props/pumpkin_hazard_thorns.png",
+   "size2x": [
+    238,
+    256
+   ]
+  },
+  "corn_hazard_pitchforks": {
+   "file": "game/props/corn_hazard_pitchforks@2x.png",
+   "file1x": "game/props/corn_hazard_pitchforks.png",
+   "size2x": [
+    200,
+    256
+   ]
+  },
+  "graveyard_hazard_ghostfire": {
+   "file": "game/props/graveyard_hazard_ghostfire@2x.png",
+   "file1x": "game/props/graveyard_hazard_ghostfire.png",
+   "size2x": [
+    190,
+    256
+   ]
+  },
+  "stadium_hazard_sparks": {
+   "file": "game/props/stadium_hazard_sparks@2x.png",
+   "file1x": "game/props/stadium_hazard_sparks.png",
+   "size2x": [
+    212,
+    256
+   ]
+  },
+  "checkpoint_flag_down": {
+   "file": "game/props/checkpoint_flag_down@2x.png",
+   "file1x": "game/props/checkpoint_flag_down.png",
+   "size2x": [
+    168,
+    384
+   ]
+  },
+  "checkpoint_flag_raised": {
+   "file": "game/props/checkpoint_flag_raised@2x.png",
+   "file1x": "game/props/checkpoint_flag_raised.png",
+   "size2x": [
+    264,
+    384
+   ]
+  },
+  "candy_corn": {
+   "file": "game/props/candy_corn@2x.png",
+   "file1x": "game/props/candy_corn.png",
+   "size2x": [
+    72,
+    96
+   ]
+  },
+  "candy_corn_cluster": {
+   "file": "game/props/candy_corn_cluster@2x.png",
+   "file1x": "game/props/candy_corn_cluster.png",
+   "size2x": [
+    112,
+    128
+   ]
+  },
+  "boss1_gourd_king_pumpkin_bomb": {
+   "file": "game/props/boss1_gourd_king_pumpkin_bomb@2x.png",
+   "file1x": "game/props/boss1_gourd_king_pumpkin_bomb.png",
+   "size2x": [
+    160,
+    192
+   ]
+  },
+  "boss2_husk_colossus_husk_spiral": {
+   "file": "game/props/boss2_husk_colossus_husk_spiral@2x.png",
+   "file1x": "game/props/boss2_husk_colossus_husk_spiral.png",
+   "size2x": [
+    192,
+    124
+   ]
+  },
+  "boss3_tailgate_wraith_ember": {
+   "file": "game/props/boss3_tailgate_wraith_ember@2x.png",
+   "file1x": "game/props/boss3_tailgate_wraith_ember.png",
+   "size2x": [
+    192,
+    112
+   ]
+  },
+  "boss4_zombie_coach_whistle_blast": {
+   "file": "game/props/boss4_zombie_coach_whistle_blast@2x.png",
+   "file1x": "game/props/boss4_zombie_coach_whistle_blast.png",
+   "size2x": [
+    192,
+    178
+   ]
+  },
+  "boss1_gourd_king_shockwave_arc": {
+   "file": "game/props/boss1_gourd_king_shockwave_arc@2x.png",
+   "file1x": "game/props/boss1_gourd_king_shockwave_arc.png",
+   "size2x": [
+    384,
+    210
+   ]
+  },
+  "boss1_gourd_king_shockwave_ring": {
+   "file": "game/props/boss1_gourd_king_shockwave_ring@2x.png",
+   "file1x": "game/props/boss1_gourd_king_shockwave_ring.png",
+   "size2x": [
+    384,
+    322
+   ]
+  },
+  "boss2_husk_colossus_crow_0": {
+   "file": "game/props/boss2_husk_colossus_crow_0@2x.png",
+   "file1x": "game/props/boss2_husk_colossus_crow_0.png",
+   "size2x": [
+    192,
+    192
+   ],
+   "anim": {
+    "frames": [
+     "boss2_husk_colossus_crow_0",
+     "boss2_husk_colossus_crow_1",
+     "boss2_husk_colossus_crow_2",
+     "boss2_husk_colossus_crow_1"
+    ],
+    "fps": 12,
+    "loop": true,
+    "facing": "left"
+   }
+  },
+  "boss2_husk_colossus_crow_1": {
+   "file": "game/props/boss2_husk_colossus_crow_1@2x.png",
+   "file1x": "game/props/boss2_husk_colossus_crow_1.png",
+   "size2x": [
+    192,
+    192
+   ]
+  },
+  "boss2_husk_colossus_crow_2": {
+   "file": "game/props/boss2_husk_colossus_crow_2@2x.png",
+   "file1x": "game/props/boss2_husk_colossus_crow_2.png",
+   "size2x": [
+    192,
+    192
+   ]
+  },
+  "boss4_zombie_coach_clipboard": {
+   "file": "game/props/boss4_zombie_coach_clipboard@2x.png",
+   "file1x": "game/props/boss4_zombie_coach_clipboard.png",
+   "size2x": [
+    160,
+    150
+   ]
+  }
+ },
+ "notes": {
+  "units": "@2x px; draw at half size in pt",
+  "platform": "left + mid (repeat) + right; collision top = top 12% of tile",
+  "ground_cap_right": "place at the LEFT edge of a pit (ground ends on its right side); ground_cap_left at the right edge",
+  "hazards": "damage box = lower 60% of sprite",
+  "projectiles": "face left; flip for right",
+  "candy_corn": "pickup radius 28pt",
+  "shockwave": "arc: anchor bottom-center on ground, scale x 0.3 to 1.6 over 0.5 s, fade last 40%; ring: scale 0.2 to 1.4, additive",
+  "crow": "192x192 frames, flap cycle 0-1-2-1 at 12 fps, faces left",
+  "clipboard": "spin 540 deg/s in code; hit radius 36 pt"
+ }
+}

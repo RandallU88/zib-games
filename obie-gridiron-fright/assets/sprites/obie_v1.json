@@ -1,0 +1,126 @@
+{
+ "frames": {
+  "idle_0": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  },
+  "run_0": {
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  },
+  "run_1": {
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  },
+  "jump_0": {
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  },
+  "throw_0": {
+   "frame": {
+    "x": 0,
+    "y": 256,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  },
+  "hurt_0": {
+   "frame": {
+    "x": 256,
+    "y": 256,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  },
+  "idle_1": {
+   "frame": {
+    "x": 512,
+    "y": 256,
+    "w": 256,
+    "h": 256
+   },
+   "anchor": {
+    "x": 0.5,
+    "y": 1.0
+   }
+  }
+ },
+ "meta": {
+  "image": "obie_v1@2x.png",
+  "size": {
+   "w": 1024,
+   "h": 512
+  },
+  "scale": 2,
+  "animations": {
+   "idle": [
+    "idle_0",
+    "idle_1"
+   ],
+   "run": [
+    "run_0",
+    "run_1",
+    "jump_0",
+    "run_1"
+   ],
+   "jump": [
+    "jump_0"
+   ],
+   "throw": [
+    "throw_0"
+   ],
+   "hurt": [
+    "hurt_0"
+   ]
+  },
+  "fps": {
+   "idle": 4,
+   "run": 10,
+   "jump": 1,
+   "throw": 12,
+   "hurt": 8
+  },
+  "facing": "right",
+  "note": "jump_0 is a mid-stride leap pose, used as a placeholder jump and as a 3rd run frame. Flip horizontally for left-facing."
+ }
+}
