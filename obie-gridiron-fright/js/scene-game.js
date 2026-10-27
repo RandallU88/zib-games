@@ -184,8 +184,8 @@ class GameScene extends Phaser.Scene{
       const JD=Phaser.Input.Keyboard.JustDown; const jp=JD(k.up)|JD(k.w)|JD(k.sp)|JD(k.z)|(I.jump&&!this.prevTJump)|!!I.jumpTap; I.jumpTap=false; if(jp) p.jumpBuf=0.12; else p.jumpBuf-=s;
       if(p.jumpBuf>0 && p.coyote>0){ p.body.setVelocityY(-720); p.coyote=0; p.jumpBuf=0; p.jumpT=time; p.jumpAge=0; p.cut=false; SFX.play('jump'); this.fxDust.explode(4,p.x,p.y); }
       if(p.jumpAge!=null) p.jumpAge+=s;
-      // variable jump height: a quick tap still gets a full minimum hop (0.15 s), then one cut on release
-      if(!jump && !p.cut && p.jumpAge>=0.15 && p.body.velocity.y<-230){ p.body.velocity.y=-230; p.cut=true; }
+      // variable jump height: a quick tap still gets a full minimum hop (0.2 s, high enough for the pit stepping platforms), then one cut on release
+      if(!jump && !p.cut && p.jumpAge>=0.2 && p.body.velocity.y<-230){ p.body.velocity.y=-230; p.cut=true; }
       if(JD(k.x)|JD(k.j)|JD(k.k)|(I.throw&&!this.prevTThrow)|!!I.throwTap) this.tryThrow(); I.throwTap=false;
       if(this.onMover && onGround){ p.x+=this.onMover.body.velocity.x*s; }
       this.onMover=null;
