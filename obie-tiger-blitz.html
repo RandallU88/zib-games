@@ -956,9 +956,10 @@ addEventListener('resize',layout);if(window.visualViewport)visualViewport.addEve
 layout();
 
 // ---------- loop ----------
+const STEP=1/60;// fixed sim step: all motion, timers and particles advance only in update()
 let last=performance.now(),acc=0;
 function loop(now){requestAnimationFrame(loop);let dt=(now-last)/1000;last=now;if(dt>.25)dt=.25;if(dt<0)dt=0;acc+=dt;let n=0;
-  try{while(acc>=1/60&&n<5){pollInput();update();acc-=1/60;n++;}if(n===5)acc=0;render();}catch(err){errN++;if(errN<5)console.warn('Recovered from frame error:',err&&err.message);}}
+  try{while(acc>=STEP-1e-6&&n<5){pollInput();update();acc-=STEP;n++;}if(n===5||acc<0)acc=Math.max(0,n===5?0:acc);render();}catch(err){errN++;if(errN<5)console.warn('Recovered from frame error:',err&&err.message);}}
 let errN=0;
 if(save.sound){save.sound=false;}
 showTitle();
