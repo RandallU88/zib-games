@@ -14,7 +14,7 @@
 <title>Obie's Fright Night Blitz</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-html,body{margin:0;height:100%;background:#141414;overflow:hidden;overscroll-behavior:none;touch-action:none;-ms-touch-action:none;-webkit-user-select:none;-webkit-touch-callout:none}
+html,body{margin:0;height:100%;height:100dvh;background:#141414;overflow:hidden;overscroll-behavior:none;touch-action:none;-ms-touch-action:none;-webkit-user-select:none;-webkit-touch-callout:none}
 button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
 body{font-family:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:#f4ecff;-webkit-text-size-adjust:100%}
 #cv{position:fixed;left:0;top:0;image-rendering:crisp-edges;image-rendering:pixelated;background:#000;touch-action:none}
@@ -251,6 +251,8 @@ function initAudio(){if(AC)return;try{AC=new(window.AudioContext||window.webkitA
   master=AC.createGain();master.gain.value=0;master.connect(AC.destination);
   musG=AC.createGain();musG.gain.value=.2;musG.connect(master);sfxG=AC.createGain();sfxG.gain.value=.55;sfxG.connect(master);
   noiseB=AC.createBuffer(1,AC.sampleRate*.5|0,AC.sampleRate);const d=noiseB.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+function audioWake(){if(AC&&save.sound&&AC.state!=='running'&&AC.resume)try{AC.resume();}catch(e){}}
+function audioSleep(){if(AC&&AC.state==='running'&&AC.suspend)try{AC.suspend();}catch(e){}}
 function setSound(on){save.sound=!!on;persist();if(on){initAudio();if(AC){if(AC.resume)AC.resume();master.gain.value=.5;mNext=0;}}else if(master)master.gain.value=0;refreshSound();}
 function tone(f,dur,type,vol,f2,when,dest){if(!AC||!save.sound)return;const t=when||AC.currentTime;const o=AC.createOscillator(),g=AC.createGain();
   o.type=type||'square';o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(Math.max(20,f2),t+dur);
@@ -296,7 +298,9 @@ addEventListener('keydown',e=>{
   if(state!=='play'){if(menuKey(e.code))e.preventDefault();return;}
   const a=KEYMAP[e.code];if(!a)return;e.preventDefault();if(!e.repeat){kb[a]=true;latch[a]=true;}});
 addEventListener('keyup',e=>{const a=KEYMAP[e.code];if(a)kb[a]=false;});
-addEventListener('blur',()=>{for(const k in kb)kb[k]=false;for(const k in tc)tc[k]=false;});
+function resetInputs(){for(const k in kb)kb[k]=false;for(const k in tc)tc[k]=false;for(const k in latch)latch[k]=false;if(window.__dpClear)__dpClear();document.querySelectorAll('.pb.dn').forEach(el=>el.classList.remove('dn'));}
+addEventListener('blur',resetInputs);
+['touchend','pointerdown','keydown'].forEach(n=>addEventListener(n,audioWake,true));
 function overlayButtons(){return [...OV.querySelectorAll('button:not([disabled])')];}
 function menuKey(code){
   if(!OV.classList.contains('on'))return false;
@@ -334,7 +338,7 @@ document.querySelectorAll('.pb[data-k]').forEach(el=>{const k=el.dataset.k;
   const side=e=>{const rc=dp.getBoundingClientRect();return e.clientX<rc.left+rc.width/2?-1:1;};
   dp.addEventListener('pointerdown',e=>{e.preventDefault();try{dp.setPointerCapture(e.pointerId);}catch(_){}ptr.set(e.pointerId,side(e));upd();});
   dp.addEventListener('pointermove',e=>{if(ptr.has(e.pointerId)){ptr.set(e.pointerId,side(e));upd();}});
-  const off=e=>{ptr.delete(e.pointerId);upd();};['pointerup','pointercancel','lostpointercapture'].forEach(n=>dp.addEventListener(n,off));})();
+  const off=e=>{ptr.delete(e.pointerId);upd();};window.__dpClear=()=>{ptr.clear();upd();};['pointerup','pointercancel','lostpointercapture'].forEach(n=>dp.addEventListener(n,off));})();
 addEventListener('pointerdown',e=>{if(e.pointerType==='touch'&&!touchMode){touchMode=true;updateChrome();}},true);
 // No zooming or scrolling anywhere in the game: block pinch, double-tap zoom, and page drag.
 // Menus (#ov) and the top-right buttons (.chrome) still get normal taps; everything else is pointer-driven.
@@ -421,8 +425,9 @@ function handleShoot(){
 }
 function fire(k){
   const f=P.face,cx=P.x+P.w/2;P.shootPose=12;
-  if(k==='lan'){for(const a of (P.hail>0?[-.2,0,.2]:[0]))shots.push({k,x:f>0?P.x+P.w:P.x-8,y:P.y+8,w:8,h:5,vx:Math.cos(a)*4.2*f,vy:Math.sin(a)*4.2,g:0,life:60,dmg:1});sfx('lan');}
-  else if(k==='big'){shots.push({k,x:f>0?P.x+P.w:P.x-12,y:P.y+4,w:12,h:8,vx:f*5,vy:0,g:0,life:90,dmg:4,pierce:true,hits:new Set()});sfx('big');shake=Math.max(shake,2);}
+  let aim=0;const bo=boss;if(bo&&bo.fly&&bo.st!=='dying'&&sgn(bo.x+bo.w/2-cx)===f){const ddx=Math.abs(bo.x+bo.w/2-cx),ddy=(bo.y+bo.h/2)-(P.y+10);aim=clamp(Math.atan2(ddy,Math.max(ddx,1)),-.9,.3);}
+  if(k==='lan'){for(const a of (P.hail>0?[-.2,0,.2]:[0]))shots.push({k,x:f>0?P.x+P.w:P.x-8,y:P.y+8,w:8,h:5,vx:Math.cos(a+aim)*4.2*f,vy:Math.sin(a+aim)*4.2,g:0,life:60,dmg:1});sfx('lan');}
+  else if(k==='big'){shots.push({k,x:f>0?P.x+P.w:P.x-12,y:P.y+4,w:12,h:8,vx:Math.cos(aim)*f*5,vy:Math.sin(aim)*5,g:0,life:90,dmg:4,pierce:true,hits:new Set()});sfx('big');shake=Math.max(shake,2);}
   else if(k==='bomb'){shots.push({k,x:cx-4,y:P.y+2,w:8,h:8,vx:f*2.3,vy:-4.2,g:.25,life:140,dmg:4,boom:true});sfx('throw');}
   else if(k==='corn'){for(const a of [-.22,0,.22])shots.push({k,x:cx-3,y:P.y+8,w:6,h:6,vx:Math.cos(a)*3.4*f,vy:Math.sin(a)*3.4,g:0,life:75,dmg:2});sfx('throw');}
   else if(k==='bats'){for(let i=0;i<3;i++)shots.push({k:'bat',x:cx-4,y:P.y+4+i*4,w:8,h:6,vx:f*2,vy:(i-1)*1.1,g:0,life:170,dmg:2,homing:true});sfx('cast');}
@@ -438,8 +443,8 @@ function updatePlayer(){
   else{
     p.vx=(p.atk>=8&&p.atk<=14)?p.face*2.4:(p.atk>0&&p.onGround)?0:mv*RUN;
     if(mv&&p.atk===0)p.face=mv;
-    if(p.jbuf>0&&(p.onGround||p.coyote>0)){p.vy=JUMPV;p.onGround=false;p.coyote=0;p.jbuf=0;p.ride=null;sfx('jump');}
-    if(!inp.down.jump&&p.vy<-2.2)p.vy=-2.2;
+    if(p.jbuf>0&&(p.onGround||p.coyote>0)){p.vy=JUMPV;p.jt=10;p.onGround=false;p.coyote=0;p.jbuf=0;p.ride=null;sfx('jump');}
+    if(p.jt>0)p.jt--;else if(!inp.down.jump&&p.vy<-2.2)p.vy=-2.2;
     if(inp.pressed.whip&&p.atk===0){p.atk=20;p.atkHit=new Set();sfx('whip');}
     if(inp.pressed.swap)swapWeapon();
     handleShoot();
@@ -463,7 +468,7 @@ function updatePlayer(){
 // ---------- combat ----------
 function damageEnemy(e,d){e.hp-=d;e.flash=8;sfx('hit');burst(e.x+e.w/2,e.y+e.h/2,'#fff',4);
   if(e.hp<=0){e.dead=true;const C={bat:'#6a3a8a',zombie:'#8fc070',lineback:'#8fc070',lineman:'#d8b880',rb:'#ff8a2a',ref:'#f4f4f4',cheer:'#dfe8ff',pumpkin:'#ff8a2a',mascot:'#a06aff'}[e.type];
-    burst(e.x+e.w/2,e.y+e.h/2,[C,'#ffd166','#fff'],14);score+=e.score;popup(e.x,e.y-4,''+e.score,'#ffe08a');sfx('kill');
+    burst(e.x+e.w/2,e.y+e.h/2,[C,'#ffd166','#fff'],14);score+=e.score;popup(e.x-4,e.y-4,'+'+e.score/10+' YDS','#ffe08a');sfx('kill');
     if(Math.random()<(easy()?.35:.22))spawnDrop(randomDrop(),e.x+e.w/2,e.y);}}
 function randomDrop(){const r=Math.random();return r<.5?'candy':r<.62?'hail':r<.72?'shield':'heart';}
 function spawnDrop(k,x,y){if(k==='spark')k=Math.random()<.5?'hail':'shield';drops.push({k,x:x-4,y:y-4,w:8,h:8,vx:0,vy:-2,life:k==='orb'?1e9:600});}
@@ -501,13 +506,13 @@ function updateEShots(){
 }
 function updateDrops(){
   for(const d of drops){d.life--;if(d.life<=0){d.dead=true;continue;}
-    if(d.k==='orb'){d.y+=Math.sin(frame*.08)*.3;}else{d.vy=Math.min(3,d.vy+.2);moveBody(d);}
-    if(!P.dead&&ov(d,P)){d.dead=true;collect(d.k);}}
+    if(d.k==='orb'){if(d.oy==null)d.oy=d.y;d.y=d.oy+Math.sin(frame*.08)*3;}else{d.vy=Math.min(3,d.vy+.2);moveBody(d);}
+    if(!P.dead&&ov(d.k==='orb'?{x:d.x-6,y:d.y-6,w:d.w+12,h:d.h+20}:d,P)){d.dead=true;collect(d.k);}}
   drops=drops.filter(d=>!d.dead);
 }
 function collect(k){
   if(k==='heart'){P.hp=Math.min(P.max,P.hp+4);popup(P.x-8,P.y-6,'HOT CIDER','#ff9a5a');}
-  else if(k==='candy'){score+=100;popup(P.x,P.y-6,'100','#ffe08a');}
+  else if(k==='candy'){score+=100;popup(P.x-4,P.y-6,'+10 YDS','#ffe08a');}
   else if(k==='hail'){P.hail=600;popup(P.x-16,P.y-6,'HAIL MARY!','#7cc8ff');}else if(k==='shield'){P.shield=Math.min(3,P.shield+2);popup(P.x-16,P.y-6,'HELMET SHIELD','#ffd166');}
   else if(k==='orb'){sfx('get');bossCleared();return;}
   sfx('pick');
@@ -572,6 +577,7 @@ function updEnemies(){
         if(e.onGround&&edgeAhead(e,e.face))e.vx=0;
         moveBody(e);break;
     }
+    if(e.y>lvl.rows*TS+20){e.dead=true;continue;}
     const heavy=e.type==='lineman'||(e.type==='lineback'&&e.st===2);
     if(!e.phased&&!e.dead&&!(P.atk>=6&&P.atk<=15)&&ov(e,{x:P.x+1,y:P.y+2,w:P.w-2,h:P.h-2}))hurtPlayer(dmg(heavy?3:2),ex);
   }
@@ -874,7 +880,7 @@ function render(){
 // ---------- UI / overlays ----------
 const OV=document.getElementById('ov'),PAD=document.getElementById('pad'),SND=document.getElementById('snd'),PAUSE=document.getElementById('pause'),HINT=document.getElementById('hint');
 let portrait=false;
-function showOv(html){OV.innerHTML='<div class="panel">'+html+'</div>';OV.classList.add('on');OV.scrollTop=0;refreshSound();updateChrome();
+function showOv(html){resetInputs();OV.innerHTML='<div class="panel">'+html+'</div>';OV.classList.add('on');OV.scrollTop=0;refreshSound();updateChrome();
   const b=OV.querySelector('button:not([disabled])');if(b&&!touchMode)try{b.focus({preventScroll:true});}catch(e){}}
 function hideOv(){OV.classList.remove('on');OV.innerHTML='';updateChrome();}
 function refreshSound(){OV.querySelectorAll('[data-act=sound]').forEach(b=>b.textContent='Sound: '+(save.sound?'On':'Off'));SND.textContent=save.sound?'🔊':'🔇';}
@@ -893,9 +899,9 @@ function showSelect(){state='select';lvl=null;playSong(4);const three=save.beate
     h+='<button class="card" data-act="go:'+s.id+'"'+(locked?' disabled':'')+'><span class="ci">'+(locked?'🔒':s.icon)+'</span><span class="cr">'+s.q+'</span><span class="cn">'+s.name+'</span><span class="cb">Boss: '+s.boss+'</span>'+(locked?'<span class="cr">Win the other 3 first</span>':'')+(save.beaten[s.id]?'<span class="ok">Touchdown!</span>':'')+'</button>';}
   h+='</div><div><button class="b alt" data-act="title">Title</button><button class="b alt" data-act="diff">Mode: '+(easy()?'Easy':'Normal')+'</button><button class="b alt" data-act="sound">Sound: Off</button></div>';
   showOv(h);}
-function pauseGame(){if(state!=='play')return;state='pause';for(const k in tc)tc[k]=false;
+function pauseGame(){if(state!=='play')return;state='pause';resetInputs();audioSleep();
   showOv('<h2>Paused</h2><div><button class="b" data-act="resume">Resume</button></div><div><button class="b alt" data-act="sound">Sound: Off</button><button class="b alt" data-act="phelp">Controls</button><button class="b alt" data-act="quit">Quarters</button></div>');}
-function resume(){hideOv();state='play';updateChrome();}
+function resume(){hideOv();resetInputs();state='play';audioWake();updateChrome();}
 function showOver(){showOv('<h2>Game Over</h2><p>'+Math.floor(score/10)+' yards</p><div><button class="b" data-act="continue">Continue from first down</button></div><div><button class="b alt" data-act="quit">Quarters</button></div>');}
 function showGet(){showOv('<div class="logo" style="font-size:clamp(34px,9vmin,80px)">TOUCHDOWN!</div><p style="font-size:22px">'+stage.boss+' is beaten!</p><p>'+Math.floor(score/10)+' yards, '+tds+' TD</p><button class="b" data-act="select">Next Quarter</button>');}
 function showWin(){showOv('<div class="logo" style="font-size:clamp(30px,7vmin,64px)">FINAL WHISTLE!<br>TIGERS WIN!</div><p>Obie beat the Monster Mascot and the whole spooky team. The stadium lights come back on and everybody goes trick or treating. Go Tigers!</p><p>Final: <b>'+Math.floor(score/10)+' yards, '+tds+' TD</b></p>'+
@@ -912,43 +918,48 @@ OV.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(
 });
 SND.addEventListener('click',()=>{setSound(!save.sound);if(save.sound)playSong(boss?5:stage?stage.song:4);});
 PAUSE.addEventListener('click',()=>pauseGame());
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='play')pauseGame();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){resetInputs();if(state==='play')pauseGame();audioSleep();}else if(state!=='pause')audioWake();});
+addEventListener('pagehide',()=>{if(state==='play')pauseGame();});
 
 // ---------- layout ----------
 function place(el,o){const s=el.style;s.left=o.l!=null?o.l+'px':'';s.right=o.r!=null?o.r+'px':'';s.bottom=o.b!=null?o.b+'px':'';s.top='';s.width=o.w+'px';s.height=o.h+'px';if(o.fs)s.fontSize=o.fs+'px';}
+const SAP=document.createElement('div');SAP.style.cssText='position:fixed;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)';document.body.appendChild(SAP);
 function layout(){
-  const vw=innerWidth,vh=innerHeight;portrait=vh>vw*1.05;
+  const vw=innerWidth,vh=innerHeight;const cs=getComputedStyle(SAP),sa={t:parseFloat(cs.paddingTop)||0,r:parseFloat(cs.paddingRight)||0,b:parseFloat(cs.paddingBottom)||0,l:parseFloat(cs.paddingLeft)||0};portrait=vh>vw*1.05;
   let cw,ch,cx,cy;
   if(!portrait){W=clamp(Math.round(H*vw/vh),300,480);ch=vh;cw=vh*W/H;if(cw>vw){cw=vw;ch=vw*H/W;}cx=(vw-cw)/2;cy=(vh-ch)/2;}
   else{W=384;cw=vw;ch=vw*H/W;cx=0;cy=Math.min(Math.max(0,(vh-ch)*.12),70);}
   if(cv.width!==W){cv.width=W;cv.height=H;ctx=cv.getContext('2d');}
   Object.assign(cv.style,{width:cw+'px',height:ch+'px',left:cx+'px',top:cy+'px'});
-  PAUSE.style.right=(vw-cx-cw+8)+'px';PAUSE.style.top=(cy+8)+'px';SND.style.right=(vw-cx-cw+62)+'px';SND.style.top=(cy+8)+'px';
+  const cr=Math.max(vw-cx-cw,sa.r)+8,ct=Math.max(cy,sa.t)+8;PAUSE.style.right=cr+'px';PAUSE.style.top=ct+'px';SND.style.right=(cr+54)+'px';SND.style.top=ct+'px';
   HINT.style.top=(cy+ch+10)+'px';
-  const m=16;let u;
+  const m=16,ml=m+sa.l,mr=m+sa.r,mb=m+sa.b;let u;
   if(!portrait)u=Math.min(vh/5.6,100);else u=Math.min(vw/5,(vh-cy-ch-40)/2.7,140);
   u=Math.max(u,56);
-  place(document.getElementById('dpad'),{l:m,b:m,w:(portrait?2.1:2.3)*u,h:1.15*u,fs:u*.42});
+  place(document.getElementById('dpad'),{l:ml,b:mb,w:(portrait?2.1:2.3)*u,h:1.15*u,fs:u*.42});
   const q=k=>PAD.querySelector('[data-k='+k+']');
   if(portrait){
-    place(q('jump'),{r:m,b:m,w:1.1*u,h:1.1*u,fs:u*.2});
-    place(q('whip'),{r:m+1.22*u,b:m,w:u,h:u,fs:u*.2});
-    place(q('shoot'),{r:m+.58*u,b:m+1.18*u,w:u,h:u,fs:u*.19});
+    place(q('jump'),{r:mr,b:mb,w:1.1*u,h:1.1*u,fs:u*.2});
+    place(q('whip'),{r:mr+1.22*u,b:mb,w:u,h:u,fs:u*.2});
+    place(q('shoot'),{r:mr+.58*u,b:mb+1.18*u,w:u,h:u,fs:u*.19});
   } else {
-    place(q('jump'),{r:m,b:m,w:1.05*u,h:1.05*u,fs:u*.2});
-    place(q('shoot'),{r:m+1.15*u,b:m+.32*u,w:u,h:u,fs:u*.19});
-    place(q('whip'),{r:m+2.25*u,b:m,w:u,h:u,fs:u*.2});
+    place(q('jump'),{r:mr,b:mb,w:1.05*u,h:1.05*u,fs:u*.2});
+    place(q('shoot'),{r:mr+1.15*u,b:mb+.32*u,w:u,h:u,fs:u*.19});
+    place(q('whip'),{r:mr+2.25*u,b:mb,w:u,h:u,fs:u*.2});
   }
   PAD.classList.toggle('land',!portrait);
+  if(lockCam&&lvl){lockX=Math.min(lvl.arena*16+Math.max(0,(30*16-W)/2),lvl.cols*16-W);}
+  if(lvl)cam.x=clamp(cam.x,0,lvl.cols*16-W);
   updateChrome();
 }
-addEventListener('resize',layout);addEventListener('orientationchange',()=>setTimeout(layout,200));
+addEventListener('resize',layout);if(window.visualViewport)visualViewport.addEventListener('resize',()=>{if(visualViewport.scale<=1.01)layout();});addEventListener('orientationchange',()=>setTimeout(layout,200));
 layout();
 
 // ---------- loop ----------
 let last=performance.now(),acc=0;
 function loop(now){requestAnimationFrame(loop);let dt=(now-last)/1000;last=now;if(dt>.25)dt=.25;if(dt<0)dt=0;acc+=dt;let n=0;
-  while(acc>=1/60&&n<5){pollInput();update();acc-=1/60;n++;}if(n===5)acc=0;render();}
+  try{while(acc>=1/60&&n<5){pollInput();update();acc-=1/60;n++;}if(n===5)acc=0;render();}catch(err){errN++;if(errN<5)console.warn('Recovered from frame error:',err&&err.message);}}
+let errN=0;
 if(save.sound){save.sound=false;}
 showTitle();
 requestAnimationFrame(loop);
