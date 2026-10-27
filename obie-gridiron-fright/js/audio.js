@@ -1,8 +1,8 @@
 // Synthesized WebAudio sound effects and music. No audio files.
 window.SFX = (function(){
-  let ctx=null, master=null, musicGain=null, muted=false, musicTimer=null, musicStep=0;
+  let asleep=false, ctx=null, master=null, musicGain=null, muted=false, musicTimer=null, musicStep=0;
   function init(){
-    if(ctx) { if(ctx.state==='suspended') ctx.resume(); return; }
+    if(ctx) { if(ctx.state!=='running'&&ctx.state!=='closed') ctx.resume().catch(()=>{}); return; }
     const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return;
     ctx=new AC(); master=ctx.createGain(); master.gain.value=muted?0:0.55; master.connect(ctx.destination);
     musicGain=ctx.createGain(); musicGain.gain.value=0.16; musicGain.connect(master);
@@ -63,7 +63,12 @@ window.SFX = (function(){
     const g=ctx.createGain(); g.gain.setValueAtTime(0.12,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.04); src.connect(f); f.connect(g); g.connect(musicGain); src.start(t);}
   function stopMusic(){ if(musicTimer) clearInterval(musicTimer); musicTimer=null; }
   return {
+    wake(){ asleep=false; init(); }, sleep(){ asleep=true; try{ if(ctx&&ctx.state==='running') ctx.suspend(); }catch(e){} },
     init, play(n){ try{ fx[n]&&fx[n](); }catch(e){} }, startMusic, stopMusic,
     setMuted(m){ muted=m; if(master) master.gain.value=m?0:0.55; }, isMuted(){return muted;}
   };
 })();
+
+// iOS can suspend or 'interrupt' audio (calls, Siri, app switch); any later gesture brings it back.
+['pointerdown','touchend','keydown'].forEach(t=>document.addEventListener(t,()=>{ try{ SFX.init(); }catch(e){} },{capture:true,passive:true}));
+document.addEventListener('visibilitychange',()=>{ if(document.hidden){ SFX.stopMusic(); } });

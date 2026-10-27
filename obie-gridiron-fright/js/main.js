@@ -13,7 +13,7 @@
       width:m.cw, height:m.ch,
       scale:{ mode:Phaser.Scale.NONE, zoom:1/m.dpr },
       physics:{ default:'arcade', arcade:{ gravity:{y:1600}, debug:false } },
-      input:{ activePointers:5 }, render:{ antialias:true, roundPixels:false },
+      input:{ activePointers:5 }, fps:{ panicMax:10 }, render:{ antialias:true, roundPixels:false },
       scene:[BootScene,TitleScene,LevelsScene,SettingsScene,ResultScene,GameScene,BGScene,HUDScene],
     });
     let t=null; const fit=()=>{ clearTimeout(t); t=setTimeout(()=>{ const m=OBIE.metrics(); if(m.cw===game.scale.width&&m.ch===game.scale.height) return;

@@ -1,5 +1,9 @@
 // Main gameplay, parallax background scene and HUD scene.
-OBIE.input = { left:false, right:false, jump:false, throw:false };
+OBIE.input = { left:false, right:false, jump:false, throw:false, jumpTap:false, throwTap:false };
+// One reset for every state change (pause, blur, menus, rotation, death, level start): clears held touch buttons, tap latches and keys.
+OBIE.resetInputs = function(scene){ const I=OBIE.input; I.left=I.right=I.jump=I.throw=I.jumpTap=I.throwTap=false;
+  try{ const g=window.obieGame; if(g){ g.scene.getScenes(false).forEach(sc=>{ if(sc.input&&sc.input.keyboard) sc.input.keyboard.resetKeys(); }); const h=g.scene.getScene('HUD'); if(h&&h.btns) h.btns.forEach(b=>{ b.setAlpha(0.75); b.setScale(b.base); }); } }catch(e){} };
+const decay=(k,s)=>Math.pow(k,s*60); // per-60Hz-frame factor turned into a per-second rate
 const GTOP = { pumpkin:34, corn:60, graveyard:60, stadium:10 };
 
 class BGScene extends Phaser.Scene{
@@ -35,12 +39,13 @@ class GameScene extends Phaser.Scene{
     const wrap=f=>typeof f==='function'?function(...a){ try{ return f.apply(this,a); }catch(e){ warn(e); } }:f;
     const F=this.physics.add; if(!F._wrapped){ const o=F.overlap.bind(F), c=F.collider.bind(F); F.overlap=(a,b,cb,pc,cx)=>o(a,b,wrap(cb),wrap(pc),cx); F.collider=(a,b,cb,pc,cx)=>c(a,b,wrap(cb),wrap(pc),cx); F._wrapped=true; }
     const T=this.time; if(!T._wrapped){ const d=T.delayedCall.bind(T); T.delayedCall=(ms,cb,args,cx)=>d(ms,wrap(cb),args,cx); T._wrapped=true; }
+    this.physics.world.timeScale=1; this.time.timeScale=1; this.tweens.timeScale=1; this.won=false; OBIE.resetInputs();
     document.body.classList.remove('menu');
     const L=this.L, G=L.ground, H=OBIE.H; this.G=G;
     this.lv=OBIE.buildLevel(L); const lv=this.lv; this.worldW=lv.worldW;
     this.scene.launch('BG',{level:this.levelNum}); this.scene.sendToBack('BG');
     this.arenaW=lv.arenaW; const cam=this.cameras.main; this.applyView(); cam.fadeIn(400);
-    this._rs=()=>{ this.applyView(); }; this.game.events.on('obie-resize',this._rs); this.events.once('shutdown',()=>this.game.events.off('obie-resize',this._rs));
+    this._rs=()=>{ OBIE.resetInputs(); this.applyView(); }; this.game.events.on('obie-resize',this._rs); this.events.once('shutdown',()=>this.game.events.off('obie-resize',this._rs));
     this.physics.world.setBounds(0,-400,this.worldW,H+800); this.physics.world.gravity.y=1600;
     // Ground segments split by pits, with painted end caps at each lip
     this.solids=this.physics.add.staticGroup(); this.plats=this.physics.add.staticGroup();
@@ -74,7 +79,7 @@ class GameScene extends Phaser.Scene{
     this.movers=this.physics.add.group({allowGravity:false,immovable:true});
     lv.movers.forEach(m=>{ const r=buildPlat(m.x+platW(L.key==='stadium'?Math.max(1,m.n):m.n)/2,m.y,m.n,true); this.movers.add(r); r.body.setAllowGravity(false); r.body.setImmovable(true);
       r.body.checkCollision.down=false; r.body.checkCollision.left=false; r.body.checkCollision.right=false;
-      r.minX=m.x+r.w/2; r.maxX=m.x+m.range+r.w/2; r.body.setVelocityX(m.speed); r.spd=m.speed; });
+      r.minX=m.x+r.w/2; r.maxX=m.x+m.range+r.w/2; r.body.setVelocityX(m.speed); r.spd=m.speed; r.visDX=r.vis.x-r.x; });
     this.hazards=this.physics.add.staticGroup();
     const hk=L.key+'_hazard_'+L.hazard, hm=OBIE_PROPS[hk], HS=0.5, hw=hm.w*HS, hh=hm.h*HS;
     lv.hazards.forEach(h=>{ for(let i=0;i<h.n;i++){ const cx=h.x+65+i*130;
@@ -126,15 +131,14 @@ class GameScene extends Phaser.Scene{
     this.fxGhost=this.add.particles(0,0,'soft',{speed:{min:30,max:120},lifespan:800,scale:{start:0.5,end:1.2},alpha:{start:0.5,end:0},tint:OBIE.C.ghost,emitting:false,blendMode:'ADD'}).setDepth(20);
     // Input
     const K=Phaser.Input.Keyboard.KeyCodes; this.keys=this.input.keyboard.addKeys({l:K.LEFT,r:K.RIGHT,a:K.A,d:K.D,up:K.UP,w:K.W,sp:K.SPACE,z:K.Z,x:K.X,j:K.J,k:K.K,p:K.P,esc:K.ESC,m:K.M});
-    this.input.keyboard.on('keydown-P',()=>this.togglePause()); this.input.keyboard.on('keydown-ESC',()=>this.togglePause());
-    this.input.keyboard.on('keydown-M',()=>this.toggleMute());
     this.prevJump=false; this.prevThrow=false;
     cam.startFollow(p,true,0.12,0.1); cam.setDeadzone(60,400); cam.setFollowOffset(-this.v.vw*0.12,0);
     this.scene.launch('HUD',{level:this.levelNum}); this.hud=this.scene.get('HUD');
     this.bossStarted=false; this.boss=null; this.done=false; this.dying=false;
-    this.events.on('shutdown',()=>{ this.scene.stop('HUD'); this.scene.stop('BG'); });
+    this.events.once('shutdown',()=>{ this.scene.stop('HUD'); this.scene.stop('BG'); });
     const onVis=()=>{ if(document.hidden && !this.done) this.togglePause(true); }; document.addEventListener('visibilitychange',onVis);
-    this.events.once('shutdown',()=>document.removeEventListener('visibilitychange',onVis));
+    const onBlur=()=>{ OBIE.resetInputs(); if(!this.done) this.togglePause(true); }; window.addEventListener('blur',onBlur); window.addEventListener('pagehide',onBlur);
+    this.events.once('shutdown',()=>{ document.removeEventListener('visibilitychange',onVis); window.removeEventListener('blur',onBlur); window.removeEventListener('pagehide',onBlur); });
     this.portraitCheck=this.time.addEvent({delay:500,loop:true,callback:()=>{ if(window.innerHeight>window.innerWidth && !this.done) this.togglePause(true); }});
     SFX.startMusic(this.levelNum);
     this.time.delayedCall(250,()=>this.hud.titleCard('LEVEL '+L.id+': '+L.name, L.sub));
@@ -174,16 +178,19 @@ class GameScene extends Phaser.Scene{
     if(!this.dying){
       const acc=onGround?2600:1700, max=270;
       if(left&&!right){ p.body.setAccelerationX(-acc); p.facing=-1; } else if(right&&!left){ p.body.setAccelerationX(acc); p.facing=1; }
-      else { p.body.setAccelerationX(0); p.body.velocity.x*=onGround?0.75:0.94; if(Math.abs(p.body.velocity.x)<8) p.body.velocity.x=0; }
+      else { p.body.setAccelerationX(0); p.body.velocity.x*=decay(onGround?0.75:0.94,s); if(Math.abs(p.body.velocity.x)<8) p.body.velocity.x=0; }
       p.body.velocity.x=Phaser.Math.Clamp(p.body.velocity.x,-max,max);
       if(onGround){ if(p.airT>0.25){ this.fxDust.explode(6,p.x,p.y); this.tweens.add({targets:p,scaleY:0.52,scaleX:0.64,duration:70,yoyo:true}); } p.coyote=0.1; p.airT=0; } else { p.coyote-=s; p.airT+=s; }
       const JD=Phaser.Input.Keyboard.JustDown; const jp=JD(k.up)|JD(k.w)|JD(k.sp)|JD(k.z)|(I.jump&&!this.prevTJump)|!!I.jumpTap; I.jumpTap=false; if(jp) p.jumpBuf=0.12; else p.jumpBuf-=s;
-      if(p.jumpBuf>0 && p.coyote>0){ p.body.setVelocityY(-720); p.coyote=0; p.jumpBuf=0; p.jumpT=time; SFX.play('jump'); this.fxDust.explode(4,p.x,p.y); }
-      if(!jump && p.body.velocity.y<-250) p.body.velocity.y*=0.55; // variable jump height
+      if(p.jumpBuf>0 && p.coyote>0){ p.body.setVelocityY(-720); p.coyote=0; p.jumpBuf=0; p.jumpT=time; p.jumpAge=0; p.cut=false; SFX.play('jump'); this.fxDust.explode(4,p.x,p.y); }
+      if(p.jumpAge!=null) p.jumpAge+=s;
+      // variable jump height: a quick tap still gets a full minimum hop (0.15 s), then one cut on release
+      if(!jump && !p.cut && p.jumpAge>=0.15 && p.body.velocity.y<-230){ p.body.velocity.y=-230; p.cut=true; }
       if(JD(k.x)|JD(k.j)|JD(k.k)|(I.throw&&!this.prevTThrow)|!!I.throwTap) this.tryThrow(); I.throwTap=false;
       if(this.onMover && onGround){ p.x+=this.onMover.body.velocity.x*s; }
       this.onMover=null;
     }
+    else { I.jumpTap=false; I.throwTap=false; }
     this.prevJump=jump; this.prevThrow=thr; this.prevTJump=I.jump; this.prevTThrow=I.throw;
     p.setFlipX(p.facing<0);
     // animation state
@@ -196,7 +203,7 @@ class GameScene extends Phaser.Scene{
     // i-frames blink
     if(p.inv>0){ p.inv-=s; p.setAlpha(Math.floor(time/60)%2?0.35:1); if(p.inv<=0) p.setAlpha(1); }
     // movers
-    this.movers.children.iterate(m=>{ if(m.x>m.maxX) m.body.setVelocityX(-m.spd); else if(m.x<m.minX) m.body.setVelocityX(m.spd); });
+    this.movers.children.iterate(m=>{ if(m.x>m.maxX) m.body.setVelocityX(-m.spd); else if(m.x<m.minX) m.body.setVelocityX(m.spd); m.vis.x=m.x+m.visDX; });
     // pits
     if(p.y>OBIE.H+60 && !this.dying) this.fallInPit();
     // enemies
@@ -217,7 +224,7 @@ class GameScene extends Phaser.Scene{
   updateEnemy(e,time,s){
     if(e.dead) return; const p=this.player, c=e.cfg; e.t+=s;
     const dx=p.x-e.x; const near=Math.abs(dx)<700;
-    if(!near && !e.fly){ e.body.setVelocityX(0); }
+    if(!near){ e.body.setVelocityX(0); if(c.fly) e.y=e.baseY+Math.sin(e.t*2.2)*36; }
     else if(c.fly){ e.dir=dx<0?-1:1; e.body.setVelocityX(Math.abs(dx)>200?e.dir*c.speed:Math.sin(e.t)*40); e.y=e.baseY+Math.sin(e.t*2.2)*36;
       e.shotT-=s*1000; if(e.shotT<=0 && Math.abs(dx)<520){ e.shotT=2600; this.throwFlag(e); } }
     else { let sp=c.speed; if(e.type==='pumpkinhead_runner' && Math.abs(dx)<360 && Math.abs(p.y-e.y)<120){ e.dir=dx<0?-1:1; sp=c.charge; }
@@ -278,7 +285,7 @@ class GameScene extends Phaser.Scene{
   checkpoint(z){ if(z.on) return; z.on=true; this.tweens.add({targets:z.flag,scaleX:0.02,duration:150,yoyo:true,onYoyo:()=>z.flag.setTexture('checkpoint_flag_raised')}); this.respawn={x:z.x,y:this.G-40}; SFX.play('checkpoint');
     this.fxSpark.explode(14,z.x+10,this.G-170); this.hud.toast('CHECKPOINT'); }
   hurt(fromX){
-    const p=this.player; if(p.inv>0||this.dying||this.done||this.god) return;
+    const p=this.player; if(p.inv>0||this.dying||this.done||this.won||this.god) return;
     this.hearts--; p.inv=1.4; p.hurtT=0.25; p.throwing=false; p.anims.play('o_hurt',true);
     p.body.setVelocity((p.x<fromX?-1:1)*300,-380); SFX.play('hurt'); this.cameras.main.shake(180,0.01); this.cameras.main.flash(120,224,38,43,false);
     p.setTintFill(0xffffff); this.time.delayedCall(90,()=>p.clearTint());
@@ -290,22 +297,23 @@ class GameScene extends Phaser.Scene{
     if(this.hearts<=0) return this.die();
     // back to safe ground before the pit
     const p=this.player; let x=p.x; for(let i=0;i<60 && !this.groundAt(x);i++) x-=20; x-=40;
-    p.setPosition(x,this.G-80); p.body.setVelocity(0,0); p.inv=1.4;
+    p.setPosition(x,this.G-80); p.body.setVelocity(0,0); p.inv=1.4; OBIE.resetInputs();
   }
   die(){
     if(this.dying) return; this.dying=true; const p=this.player; p.anims.play('o_hurt',true); p.body.setVelocity(0,-500); p.body.checkCollision.none=true;
     this.lives--; SFX.play('lose'); this.cameras.main.shake(300,0.012);
     this.time.delayedCall(1300,()=>{
+      if(this.won) return;
       if(this.lives<0){ this.finish(false); return; }
       this.hud.banner(this.lives+' '+(this.lives===1?'LIFE':'LIVES')+' LEFT','',1400);
       p.body.checkCollision.none=false; this.dying=false; this.hearts=this.maxHearts; p.inv=2;
-      const r=this.bossStarted?{x:this.lv.arenaX+80}:this.respawn; p.setPosition(r.x,this.G-80); p.body.setVelocity(0,0); this.ammo=Math.max(this.ammo,5);
+      OBIE.resetInputs(); const r=this.bossStarted?{x:this.lv.arenaX+80}:this.respawn; p.setPosition(r.x,this.G-80); p.body.setVelocity(0,0); this.ammo=Math.max(this.ammo,5);
       if(this.boss){ this.boss.x=Math.max(this.boss.x,this.lv.arenaX+700); }
     });
   }
   // ---------- BOSS ----------
   startBossFight(){
-    this.bossStarted=true; const L=this.L, ax=this.lv.arenaX, cam=this.cameras.main;
+    this.bossStarted=true; this.bossScore=this.score; const L=this.L, ax=this.lv.arenaX, cam=this.cameras.main;
     cam.stopFollow(); cam.pan(ax+this.arenaW/2,OBIE.H-this.v.vh/2,700,'Sine.easeInOut'); this.time.delayedCall(720,()=>{ this.applyView(); cam.startFollow(this.player,true,0.08,0.1); cam.setFollowOffset(0,0); });
     this.enemies.children.each(e=>{ if(!e.dead && e.x<ax) this.killEnemy(e,true); });
     SFX.stopMusic(); SFX.play('roar');
@@ -333,7 +341,7 @@ class GameScene extends Phaser.Scene{
     if(b.hp<=0) this.defeatBoss();
   }
   defeatBoss(){
-    const b=this.boss; b.dead=true; b.body.enable=false; this.ammoDrop&&this.ammoDrop.remove(); SFX.stopMusic(); SFX.play('boom');
+    const b=this.boss; b.dead=true; this.won=true; b.body.enable=false; this.ammoDrop&&this.ammoDrop.remove(); SFX.stopMusic(); SFX.play('boom');
     this.bossShots.clear(true,true); this.enemies.children.each(e=>!e.dead&&this.killEnemy(e));
     this.physics.world.timeScale=2.5; this.time.timeScale=0.5; this.tweens.timeScale=0.5;
     for(let i=0;i<6;i++) this.time.delayedCall(i*120,()=>{ this.fxSpark.explode(30,b.x+Phaser.Math.Between(-80,80),b.y-Phaser.Math.Between(40,220)); this.cameras.main.shake(200,0.015); SFX.play('hit'); });
@@ -348,23 +356,25 @@ class GameScene extends Phaser.Scene{
       save.total=Math.max(save.total||0,this.score); }
     OBIE.save.write(save);
     this.cameras.main.fadeOut(500,17,16,20);
-    this.time.delayedCall(520,()=>this.scene.start('Result',{win,level:this.levelNum,score:this.score,lives:this.lives,newBest,final:win&&this.levelNum===4}));
+    this.time.delayedCall(520,()=>this.scene.start('Result',{win,level:this.levelNum,score:this.score,lives:this.lives,newBest,final:win&&this.levelNum===4,atBoss:!win&&this.bossStarted,bossScore:this.bossScore||0}));
   }
   updateBoss(time,s){
     const b=this.boss, p=this.player, ax=this.lv.arenaX; if(!b) return;
     b.t+=s; const vis=b.vis;
     if(!b.dead){
-      if(b.state==='enter'){ if(b.hover){ b.y=Phaser.Math.Linear(b.y,this.G-120,0.05); } if((b.body.blocked.down||b.hover) && b.t>1.0){ if(!b.landed){ b.landed=true; this.cameras.main.shake(300,0.012); SFX.play('boom'); this.fxDust.explode(20,b.x,this.G);} if(b.t>1.6) b.state='fight'; } }
+      if(b.state==='enter'){ if(b.hover){ b.y=Phaser.Math.Linear(b.y,this.G-120,1-decay(0.95,s)); } if((b.body.blocked.down||b.hover) && b.t>1.0){ if(!b.landed){ b.landed=true; this.cameras.main.shake(300,0.012); SFX.play('boom'); this.fxDust.explode(20,b.x,this.G);} if(b.t>1.6) b.state='fight'; } }
       else this.bossAI(b,time,s);
       b.x=Phaser.Math.Clamp(b.x,ax+90,ax+this.arenaW-90);
     }
     const moving=Math.abs(b.body.velocity.x)>20, ph=b.t*(moving?9:3);
     const sq=b.hover?Math.sin(ph)*0.03:(moving?Math.abs(Math.sin(ph))*0.05:Math.sin(ph)*0.025);
-    if(!b.dead){ vis.setScale(0.5*(1+sq*0.6),0.5*(1-sq)); vis.x=b.x+(b.shakeT>0?Math.sin(time*0.08)*6:0); vis.y=b.y-(moving?Math.abs(Math.sin(ph))*6:0); vis.setFlipX(b.dir>0); }
+    if(!b.dead){ vis.angle=b.charging?b.dir*14:0; vis.setScale(0.5*(1+sq*0.6),0.5*(1-sq)); vis.x=b.x+(b.shakeT>0?Math.sin(time*0.08)*6:0); vis.y=b.y-(moving?Math.abs(Math.sin(ph))*6:0); vis.setFlipX(b.dir>0); }
     if(b.shakeT>0) b.shakeT-=s;
     b.glow.setPosition(b.x,b.y-40); if(b.rim){ b.rim.setPosition(vis.x+18,b.y-120); b.rim.setAlpha(b.dead?0:0.4+Math.sin(time*0.004)*0.08); } b.glow.setAlpha(b.shakeT>0?0.5+Math.sin(time*0.03)*0.2:(b.hover?0.25:0));
   }
   telegraph(b,dur){ b.shakeT=dur; }
+  // Coach charges low like a tackle: a 100 px tall hit box that a full jump clears (the full 210 px box could not be dodged).
+  tackleBox(b,low){ const sx=b.scaleX, sy=b.scaleY; if(low){ b.body.setSize(130/sx,100/sy,false); b.body.setOffset(0,110/sy); } else { b.body.setSize(130/sx,210/sy,false); b.body.setOffset(0,0); } }
   bossAI(b,time,s){
     const p=this.player, dx=p.x-b.x, rate=b.enraged?0.65:1; b.atkT-=s;
     const face=()=>{ b.dir=dx<0?-1:1; };
@@ -381,14 +391,14 @@ class GameScene extends Phaser.Scene{
       if(b.dashing){ if((b.dashDir>0&&b.x>this.lv.arenaX+this.arenaW-110)||(b.dashDir<0&&b.x<this.lv.arenaX+110)){ b.dashing=false; b.body.setVelocity(0,0); } }
       else { face(); const tx=this.lv.arenaX+this.arenaW/2+Math.sin(b.t*0.7)*320, ty=this.G-150+Math.sin(b.t*1.7)*50; b.body.setVelocity((tx-b.x)*1.6,(ty-b.y)*2.5); }
       if(b.atkT<=0 && !b.dashing){ b.atkT=2.2*rate; if(Math.random()<0.6){ this.telegraph(b,0.4); this.time.delayedCall(400,()=>{ if(b.dead) return; this.emberVolley(b); if(b.enraged) this.time.delayedCall(500,()=>!b.dead&&this.emberVolley(b)); }); }
-        else { this.telegraph(b,0.7); this.time.delayedCall(700,()=>{ if(b.dead) return; b.dashing=true; b.dashDir=p.x>b.x?1:-1; b.dir=b.dashDir; b.y=this.G-70; b.body.setVelocity(b.dashDir*(b.enraged?560:460),0); SFX.play('roar'); }); } }
+        else { this.telegraph(b,0.7); this.time.delayedCall(700,()=>{ if(b.dead) return; b.dashing=true; b.dashDir=p.x>b.x?1:-1; b.dir=b.dashDir; b.y=this.G-122; b.body.setVelocity(b.dashDir*(b.enraged?560:460),0); SFX.play('roar'); }); } }
     } else if(b.key==='zombie_coach'){
-      if(b.charging){ if(b.body.blocked.left||b.body.blocked.right||b.x<=this.lv.arenaX+92||b.x>=this.lv.arenaX+this.arenaW-92){ b.charging=false; this.cameras.main.shake(200,0.01); b.body.setVelocityX(0);} }
+      if(b.charging){ if(b.body.blocked.left||b.body.blocked.right||b.x<=this.lv.arenaX+92||b.x>=this.lv.arenaX+this.arenaW-92){ b.charging=false; this.tackleBox(b,false); this.cameras.main.shake(200,0.01); b.body.setVelocityX(0);} }
       else { face(); b.body.setVelocityX(b.shakeT>0?0:b.dir*(b.enraged?80:55)); }
       if(b.atkT<=0 && !b.charging){ b.atkT=2.5*rate; const r=Math.random();
-        if(r<0.35 && this.enemies.countActive()<3){ this.telegraph(b,0.5); SFX.play('whistle'); this.time.delayedCall(500,()=>{ if(b.dead) return; [this.lv.arenaX+40,this.lv.arenaX+this.arenaW-40].forEach(x=>{ const e=this.spawnEnemy('zombie_player',x,this.G-20); e.dir=x<b.x?1:-1; }); }); }
+        if(r<0.35 && this.enemies.countActive()<3){ this.telegraph(b,0.5); SFX.play('whistle'); this.time.delayedCall(500,()=>{ if(b.dead) return; [this.lv.arenaX+40,this.lv.arenaX+this.arenaW-40].filter(x=>Math.abs(x-this.player.x)>260).forEach(x=>{ const e=this.spawnEnemy('zombie_player',x,this.G-20); e.dir=x<b.x?1:-1; }); }); }
         else if(r<0.7){ this.telegraph(b,0.35); this.time.delayedCall(350,()=>{ if(b.dead) return; if(Math.random()<0.5) this.clipboard(b); else this.whistleBlast(b); }); }
-        else { this.telegraph(b,0.6); this.time.delayedCall(600,()=>{ if(b.dead) return; b.charging=true; b.dir=p.x>b.x?1:-1; b.body.setVelocityX(b.dir*(b.enraged?520:420)); SFX.play('whistle'); }); } }
+        else { this.telegraph(b,0.6); this.time.delayedCall(600,()=>{ if(b.dead) return; b.charging=true; this.tackleBox(b,true); b.dir=p.x>b.x?1:-1; b.body.setVelocityX(b.dir*(b.enraged?520:420)); SFX.play('whistle'); }); } }
     }
   }
   shot(x,y,key,w,h,glowTint){ const o=this.bossShots.create(x,y,key).setDepth(15); o.setDisplaySize(w,h); o.body.setSize(o.width*0.7,o.height*0.7);
@@ -414,8 +424,8 @@ class GameScene extends Phaser.Scene{
   // ---------- pause / mute ----------
   togglePause(forceOn){
     if(this.done) return;
-    if(this.scene.isPaused('Game')){ if(forceOn) return; this.scene.resume('Game'); this.hud.showPause(false); SFX.startMusic(this.levelNum); }
-    else { this.scene.pause('Game'); this.hud.showPause(true); SFX.stopMusic(); SFX.play('pause'); OBIE.input.left=OBIE.input.right=OBIE.input.jump=OBIE.input.throw=false; }
+    if(this.scene.isPaused('Game')){ if(forceOn) return; OBIE.resetInputs(); this.scene.resume('Game'); this.hud.showPause(false); SFX.wake(); SFX.startMusic(this.levelNum); }
+    else { this.scene.pause('Game'); OBIE.resetInputs(); this.hud.showPause(true); SFX.stopMusic(); SFX.play('pause'); SFX.sleep(); }
   }
   toggleMute(){ const s=OBIE.save.load(); s.muted=!s.muted; OBIE.save.write(s); SFX.setMuted(s.muted); if(this.hud&&this.hud.updateMute) this.hud.updateMute(); }
 }
@@ -432,6 +442,10 @@ class HUDScene extends Phaser.Scene{
     this.scoreTxt=UI.text(this,W/2-24,T+18,'0',28,{ox:0,stroke:4});
     this.pauseBtn=this.add.image(R-32,T+28,'btn_pause').setDisplaySize(64,64).setInteractive({useHandCursor:true});
     this.pauseBtn.on('pointerup',()=>this.game_.togglePause());
+    // Keys live here: a paused Game scene receives no key events, so P/Esc could pause but never resume.
+    const kb=this.input.keyboard; kb.on('keydown-P',()=>this.game_.togglePause()); kb.on('keydown-ESC',()=>this.game_.togglePause());
+    kb.on('keydown-M',()=>this.game_.toggleMute()); kb.on('keydown-ENTER',()=>{ if(this.pause.visible) this.game_.togglePause(); });
+    this.events.once('shutdown',()=>{ ['keydown-P','keydown-ESC','keydown-M','keydown-ENTER'].forEach(e=>kb.off(e)); });
     this.ammoTxt=UI.text(this,R-76,T+20,'0',24,{ox:1,stroke:4});
     this.ballIcon=this.add.image(R-76-this.ammoTxt.width-24,T+20,'football').setDisplaySize(32,32);
     // boss bar: top center under the score, 50% width, 16 tall, name above

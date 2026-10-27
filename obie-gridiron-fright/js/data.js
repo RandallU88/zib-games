@@ -58,7 +58,7 @@ OBIE.buildLevel = function(L){
       x+=n*270+420;
     } else if(t<0.55){ // hazard group, optional high platform route
       const c=diff>=3&&rnd()<0.5?2:1; const w=c*130; out.hazards.push({x, w, n:c});
-      if(c===2) out.plats.push({cx:x+w/2, y:G-210, n:1});
+      if(c===2) out.plats.push({cx:x+w/2, y:G-140, n:1}); // reachable hop-over route (G-210 was above max jump height)
       candyArc(x-10, G-170, 5, (w+20)/4);
       x+=w+ri(260,340);
     } else if(t<0.68 && diff>=2){ // moving platform over wide pit

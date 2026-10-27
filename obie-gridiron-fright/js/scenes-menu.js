@@ -25,7 +25,7 @@ const UI = {
     c.on('pointerup',()=>{ draw(false); c.setScale(1); SFX.init(); SFX.play('click'); cb(); });
     c.label=t; return c;
   },
-  fadeTo(scene,key,data){ scene.cameras.main.fadeOut(260,17,16,20); scene.time.delayedCall(270,()=>scene.scene.start(key,data)); },
+  fadeTo(scene,key,data){ if(scene._leaving) return; scene._leaving=true; OBIE.resetInputs&&OBIE.resetInputs(); scene.events.once('shutdown',()=>{ scene._leaving=false; }); scene.cameras.main.fadeOut(260,17,16,20); scene.time.delayedCall(270,()=>scene.scene.start(key,data)); },
 };
 
 class BootScene extends Phaser.Scene{
@@ -204,7 +204,9 @@ class ResultScene extends Phaser.Scene{
       const t=UI.text(this,W/2,62,'GAME OVER',56,{color:OBIE.HEX.red,stroke:8}); this.tweens.add({targets:t,y:68,duration:900,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});
       this.add.ellipse(W/2,280,120,18,0x000000,0.5); const ob=this.add.image(W/2,282,'obie','hurt_1').setOrigin(0.5,1); ob.setScale(160/(ob.height*0.92));
       UI.text(this,W/2,282+24+16,'SCORE '+d.score,30,{color:OBIE.HEX.gold});
-      UI.button(this,W/2,410,260,72,'TRY AGAIN',()=>UI.fadeTo(this,'Game',{level:d.level,score:0,lives:3}),true);
+      if(d.atBoss){ UI.button(this,W/2-140,410,260,72,'RETRY BOSS',()=>UI.fadeTo(this,'Game',{level:d.level,boss:true,score:d.bossScore||0,lives:3}),true);
+        UI.button(this,W/2+140,410,260,72,'RESTART LEVEL',()=>UI.fadeTo(this,'Game',{level:d.level,score:0,lives:3})); }
+      else UI.button(this,W/2,410,260,72,'TRY AGAIN',()=>UI.fadeTo(this,'Game',{level:d.level,score:0,lives:3}),true);
     }
     UI.button(this,W/2+(d.win?60:0),d.win?H*0.66+84:492,200,60,'MAIN MENU',()=>UI.fadeTo(this,'Title'));
   }
