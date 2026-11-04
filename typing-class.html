@@ -27,6 +27,7 @@ h3{margin:6px 0;color:var(--title)}
 .hide{display:none!important}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .logo{font:bold italic 34px Georgia,serif;color:var(--title);text-shadow:2px 2px #a6caf0;margin:0}
+.prof.parent{background:#fff4d6;border:2px dashed #b8860b}.tbadge{display:inline-block;background:#b8860b;color:#fff;font:bold 11px Tahoma,sans-serif;padding:2px 6px;margin:3px 0}
 .profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0}
 .prof{padding:16px;text-align:center;cursor:pointer;background:#fff;border:2px solid;border-color:#404040 var(--hi) var(--hi) #404040}
 .prof:hover{background:#ffffe1}
@@ -243,6 +244,7 @@ const lowerUpTo=i=>allKeysUpTo(i).replace(/[^a-z;]/g,"");
 // ---------- storage ----------
 const SK="kbAcademy.v1";
 let DB=JSON.parse(localStorage.getItem(SK)||"null")||{profiles:{Logan:{av:"🦖",les:{},best:0,acc:0,games:{}},Savannah:{av:"🦄",les:{},best:0,acc:0,games:{}}},muted:false};
+if(!DB.profiles.Parent){DB.profiles.Parent={av:"🧑‍🏫",les:{},best:0,acc:0,games:{},test:true};localStorage.setItem(SK,JSON.stringify(DB))}
 const save=()=>localStorage.setItem(SK,JSON.stringify(DB));
 let me=null; const P=()=>DB.profiles[me];
 
@@ -261,7 +263,7 @@ let mode=null; // 'lesson' | 'shark' | 'race' | 'intro'
 function show(id){document.querySelectorAll(".body>section").forEach(s=>s.classList.toggle("hide",s.id!==id));window.scrollTo(0,0)}
 function profiles(){mode=null;show("s-prof");$("who").textContent="";
  $("profList").innerHTML=Object.entries(DB.profiles).map(([n,p])=>{const done=Object.values(p.les).filter(l=>l.pass).length;
-  return `<div class="prof" data-n="${esc(n)}"><div class="av">${p.av}</div><div class="nm">${esc(n)}</div><div class="st">${done} of ${LESSONS.length} lessons<br>Best ${p.best} WPM</div></div>`}).join("");
+  return `<div class="prof${p.test?" parent":""}" data-n="${esc(n)}"><div class="av">${p.av}</div><div class="nm">${esc(n)}</div>${p.test?'<div class="tbadge">TEST MODE: all unlocked</div>':""}<div class="st">${done} of ${LESSONS.length} lessons<br>Best ${p.best} WPM</div></div>`}).join("");
  document.querySelectorAll(".prof").forEach(d=>d.onclick=()=>{me=d.dataset.n;menu()});}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
 $("addProf").onclick=()=>{const n=$("newName").value.trim();if(!n||DB.profiles[n])return;const av=["🐯","🦊","🐼","🐙","🦅","🐬","🚀","⚽"];
@@ -269,7 +271,7 @@ $("addProf").onclick=()=>{const n=$("newName").value.trim();if(!n||DB.profiles[n
 $("newName").addEventListener("keydown",e=>{e.stopPropagation();if(e.key==="Enter")$("addProf").click()});
 $("homeBtn").onclick=()=>{stopGame();me?menu():profiles()};
 
-const unlocked=i=>i===0||(P().les[i-1]&&P().les[i-1].pass);
+const unlocked=i=>i===0||!!P().test||(P().les[i-1]&&P().les[i-1].pass);
 function menu(){stopGame();mode=null;show("s-menu");$("who").textContent="Student: "+me;
  let h="",nextShown=false;
  UNITS.forEach((u,ui)=>{h+=`<div class="unit"><h4>${u}</h4><div class="lessons">`;
