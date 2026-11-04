@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Keyboard Academy: Typing Class</title>
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>
+:root{--bg:#1a2a6c;--panel:#d4d0c8;--dark:#808080;--hi:#fff;--title:#0a246a;--title2:#a6caf0;--font:Tahoma,Verdana,"Segoe UI",sans-serif;
+ --lp:#ff8a8a;--lr:#ffc46b;--lm:#fff27a;--li:#8ef08e;--ri:#7fd4ff;--rm:#c8a6ff;--rr:#ffa6e0;--rp:#ffb38a;--th:#d8d8d8}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:var(--font);background:linear-gradient(180deg,#3a6ea5,#1a2a6c);background-attachment:fixed;color:#000;overflow-x:hidden;
+ display:flex;justify-content:center;align-items:flex-start;padding:max(10px,env(safe-area-inset-top)) 10px 10px;user-select:none;-webkit-user-select:none}
+.win{width:100%;max-width:1100px;background:var(--panel);border:2px solid;border-color:var(--hi) #404040 #404040 var(--hi);box-shadow:4px 4px 0 rgba(0,0,0,.4)}
+.tb{background:linear-gradient(90deg,var(--title),var(--title2));color:#fff;font-weight:bold;padding:5px 8px;display:flex;align-items:center;gap:8px;font-size:15px}
+.tb .sp{flex:1}
+.tb button{font:bold 13px var(--font);min-width:24px;padding:2px 8px}
+.body{padding:12px}
+button.b{font:bold 15px var(--font);background:var(--panel);border:2px solid;border-color:var(--hi) #404040 #404040 var(--hi);padding:8px 16px;cursor:pointer;color:#000}
+button.b:active{border-color:#404040 var(--hi) var(--hi) #404040}
+button.b.big{font-size:18px;padding:12px 22px}
+button.b:disabled{color:#888;text-shadow:1px 1px #fff}
+.inset{background:#fff;border:2px solid;border-color:#404040 var(--hi) var(--hi) #404040;padding:10px}
+h2{margin:4px 0 10px;color:var(--title);font-size:22px}
+h3{margin:6px 0;color:var(--title)}
+.hide{display:none!important}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.logo{font:bold italic 34px Georgia,serif;color:var(--title);text-shadow:2px 2px #a6caf0;margin:0}
+.profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0}
+.prof{padding:16px;text-align:center;cursor:pointer;background:#fff;border:2px solid;border-color:#404040 var(--hi) var(--hi) #404040}
+.prof:hover{background:#ffffe1}
+.prof .av{font-size:44px}.prof .nm{font-weight:bold;font-size:20px}.prof .st{font-size:13px;color:#333}
+.note{background:#ffffe1;border:1px solid #000;padding:8px 10px;font-size:14px;margin:8px 0}
+/* menu */
+.menu{display:grid;grid-template-columns:1.6fr 1fr;gap:12px}
+@media (max-width:820px){.menu{grid-template-columns:1fr}}
+.unit{margin-bottom:10px}
+.unit h4{margin:0 0 6px;background:var(--title);color:#fff;padding:4px 8px;font-size:14px}
+.lessons{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.les{font:bold 13px var(--font);text-align:left;padding:7px;background:var(--panel);border:2px solid;border-color:var(--hi) #404040 #404040 var(--hi);cursor:pointer;min-height:58px}
+.les .k{font:bold 12px "Courier New",monospace;color:#0a246a}
+.les .s{color:#d4a000;font-size:15px;letter-spacing:1px}
+.les.locked{color:#888;cursor:not-allowed}
+.les.next{background:#ffffe1;outline:2px dashed #0a246a}
+.gamebtn{display:block;width:100%;text-align:left;margin-bottom:8px}
+.gamebtn small{display:block;font-weight:normal;font-size:13px}
+.statbox td{padding:2px 8px;font-size:14px}
+/* lesson */
+.hud{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.hud .inset{padding:4px 10px;font-size:14px;min-width:96px;text-align:center}
+.hud b{display:block;font-size:22px;color:var(--title)}
+.stage{font-size:14px;font-weight:bold;color:#0a246a}
+.text{font:28px/1.5 "Courier New",monospace;min-height:100px;white-space:pre-wrap;word-break:break-word;padding:12px 16px}
+.text span{border-radius:2px}
+.text .ok{color:#1a7f1a}
+.text .cur{background:#0a246a;color:#fff;animation:bl 1s steps(1) infinite}
+.text .bad{background:#ff6b6b;color:#fff}
+.text .todo{color:#555}
+@keyframes bl{50%{background:#3a6ea5}}
+.tip{font-size:15px;margin:6px 0;min-height:22px}
+.kbwrap{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px}
+.kb{display:flex;flex-direction:column;gap:4px;padding:8px;background:#333;border-radius:8px;width:100%;max-width:820px}
+.kr{display:flex;gap:4px}
+.key{flex:1 1 0;height:44px;border-radius:5px;display:flex;align-items:center;justify-content:center;font:bold 16px var(--font);border-bottom:3px solid rgba(0,0,0,.35);position:relative;color:#111;min-width:0}
+.key.lp{background:var(--lp)}.key.lr{background:var(--lr)}.key.lm{background:var(--lm)}.key.li{background:var(--li)}
+.key.ri{background:var(--ri)}.key.rm{background:var(--rm)}.key.rr{background:var(--rr)}.key.rp{background:var(--rp)}.key.th{background:var(--th)}
+.key.mod{background:#aaa;font-size:12px}
+.key.dim{filter:grayscale(.85) brightness(.75)}
+.key.lit{outline:4px solid #fff;box-shadow:0 0 14px 4px #fff;transform:translateY(-2px);z-index:2;filter:none}
+.key.err{background:#e00!important;color:#fff}
+.key .bump{position:absolute;bottom:6px;width:12px;height:3px;background:#111;border-radius:2px}
+.hands{width:100%;max-width:820px;height:150px}
+.hands .f{fill:#f2c9a0;stroke:#7a5230;stroke-width:2;transition:fill .1s}
+.hands .palm{fill:#f2c9a0;stroke:#7a5230;stroke-width:2}
+.hands .f.on{fill:#ffef40;stroke:#0a246a;stroke-width:4}
+.legend{font-size:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.legend span{padding:1px 6px;border:1px solid #555}
+/* report */
+.report{max-width:620px;margin:0 auto;background:#fffef0;border:3px double #0a246a;padding:16px 22px;font-family:Georgia,serif}
+.report h2{text-align:center;font-family:Georgia,serif}
+.report table{width:100%;border-collapse:collapse;font-size:17px}
+.report td{border-bottom:1px dotted #999;padding:5px}
+.grade{font:bold 64px Georgia,serif;color:#b00;text-align:center;transform:rotate(-8deg)}
+.stars{font-size:38px;color:#d4a000;text-align:center;letter-spacing:6px}
+.trouble span{display:inline-block;font:bold 18px "Courier New",monospace;background:#ffd6d6;border:1px solid #b00;padding:2px 8px;margin:2px}
+/* games */
+.arena{position:relative;height:440px;overflow:hidden;border:2px solid;border-color:#404040 var(--hi) var(--hi) #404040}
+.sea{background:linear-gradient(180deg,#5fc8ff 0%,#1d6fb8 40%,#0b2d5c 100%)}
+.fall{position:absolute;font:bold 24px "Courier New",monospace;background:#fff;border:2px solid #000;border-radius:14px;padding:2px 10px;white-space:nowrap;box-shadow:2px 2px 0 #000}
+.fall .done{color:#1a7f1a;text-decoration:underline}
+.fall.tgt{background:#ffef40}
+.fall .fin{font-size:20px}
+.floor{position:absolute;left:0;right:0;bottom:0;height:34px;background:repeating-linear-gradient(90deg,#c2a26b 0 30px,#b08f58 30px 60px);border-top:3px solid #6b4a1e}
+.boom{position:absolute;font-size:30px;animation:pop .5s forwards;pointer-events:none}
+@keyframes pop{to{transform:scale(2.4);opacity:0}}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;text-align:center;gap:10px;padding:20px}
+.overlay h2{color:#ffef40;font-size:34px;margin:0}
+.track{background:#4a8f2a}
+.lane{position:absolute;left:0;right:0;height:80px;background:#555;border-top:4px dashed #fff;border-bottom:4px dashed #fff}
+.car{position:absolute;font-size:52px;transition:left .15s linear;transform:scaleX(-1)}
+.finish{position:absolute;top:0;bottom:0;right:40px;width:22px;background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0 0/22px 22px}
+.racetext{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.95);padding:8px 12px}
+.racetext .text{font-size:24px;min-height:0;padding:4px}
+/* certificate */
+.cert{max-width:760px;margin:0 auto;background:#fffdf2;border:14px double #b8860b;padding:30px;text-align:center;font-family:Georgia,serif;position:relative}
+.cert h1{font:bold italic 42px Georgia,serif;color:#0a246a;margin:4px 0}
+.cert .nm{font:bold 40px "Brush Script MT",cursive,Georgia;color:#7a0000;border-bottom:2px solid #000;display:inline-block;padding:0 30px;margin:10px 0}
+.seal{position:absolute;right:30px;bottom:24px;width:96px;height:96px;border-radius:50%;background:radial-gradient(#ffd34d,#b8860b);color:#5a3a00;display:flex;align-items:center;justify-content:center;font:bold 14px Georgia;box-shadow:0 0 0 6px #e8c25a}
+#kbnote{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);max-width:92vw;z-index:50;box-shadow:3px 3px 0 #000}
+@media (max-height:820px){.key{height:38px}.hands{height:120px}.text{font-size:24px;min-height:80px}.arena{height:380px}}
+@media (max-height:700px){.key{height:32px;font-size:13px}.hands{height:96px}.text{font-size:21px;min-height:64px;padding:8px 12px}.arena{height:320px}}
+</style>
+</head>
+<body>
+<div class="win">
+ <div class="tb"><span>⌨️ Keyboard Academy: Typing Class</span><span class="sp"></span><span id="who"></span>
+  <button id="mute" title="Sound on/off">🔊</button><button id="homeBtn" title="Main menu">Menu</button><a href="./" style="color:#fff;font-size:13px">Games</a></div>
+ <div class="body">
+
+ <!-- PROFILES -->
+ <section id="s-prof">
+  <p class="logo">Keyboard Academy</p>
+  <div>Welcome to typing class! Who is typing today?</div>
+  <div class="profiles" id="profList"></div>
+  <div class="row"><input id="newName" maxlength="14" placeholder="New student name" style="font:16px var(--font);padding:7px;border:2px inset #fff">
+   <button class="b" id="addProf">Add student</button></div>
+  <div class="note">You need a real keyboard for typing class. A Bluetooth or Magic Keyboard on iPad works great.</div>
+ </section>
+
+ <!-- MENU -->
+ <section id="s-menu" class="hide">
+  <div class="menu">
+   <div><h2>Lesson Plan</h2><div id="lessonMap"></div></div>
+   <div>
+    <h2>Arcade</h2>
+    <button class="b big gamebtn" id="g-shark">🦈 Shark Attack<small>Type the words before the sharks reach the bottom. Uses the keys you have learned.</small></button>
+    <button class="b big gamebtn" id="g-race">🏎️ Speedway 60<small>Race the pace car for 60 seconds. Every correct letter is gas.</small></button>
+    <h3>Report Card</h3>
+    <div class="inset"><table class="statbox" id="statbox"></table></div>
+    <div class="note" style="margin-top:10px">Posture check: sit up tall, feet flat, wrists floating. Fingers rest on <b>A S D F</b> and <b>J K L ;</b>. Feel the little bumps on F and J.</div>
+   </div>
+  </div>
+ </section>
+
+ <!-- LESSON -->
+ <section id="s-lesson" class="hide">
+  <div class="row" style="justify-content:space-between"><h2 id="lTitle" style="margin:0"></h2><span class="stage" id="lStage"></span></div>
+  <div class="hud">
+   <div class="inset">WPM<b id="hWpm">0</b></div><div class="inset">Accuracy<b id="hAcc">100%</b></div>
+   <div class="inset">Errors<b id="hErr">0</b></div><div class="inset">Goal<b id="hGoal">90%</b></div>
+   <div class="inset" style="flex:1;min-width:180px;text-align:left"><span id="hProg">Part 1 of 3</span><div style="height:14px;border:1px solid #000;margin-top:6px;background:#fff"><div id="hBar" style="height:100%;width:0;background:repeating-linear-gradient(90deg,#0a246a 0 10px,#fff 10px 12px)"></div></div></div>
+  </div>
+  <div class="inset text" id="lText"></div>
+  <div class="tip" id="lTip"></div>
+  <div class="kbwrap"><div class="kb" id="kb"></div><svg class="hands" id="hands" viewBox="0 0 820 150"></svg>
+   <div class="legend" id="legend"></div></div>
+ </section>
+
+ <!-- INTRO -->
+ <section id="s-intro" class="hide">
+  <h2 id="iTitle"></h2>
+  <div class="inset" id="iBody" style="font-size:18px;line-height:1.5"></div>
+  <div class="row" style="margin-top:10px"><button class="b big" id="iGo">Start lesson (press Enter)</button><button class="b" id="iBack">Back</button></div>
+ </section>
+
+ <!-- REPORT -->
+ <section id="s-report" class="hide">
+  <div class="report" id="rep"></div>
+  <div class="row" style="justify-content:center;margin-top:12px"><button class="b big" id="rNext">Next lesson</button><button class="b big" id="rRetry">Try again</button><button class="b big" id="rMenu">Menu</button></div>
+ </section>
+
+ <!-- GAME -->
+ <section id="s-game" class="hide">
+  <div class="hud"><div class="inset">Score<b id="gScore">0</b></div><div class="inset" id="gLivesBox">Lives<b id="gLives">❤️❤️❤️</b></div>
+   <div class="inset">Level<b id="gLevel">1</b></div><div class="inset">WPM<b id="gWpm">0</b></div><div class="inset">Best<b id="gBest">0</b></div></div>
+  <div class="arena" id="arena"></div>
+ </section>
+
+ <!-- CERT -->
+ <section id="s-cert" class="hide">
+  <div class="cert" id="cert"></div>
+  <div class="row" style="justify-content:center;margin-top:12px"><button class="b big" onclick="window.print()">Print</button><button class="b big" id="cMenu">Keep going</button></div>
+ </section>
+ </div>
+</div>
+<div id="kbnote" class="note hide">⌨️ Typing class needs a real keyboard. Connect a Bluetooth or Magic Keyboard, then press any key. <button class="b" onclick="this.parentNode.classList.add('hide')">OK</button></div>
+
+<script>
+"use strict";
+// ---------- data ----------
+const FINGER={};
+const fz=(keys,f)=>{for(const k of keys)FINGER[k]=f};
+fz("`1qaz","lp");fz("~!QAZ","lp");fz("2wsx@WSX","lr");fz("3edc#EDC","lm");fz("4rfv5tgb$RFV%TGB","li");
+fz("6yhn7ujm^YHN&UJM","ri");fz("8ik,*IK<","rm");fz("9ol.(OL>","rr");fz("0p;/-['=]\\)P:?_{\"+}|","rp");FINGER[" "]="th";
+const FNAME={lp:"left pinky",lr:"left ring",lm:"left middle",li:"left pointer",ri:"right pointer",rm:"right middle",rr:"right ring",rp:"right pinky",th:"thumb"};
+const SHIFTED={"!":"1","@":"2","#":"3","$":"4","%":"5","^":"6","&":"7","*":"8","(":"9",")":"0","_":"-","+":"=",":":";","\"":"'","<":",",">":".","?":"/","{":"[","}":"]","|":"\\","~":"`"};
+const baseKey=c=>SHIFTED[c]||c.toLowerCase();
+const isLeft=f=>f&&f[0]==="l";
+
+const WORDS=("a as ad add ads all ask asks dad dads fad fall falls flask lad lads lass sad salad alas glad gall has had hall half hash dash flash lash sash shall jak kafka "+
+"see seed feed fee lead leaf deal ideal side slide aside dial file fill kill skill sill silk like lake jake desk ask isle else sale safe sea said led lid did hid kid kids hike hide ski "+
+"red rid ride rule rude ruler fur sure user under run rug rush fresh drink dirk her here hear fear dear jar far farm rake kale lure deer reef free freak sir fir firm "+
+"the that this then they tree tired tide tea test start store stay yes yard yell year your you try tray toy treat heat great feet quit tight sight light right night eight fight "+
+"get go good dog gift huge high hug hog leg egg giggle hedge glad gear sight digit "+
+"we were with what when where why now new know wow quiz quite quest queen power paper pop pup point open over oil out our upper "+
+"zoo zip zap zero box fox mix next van very move vote cave brave become climb comb bunny bones zone exam main moon noon can man many name mom candy music money number "+
+"apple about after again always animal answer around because before better between birthday breakfast brother careful chicken children cookie country dinner dragon during every family favorite friend garden happy history jungle kitchen ladder library little minute monkey morning mountain never ocean orange people planet please pocket puppy question rabbit rocket school science second sister soccer special spider summer sunshine teacher thunder tiger today together tomorrow turtle under until visit water weather window winter wizard yellow zebra").split(" ");
+
+const PASSAGES={
+ basic:["a sad lad asks dad","all lads fall as dad asks","a glad lass has a flask"],
+ sent:["The quick brown fox jumps over the lazy dog.","Logan and Savannah like to play soccer after school.","My dog Max can catch a ball in the air.","We packed apples, cookies, and water for the trip.","Typing fast is fun, but typing right is better!","Do you know how many stars are in the sky?","Our class read a book about a brave little turtle."],
+ num:["I have 3 dogs, 2 cats, and 1 fish.","The game starts at 7:30 on Friday.","Room 204 has 25 desks and 18 chairs.","My score was 980 out of 1000!"]
+};
+
+const LESSONS=[
+ {u:0,t:"Sit Like a Pro",k:"",intro:true,tip:"Welcome!",drill:"asdf jkl;"},
+ {u:0,t:"Home Row Left",k:"asdf",tip:"Left fingers rest on A S D F. Feel the bump on F."},
+ {u:0,t:"Home Row Right",k:"jkl;",tip:"Right fingers rest on J K L ;. Feel the bump on J."},
+ {u:0,t:"Home Row Together",k:"asdfjkl; ",tip:"Thumbs tap the space bar. Eyes on the screen, not your hands!"},
+ {u:0,t:"G and H",k:"gh",tip:"Pointer fingers reach sideways for G and H, then hop back home."},
+ {u:1,t:"E and I",k:"ei",tip:"Middle fingers reach up for E and I."},
+ {u:1,t:"R and U",k:"ru",tip:"Pointer fingers reach up for R and U."},
+ {u:1,t:"T and Y",k:"ty",tip:"Pointer fingers stretch up and over for T and Y."},
+ {u:1,t:"W and O",k:"wo",tip:"Ring fingers reach up for W and O."},
+ {u:1,t:"Q and P",k:"qp",tip:"Pinkies reach up for Q and P. Keep the other fingers home."},
+ {u:2,t:"C and comma",k:"c,",tip:"Middle fingers curl down for C and the comma."},
+ {u:2,t:"V, B, N and M",k:"vbnm",tip:"Pointer fingers reach down for V B N M."},
+ {u:2,t:"X and period",k:"x.",tip:"Ring fingers curl down for X and the period."},
+ {u:2,t:"Z and slash",k:"z/",tip:"Pinkies curl down for Z and /."},
+ {u:3,t:"Capital Letters",k:"ABCDEFGHIJKLMNOPQRSTUVWXYZ",tip:"Hold Shift with the pinky on the OTHER hand, then press the letter."},
+ {u:3,t:"Punctuation",k:"'?!\"",tip:"Right pinky for ' and ?. Shift + 1 makes !"},
+ {u:3,t:"Numbers 1 to 5",k:"12345",tip:"Reach up from home: 1 pinky, 2 ring, 3 middle, 4 and 5 pointer."},
+ {u:3,t:"Numbers 6 to 0",k:"67890:",tip:"6 and 7 pointer, 8 middle, 9 ring, 0 pinky."},
+ {u:4,t:"Real Words",k:"",words:true,tip:"Everyday words. Steady rhythm beats rushing."},
+ {u:4,t:"Sentences",k:"",sent:true,tip:"Capitals, spaces, and periods. You've got this!"},
+ {u:4,t:"Final Exam",k:"",sent:true,exam:true,tip:"Show what you know. 92% accuracy to graduate!"}
+];
+const UNITS=["Unit 1: Home Row","Unit 2: Top Row","Unit 3: Bottom Row","Unit 4: Shift, Punctuation and Numbers","Unit 5: Real Typing"];
+const allKeysUpTo=i=>{let s="";for(let j=0;j<=i;j++)s+=LESSONS[j].k;return [...new Set(s.split(""))].join("")};
+const lowerUpTo=i=>allKeysUpTo(i).replace(/[^a-z;]/g,"");
+
+// ---------- storage ----------
+const SK="kbAcademy.v1";
+let DB=JSON.parse(localStorage.getItem(SK)||"null")||{profiles:{Logan:{av:"🦖",les:{},best:0,acc:0,games:{}},Savannah:{av:"🦄",les:{},best:0,acc:0,games:{}}},muted:false};
+const save=()=>localStorage.setItem(SK,JSON.stringify(DB));
+let me=null; const P=()=>DB.profiles[me];
+
+// ---------- sound ----------
+let AC=null;
+function beep(f,d=.06,type="square",v=.05){if(DB.muted)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=type;o.frequency.value=f;g.gain.value=v;g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.connect(g).connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
+const sKey=()=>beep(1200,.03,"square",.02), sBad=()=>beep(140,.15,"sawtooth",.06);
+const tune=(ns,step=.12)=>ns.forEach((n,i)=>setTimeout(()=>beep(n,.14,"triangle",.07),i*step*1000));
+const sWin=()=>tune([523,659,784,1047]), sLose=()=>tune([392,330,262],.18), sPop=()=>beep(880,.08,"triangle",.06);
+const $=id=>document.getElementById(id);
+$("mute").onclick=()=>{DB.muted=!DB.muted;save();$("mute").textContent=DB.muted?"🔇":"🔊"};
+$("mute").textContent=DB.muted?"🔇":"🔊";
+
+// ---------- screens ----------
+let mode=null; // 'lesson' | 'shark' | 'race' | 'intro'
+function show(id){document.querySelectorAll(".body>section").forEach(s=>s.classList.toggle("hide",s.id!==id));window.scrollTo(0,0)}
+function profiles(){mode=null;show("s-prof");$("who").textContent="";
+ $("profList").innerHTML=Object.entries(DB.profiles).map(([n,p])=>{const done=Object.values(p.les).filter(l=>l.pass).length;
+  return `<div class="prof" data-n="${esc(n)}"><div class="av">${p.av}</div><div class="nm">${esc(n)}</div><div class="st">${done} of ${LESSONS.length} lessons<br>Best ${p.best} WPM</div></div>`}).join("");
+ document.querySelectorAll(".prof").forEach(d=>d.onclick=()=>{me=d.dataset.n;menu()});}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+$("addProf").onclick=()=>{const n=$("newName").value.trim();if(!n||DB.profiles[n])return;const av=["🐯","🦊","🐼","🐙","🦅","🐬","🚀","⚽"];
+ DB.profiles[n]={av:av[Object.keys(DB.profiles).length%av.length],les:{},best:0,acc:0,games:{}};save();$("newName").value="";profiles()};
+$("newName").addEventListener("keydown",e=>{e.stopPropagation();if(e.key==="Enter")$("addProf").click()});
+$("homeBtn").onclick=()=>{stopGame();me?menu():profiles()};
+
+const unlocked=i=>i===0||(P().les[i-1]&&P().les[i-1].pass);
+function menu(){stopGame();mode=null;show("s-menu");$("who").textContent="Student: "+me;
+ let h="",nextShown=false;
+ UNITS.forEach((u,ui)=>{h+=`<div class="unit"><h4>${u}</h4><div class="lessons">`;
+  LESSONS.forEach((L,i)=>{if(L.u!==ui)return;const r=P().les[i],ok=unlocked(i);let cls=ok?"":"locked";if(ok&&!(r&&r.pass)&&!nextShown){cls+=" next";nextShown=true}
+   const st=r?("★".repeat(r.stars)+"☆".repeat(3-r.stars)):"☆☆☆";
+   h+=`<button class="les ${cls}" data-i="${i}" ${ok?"":"disabled"}>${i+1}. ${L.t}<div class="k">${L.k?esc(L.k.length>8?L.k.slice(0,6)+"…":L.k.replace(" ","␣")):"&nbsp;"}</div><div class="s">${ok?st:"🔒"}</div></button>`});
+  h+="</div></div>"});
+ $("lessonMap").innerHTML=h;
+ document.querySelectorAll(".les:not(.locked)").forEach(b=>b.onclick=()=>intro(+b.dataset.i));
+ const p=P(),done=Object.values(p.les).filter(l=>l.pass).length,stars=Object.values(p.les).reduce((a,l)=>a+l.stars,0);
+ $("statbox").innerHTML=`<tr><td>Lessons passed</td><td><b>${done}/${LESSONS.length}</b></td></tr><tr><td>Stars</td><td><b>${stars}/${LESSONS.length*3}</b></td></tr><tr><td>Best speed</td><td><b>${p.best} WPM</b></td></tr><tr><td>Best accuracy</td><td><b>${p.acc}%</b></td></tr><tr><td>Shark Attack best</td><td><b>${p.games.shark||0}</b></td></tr><tr><td>Speedway best</td><td><b>${p.games.race||0} WPM</b></td></tr>`;}
+
+// ---------- keyboard + hands ----------
+const ROWS=[["`1234567890-=",[["⌫","mod",1.6]]],["qwertyuiop[]\\",[["Tab","mod",1.5,0]]],["asdfghjkl;'",[["Caps","mod",1.8,0],["Enter","mod",1.9]]],["zxcvbnm,./",[["Shift","mod",2.3,0],["Shift","mod",2.3]]]];
+function buildKb(){let h="";ROWS.forEach(([keys,mods])=>{h+='<div class="kr">';mods.filter(m=>m[3]===0).forEach(m=>h+=`<div class="key mod" style="flex-grow:${m[2]}" data-k="${m[0]==="Shift"?"shiftL":""}">${m[0]}</div>`);
+ for(const k of keys)h+=`<div class="key ${FINGER[k]}" data-k="${esc(k)}">${k===";"?";":esc(k.toUpperCase())}${k==="f"||k==="j"?'<span class="bump"></span>':""}</div>`;
+ mods.filter(m=>m[3]!==0).forEach(m=>h+=`<div class="key mod" style="flex-grow:${m[2]}" data-k="${m[0]==="Shift"?"shiftR":""}">${m[0]}</div>`);h+="</div>"});
+ h+=`<div class="kr"><div class="key mod" style="flex-grow:3"></div><div class="key th" data-k=" " style="flex-grow:9">space</div><div class="key mod" style="flex-grow:3"></div></div>`;
+ $("kb").innerHTML=h;
+ // hands svg
+ const F=[["lp",70,70],["lr",115,40],["lm",160,28],["li",205,42],["th",265,95,"lt"],["th",555,95,"rt"],["ri",615,42],["rm",660,28],["rr",705,40],["rp",750,70]];
+ let s=`<path class="palm" d="M60 150 Q50 95 110 95 L240 95 Q290 110 270 150Z"/><path class="palm" d="M760 150 Q770 95 710 95 L580 95 Q530 110 550 150Z"/>`;
+ F.forEach(([f,x,y,id])=>{const w=f==="th"?30:32,hgt=f==="th"?46:(110-y);s+=`<rect class="f" data-f="${id||f}" x="${x-w/2}" y="${y}" width="${w}" height="${hgt}" rx="15" ${f==="th"?`transform="rotate(${id==="lt"?-35:35} ${x} ${y+20})"`:""}/>`});
+ s+=`<text x="165" y="140" font-size="14" text-anchor="middle" font-family="Tahoma">LEFT</text><text x="655" y="140" font-size="14" text-anchor="middle" font-family="Tahoma">RIGHT</text>`;
+ $("hands").innerHTML=s;
+ $("legend").innerHTML=Object.entries(FNAME).map(([k,n])=>`<span style="background:var(--${k})">${n}</span>`).join("");}
+buildKb();
+function litKey(ch,allowed){document.querySelectorAll("#kb .key").forEach(k=>{k.classList.remove("lit","err");if(allowed!=null&&k.dataset.k&&k.dataset.k.length===1)k.classList.toggle("dim",!allowed.includes(k.dataset.k))});
+ document.querySelectorAll("#hands .f").forEach(f=>f.classList.remove("on"));
+ if(ch==null)return;const b=baseKey(ch),f=FINGER[ch];
+ const el=document.querySelector(`#kb .key[data-k="${CSS.escape(b)}"]`);if(el)el.classList.add("lit");
+ let shiftNote="";
+ if(ch!==b){const side=isLeft(f)?"shiftR":"shiftL";const s=document.querySelector(`#kb .key[data-k="${side}"]`);if(s)s.classList.add("lit");
+  const pf=side==="shiftR"?"rp":"lp";document.querySelector(`#hands .f[data-f="${pf}"]`).classList.add("on");shiftNote=` + ${side==="shiftR"?"right":"left"} pinky on Shift`}
+ if(f==="th")document.querySelectorAll('#hands .f[data-f="lt"],#hands .f[data-f="rt"]').forEach(x=>x.classList.add("on"));
+ else if(f){const e=document.querySelector(`#hands .f[data-f="${f}"]`);if(e)e.classList.add("on")}
+ return f?`Use your <b>${FNAME[f]}</b>${shiftNote}.`:"";}
+function errKey(ch){const el=document.querySelector(`#kb .key[data-k="${CSS.escape(baseKey(ch))}"]`);if(el){el.classList.add("err");setTimeout(()=>el.classList.remove("err"),200)}}
+
+// ---------- content generation ----------
+const rnd=n=>Math.floor(Math.random()*n), pick=a=>a[rnd(a.length)];
+function wordsFor(i){const keys=lowerUpTo(i);return WORDS.filter(w=>[...w].every(c=>keys.includes(c)))}
+function drillText(i){const L=LESSONS[i];let nk=L.k.replace(" ","");const all=lowerUpTo(i).replace(";","");
+ if(/[A-Z]/.test(nk)){const ws=wordsFor(i).filter(w=>w.length>2);return Array.from({length:8},()=>{const w=pick(ws);return w[0].toUpperCase()+w.slice(1)}).join(" ")}
+ if(L.k==="'?!\""){return "it's ok? yes! he said \"hi\" don't stop? we can!"}
+ if(/\d/.test(nk)){const d=nk.replace(":","");return Array.from({length:8},()=>Array.from({length:3},()=>pick(d)).join("")).join(" ")+(nk.includes(":")?" 7:30 9:15":"")}
+ if(i===3)return "asdf jkl; fjfj dkdk slsl a;a; fdsa ;lkj";
+ const out=[];for(let g=0;g<8;g++){let s="";for(let c=0;c<4;c++)s+=(Math.random()<.6?pick(nk):pick(all||nk));out.push(s)}
+ const pair=nk.slice(0,2);return (pair+pair+" ").repeat(2)+out.join(" ");}
+function wordsText(i,n=8){const L=LESSONS[i];
+ if(L.words)return Array.from({length:10},()=>pick(WORDS.filter(w=>w.length>4))).join(" ");
+ if(L.sent)return pick(PASSAGES.sent);
+ let ws=wordsFor(i);if(i<=3)ws=ws.concat(["asdf","jkl","fall","lads"]).filter(w=>[...w].every(c=>lowerUpTo(i).includes(c)));
+ if(ws.length<4){const k=lowerUpTo(i);ws=Array.from({length:12},()=>Array.from({length:3},()=>pick(k.replace(";",""))).join(""))}
+ const fav=ws.filter(w=>[...LESSONS[i].k].some(c=>w.includes(c)));
+ return Array.from({length:n},()=>pick(fav.length>2&&Math.random()<.7?fav:ws)).join(" ");}
+function passageText(i){const L=LESSONS[i];
+ if(i<=3)return i<3?wordsText(i,6):pick(PASSAGES.basic);
+ if(L.exam)return PASSAGES.sent[0]+" "+pick(PASSAGES.sent.slice(1));
+ if(L.sent)return pick(PASSAGES.sent);
+ if(i>=16)return pick(PASSAGES.num);
+ if(i>=14)return pick(PASSAGES.sent);
+ const w=wordsText(i,9);return w.charAt(0)+w.slice(1)+(i>=12?".":"");}
+
+// ---------- lesson engine ----------
+let LS=null;
+function intro(i){const L=LESSONS[i];mode="intro";show("s-intro");$("iTitle").textContent=`Lesson ${i+1}: ${L.t}`;
+ let body=`<p>${L.tip}</p>`;
+ if(i===0)body=`<p><b>Good typists sit like pros:</b></p><ul><li>Sit up tall with your feet flat on the floor.</li><li>Keep the keyboard in front of your belly button.</li><li>Curve your fingers like you are holding a small ball.</li><li>Rest your left fingers on <b>A S D F</b> and right fingers on <b>J K L ;</b>.</li><li>Find the bumps on <b>F</b> and <b>J</b> with your pointers. That is home base!</li><li>Look at the screen, not your hands. The glowing key and hand picture show you which finger to use.</li></ul><p>Type the practice keys to finish this lesson.</p>`;
+ else body+=`<p>Each lesson has 3 parts: <b>Key Drill</b>, <b>Word Practice</b>, and a short <b>Passage</b>. Get <b>${L.exam?92:90}% accuracy</b> to unlock the next lesson. If you hit the wrong key, the right key stays lit until you get it.</p>${L.k?`<p>New keys: <b style="font:bold 24px Courier New">${esc(L.k.replace(" ","space").split("").join(" "))}</b></p>`:""}`;
+ $("iBody").innerHTML=body;$("iGo").onclick=()=>startLesson(i);$("iBack").onclick=menu;}
+function startLesson(i){const L=LESSONS[i];
+ const parts=i===0?[["Home Row Practice",L.drill+" "+L.drill]]:[["Part 1: Key Drill",drillText(i)],["Part 2: Word Practice",wordsText(i)],["Part 3: Passage",passageText(i)]];
+ LS={i,parts,p:0,pos:0,t0:0,correct:0,errors:0,keyErr:{},keyHits:{},wrongHere:false,allowed:allKeysUpTo(i)+" "};
+ if(L.words||L.sent)LS.allowed=null;
+ mode="lesson";show("s-lesson");$("lTitle").textContent=`Lesson ${i+1}: ${L.t}`;$("hGoal").textContent=(L.exam?92:90)+"%";renderLesson();}
+function renderLesson(){const [name,txt]=LS.parts[LS.p];$("lStage").textContent=name;$("hProg").textContent=`Part ${LS.p+1} of ${LS.parts.length}`;
+ let h="";for(let k=0;k<txt.length;k++){const c=txt[k]===" "?"&nbsp;":esc(txt[k]);h+=`<span class="${k<LS.pos?"ok":k===LS.pos?(LS.wrongHere?"bad cur":"cur"):"todo"}">${c}</span>`;if(txt[k]===" ")h+="<wbr>"}
+ $("lText").innerHTML=h;const tot=LS.parts.reduce((a,p)=>a+p[1].length,0),dn=LS.parts.slice(0,LS.p).reduce((a,p)=>a+p[1].length,0)+LS.pos;
+ $("hBar").style.width=(100*dn/tot)+"%";
+ const ch=txt[LS.pos];$("lTip").innerHTML=(LS.pos===0&&LS.p===0?"Fingers on home row. Start typing when ready. ":"")+(ch!=null?(ch===" "?"Space bar: ":"")+litKey(ch,LS.allowed):"");stats();}
+function stats(){const el=LS.t0?(performance.now()-LS.t0)/60000:0;const w=el>0.004?Math.round(LS.correct/5/el):0;const a=LS.correct+LS.errors?Math.round(100*LS.correct/(LS.correct+LS.errors)):100;
+ $("hWpm").textContent=w;$("hAcc").textContent=a+"%";$("hErr").textContent=LS.errors;return {w,a}}
+function lessonKey(ch){const txt=LS.parts[LS.p][1],want=txt[LS.pos];if(!LS.t0)LS.t0=performance.now();
+ if(ch===want){if(!LS.wrongHere)LS.keyHits[want]=(LS.keyHits[want]||0)+1;LS.correct++;LS.pos++;LS.wrongHere=false;sKey();
+  if(LS.pos>=txt.length){LS.p++;LS.pos=0;if(LS.p>=LS.parts.length)return finishLesson();tune([660,880],.08)}}
+ else{LS.errors++;LS.keyErr[want]=(LS.keyErr[want]||0)+1;LS.wrongHere=true;sBad();errKey(ch)}
+ renderLesson();}
+function finishLesson(){const {w,a}=stats();const i=LS.i,L=LESSONS[i],goal=L.exam?92:90,pass=a>=goal;
+ const target=[0,8,8,10,10,10,11,12,12,12,12,13,13,13,12,12,11,11,15,15,18][i]||12;
+ const stars=!pass?0:(a>=98&&w>=target?3:a>=95?2:1);const p=P();const prev=p.les[i];
+ if(!prev||stars>=prev.stars||!prev.pass)p.les[i]={pass:pass||(prev&&prev.pass)||false,stars:Math.max(stars,prev?prev.stars:0),wpm:Math.max(w,prev?prev.wpm:0),acc:Math.max(a,prev?prev.acc:0)};
+ if(pass){p.best=Math.max(p.best,w);p.acc=Math.max(p.acc,a)}save();
+ const trouble=Object.entries(LS.keyErr).sort((x,y)=>y[1]-x[1]).slice(0,6);
+ const grade=a>=98?"A+":a>=95?"A":a>=90?"B":a>=80?"C":"D";
+ const unitDone=pass&&(i===LESSONS.length-1||LESSONS[i+1].u!==L.u);
+ const firstCert=unitDone&&!(p.certs||[]).includes(L.u);if(firstCert){p.certs=(p.certs||[]).concat(L.u);save()}
+ $("rep").innerHTML=`<h2>Report Card</h2><div style="text-align:center">Keyboard Academy &middot; ${esc(me)} &middot; ${new Date().toLocaleDateString()}</div>
+ <div class="grade">${grade}</div><div class="stars">${"★".repeat(stars)}${"☆".repeat(3-stars)}</div>
+ <table><tr><td>Lesson</td><td><b>${i+1}. ${L.t}</b></td></tr><tr><td>Speed</td><td><b>${w} WPM</b> (star goal ${target})</td></tr><tr><td>Accuracy</td><td><b>${a}%</b> (need ${goal}%)</td></tr><tr><td>Errors</td><td><b>${LS.errors}</b></td></tr>
+ <tr><td>Trouble keys</td><td class="trouble">${trouble.length?trouble.map(([k,n])=>`<span>${k===" "?"space":esc(k)} &times;${n}</span>`).join(""):"None! Perfect hands."}</td></tr></table>
+ <p style="text-align:center;font-size:18px"><b>${pass?(stars===3?"Outstanding work!":"Passed! Next lesson unlocked."):"Almost! Slow down and aim for accuracy, then try again."}</b></p>`;
+ show("s-report");mode="report";pass?sWin():sLose();
+ $("rNext").disabled=!(pass&&i<LESSONS.length-1);$("rNext").onclick=()=>intro(i+1);$("rRetry").onclick=()=>intro(i);$("rMenu").onclick=menu;
+ if(firstCert)setTimeout(()=>cert(L.u,w,a),1600);}
+function cert(u,w,a){show("s-cert");mode="cert";tune([523,659,784,659,784,1047],.15);
+ $("cert").innerHTML=`<div style="letter-spacing:.3em;font-size:14px">KEYBOARD ACADEMY</div><h1>Certificate of Achievement</h1><div>This certifies that</div><div class="nm">${esc(me)}</div>
+ <div style="font-size:20px">has successfully completed<br><b>${UNITS[u]}</b></div><div style="margin-top:10px">Final lesson: ${w} WPM with ${a}% accuracy</div>
+ <div style="margin-top:24px;display:flex;justify-content:space-around;font-style:italic"><span>________________<br>Typing Teacher</span><span>${new Date().toLocaleDateString()}<br>Date</span></div><div class="seal">GOLD<br>STAR</div>`;
+ $("cMenu").onclick=menu;}
+
+// ---------- games ----------
+let G=null;
+function gameKeys(){const p=P();let hi=0;for(let i=0;i<LESSONS.length;i++)if(unlocked(i))hi=i;return Math.max(hi,3)}
+function gamePool(){const hi=gameKeys();let ws=wordsFor(hi);if(hi>=17)ws=WORDS;if(ws.length<6)ws=ws.concat(["asdf","jkl","sad","dad","lad","fall","ask","flask","glad","has","had"].filter(w=>[...w].every(c=>lowerUpTo(hi).includes(c))));return [...new Set(ws)]}
+function stopGame(){if(G){cancelAnimationFrame(G.raf);clearInterval(G.iv);G=null}}
+function gameHud(){$("gScore").textContent=G.score;$("gLives").textContent="❤️".repeat(Math.max(G.lives,0))||"0";$("gLevel").textContent=G.level;
+ const el=(performance.now()-G.t0)/60000;$("gWpm").textContent=el>.05?Math.round(G.chars/5/el):0}
+function startShark(){stopGame();show("s-game");mode="shark";$("gLivesBox").classList.remove("hide");$("gBest").textContent=P().games.shark||0;
+ const ar=$("arena");ar.className="arena sea";ar.innerHTML=`<div class="floor"></div><div class="overlay" id="ov"><h2>🦈 Shark Attack</h2><div>Sharks are diving with words on their fins. Type a word to zap it before it hits the sand!<br>Using ${gamePool().length} words from the keys you know.</div><button class="b big" id="ovGo">Start (press Enter)</button></div>`;
+ G={kind:"shark",ready:false,score:0,lives:3,level:1,list:[],tgt:null,chars:0,t0:performance.now(),last:0,spawn:0,pool:gamePool(),miss:0};
+ $("ovGo").onclick=goShark;gameHud();}
+function goShark(){$("ov").remove();G.ready=true;G.t0=performance.now();G.last=performance.now();G.raf=requestAnimationFrame(sharkLoop)}
+function sharkLoop(t){if(!G||G.kind!=="shark")return;const dt=Math.min(.05,(t-G.last)/1000);G.last=t;const ar=$("arena"),H=ar.clientHeight-34,W=ar.clientWidth;
+ G.spawn-=dt;const maxOn=Math.min(2+G.level,7);
+ if(G.spawn<=0&&G.list.length<maxOn){const w=pick(G.pool.filter(x=>x.length<=3+G.level+2&&!G.list.some(o=>o.w[0]===x[0])))||pick(G.pool);const el=document.createElement("div");el.className="fall";
+  ar.appendChild(el);const o={w,typed:0,y:-30,el,sp:22+G.level*7+Math.random()*10};o.x=20+Math.random()*Math.max(10,W-60-w.length*16);el.style.left=o.x+"px";G.list.push(o);G.spawn=Math.max(.8,2.6-G.level*.2);drawFall(o)}
+ for(const o of [...G.list]){o.y+=o.sp*dt;o.el.style.top=o.y+"px";if(o.y>H-34){killFall(o,false)}}
+ gameHud();if(G.lives<=0)return endShark();G.raf=requestAnimationFrame(sharkLoop)}
+function drawFall(o){o.el.innerHTML=`<span class="fin">🦈</span> <span class="done">${esc(o.w.slice(0,o.typed))}</span>${esc(o.w.slice(o.typed))}`;o.el.classList.toggle("tgt",G.tgt===o)}
+function killFall(o,good){o.el.remove();G.list=G.list.filter(x=>x!==o);if(G.tgt===o)G.tgt=null;
+ if(good){G.score+=o.w.length*10*G.level;sPop();const b=document.createElement("div");b.className="boom";b.textContent="💥";b.style.left=o.x+"px";b.style.top=o.y+"px";$("arena").appendChild(b);setTimeout(()=>b.remove(),500);
+  G.killed=(G.killed||0)+1;if(G.killed%8===0){G.level++;tune([523,784],.08)}}
+ else{G.lives--;sBad()}}
+function sharkKey(ch){if(!G.ready)return;if(!G.tgt){const c=G.list.filter(o=>o.w[0]===ch).sort((a,b)=>b.y-a.y)[0];if(!c){sBad();return}G.tgt=c}
+ const o=G.tgt;if(o.w[o.typed]===ch){o.typed++;G.chars++;sKey();if(o.typed>=o.w.length)killFall(o,true);else drawFall(o)}else{sBad();o.el.style.background="#ff9b9b";setTimeout(()=>o.el&&(o.el.style.background=""),150)}}
+function endShark(){const p=P();const best=p.games.shark||0;if(G.score>best){p.games.shark=G.score;save()}sLose();G.ready=false;
+ $("arena").insertAdjacentHTML("beforeend",`<div class="overlay"><h2>Game Over</h2><div style="font-size:22px">Score: ${G.score}${G.score>best?" &middot; NEW BEST!":""}<br>Reached level ${G.level}</div><div class="row"><button class="b big" onclick="startShark()">Play again</button><button class="b big" onclick="menu()">Menu</button></div></div>`);cancelAnimationFrame(G.raf);G.over=true}
+// race
+function raceText(){const hi=gameKeys();if(hi>=19)return PASSAGES.sent.concat(PASSAGES.sent).sort(()=>Math.random()-.5).join(" ");return Array.from({length:60},()=>pick(gamePool())).join(" ")}
+function startRace(){stopGame();show("s-game");mode="race";$("gLivesBox").classList.add("hide");const best=P().games.race||0;$("gBest").textContent=best+" WPM";
+ const pace=Math.max(8,Math.min(40,(best||8)+2));
+ const ar=$("arena");ar.className="arena track";ar.innerHTML=`<div class="lane" style="top:30px"></div><div class="lane" style="top:130px"></div><div class="finish"></div>
+ <div class="car" id="carMe" style="top:36px;left:10px">🏎️</div><div class="car" id="carPace" style="top:136px;left:10px">🚓</div>
+ <div style="position:absolute;top:6px;left:10px;color:#fff;font-weight:bold">YOU</div><div style="position:absolute;top:106px;left:10px;color:#fff;font-weight:bold">PACE CAR ${pace} WPM</div>
+ <div id="clock" style="position:absolute;top:8px;right:80px;font:bold 34px Courier New;color:#ffef40;text-shadow:2px 2px #000">60</div>
+ <div class="racetext"><div class="text" id="rText"></div></div>
+ <div class="overlay" id="ov"><h2>🏎️ Speedway 60</h2><div>Type the text below as fast and clean as you can. Beat the pace car to the flag!<br>Mistakes stall your engine until you fix them.</div><button class="b big" id="ovGo">Start (press Enter)</button></div>`;
+ G={kind:"race",ready:false,score:0,lives:1,level:1,chars:0,errs:0,t0:performance.now(),txt:raceText(),pos:0,pace,wrong:false};drawRace();$("ovGo").onclick=goRace;gameHud()}
+function goRace(){$("ov").remove();G.ready=true;G.t0=performance.now();G.iv=setInterval(raceTick,100)}
+function raceTotal(){return G.pace*5}
+function raceTick(){if(!G)return;const s=(performance.now()-G.t0)/1000,left=Math.max(0,60-s);$("clock").textContent=Math.ceil(left);
+ const W=$("arena").clientWidth-130,mine=Math.min(1,G.chars/raceTotal()),pc=Math.min(1,s/60);
+ $("carMe").style.left=(10+W*mine)+"px";$("carPace").style.left=(10+W*pc)+"px";G.score=Math.round(G.chars/5/Math.max(s,1)*60);gameHud();
+ if(mine>=1||left<=0)endRace(mine>=1&&s<60)}
+function drawRace(){const a=Math.max(0,G.pos-20),t=G.txt.slice(a,a+90);let h="";for(let k=0;k<t.length;k++){const gi=a+k;h+=`<span class="${gi<G.pos?"ok":gi===G.pos?(G.wrong?"bad cur":"cur"):"todo"}">${t[k]===" "?"&nbsp;":esc(t[k])}</span>`}$("rText").innerHTML=h}
+function raceKey(ch){if(!G.ready)return;if(ch===G.txt[G.pos]){G.pos++;G.chars++;G.wrong=false;sKey()}else{G.errs++;G.wrong=true;sBad()}drawRace()}
+function endRace(won){clearInterval(G.iv);G.ready=false;const s=Math.min(60,(performance.now()-G.t0)/1000);const w=Math.round(G.chars/5/(s/60));const acc=Math.round(100*G.chars/Math.max(1,G.chars+G.errs));
+ const p=P(),best=p.games.race||0;if(w>best){p.games.race=w;save()}won?sWin():sLose();
+ $("arena").insertAdjacentHTML("beforeend",`<div class="overlay"><h2>${won?"🏁 You Win!":"Time!"}</h2><div style="font-size:22px">${w} WPM &middot; ${acc}% accuracy${w>best?" &middot; NEW BEST!":""}</div><div>${won?"You beat the pace car!":"Keep practicing and you will catch the pace car."}</div><div class="row"><button class="b big" onclick="startRace()">Race again</button><button class="b big" onclick="menu()">Menu</button></div></div>`);G.over=true}
+$("g-shark").onclick=startShark;$("g-race").onclick=startRace;
+
+// ---------- input ----------
+let sawKey=false;
+document.addEventListener("keydown",e=>{
+ if(e.target&&e.target.tagName==="INPUT")return;
+ if(!sawKey){sawKey=true;$("kbnote").classList.add("hide")}
+ if(e.metaKey||e.ctrlKey||e.altKey)return;
+ const k=e.key;
+ if(k===" "||k==="Backspace"||k==="Tab"||k==="'"||k==="/"||k==="Enter")e.preventDefault();
+ if(k.length!==1){ if(k==="Enter"){ if(mode==="intro")$("iGo").click(); else if((mode==="shark"||mode==="race")&&G&&!G.ready&&!G.over)$("ovGo").click(); else if(mode==="report"&&!$("rNext").disabled)$("rNext").click();}
+  if(k==="Escape"&&me)menu(); return;}
+ if(e.repeat)return;
+ if(mode==="lesson")lessonKey(k);else if(mode==="shark"&&G)sharkKey(k);else if(mode==="race"&&G)raceKey(k);
+});
+if(matchMedia("(pointer:coarse)").matches&&!matchMedia("(any-pointer:fine)").matches)setTimeout(()=>{if(!sawKey)$("kbnote").classList.remove("hide")},800);
+window.__tc={get LS(){return LS},get G(){return G},DB:()=>DB,startLesson,intro,menu,profiles,startShark,startRace,setMe:n=>{me=n}};
+profiles();
+</script>
+</body></html>
