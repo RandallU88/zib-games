@@ -30,17 +30,17 @@ let dq=[],dDone=null;
 function talk(lines,then){dq=lines.slice();dDone=then||null;nextLine()}
 function nextLine(){const l=dq.shift();if(!l){$("dlg").classList.add("hide");$("pose").classList.add("hide");const f=dDone;dDone=null;f&&f();return}
  const [who,txt]=l,t=TEAM[who];$("dlg").classList.remove("hide");$("dlgImg").src=`${AS}characters/${who}-bust.webp`;$("dlgName").textContent=t.name.split(" ")[0];$("dlgTxt").textContent=txt;
- const pose=who==="biscuit"?"biscuit-sniff":who==="june"?"june-point":null;$("pose").classList.toggle("hide",!pose);if(pose)$("pose").src=`${AS}characters/${pose}.webp`;S.page()}
+ const pose={biscuit:"biscuit-sniff",june:"june-point",ole:"ole-idle",wes:"wes-point"}[who]||null;$("pose").classList.toggle("hide",!pose);if(pose)$("pose").src=`${AS}characters/${pose}.webp`;S.page()}
 $("dlg").onclick=nextLine;
 // ---------- scene ----------
 function scene(i,intro){cur=i;const c=CH[i],p=chProg(c.id);show("s-scene");$("s-scene").style.backgroundImage=`url(${AS}${c.bg}.webp)`;
  const n=Object.keys(p.solved).length,all=n===c.spots.length;
- $("spots").innerHTML=c.spots.map((s,k)=>`<button class="spot${k in p.solved?" found":""}" data-k="${k}" style="left:${s.x}px;top:${s.y}px" aria-label="${esc(s.label)}"><span class="lab">${esc(s.label)}</span></button>`).join("");
+ $("spots").innerHTML=c.spots.map((s,k)=>`<button class="spot ho-hotspot${k in p.solved?" found":""}" data-k="${k}" style="left:${s.x}px;top:${s.y}px" aria-label="${esc(s.label)}"><span class="lab">${esc(s.label)}</span></button>`).join("");
  $("prog").textContent=`Chapter ${c.n}: ${n} of ${c.spots.length} clues`;
  $("tray").innerHTML=[...Array(8)].map((_,k)=>{const has=k<c.spots.length&&k in p.solved;return`<div class="slot${has?" has":""}">${has?`<img src="${clueImg(c.spots[k].item)}" alt="${esc(c.spots[k].label)} clue">`:""}</div>`}).join("");
- $("cfBtn").classList.toggle("hide",!all);
+ $("cfBtn").classList.toggle("hide",!all);$("cfBtn").classList.toggle("final",c.n===3);
  document.querySelectorAll("#spots .spot").forEach(b=>b.onclick=()=>{if(!$("dlg").classList.contains("hide"))return;S.tap();puzzle(+b.dataset.k)});
- if(intro)talk(c.talk);else if(all&&!p.toldDone){p.toldDone=true;E.save();talk([c.done])}}
+ if(intro)talk(c.talk);else if(all&&!p.toldDone){p.toldDone=true;E.save();talk(c.done)}}
 $("cfBtn").onclick=()=>caseFile(cur);
 function ov(html,cls,after){const b=$("ovBox");b.className="panel"+(cls?" "+cls:"");b.innerHTML=html;$("ov").classList.remove("hide");b.scrollTop=0;after&&after();const x=b.querySelector(".x");if(x)x.onclick=closeOv}
 function closeOv(){$("ov").classList.add("hide")}

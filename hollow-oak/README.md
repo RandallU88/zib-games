@@ -18,13 +18,5 @@ To swap art, replace the file at the same path.
 
 Hotspots use the `--ho-glow` lantern glow and pulse until found.
 
-Clue art the story needs that is not in the kit (stand-ins in use):
-1. The brass harvest bell itself (the missing object; would be great on the case file and chapter 3 ending)
-2. The bell's cracked clapper (chapter 3)
-3. Grandpa Ole's diary (farmhouse porch; using envelope)
-4. Tool shed sign-out sheet / clipboard (using lantern)
-5. Painted fence post or paint can (using horseshoe)
-6. Coded ledger page (using torn note)
-7. Polish rags and brush (using pocket watch)
-8. Campers' sketch or tent (woods; using lantern)
-9. Optional: Wes (Grandpa Ole's grandson, green cap) and Grandpa Ole character art for the ending
+Clue and character art from Canvas's additions (Nov 3) is wired in: bell, clapper, diary, sign-out sheet, paint can, ledger page, polish rags, campers' sketch, plus Wes and Grandpa Ole (bust for dialogue, Ole idle and Wes point stand beside the dialogue).
+Puzzles use `ui/btn-solve-plain-*` (SOLVE). `ui/btn-solve-*` (SOLVE CASE) is used only for the chapter 3 final case file button.

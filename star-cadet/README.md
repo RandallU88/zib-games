@@ -7,7 +7,7 @@ All art is 2x and is drawn at half size on a 1180x820 field (letterboxed on othe
 |---|---|---|
 | `title/title_bg.webp` | cover | Title, map and results background |
 | `logo/star-cadet-logo.webp` | up to 640 wide | Title wordmark |
-| `backgrounds/sector{1,2,3}_{far,mid,near}.webp` | 1180x820 | Parallax: far 0.1x (mirrored tile), mid 0.35x, near 0.8x. Sector art cycles 1, 2, 3 by sector number |
+| `backgrounds/sector{1,2,3}_far-seamless.webp`, `sector{1,2,3}_{mid,near}.webp` | 1180x820 | Parallax, tiled straight: far 0.1x (sector 3 far 0.05x so the ringed planet passes slowly), mid 0.35x, near 0.8x. Sector art cycles 1, 2, 3 by sector number |
 | `sprites/ship_{idle,thrust,hit}_{a,b}.webp` | 180x100, center anchor, nose right | Idle 120 ms, thrust 80 ms while moving, hit blink 80 ms for 0.6 s |
 | `sprites/asteroid_lg{,_ember,_ice}.webp` | 110x110, rotates | Normal, ember, ice by sector. Hitbox radius 42% plus 26 px tap slack. Number drawn live in Exo 2 800, white, #0A1430 stroke |
 | `sprites/laser_bolt.webp` | 48x12, right tip anchor | Player shot |

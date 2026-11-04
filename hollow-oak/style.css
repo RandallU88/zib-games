@@ -12,7 +12,8 @@ button{touch-action:manipulation;font-family:var(--ho-font-display);cursor:point
 .imgbtn.back{width:220px;height:66px;background-image:url(assets/ui/btn-back-normal.webp)}.imgbtn.back:active{background-image:url(assets/ui/btn-back-pressed.webp)}
 .imgbtn.next{width:220px;height:66px;background-image:url(assets/ui/btn-next-normal.webp)}.imgbtn.next:active{background-image:url(assets/ui/btn-next-pressed.webp)}
 .imgbtn.play{width:220px;height:66px;background-image:url(assets/ui/btn-play-normal.webp)}.imgbtn.play:active{background-image:url(assets/ui/btn-play-pressed.webp)}
-.imgbtn.solve{width:280px;height:66px;background-image:url(assets/ui/btn-solve-normal.webp)}.imgbtn.solve:active{background-image:url(assets/ui/btn-solve-pressed.webp)}
+.imgbtn.solve{width:280px;height:66px;background-image:url(assets/ui/btn-solve-plain-normal.webp)}.imgbtn.solve:active{background-image:url(assets/ui/btn-solve-plain-pressed.webp)}
+#cfBtn.final{background-image:url(assets/ui/btn-solve-normal.webp)}#cfBtn.final:active{background-image:url(assets/ui/btn-solve-pressed.webp)}
 .imgbtn.notebook{width:280px;height:66px;background-image:url(assets/ui/btn-notebook-normal.webp)}.imgbtn.notebook:active{background-image:url(assets/ui/btn-notebook-pressed.webp)}
 .imgbtn.casefile{width:280px;height:66px;background-image:url(assets/ui/btn-casefile-normal.webp)}.imgbtn.casefile:active{background-image:url(assets/ui/btn-casefile-pressed.webp)}
 .imgbtn.inl{position:static}
@@ -51,8 +52,8 @@ button{touch-action:manipulation;font-family:var(--ho-font-display);cursor:point
 /* chapter card */
 .cardTap{position:absolute;inset:0;background:center/cover no-repeat;cursor:pointer}
 /* scene */
-.spot{position:absolute;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;border:3px solid var(--ho-brass-hi);background:radial-gradient(circle,rgba(255,181,71,.45),rgba(255,181,71,.12) 65%,transparent 70%);box-shadow:var(--ho-glow);animation:glow 1.8s ease-in-out infinite;padding:0}
-@keyframes glow{50%{box-shadow:0 0 30px 12px rgba(255,181,71,.75);transform:scale(1.06)}}
+.spot{position:absolute;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;border:3px solid #FFD27A;background:radial-gradient(circle,rgba(255,214,140,.30) 0,rgba(255,181,71,.14) 55%,transparent 70%);box-shadow:var(--ho-glow),inset 0 0 14px 2px rgba(255,181,71,.45);animation:glow 2.2s ease-in-out infinite;padding:0}
+@keyframes glow{0%,100%{box-shadow:var(--ho-glow),inset 0 0 14px 2px rgba(255,181,71,.45)}50%{box-shadow:0 0 34px 14px rgba(255,181,71,.8),inset 0 0 20px 4px rgba(255,200,110,.6)}}
 .spot .lab{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;white-space:nowrap;background:rgba(43,29,20,.85);color:var(--ho-cream);font:700 18px var(--ho-font-body);padding:3px 10px;border-radius:8px}
 .spot.found{animation:none;box-shadow:none;border-color:var(--ho-moss);background:rgba(94,107,58,.35)}
 .spot.found::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 44px var(--ho-font-display);color:#fff;text-shadow:0 2px 4px #000}
@@ -72,7 +73,7 @@ button{touch-action:manipulation;font-family:var(--ho-font-display);cursor:point
 .dlg .txt{position:absolute;left:228px;top:90px;right:90px;font:500 26px/1.35 var(--ho-font-body)}
 .dlg .more{position:absolute;right:96px;bottom:40px;font:italic 400 16px var(--ho-font-body);color:var(--ho-oak)}
 /* overlay panels */
-.ov{position:absolute;inset:0;background:rgba(30,26,43,.6);z-index:20}
+.ov{position:absolute;inset:0;background:rgba(20,14,10,.55);z-index:20}
 .panel{position:absolute;left:90px;top:40px;width:1000px;height:740px;overflow:auto;padding:30px 40px;background:url(assets/ui/textures/paper-parchment.webp) center/512px;border:var(--ho-border);border-radius:var(--ho-radius-lg);box-shadow:var(--ho-shadow)}
 .panel.nb{background:url(assets/ui/clue-notebook.webp) center/100% 100% no-repeat;border:0;box-shadow:none;top:70px;height:680px;overflow:hidden;padding:0}
 .panel h2{margin:0 60px 8px 0;font:800 var(--ho-size-h2) var(--ho-font-display)}
@@ -123,12 +124,12 @@ button{touch-action:manipulation;font-family:var(--ho-font-display);cursor:point
 .panel.nb .x{right:30px;top:-10px}
 /* case file */
 .cfile{position:absolute;left:90px;top:30px;width:1000px;height:715px;background:url(assets/ui/case-file.webp) center/100% 100% no-repeat}
-.cfSheet{position:absolute;left:64px;top:70px;width:810px;height:400px;overflow:auto;font:19px/1.45 var(--ho-font-type);padding:10px 16px}
+.cfSheet{position:absolute;left:64px;top:70px;width:810px;height:385px;overflow:auto;font:16px/1.35 var(--ho-font-type);padding:10px 16px}
 .cfSheet h2{margin:0;font:800 30px var(--ho-font-display)}
 .cfSheet ol{margin:6px 0;padding-left:24px}
 .cfStars{font-size:30px;color:var(--ho-brass-lo)}
-.stamp{position:absolute;right:40px;top:400px;width:340px;animation:stamp .5s var(--ho-ease) both;pointer-events:none}
+.stamp{position:absolute;right:10px;top:480px;width:240px;animation:stamp .5s var(--ho-ease) both;pointer-events:none}
 @keyframes stamp{from{transform:scale(1.4) rotate(-8deg);opacity:0}to{transform:scale(1) rotate(-8deg);opacity:1}}
-.cfBtns{position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center;gap:20px}
-.cfTeam{position:absolute;left:70px;bottom:100px;display:flex;gap:4px;align-items:flex-end}
-.cfTeam img{height:120px}
+.cfBtns{position:absolute;left:270px;bottom:40px;display:flex;gap:20px}
+.cfTeam{position:absolute;left:70px;bottom:116px;display:flex;gap:4px;align-items:flex-end}
+.cfTeam img{height:110px}

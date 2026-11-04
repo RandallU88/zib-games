@@ -13,7 +13,18 @@
 html,body{margin:0;height:100%;background:#050A1A;color:var(--sc-white,#F4F7FF);font-family:var(--font);font-weight:800;overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 button{touch-action:manipulation;font-family:var(--font);font-weight:800}
 #app{position:fixed;inset:0;display:flex;flex-direction:column}
-.bg{position:fixed;inset:0;background:#050A1A url(assets/title/title_bg.webp) center/cover no-repeat;z-index:-1}
+.bg{position:fixed;inset:0;background:#050A1A url(assets/title/title_bg.webp) center/cover no-repeat;z-index:0}
+#app{z-index:1}
+.bg.map{background-image:url(assets/backgrounds/sector1_far-seamless.webp)}
+.bg.map::after{content:"";position:absolute;inset:0;background:rgba(5,10,26,.6)}
+.glass{background:rgba(10,20,48,.72);border:1px solid var(--sc-gold,#F6C453);border-radius:18px;padding:18px;width:100%;max-width:760px;display:flex;flex-direction:column;align-items:center;gap:12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#s-prof .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+#secList{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+#secList .card{min-height:150px;position:relative;overflow:hidden;background:#050A1A;display:flex;flex-direction:column;justify-content:center}
+#secList .card::before{content:"";position:absolute;inset:0;background:var(--far) center/cover;opacity:.4;z-index:0}
+#secList .card>*{position:relative;z-index:1}
+.rankRow img{width:96px;height:96px}
+.bar{position:relative;z-index:2}
 .bg.dim::after{content:"";position:absolute;inset:0;background:rgba(5,10,26,.35)}
 .bar{display:flex;align-items:center;gap:8px;padding:max(6px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) 6px max(10px,env(safe-area-inset-left));background:var(--sc-panel);border-bottom:2px solid var(--sc-gold,#F6C453)}
 .bar .t{font:900 16px var(--disp);letter-spacing:2px;color:var(--sc-gold);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -27,7 +38,7 @@ button{touch-action:manipulation;font-family:var(--font);font-weight:800}
 .card:active{transform:scale(.97)}
 .card.parent{border:2px dashed var(--sc-gold)}
 .card .av{font-size:40px}.card .nm{font:800 20px var(--font)}.card .st{font-size:13px;color:var(--sc-muted);font-weight:600;margin-top:4px}
-.card.lock{opacity:.45;cursor:default}.card.done{border-color:var(--sc-correct)}
+.card.lock{opacity:.6;cursor:default}.card.lock .nm,.card.lock .st{opacity:.75}.card.done{border-color:var(--sc-correct)}
 .card .k{font:800 12px var(--font);color:var(--sc-gold);letter-spacing:2px}
 .card .sw{height:4px;border-radius:2px;margin:6px auto 0;width:60%}
 .tbadge{display:inline-block;background:var(--sc-gold-lo);color:#fff;font:800 11px var(--font);padding:2px 6px;border-radius:4px;margin-top:4px}
@@ -37,7 +48,7 @@ button{touch-action:manipulation;font-family:var(--font);font-weight:800}
 .btn.sm{width:200px;height:58px;font-size:19px;padding-bottom:10px}
 .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center}
 .rankRow{display:flex;align-items:center;gap:10px;color:var(--sc-gold);font-size:18px}.rankRow img{width:64px;height:64px}
-#gameWrap{position:fixed;inset:0;background:#050A1A}
+#gameWrap{position:fixed;inset:0;background:#050A1A;z-index:3}
 #cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
 #pauseOv{position:fixed;inset:0;background:rgba(5,10,26,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:5}
 #pauseOv h2{font:900 48px var(--disp);color:var(--sc-gold);margin:0;letter-spacing:4px}
@@ -57,9 +68,9 @@ button{touch-action:manipulation;font-family:var(--font);font-weight:800}
  <div class="bar" id="bar"><button class="ib" id="homeBtn" aria-label="Back">⬅</button><div class="t" id="title">STAR CADET MATH PATROL</div><span id="who"></span><button class="ib" id="mute">🔊</button></div>
  <section class="scr" id="s-prof">
   <img id="logoImg" src="assets/logo/star-cadet-logo.webp" alt="Star Cadet Math Patrol">
-  <div class="sub">The asteroid belt is full of number rocks. Blast the one carrying the right answer before it reaches Star Base!</div>
+  <div class="glass"><div class="sub">The asteroid belt is full of number rocks. Blast the one carrying the right answer before it reaches Star Base!</div>
   <div class="grid" id="profList"></div>
-  <div class="sub" style="font-size:14px">Profiles are shared with Keyboard Academy. Progress saves on this device. Best played sideways.</div>
+  <div class="sub" style="font-size:14px">Profiles are shared with Keyboard Academy. Progress saves on this device. Best played sideways.</div></div>
  </section>
  <section class="scr hide" id="s-map">
   <div class="rankRow" id="rankLine"></div>
@@ -78,7 +89,7 @@ const E=window.EDU,$=id=>document.getElementById(id),esc=E.esc;
 E.muteBtn($("mute"));
 // ---------- art (Canvas assets, drawn at half their 2x pixel size; see README.md) ----------
 const A={};const LOAD=(k,p)=>{const im=new Image();im.onload=()=>A[k]=im;im.src="assets/"+p+".webp"};
-[1,2,3].forEach(n=>{["far","mid","near"].forEach(l=>LOAD(`bg${n}_${l}`,`backgrounds/sector${n}_${l}`));LOAD("boss"+n,"bosses/boss"+n);LOAD("boss"+n+"d","bosses/boss"+n+"_damaged")});
+[1,2,3].forEach(n=>{["far","mid","near"].forEach(l=>LOAD(`bg${n}_${l}`,`backgrounds/sector${n}_${l}${l==="far"?"-seamless":""}`));LOAD("boss"+n,"bosses/boss"+n);LOAD("boss"+n+"d","bosses/boss"+n+"_damaged")});
 ["","_ember","_ice"].forEach((v,i)=>LOAD("ast"+i,"sprites/asteroid_lg"+v));
 ["idle_a","idle_b","thrust_a","thrust_b","hit_a","hit_b"].forEach(f=>LOAD("ship_"+f,"sprites/ship_"+f));
 [["expl","sprites/explosion_sheet"],["imp","sprites/impact_sheet"],["laser","sprites/laser_bolt"],["hud","ui/hud_frame"],["life","ui/life_icon"],["lives","ui/lives_plate"],["pause","ui/pause_button"],["qp","ui/question_panel"],["score","ui/score_plate"]].forEach(([k,p])=>LOAD(k,p));
@@ -122,7 +133,7 @@ let me=null,track="g2";
 const prog=()=>E.gameData(me,"starCadet",()=>({g2:{},g5:{},best:0}));
 const isTest=()=>!!E.DB.profiles[me].test;
 function rankIdx(){const p=prog(),L=SECTORS[track].length,n=Object.values(p[track]).filter(s=>s.clear).length;return n>=L?5:Math.min(4,Math.floor(n/L*5+(n?.5:0)))}
-function show(id){["s-prof","s-map","s-rep"].forEach(s=>$(s).classList.toggle("hide",s!==id));const g=id==="game";$("gameWrap").classList.toggle("hide",!g);$("bar").classList.toggle("hide",g);$("bg").classList.toggle("dim",id!=="s-prof");$("pauseOv").classList.add("hide")}
+function show(id){["s-prof","s-map","s-rep"].forEach(s=>$(s).classList.toggle("hide",s!==id));const g=id==="game";$("gameWrap").classList.toggle("hide",!g);$("bar").classList.toggle("hide",g);$("bg").classList.toggle("dim",id==="s-rep");$("bg").classList.toggle("map",id==="s-map");$("pauseOv").classList.add("hide")}
 function profiles(){stop();me=null;$("who").textContent="";show("s-prof");
  $("profList").innerHTML=Object.entries(E.DB.profiles).map(([n,p])=>{const g=p.games.starCadet;const c=g?Object.values(g.g2).concat(Object.values(g.g5)).filter(s=>s.clear).length:0;
   return`<button class="card${p.test?" parent":""}" data-n="${esc(n)}"><div class="av">${p.av}</div><div class="nm">${esc(n)}</div>${p.test?'<div class="tbadge">TEST MODE: all unlocked</div>':""}<div class="st">${c} sectors cleared</div></button>`}).join("");
@@ -133,7 +144,7 @@ function map(){stop();show("s-map");const p=prog(),t=isTest(),ri=rankIdx();
  $("trackPick").classList.toggle("hide",!t);document.querySelectorAll("#trackPick button").forEach(b=>{b.style.filter=b.dataset.t===track?"":"grayscale(.8) brightness(.7)";b.onclick=()=>{track=b.dataset.t;map()}});
  $("rankLine").innerHTML=`<img src="assets/badges/${RANKS[ri][1]}.webp" alt="">Rank: ${RANKS[ri][0]}  ·  Best score: ${p.best||0}`;
  $("secList").innerHTML=SECTORS[track].map((s,i)=>{const r=p[track][i];const open=t||i===0||(p[track][i-1]&&p[track][i-1].clear);
-  return`<button class="card${open?"":" lock"}${r&&r.clear?" done":""}" data-i="${i}" ${open?"":"disabled"}><div class="k">${open?(r&&r.clear?"CLEARED "+"★".repeat(r.stars):"OPEN"):"🔒 LOCKED"}</div><div class="nm" style="font-size:16px">${esc(s.n)}</div><div class="st">${esc(s.d)}</div><div class="sw" style="background:${SWC[i%3]}"></div></button>`}).join("");
+  return`<button class="card${open?"":" lock"}${r&&r.clear?" done":""}" data-i="${i}" style="--far:url(assets/backgrounds/sector${i%3+1}_far-seamless.webp)" ${open?"":"disabled"}><div class="k">${open?(r&&r.clear?"CLEARED "+"★".repeat(r.stars):"OPEN"):"🔒 LOCKED"}</div><div class="nm" style="font-size:16px">${esc(s.n)}</div><div class="st">${esc(s.d)}</div><div class="sw" style="background:${SWC[i%3]}"></div></button>`}).join("");
  document.querySelectorAll("#secList .card:not(.lock)").forEach(b=>b.onclick=()=>{S.tap();start(+b.dataset.i)})}
 $("homeBtn").onclick=()=>{if(!$("s-map").classList.contains("hide")||!$("s-rep").classList.contains("hide"))profiles();else location.href="../index.html"};
 // ---------- game: 1180x820 field, ship on the left facing right ----------
@@ -196,9 +207,9 @@ function end(won){stop();won?S.win():S.lose();const tot=G.right+G.wrong+G.lost,a
 // ---------- drawing ----------
 function im(k,x,y,w,h){const i=A[k];if(i){cx.drawImage(i,x,y,w,h);return true}return false}
 function layer(k,f,c){const i=A[k];if(!i)return false;const off=(G.clock*60*f)%W;cx.drawImage(i,-off,0,W,H);
- if(k.endsWith("far")){cx.save();cx.translate(2*W-off,0);cx.scale(-1,1);cx.drawImage(i,0,0,W,H);cx.restore()}else cx.drawImage(i,W-off,0,W,H);return true}
+ cx.drawImage(i,W-off,0,W,H);return true}
 function draw(){const c=cx,n=G.art+1;c.save();c.fillStyle="#050A1A";c.fillRect(-offX/scale-2,-offY/scale-2,W+2*offX/scale+4,H+2*offY/scale+4);
- if(!layer(`bg${n}_far`,.1)){c.fillStyle="#0A1430";c.fillRect(0,0,W,H)}layer(`bg${n}_mid`,.35);layer(`bg${n}_near`,.8);
+ if(!layer(`bg${n}_far`,n===3?.05:.1)){c.fillStyle="#0A1430";c.fillRect(0,0,W,H)}layer(`bg${n}_mid`,.35);layer(`bg${n}_near`,.8);
  c.fillStyle="rgba(79,216,255,.18)";c.fillRect(BASE_X-6,TOP-60,4,BOT-TOP+120);
  // boss (faces left)
  if(G.boss){const b=G.boss,[bw,bh]=BOSS_SZ[b.n];c.globalAlpha=b.flash>0&&Math.floor(b.flash*20)%2?.5:1;

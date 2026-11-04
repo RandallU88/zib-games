@@ -5,28 +5,30 @@ window.HO_TEAM=[
  {id:"theo",name:"Theo Banks",role:"Maps and gadgets"},
  {id:"pip",name:"Pip Ward",role:"Reader and puzzle solver"},
  {id:"eli",name:"Eli Hart",role:"Field scout"},
- {id:"biscuit",name:"Biscuit",role:"Chief sniffer"}];
+ {id:"biscuit",name:"Biscuit",role:"Chief sniffer"},
+ {id:"ole",name:"Grandpa Ole",role:"Hollow Oak Farm",guest:true},
+ {id:"wes",name:"Wes",role:"Grandpa Ole's grandson",guest:true}];
 window.HO_CASE={title:"The Case of the Missing Harvest Bell",
  intro:"The old brass bell at Hollow Oak Farm rings every year to open the Harvest Fair. This morning it is gone! The hook is empty, and the fair starts on Saturday. The Hollow Oak Detectives are on the case."};
 window.HO_CHAPTERS=[
  {id:"farm",n:1,title:"The Barnyard Riddle",place:"The farm",bg:"scenes/bg-ch1-farm",
-  talk:[["june","The bell hook on the barn is empty. The Harvest Fair is Saturday, so we have to move fast."],["eli","I will scout the yard. Look for anything that seems out of place."],["biscuit","Woof! Sniff, sniff..."],["pip","Tap a glowing spot to look for a clue. I will write every clue in our notebook."]],
-  spots:[{x:250,y:380,label:"Barn door",item:"torn-note"},{x:720,y:440,label:"Hay wagon",item:"pouch"},{x:560,y:600,label:"Muddy path",item:"footprints"},{x:100,y:470,label:"Fence posts",item:"horseshoe"},{x:1070,y:330,label:"Farmhouse porch",item:"envelope"},{x:1000,y:500,label:"Tool shed",item:"lantern"}],
-  clues:["A note on the barn door was written in code. It says to look in the WOODS.","The bell weighs the same as the hay wagon load. Someone used a cart to move it.","Cart tracks lead out the back gate toward the old trail.","The fence posts are painted in a pattern, and a horseshoe was dropped by a fresh post. Someone was here this week.","Grandpa Ole's diary says his grandson Wes loves fixing old things.","The tool shed sign-out sheet shows who borrowed the rope, the lantern and the cart."],
+  talk:[["ole","My harvest bell is gone! It has rung at the fair for sixty years, and the hook is empty."],["june","The bell hook on the barn is empty. The Harvest Fair is Saturday, so we have to move fast."],["eli","I will scout the yard. Look for anything that seems out of place."],["biscuit","Woof! Sniff, sniff..."],["pip","Tap a glowing spot to look for a clue. I will write every clue in our notebook."]],
+  spots:[{x:250,y:380,label:"Barn door",item:"torn-note"},{x:720,y:440,label:"Hay wagon",item:"pouch"},{x:560,y:600,label:"Muddy path",item:"footprints"},{x:100,y:470,label:"Fence posts",item:"paint-can"},{x:1070,y:330,label:"Farmhouse porch",item:"diary"},{x:1000,y:500,label:"Tool shed",item:"signout-sheet"}],
+  clues:["A note on the barn door was written in code. It says to look in the WOODS.","The bell weighs the same as the hay wagon load. Someone used a cart to move it.","Cart tracks lead out the back gate toward the old trail.","The fence posts are painted in a pattern, and a can of wet paint sits by a fresh post. Someone was here this week.","Grandpa Ole's diary says his grandson Wes loves fixing old things.","The tool shed sign-out sheet shows who borrowed the rope, the lantern and the cart."],
   solve:"The bell was rolled away on the farm cart, out the back gate, toward the woods. Someone planned this and left a coded note.",
-  done:["theo","The tracks point to the woods. Grab the map, team!"]},
+  done:[["ole","Into the woods? Be careful, detectives."],["theo","The tracks point to the woods. Grab the map, team!"]]},
  {id:"woods",n:2,title:"Trail of the Hollow Oak",place:"The woods",bg:"scenes/bg-ch2-woods",
   talk:[["theo","The cart tracks vanish under the leaves. My compass says the trail runs east."],["eli","Old trail markers, a fallen log, and the creek. Something is hiding here."],["biscuit","Woof! (Biscuit smells something by the log.)"]],
-  spots:[{x:975,y:380,label:"Trail marker",item:"acorn"},{x:130,y:540,label:"Fallen log",item:"puzzle-box"},{x:640,y:520,label:"Trail sign",item:"feather"},{x:980,y:610,label:"Creek crossing",item:"horseshoe"},{x:190,y:300,label:"Carved tree",item:"map-scrap"},{x:470,y:420,label:"Campers' trail",item:"lantern"}],
-  clues:["The trail markers follow a pattern that points to the creek.","Inside a little box in the fallen log is a coded scrap. It spells MILL.","The trail sign says the old mill road is the only path wide enough for a cart.","The cart was too heavy for the wobbly bridge, so it crossed at the shallow ford.","Someone carved a map on a tree with an X near the mill.","Three campers saw something. Only one saw a person pulling a cart."],
+  spots:[{x:975,y:380,label:"Trail marker",item:"acorn"},{x:130,y:540,label:"Fallen log",item:"puzzle-box"},{x:640,y:520,label:"Trail sign",item:"feather"},{x:980,y:610,label:"Creek crossing",item:"horseshoe"},{x:190,y:300,label:"Carved tree",item:"map-scrap"},{x:470,y:420,label:"Campers' trail",item:"campers-sketch"}],
+  clues:["The trail markers follow a pattern that points to the creek.","Inside a little box in the fallen log is a coded scrap. It spells MILL.","The trail sign says the old mill road is the only path wide enough for a cart.","The cart was too heavy for the wobbly bridge, so it crossed at the shallow ford.","Someone carved a map on a tree with an X near the mill.","Three campers saw something. Their sketch shows only one saw a person pulling a cart."],
   solve:"The cart crossed the creek at the ford and went up the old mill road. A camper saw a young man in a green cap pulling it.",
-  done:["june","A young man in a green cap, headed for the old mill. Let's go!"]},
+  done:[["june","A young man in a green cap, headed for the old mill. Let's go!"]]},
  {id:"mill",n:3,title:"Secret of the Old Mill",place:"The old mill",bg:"scenes/bg-ch3-mill-interior",
   talk:[["pip","The mill is quiet. It smells like flour and metal polish."],["june","Look for the last clues. The answer is close."]],
-  spots:[{x:120,y:240,label:"Big gears",item:"gear"},{x:900,y:330,label:"Stairs",item:"key"},{x:190,y:560,label:"Millstone",item:"flour-sack"},{x:1040,y:520,label:"Desk",item:"envelope"},{x:340,y:470,label:"Grain chute",item:"torn-note"},{x:660,y:430,label:"Flour sacks",item:"pocket-watch"}],
-  clues:["The gears turn in a pattern. Counting the teeth opens the old lock.","The stairs lead to a back room shown on the mill map.","The millstone scale shows something heavy was weighed here.","A letter on the desk explains everything.","A coded ledger page in the grain chute names who rented the mill this week.","Behind the flour sacks: polish rags, a brush, and Wes's pocket watch. Someone has been cleaning metal."],
+  spots:[{x:120,y:240,label:"Big gears",item:"clapper"},{x:900,y:330,label:"Stairs",item:"key"},{x:190,y:560,label:"Millstone",item:"bell"},{x:1040,y:520,label:"Desk",item:"envelope"},{x:340,y:470,label:"Grain chute",item:"ledger-page"},{x:660,y:430,label:"Flour sacks",item:"polish-rags"}],
+  clues:["Counting the gear teeth opens an old lock. Inside is the bell's cracked clapper!","The stairs lead to a back room shown on the mill map.","Under a cloth by the millstone scale: the Harvest Bell, shiny and polished!","A letter on the desk explains everything.","A coded ledger page in the grain chute names who rented the mill this week.","Behind the flour sacks: polish rags and a brush. Someone has been cleaning metal."],
   solve:"Wes, Grandpa Ole's grandson, borrowed the bell to fix its cracked clapper and polish it as a surprise for the fair. His coded note blew off the barn door into the mud. Case closed, and the bell rings on Saturday!",
-  done:["eli","Case closed! Let's help Wes carry the bell home."]}
+  done:[["wes","You found me! The clapper was cracked, so I made a new one and polished the bell for the fair."],["ole","Wes! That is the best surprise of the whole Harvest Fair."],["eli","Case closed! Let's help Wes carry the bell home."]]}
 ];
 /* Puzzle types: cipher, scale, map, pattern, reading, logic. One of each per chapter, in spot order. */
 window.HO_PUZZLES={
