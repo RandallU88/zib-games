@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#0a0908">
+<link rel="icon" href="../../urwin-icon-180.png"><link rel="apple-touch-icon" href="../../urwin-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../parents.css"><title>Personal Finance Basics | Urwin Homeschool</title></head>
+<body><main>
+<a class="back" href="../">‹ Parents</a>
+<div class="hdr"><span class="kick">Parents &middot; Lesson 1</span><h1>Personal Finance Basics</h1><p class="sub">A plain-language tour of money, for grown-ups</p></div>
+<div class="card"><p class="note">This lesson is general education, not personal financial, tax or legal advice. Numbers are for the 2026 tax year from the IRS unless noted. For decisions about your own situation, talk with a qualified professional.</p>
+<ul class="toc"><li><a href="#flow">1. Money flow</a></li><li><a href="#budget">2. Budgeting</a></li><li><a href="#efund">3. Emergency fund</a></li><li><a href="#debt">4. Debt and credit</a></li><li><a href="#invest">5. Saving and investing</a></li><li><a href="#insure">6. Insurance</a></li><li><a href="#tax">7. Taxes</a></li><li><a href="#quiz">Self-check</a></li></ul></div>
+
+<section class="card" id="flow"><h2>1. How money flows</h2>
+<p><b>Gross pay</b> is what you earn before anything comes out. <b>Take-home (net) pay</b> is what lands in the bank after deductions: federal and state income tax withholding, FICA (Social Security 6.2% and Medicare 1.45%), and anything you elect, like health insurance premiums or 401(k) contributions.</p>
+<p>Budget from take-home pay, not gross pay. Your pay stub shows every line; reading one closely once a year is a great habit.</p>
+<p>The simple order of operations most guides agree on: cover essentials, build a starter emergency fund, grab any employer 401(k) match, pay off high-interest debt, finish the emergency fund, then invest more for the long term.</p></section>
+
+<section class="card" id="budget"><h2>2. Budgeting</h2>
+<h3>Zero-based budget</h3><p>Every dollar of take-home pay gets a job: bills, food, savings, debt, fun. Income minus planned spending equals zero. It does not mean spending everything; savings is a job too.</p>
+<h3>50/30/20 rule</h3><p>A quick starting point: about 50% of take-home pay to needs (housing, utilities, groceries, insurance, minimum payments), 30% to wants, 20% to savings and extra debt payoff. Adjust it to real life; it is a guide, not a law.</p>
+<h3>Budgeting with biweekly pay</h3><p>Biweekly means 26 paychecks a year, so most months get two checks and two months get three. A reliable method:</p>
+<ul><li>Build the monthly budget on <b>two regular checks</b> only.</li>
+<li>Assign each bill to the paycheck that comes before its due date (a simple "paycheck calendar").</li>
+<li>Treat the two <b>"third paycheck" months</b> as bonus months: send that check to savings, debt or a planned big expense.</li></ul>
+<h3>Variable income (commission, bonuses)</h3><ul>
+<li>Base the budget on the <b>lowest realistic</b> amount, such as your lowest commission check from the past year, or your base pay alone.</li>
+<li>When a bigger check arrives, send the extra by a set rule, for example: top up a "smoothing" buffer first, then split between savings and debt.</li>
+<li>Commission checks are often withheld at a flat supplemental rate, so the tax taken out may not match what you actually owe. Check at tax time.</li></ul>
+<h3>Reimbursements (like mileage)</h3><p>A mileage reimbursement pays you back for using your own car, so treat it as <b>car money</b>, not extra income: fuel, maintenance, tires and future replacement. Parking it in a separate "car" savings account keeps it honest. Under an accountable plan these reimbursements are generally not taxable wages.</p>
+<div class="tool" id="budgetTool"><span class="kick">Tool: budget split</span>
+<div class="row"><label>Take-home per paycheck ($)<input id="bPay" type="number" inputmode="decimal" value="2000" min="0"></label>
+<label>Paychecks per month in your plan<select id="bN"><option value="2" selected>2 (biweekly, normal month)</option><option value="1">1</option><option value="4">4 (weekly)</option></select></label>
+<label>Needs %<input id="bNeed" type="number" value="50"></label><label>Wants %<input id="bWant" type="number" value="30"></label><label>Savings and debt %<input id="bSave" type="number" value="20"></label></div>
+<button id="bGo" style="margin-top:10px">Split it</button><div class="out" id="bOut"></div><div class="bar" id="bBar"></div>
+<small>Example numbers only. Type your own; nothing is saved or sent anywhere.</small></div></section>
+
+<section class="card" id="efund"><h2>3. Emergency fund</h2>
+<p>An emergency fund is cash for surprises: a car repair, a job gap, a medical bill. A common target is <b>3 to 6 months of essential expenses</b>, more if your income varies (commission) or one income supports the family. A starter goal of $1,000 or one month of expenses is a good first milestone.</p>
+<p>Keep it in a high-yield savings account at an FDIC-insured bank (or NCUA-insured credit union), insured up to $250,000 per depositor, per bank, per ownership category. It should be boring and easy to reach, not invested in stocks.</p></section>
+
+<section class="card" id="debt"><h2>4. Debt and credit</h2>
+<p><b>APR</b> (annual percentage rate) is the yearly cost of borrowing. A credit card at 24% APR charges roughly 2% a month on the balance you carry. Paying the full statement balance each month means you pay no interest on purchases.</p>
+<h3>Avalanche vs snowball</h3><p>Pay minimums on everything, then put all extra money on one debt:</p>
+<ul><li><b>Avalanche:</b> highest APR first. Saves the most interest.</li><li><b>Snowball:</b> smallest balance first. Quick wins that keep you motivated.</li></ul><p>Either works if you stick with it; the comparer below shows the trade-off.</p>
+<h3>Credit score basics</h3><p>FICO scores range 300 to 850 and weigh: payment history (about 35%), amounts owed / utilization (30%), length of history (15%), new credit (10%) and credit mix (10%). Pay on time every time, keep card balances low (many aim under 30% of limits, lower is better), and avoid opening lots of new accounts at once. You can get free credit reports from all three bureaus at AnnualCreditReport.com.</p>
+<div class="tool"><span class="kick">Tool: debt payoff comparer</span>
+<p style="margin:6px 0"><small>Enter up to three debts and your total monthly payment.</small></p>
+<div id="debts"></div>
+<div class="row"><label>Total paid per month ($)<input id="dPay" type="number" value="600"></label></div>
+<button id="dGo" style="margin-top:10px">Compare</button><div class="out" id="dOut"></div></div></section>
+
+<section class="card" id="invest"><h2>5. Saving and investing</h2>
+<h3>Compound interest</h3><p>Growth earns growth. Money growing 7% a year roughly doubles in about 10 years (the "Rule of 72": 72 / 7 &asymp; 10). Starting early matters more than starting big.</p>
+<h3>Index funds</h3><p>An index fund owns a whole market slice (like the S&amp;P 500 or the total US market) instead of picking stocks. Low fees and broad diversification make them a common core holding. Stocks can drop sharply in any given year, so money needed within a few years usually belongs in savings, not stocks.</p>
+<h3>401(k) and the match</h3><p>If your employer matches, contribute at least enough to get the full match; it is an instant return on your money. Check your plan's vesting schedule.</p>
+<h3>Roth vs traditional</h3><ul><li><b>Traditional</b> (401(k) or IRA): tax break now, pay tax when you withdraw in retirement.</li><li><b>Roth</b>: pay tax now, qualified withdrawals in retirement are tax-free.</li><li>Rough rule: Roth is attractive if you expect a higher tax rate later; traditional if you expect a lower one. Many people use both. Roth IRAs have income limits.</li></ul>
+<table><tr><th>2026 IRS limit</th><th>Amount</th></tr>
+<tr><td>401(k) / 403(b) / TSP employee contribution</td><td>$24,500</td></tr><tr><td>401(k) catch-up, age 50+</td><td>$8,000</td></tr><tr><td>401(k) catch-up, ages 60 to 63</td><td>$11,250</td></tr>
+<tr><td>IRA (traditional + Roth combined)</td><td>$7,500</td></tr><tr><td>IRA catch-up, age 50+</td><td>$1,100</td></tr></table>
+<div class="tool"><span class="kick">Tool: compound interest</span>
+<div class="row"><label>Starting amount ($)<input id="cP" type="number" value="1000"></label><label>Added each month ($)<input id="cM" type="number" value="200"></label><label>Yearly return (%)<input id="cR" type="number" value="7" step="0.1"></label><label>Years<input id="cY" type="number" value="20"></label></div>
+<button id="cGo" style="margin-top:10px">Calculate</button><div class="out" id="cOut"></div><div class="bar" id="cBar"></div>
+<small>Assumes a steady return compounded monthly. Real markets go up and down; this is not a prediction.</small></div></section>
+
+<section class="card" id="insure"><h2>6. Insurance basics</h2>
+<p>Insurance protects against losses you could not afford on your own. Key words: <b>premium</b> (what you pay), <b>deductible</b> (what you pay before coverage starts), <b>out-of-pocket maximum</b> (your yearly cap on covered health costs).</p>
+<ul><li><b>Health:</b> compare total yearly cost (premiums plus likely out-of-pocket), not just the premium.</li>
+<li><b>Auto:</b> state minimum liability limits are often low; many advisors suggest higher liability limits to protect your savings.</li>
+<li><b>Home or renters:</b> covers your dwelling and belongings plus liability.</li>
+<li><b>Life:</b> if others depend on your income, term life is the simple, affordable choice for most families.</li>
+<li><b>Disability:</b> replaces part of your pay if you cannot work; check what your employer provides.</li>
+<li>A higher deductible lowers your premium, but only makes sense if your emergency fund can cover it.</li></ul></section>
+
+<section class="card" id="tax"><h2>7. Taxes basics</h2>
+<p>Federal brackets are <b>marginal</b>: each rate only applies to the dollars inside that bracket. Moving into a higher bracket never lowers your take-home pay; only the extra dollars are taxed at the higher rate.</p>
+<p><b>Taxable income</b> = income minus adjustments (like traditional 401(k) contributions) minus the standard deduction (or itemized deductions). 2026 standard deduction: $16,100 single, $32,200 married filing jointly, $24,150 head of household.</p>
+<table><tr><th>Rate</th><th>Married filing jointly, 2026 taxable income</th></tr>
+<tr><td>10%</td><td>up to $24,800</td></tr><tr><td>12%</td><td>$24,801 to $100,800</td></tr><tr><td>22%</td><td>$100,801 to $211,400</td></tr><tr><td>24%</td><td>$211,401 to $403,550</td></tr><tr><td>32%</td><td>$403,551 to $512,450</td></tr><tr><td>35%</td><td>$512,451 to $768,700</td></tr><tr><td>37%</td><td>over $768,700</td></tr></table>
+<p>A <b>deduction</b> lowers taxable income; a <b>credit</b> (like the Child Tax Credit) lowers the tax itself, dollar for dollar, so credits are usually worth more. Use the IRS Tax Withholding Estimator to check that your W-4 withholding fits, especially with commission checks.</p></section>
+
+<section class="card" id="quiz"><h2>Self-check</h2><p>Tap an answer to see if you got it.</p><div id="qz"></div><div class="out" id="qScore"></div></section>
+
+<section class="card"><h2>Sources</h2><ul class="src">
+<li><a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500">IRS: 401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500 (IR-2025-111)</a></li>
+<li><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions">IRS: Retirement topics, catch-up contributions</a></li>
+<li><a href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf">IRS Rev. Proc. 2025-32: 2026 tax rate tables</a></li>
+<li><a href="https://www.irs.gov/newsroom/working-families-tax-cuts-individuals-and-workers">IRS: 2026 standard deduction amounts</a></li>
+<li><a href="https://www.irs.gov/individuals/tax-withholding-estimator">IRS Tax Withholding Estimator</a></li>
+<li><a href="https://www.ssa.gov/oact/cola/cbb.html">SSA: Social Security and Medicare tax rates</a></li>
+<li><a href="https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance">FDIC: Understanding deposit insurance</a></li>
+<li><a href="https://www.myfico.com/credit-education/whats-in-your-credit-score">myFICO: What's in your credit score</a></li>
+<li><a href="https://www.annualcreditreport.com/">AnnualCreditReport.com</a></li>
+<li><a href="https://www.consumerfinance.gov/consumer-tools/">CFPB: Consumer tools (budgeting, debt, credit)</a></li>
+<li><a href="https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator">Investor.gov (SEC): Compound interest calculator</a></li>
+</ul><small>Figures checked November 2026. Limits change every year; confirm on IRS.gov before acting.</small></section>
+</main><script src="lesson.js"></script></body></html>

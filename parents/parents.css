@@ -1,0 +1,48 @@
+:root{--g:#C9A04A;--g2:#E2C06E;--ink:#f5efe2;--soft:#e6dccb;--mut:#b9ab8c;--serif:"Cinzel",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:#0a0908}
+body{font-family:var(--sans);color:var(--ink);line-height:1.6;min-height:100vh;
+ padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+ background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,160,74,.16),transparent 65%),linear-gradient(180deg,#0a0908,#141110 60%,#1b1712);background-attachment:fixed}
+main{max-width:860px;margin:0 auto}
+a{color:var(--g2)}
+.back{display:inline-block;margin-bottom:10px;font-weight:700;text-decoration:none}
+.hdr{text-align:center;margin:6px 0 18px}
+.hdr img{width:min(200px,56vw);height:auto}
+h1,h2,h3{font-family:var(--serif);color:#f3dfa8;line-height:1.2;letter-spacing:.02em}
+h1{font-size:clamp(28px,5vw,42px);margin:8px 0 4px}
+h2{font-size:clamp(21px,3.2vw,27px);margin:0 0 8px}
+h3{font-size:18px;margin:16px 0 4px}
+.sub{color:var(--g2);font-family:var(--serif);margin:0}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent);margin:16px auto;width:min(420px,80%)}
+.card{background:linear-gradient(180deg,#17120b,#0d0a07);border:1.5px solid rgba(201,160,74,.55);border-radius:18px;padding:18px 20px;margin:0 0 18px;box-shadow:0 14px 34px rgba(0,0,0,.5);overflow-wrap:break-word}
+.card p,.card li{color:var(--soft);font-size:16.5px}
+.kick{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--g2)}
+.note{border-left:3px solid var(--g);padding:8px 12px;background:rgba(201,160,74,.08);border-radius:6px;color:var(--soft)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.toc a{display:inline-block;padding:6px 12px;border:1px solid rgba(201,160,74,.5);border-radius:999px;text-decoration:none;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{border-bottom:1px solid rgba(201,160,74,.25);padding:6px 4px;text-align:left;color:var(--soft)}
+th{color:var(--g2)}
+.tool{background:#0a0908;border:1px dashed rgba(201,160,74,.6);border-radius:14px;padding:14px;margin-top:12px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+label{display:flex;flex-direction:column;font-size:14px;color:var(--mut);gap:4px}
+input,select{font:inherit;font-size:16px;padding:9px 10px;border-radius:10px;border:1px solid rgba(201,160,74,.5);background:#17120b;color:var(--ink);width:100%}
+button{font:inherit;font-weight:800;background:var(--g);color:#241a06;border:0;border-radius:999px;padding:10px 18px;min-height:44px;cursor:pointer}
+.out{margin-top:10px;color:#f3dfa8;font-weight:600}
+.bar{display:flex;height:22px;border-radius:8px;overflow:hidden;margin-top:8px}
+.bar span{display:block}
+.q{margin:14px 0}.q p{margin:0 0 6px;font-weight:700;color:var(--ink)}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opts button{background:#17120b;color:var(--ink);border:1px solid rgba(201,160,74,.5);text-align:left;font-weight:600;border-radius:12px}
+.opts button.ok{background:#1f3a22;border-color:#5ec46e}.opts button.no{background:#3a1f1f;border-color:#c45e5e}
+.fb{font-size:15px;color:var(--soft);margin-top:4px}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:620px){.tiles{grid-template-columns:1fr}}
+a.tile{display:flex;flex-direction:column;text-decoration:none;color:var(--soft);background:linear-gradient(180deg,#17120b,#0d0a07);border:1.5px solid rgba(201,160,74,.6);border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.55)}
+.tile-art{display:flex;align-items:center;justify-content:center;aspect-ratio:3/1.4;background:radial-gradient(circle at 50% 35%,#2a2014,#0a0908 72%);border-bottom:1px solid rgba(201,160,74,.45);font-size:64px}
+.tile-body{display:flex;flex-direction:column;gap:5px;padding:14px 16px 16px}
+.tile-title{font-family:var(--serif);font-weight:700;font-size:21px;color:#f3dfa8}
+.tile-go{align-self:flex-start;margin-top:6px;background:var(--g);color:#241a06;font-weight:800;padding:8px 16px;border-radius:999px}
+.more{color:var(--mut);text-align:center;font-size:15px;margin-top:18px}
+small,.src li{font-size:14px;color:var(--mut)}
