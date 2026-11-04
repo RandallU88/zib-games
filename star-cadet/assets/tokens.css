@@ -1,0 +1,23 @@
+/* Star Cadet Math Patrol tokens. Designed at 1180x820 CSS px; art is 2x. */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@600;800&family=Inter:wght@400;600&display=swap');
+:root{
+  --sc-font-display:'Orbitron',sans-serif;   /* titles, logo-style headers (900) */
+  --sc-font-ui:'Exo 2',sans-serif;           /* HUD, buttons, numbers on asteroids (800) */
+  --sc-font-body:'Inter',sans-serif;         /* small help text */
+  --sc-navy-900:#050A1A; --sc-navy-800:#0A1430; --sc-navy-700:#16244A; --sc-navy-500:#2A3C6E;
+  --sc-chrome-hi:#FFFFFF; --sc-chrome-mid:#B9C6DD; --sc-chrome-lo:#5B6B88;
+  --sc-gold:#F6C453; --sc-gold-hi:#FFF4C2; --sc-gold-lo:#B07A1E;
+  --sc-red:#E23B3B; --sc-red-dark:#7A0E14;
+  --sc-white:#F4F7FF; --sc-muted:#A9B8D9;
+  --sc-cyan:#4FD8FF; --sc-violet:#B58CFF; --sc-amber:#FFB347;
+  --sc-correct:#4ADE80; --sc-wrong:#FF6B6B;
+  --sc-sector1:#3FE0C5; --sc-sector2:#FFA24C; --sc-sector3:#FF6B8A;
+  --sc-chrome:linear-gradient(180deg,#FFF 0%,#B9C6DD 45%,#5B6B88 50%,#C9D5EA 75%,#EEF3FF 100%);
+  --sc-gold-grad:linear-gradient(180deg,#FFF4C2 0%,#F6C453 45%,#B07A1E 55%,#FFE08A 100%);
+  --sc-panel:linear-gradient(180deg,rgba(22,36,74,.94),rgba(7,13,32,.94));
+  --sc-radius-sm:6px; --sc-radius-md:13px; --sc-radius-lg:20px; --sc-radius-pill:999px;
+  --sc-glow-cyan:0 0 12px rgba(79,216,255,.75); --sc-glow-gold:0 0 14px rgba(246,196,83,.6); --sc-glow-red:0 0 12px rgba(226,59,59,.7);
+  --sc-shadow:0 2px 4px rgba(0,0,0,.55);
+  --sc-number-stroke:3px; --sc-number-stroke-color:#0A1430; /* paint-order:stroke on asteroid numbers */
+  --sc-tap-min:48px;
+}

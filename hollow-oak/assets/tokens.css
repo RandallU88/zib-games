@@ -1,0 +1,50 @@
+/* The Hollow Oak Detectives: design tokens (Canvas, Nov 2026)
+   Google Fonts: Alegreya SC (700, 800), Alegreya (400, 500, 700 italic), Special Elite (400), Caveat (500, 700)
+   <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@700;800&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Special+Elite&family=Caveat:wght@500;700&display=swap" rel="stylesheet"> */
+:root{
+  /* stage */
+  --ho-stage-w:1180px; --ho-stage-h:820px;
+  /* palette */
+  --ho-night:#1E1A2B;   /* dusk plum, letterbox and menus */
+  --ho-dusk:#6E4C7E;    /* sky accent */
+  --ho-ink:#2B1D14;     /* text, outlines */
+  --ho-walnut:#4A2F1D;  /* frames, leather */
+  --ho-oak:#6B4426;     /* secondary text */
+  --ho-brass:#C9A24A;   /* trim, buttons */
+  --ho-brass-hi:#F2D27A;
+  --ho-brass-lo:#8A6424;
+  --ho-lantern:#FFB547; /* hotspot glow, selection */
+  --ho-barn:#9E2B25;    /* primary action, name plates */
+  --ho-barn-dk:#6E1C18;
+  --ho-moss:#5E6B3A;    /* success */
+  --ho-parchment:#F1E4C6; /* dialogue, notebook */
+  --ho-cream:#FBF3E0;
+  --ho-manila:#D9B977;  /* case file */
+  --ho-stamp:#B3261E;
+  --ho-rule:rgba(120,150,175,.45); /* notebook lines */
+  /* type */
+  --ho-font-display:"Alegreya SC", Georgia, serif;   /* titles, buttons, names */
+  --ho-font-body:"Alegreya", Georgia, serif;         /* dialogue, UI copy */
+  --ho-font-type:"Special Elite", "Courier New", monospace; /* case file */
+  --ho-font-hand:"Caveat", "Bradley Hand", cursive;  /* notebook entries */
+  --ho-size-title:56px; --ho-size-h2:34px; --ho-size-name:22px;
+  --ho-size-dialogue:26px; --ho-size-body:20px; --ho-size-hand:28px;
+  --ho-line:1.4;
+  /* shape */
+  --ho-radius-sm:10px; --ho-radius-md:18px; --ho-radius-lg:26px; --ho-radius-pill:999px;
+  --ho-border:3px solid var(--ho-ink);
+  --ho-trim:2px solid var(--ho-brass);
+  --ho-shadow:0 7px 14px rgba(18,10,6,.45);
+  --ho-glow:0 0 18px 6px rgba(255,181,71,.55);
+  --ho-tap-min:48px;
+  /* textures */
+  --ho-tex-parchment:url("ui/textures/paper-parchment.webp");
+  --ho-tex-manila:url("ui/textures/paper-manila.webp");
+  --ho-tex-leather:url("ui/textures/leather-walnut.webp");
+  --ho-tex-wood:url("ui/textures/wood-dark.webp");
+  /* motion */
+  --ho-ease:cubic-bezier(.2,.8,.2,1); --ho-dur:180ms;
+}
+.ho-btn{min-height:var(--ho-tap-min);font-family:var(--ho-font-display);font-weight:800;letter-spacing:.04em}
+.ho-btn:active{transform:translateY(4px)}
+.ho-hotspot.is-found{box-shadow:var(--ho-glow)}

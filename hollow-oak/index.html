@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>The Hollow Oak Detectives</title>
+<link rel="apple-touch-icon" href="../urwin-icon-180.png">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="wrap"><div id="stage">
+ <!-- TITLE -->
+ <section id="s-title" class="scr" style="background-image:url(assets/scenes/title-scene.webp)">
+  <img class="logo" src="assets/logo/hollow-oak-logo.webp" alt="The Hollow Oak Detectives">
+  <div class="whoBox"><div class="h">Who is on the case today?</div><div class="profs" id="profList"></div>
+   <div class="fine">Profiles are shared with Keyboard Academy. Progress saves on this device.</div></div>
+ </section>
+ <!-- CASE BOARD -->
+ <section id="s-board" class="scr wood hide">
+  <div class="boardHead parch"><h1 id="caseTitle"></h1><p id="caseIntro"></p></div>
+  <div class="chs" id="chList"></div>
+  <div class="trk hide" id="trackPick"><span>Parent test track:</span><button class="pbtn" data-t="g2">Grade 2 (Logan)</button><button class="pbtn" data-t="g5">Grade 5 (Savannah)</button></div>
+  <button class="imgbtn back" id="boardBack" aria-label="Back"></button>
+ </section>
+ <!-- CHAPTER CARD -->
+ <section id="s-card" class="scr hide"><div class="cardTap" id="cardTap"></div></section>
+ <!-- SCENE -->
+ <section id="s-scene" class="scr hide">
+  <div id="spots"></div>
+  <button class="imgbtn notebook" id="nbBtn" aria-label="Notebook"></button>
+  <div class="progress parch" id="prog"></div>
+  <button class="icon sound" id="mute" aria-label="Sound"></button>
+  <button class="icon menu" id="menuBtn" aria-label="Case board"></button>
+  <div class="tray" id="tray"></div>
+  <button class="imgbtn casefile hide" id="cfBtn" aria-label="Open the case file"></button>
+  <img class="pose hide" id="pose" alt="">
+  <div class="dlg hide" id="dlg"><div class="well"><img id="dlgImg" alt=""></div><div class="name" id="dlgName"></div><div class="txt" id="dlgTxt"></div><div class="more">Tap to continue</div></div>
+ </section>
+ <!-- CASE FILE -->
+ <section id="s-file" class="scr wood hide"><div class="cfile" id="fileBox"></div></section>
+ <!-- OVERLAY: puzzles, notebook -->
+ <div class="ov hide" id="ov"><div class="panel" id="ovBox"></div></div>
+</div></div>
+<script src="../edu-profiles.js"></script>
+<script src="data.js"></script>
+<script src="game.js"></script>
+</body></html>
