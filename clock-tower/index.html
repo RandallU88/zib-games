@@ -167,12 +167,14 @@ function clockEl(P,x,y,size,h,m,drag,step){const c=document.createElement("div")
  c.addEventListener("pointermove",move);c.addEventListener("pointerup",()=>mode=null);c.addEventListener("pointercancel",()=>mode=null);
  c.addEventListener("keydown",e=>{const k=e.key;let d=k=="ArrowRight"||k=="ArrowUp"?step:k=="ArrowLeft"||k=="ArrowDown"?-step:k=="]"?60:k=="["?-60:0;if(!d)return;e.preventDefault();c.st.tot=((c.st.tot+d)%720+720)%720;draw()});
  P.appendChild(c);return c}
+function neutral(h,m){const tgt=(h%12)*60+m,d=x=>{const k=Math.abs(x-tgt)%720;return Math.min(k,720-k)};if(d(0)>=120)return{h:12,m:0};
+ const c=[];for(let x=0;x<720;x+=5)if(d(x)>=120)c.push(x);const x=c[Math.floor(Math.random()*c.length)];return{h:Math.floor(x/60)||12,m:x%60}}
 const clkMatch=(c,h,m)=>c.st.tot==((h%12)*60+m);
 function setTower(h,m){$("tH").style.transform=`rotate(${(h%12)*30+m*.5}deg)`;$("tM").style.transform=`rotate(${m*6}deg)`}
 function taskSet(P){const t=cur;say(`Set the clock to ${fmtT(t.h,t.m)}. Drag the long hand for minutes and the short hand for hours.`);
  const L=document.createElement("div");L.className="lab";L.style.cssText+="left:500px;top:40px;width:380px;font:400 52px var(--ct-font-display);color:#f3dfa8";L.textContent=fmtT(t.h,t.m);P.appendChild(L);
  const M=document.createElement("div");M.className="mini";M.style.cssText="left:520px;top:120px;width:340px";M.textContent=grade==2?"Minute hand snaps every 5 minutes.":"Minute hand moves one minute at a time.";if(stepFor(lvl)>=15)M.textContent=`Minute hand snaps every ${stepFor(lvl)} minutes.`;P.appendChild(M);
- const c=clockEl(P,60,40,420,12,0,true,stepFor(lvl));c.id="setClock";
+ const n0=neutral(t.h,t.m),c=clockEl(P,60,40,420,n0.h,n0.m,true,stepFor(lvl));c.id="setClock";
  addBtn(P,"Check",560,330,()=>clkMatch(c,t.h,t.m)?good():bad(c,()=>{c.st.tot=(t.h%12)*60+t.m;c.draw()}),"check")}
 function choices(P,correct,wrongs,x0,y0,fmt){const opts=[correct,...wrongs].sort(()=>Math.random()-.5);opts.forEach((o,i)=>{const b=addBtn(P,fmt(o),x0,y0+i*96,()=>{if(busy)return;o===correct?good():bad(b,()=>{P.querySelectorAll(".btn").forEach(x=>{if(x.textContent==fmt(correct))x.style.outline="4px solid #9fe08f"})})})})}
 function nearTimes(h,m,step){const s=new Set([fmtT(h,m)]),out=[];const cand=[[h%12+1,m],[h,(m+step*R(1,3))%60],[(h+10)%12+1,m],[m/5||12,h*5%60]];
@@ -185,7 +187,7 @@ function taskElapsed(P){const t=cur,hh=Math.floor(t.add/60),mm=t.add%60;const ad
  const L=document.createElement("div");L.className="lab";L.style.cssText+="left:30px;top:24px;width:240px";L.textContent="Start";P.appendChild(L);
  clockEl(P,40,60,220,t.s.h,t.s.m,false);
  const A=document.createElement("div");A.className="lab";A.style.cssText+="left:30px;top:300px;width:240px;font:400 34px var(--ct-font-display);color:#F2C14E";A.textContent="+ "+addTxt.trim();P.appendChild(A);
- const c=clockEl(P,300,40,420,12,0,true,1);c.id="setClock";
+ const n0=neutral(t.h,t.m),c=clockEl(P,300,40,420,n0.h,n0.m,true,1);c.id="setClock";
  addBtn(P,"Check",620,400,()=>clkMatch(c,t.h,t.m)?good():bad(c,()=>{c.st.tot=(t.h%12)*60+t.m;c.draw()}),"check")}
 // money widget
 const COINS=[["coin-1c",1,38],["coin-5c",5,42],["coin-10c",10,35],["coin-25c",25,48]],BILLS=[["bill-1",100],["bill-5",500],["bill-10",1000]];
@@ -236,6 +238,6 @@ function results(){const n=tasks.length,stars=firstTry>=n-1?3:firstTry>=n-3?2:fi
  show("s-res");$("rStars").innerHTML=[1,2,3].map(k=>`<img src="a/ui_star-${k<=stars?"reward":"empty"}.webp" alt="" style="width:80px;height:80px">`).join("");
  $("rText").textContent=`${firstTry} of ${n} right first try. Score ${score}.`;$("rNext").style.display=lvl<5&&stars>0?"block":"none"}
 $("rAgain").onclick=()=>start(lvl);$("rNext").onclick=()=>start(lvl+1);
-window.__ct={start,get cur(){return cur},tasks:()=>tasks,setMe:(n,g)=>{me=n;grade=g},results,levels,good,next:()=>{ti++;next()},forceTask:t=>{cur=Object.assign(cur||{},t);tasks[ti]=Object.assign(tasks[ti],t);next()}};
+window.__ct={fakeRes:(f,n)=>{firstTry=f;score=f*100;tasks=Array(n).fill({});results()},start,get cur(){return cur},tasks:()=>tasks,setMe:(n,g)=>{me=n;grade=g},results,levels,good,next:()=>{ti++;next()},forceTask:t=>{cur=Object.assign(cur||{},t);tasks[ti]=Object.assign(tasks[ti],t);next()}};
 titleScr();
 </script></body></html>
