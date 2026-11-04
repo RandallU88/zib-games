@@ -1,0 +1,40 @@
+/* Urwin Homeschool · Direction A "Cut-Paper Farm" · design tokens v1 */
+:root{
+  /* base */
+  --paper:#F4ECDC; --paper-hi:#FBF6EC; --card:#FFFBF4; --line:#E2D5BF; --line-strong:#B9A88F;
+  --ink:#2A211A; --muted:#6B5D4F; --white:#FFFFFF;
+  --paper-texture:url(../ui/paper-tile.png);
+  /* fixed harvest palette */
+  --rust:#A2461F; --barn-red:#9E2B25; --mustard:#C9962B; --sage:#7D8F69; --sage-deep:#55663F; --sky:#9DB9CC; --cream:#F4ECDC;
+  /* states */
+  --correct:#3F6B3A; --correct-soft:#E3EDD9; --retry:#9E2B25; --retry-soft:#F6E0DC; --focus:#2F5D7C;
+  /* type */
+  --font-head:'Fraunces',Georgia,serif; --font-ui:'Inter',system-ui,sans-serif; --font-cursive:'Playwrite US Trad',cursive;
+  --kick-size:12px; --kick-track:.14em; --small:13px;
+  /* spacing (4pt) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s7:28px; --s8:32px; --s10:40px;
+  /* radii */
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-pill:999px;
+  /* shadows */
+  --shadow-card:0 1px 0 #fff inset,0 10px 30px -18px rgba(70,45,20,.35);
+  --shadow-lift:0 14px 34px -16px rgba(70,45,20,.45);
+  --ring-focus:0 0 0 3px var(--paper),0 0 0 6px var(--focus);
+  /* lesson theme (overridden per lesson) */
+  --accent:var(--rust); --accent-2:var(--mustard); --soft:#F3E2CC;
+  --hero:url(./logan-hero.png);
+}
+/* kid profiles */
+.kid-logan{ --body:21px; --story:24px; --h1:40px; --h3:24px; --pad:28px; --gap:22px; --tap:64px; --radius:var(--r-lg); --hero-h:230px; --cols:2; }
+.kid-savannah{ --body:16px; --story:16px; --h1:30px; --h3:19px; --pad:20px; --gap:14px; --tap:52px; --radius:var(--r-md); --hero-h:170px; --cols:3; }
+/* lesson themes */
+.theme-harvest  { --accent:#A2461F; --accent-2:#C9962B; --soft:#F3E2CC; }
+.theme-trade-off{ --accent:#9E2B25; --accent-2:#7D8F69; --soft:#F2DCD6; }
+.kid-logan.lesson-01{ --hero:url(./logan-hero.png); }
+.kid-savannah.lesson-01{ --hero:url(./savannah-hero.png); }
+/* future recipes (see DESIGN_SPEC.md) */
+.theme-into-winter      { --accent:#55663F; --accent-2:#6F8FA6; --soft:#E4EAD8; }
+.theme-thanksgiving-table{ --accent:#8A3324; --accent-2:#C9962B; --soft:#F3DFD0; }
+.theme-maple-woods      { --accent:#B23A1E; --accent-2:#D08A2E; --soft:#F6DECF; }
+.theme-first-snow       { --accent:#2F5D7C; --accent-2:#9DB9CC; --soft:#E3ECF2; }
+.theme-barn-raising     { --accent:#7A4B26; --accent-2:#9E2B25; --soft:#EFE1CF; }
+.theme-apple-cider      { --accent:#9C5A1A; --accent-2:#9E2B25; --soft:#F5E3C8; }

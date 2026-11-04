@@ -28,7 +28,7 @@ background:#17130f;border:1.5px solid rgba(201,160,74,.55);border-radius:18px;pa
 .paper{background:var(--paper);color:var(--ink);border-radius:18px;padding:clamp(16px,3vw,28px);margin:0 0 18px;box-shadow:0 16px 36px rgba(0,0,0,.5);border:1px solid #e3d4ac}
 .paper h2{margin:0 0 10px;color:var(--red);font-size:clamp(21px,3.4vw,27px)}
 .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 10px;border-radius:8px;background:var(--sage);color:#fff;margin-bottom:8px}
-.tag.adv{background:var(--rust)}.tag.opt{background:#5b7a96}
+.tag.adv{background:var(--rust)}.tag.optional{background:#5b7a96}
 .chores{background:#17130f;border:1.5px solid rgba(201,160,74,.55);border-radius:18px;padding:16px;margin-bottom:18px}
 .chores h2{color:#f3dfa8;margin:0 0 10px;font-size:22px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .chores .count{font-family:var(--sans);font-size:15px;color:#d9c9a3}
@@ -82,45 +82,6 @@ textarea:focus,input:focus{outline:3px solid var(--gold);border-color:var(--gold
 .err{color:#ff9b85;font-weight:700}
 #out .paper table{width:100%;border-collapse:collapse;font-size:17px}#out td,#out th{border-bottom:1px solid #e3d4ac;padding:8px;vertical-align:top;text-align:left}
 #out .rubric,#out .note{font-size:15px;color:#6b5a3e;margin-top:4px}
-/* ===== Direction A: Cut-Paper Farm (Canvas). Urwin black+gold header kept. ===== */
-:root{--paper:#F4ECDC;--card:#FFFBF4;--ink:#2A211A;--muted:#6B5D4F;--line:#E2D5BF;--acc:#A2461F;--acc2:#C9962B;--soft:#F3E2CC;
---head:"Fraunces",Georgia,serif;--ui:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--tap:60px}
-body[data-theme="TRADE-OFF"]{--acc:#9E2B25;--acc2:#7D8F69;--soft:#F2DCD6;--tap:52px}
-body.lessonpage{background:#F4ECDC radial-gradient(ellipse at 20% 0%,#FBF6EC 0,transparent 60%);color:var(--ink);font-family:var(--ui);padding-top:0}
-body.lessonpage .top{max-width:none;margin:0 calc(-1*max(14px,env(safe-area-inset-left))) 18px;padding:max(10px,env(safe-area-inset-top)) 18px 10px;background:#0a0908;border-bottom:2px solid var(--gold)}
-body.lessonpage .top>*{max-width:none}
-body.lessonpage .hero{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 28px;text-align:left;box-shadow:0 10px 30px -18px rgba(70,45,20,.35);overflow:hidden}
-body.lessonpage .hero .kick{font-family:var(--ui);color:var(--acc);font-weight:700;font-size:12px;letter-spacing:.14em}
-body.lessonpage .hero h1{font-family:var(--head);font-weight:600;color:var(--ink);letter-spacing:0;font-size:clamp(30px,5vw,44px);line-height:1.08}
-body.lessonpage .hero .meta,.lessonpage .progress{color:var(--muted)}
-.lessonpage .progress{text-align:left;margin:10px 2px 16px;font-size:15px}
-.lessonpage .chores{background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px -18px rgba(70,45,20,.35)}
-.lessonpage .chores h2{font-family:var(--head);font-weight:600;color:var(--ink);letter-spacing:0}.lessonpage .chores .count{color:var(--muted)}
-.lessonpage .chore{background:#fff;border:2px solid var(--line);color:var(--ink);min-height:var(--tap);font-family:var(--ui);font-weight:600}
-.lessonpage .chore .bx{border-color:var(--acc);color:#fff}.lessonpage .chore.on{background:var(--soft);border-color:var(--acc)}.lessonpage .chore.on .bx{background:var(--acc)}
-.lessonpage .chore.on .lb{color:var(--muted)}
-.lessonpage .linkbtn{color:var(--muted);border-color:var(--line);background:#fff;font-family:var(--ui);font-weight:600}
-.lessonpage details.teacher{background:var(--card);border-color:var(--line);color:var(--ink)}.lessonpage details.teacher summary{font-family:var(--head);color:var(--acc)}
-.lessonpage .paper{background:var(--card);border:1px solid var(--line);box-shadow:0 1px 0 #fff inset,0 10px 30px -18px rgba(70,45,20,.35);border-radius:22px}
-.lessonpage .paper h2{font-family:var(--head);font-weight:600;color:var(--ink);letter-spacing:0}
-.lessonpage .tag{background:#2A211A;color:#FFF6E6;border-radius:99px}.lessonpage .tag.adv{background:var(--acc)}.lessonpage .tag.opt{background:var(--acc2)}
-.lessonpage .art{border-color:var(--acc2);background:repeating-linear-gradient(45deg,var(--soft),var(--soft) 12px,#f7ecdc 12px,#f7ecdc 24px);color:var(--muted);font-family:var(--ui)}
-.lessonpage .story{font-family:var(--head);font-weight:400}
-.lessonpage .pager .dots i{background:var(--line)}.lessonpage .pager .dots i.on{background:var(--acc)}
-.lessonpage .btn{background:var(--acc);color:#fff;font-family:var(--ui);min-height:var(--tap);border-radius:14px;padding:0 26px}
-.lessonpage .q{border-top:1px solid var(--line)}
-.lessonpage .q .p{font-family:var(--head);font-weight:600}.lessonpage .q .qid{font-family:var(--ui);color:var(--muted)}
-.lessonpage .opt{position:relative;padding-left:52px;border:2px solid var(--line);font-family:var(--ui);font-weight:600;min-height:var(--tap)}
-.lessonpage .opt:before{content:"";position:absolute;left:18px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;border:2px solid #9b8e80;background:#fff}
-.lessonpage .opt.on{border-color:var(--acc);background:var(--soft);box-shadow:none}.lessonpage .opt.on:before{border-color:var(--acc);box-shadow:inset 0 0 0 4px #fff;background:var(--acc)}
-.lessonpage textarea,.lessonpage input.num{border-color:var(--line);font-family:var(--ui)}
-.lessonpage textarea:focus,.lessonpage input:focus{outline-color:var(--acc2)}
-.lessonpage .chip{border-color:var(--line);font-family:var(--ui)}.lessonpage .chip.sel{background:var(--acc2);border-color:var(--acc);color:#fff}
-.lessonpage .bucket{border-color:var(--acc2);background:#fff}.lessonpage .bucket h4{color:var(--acc);font-family:var(--head)}
-.lessonpage .pad{border:2px dashed var(--line);background:#fff}
-.lessonpage .model{font-family:"Playwrite US Trad","Snell Roundhand","Apple Chancery",cursive;font-size:clamp(24px,4vw,34px);line-height:1.8}
-.lessonpage .hint{background:var(--soft);border-left-color:var(--acc)}.lessonpage .enc{background:#eef1e6;border-left-color:#7D8F69}
-.lessonpage .saved{color:#55663F}
 @media print{
  body,html{background:#fff!important;color:#000!important;padding:0!important}
  .top,#lock,.foot,.back{display:none!important}
@@ -128,10 +89,116 @@ body.lessonpage .hero .meta,.lessonpage .progress{color:var(--muted)}
  #out{display:grid;grid-template-columns:1fr;gap:0}
  #out .paper{background:#fff!important;color:#000!important;box-shadow:none!important;border:0!important;padding:0!important;margin:0!important}
  #out h2,#out h3{color:#000!important;font-family:Georgia,serif}
- #out h3{break-before:page;margin-top:0}#out h3:first-of-type{break-before:auto}
  #out table{font-size:11pt;width:100%;border-collapse:collapse}
  #out td,#out th{border:1px solid #999!important;padding:4pt 6pt;color:#000!important}
  #out tr{break-inside:avoid}
  #out .rubric,#out .note{color:#333!important;font-size:10pt}
  @page{margin:14mm}
 }
+/* ===== Direction A: Cut-Paper Farm (Canvas DESIGN_SPEC + tokens.css). Urwin black+gold top bar kept. ===== */
+.lessonpage{--acc:var(--accent);--acc2:var(--accent-2);--body:21px;--story:24px;--h1:40px;--h3:24px;--tap:64px;--radius:22px;--hero-h:230px;--pad:28px;--gap:22px}
+body.lessonpage{background:var(--paper) url(../assets/ui/paper-tile.webp) repeat;background-size:512px;color:var(--ink);font-family:var(--font-ui,Inter,sans-serif);font-size:var(--body);padding-top:0}
+.lessonpage .top{max-width:none;margin:0 calc(-1*max(14px,env(safe-area-inset-left))) var(--gap);padding:max(10px,env(safe-area-inset-top)) 18px 10px;background:#0a0908;border-bottom:2px solid var(--gold)}
+.lessonpage main{max-width:1000px}
+.lessonpage .hero{position:relative;border-radius:var(--radius);min-height:var(--hero-h);display:flex;align-items:flex-end;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card);
+ background:linear-gradient(90deg,rgba(244,236,220,.96) 0,rgba(244,236,220,.7) 32%,transparent 55%),var(--hero-img) right center/cover,var(--card);margin-bottom:var(--gap)}
+.lessonpage .hero{text-align:left}.lessonpage .hero .ht{padding:var(--pad);max-width:50%}
+@media (max-width:900px){.lessonpage .hero{background:linear-gradient(90deg,rgba(244,236,220,.97) 0,rgba(244,236,220,.85) 45%,transparent 70%),var(--hero-img) 70% center/cover,var(--card)}}
+.lessonpage .kick{font:700 var(--kick-size,12px)/1.2 var(--font-ui);letter-spacing:var(--kick-track,.14em);text-transform:uppercase;color:var(--accent)}
+.lessonpage .hero h1{font:600 var(--h1)/1.08 var(--font-head);color:var(--ink);margin:8px 0 6px;letter-spacing:0}
+.lessonpage .hero .meta{font-size:13px;color:var(--muted);font-weight:600}
+.lessonpage .progress{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px;margin:0 2px var(--gap);font-weight:600}
+.lessonpage .bar{flex:1;height:8px;border-radius:9px;background:rgba(127,127,127,.2);overflow:hidden;min-width:80px}.lessonpage .bar i{display:block;height:100%;width:0;background:var(--accent-2);border-radius:9px;transition:width .3s}
+.lessonpage .chores,.lessonpage .paper,.lessonpage details.teacher{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-card);border-radius:var(--radius);color:var(--ink)}
+.lessonpage .chores{position:relative;padding:var(--pad)}
+.chead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.lessonpage .chores h2,.lessonpage .paper h2{font:600 calc(var(--h3) + 4px)/1.2 var(--font-head);color:var(--ink);letter-spacing:0;margin:0 0 10px}
+.lessonpage .chores .count{color:var(--muted);font-size:15px;font-weight:600}.lessonpage .chores .bar{margin:0 0 14px}
+.lessonpage .chlist{grid-template-columns:1fr 1fr}
+.lessonpage .chore{min-height:var(--tap);border-radius:calc(var(--radius) - 6px);background:#fff;border:2px solid var(--line);color:var(--ink);font:600 var(--body)/1.25 var(--font-ui);transition:transform .12s}
+.lessonpage .chore .bx{width:32px;height:32px;border:0;border-radius:0;background:none}
+.lessonpage .chore.on{background:var(--soft);border-color:transparent}.lessonpage .chore.on .bx{background:none}.lessonpage .chore.on .bx:after{content:none}
+.lessonpage .chore.on .lb{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+.stamp{position:absolute;right:18px;top:-18px;width:110px;transform:rotate(-8deg) scale(0);opacity:0;pointer-events:none}.stamp img{width:100%;height:auto}
+.stamp.show{transform:rotate(-8deg) scale(1);opacity:1}.stamp.pop{animation:stamp .3s ease-out}
+@keyframes stamp{0%{transform:rotate(-30deg) scale(1.6);opacity:0}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+.lessonpage .linkbtn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);border:1.5px solid var(--line);background:#fff;font:600 15px var(--font-ui);min-height:48px;border-radius:12px}
+.ico{width:20px;height:20px;vertical-align:middle}.ico.w{filter:invert(1);margin-left:6px}
+.lessonpage details.teacher summary{font-family:var(--font-head);color:var(--accent)}
+.lessonpage .paper{padding:var(--pad);margin-bottom:var(--gap)}
+.lessonpage .tag{background:var(--ink);color:#FFF6E6;border-radius:99px;font:700 11px var(--font-ui);letter-spacing:.08em}.lessonpage .tag.adv{background:var(--accent)}.lessonpage .tag.optional{background:var(--sage-deep,#55663F)}
+.banner img,.panel img{display:block;width:100%;height:auto;border-radius:var(--r-md,16px)}.banner{display:block;margin:4px 0 14px}
+.panel{aspect-ratio:4/3;max-height:52vh;margin:0 auto 14px;overflow:hidden;border-radius:var(--r-md,16px);background:var(--soft)}.panel picture,.panel img{height:100%;width:100%;object-fit:cover}
+.lessonpage .story{font:400 var(--story)/1.5 var(--font-head);min-height:4.5em}.lessonpage .story .pn{font:600 13px var(--font-ui);color:var(--muted)}.lessonpage .story p{margin:6px 0}
+.lessonpage .pager .dots i{width:8px;height:8px;background:var(--line);transition:width .2s}.lessonpage .pager .dots i.on{width:22px;border-radius:9px;background:var(--accent)}
+.lessonpage .btn{display:inline-flex;align-items:center;background:var(--accent);color:#fff;font:700 var(--body) var(--font-ui);min-height:var(--tap);border-radius:calc(var(--radius) - 6px);padding:0 26px}
+.lessonpage .q{border-top:1px solid var(--line);padding:18px 0 8px}
+.lessonpage .q .p{font:600 var(--h3)/1.25 var(--font-head);margin:0 0 12px}
+.lessonpage .opts{gap:12px}
+.lessonpage .opt{display:flex;align-items:center;gap:14px;padding:10px 18px;min-height:var(--tap);border-radius:calc(var(--radius) - 6px);border:2px solid var(--line);background:#fff;font:600 var(--body)/1.25 var(--font-ui);transition:transform .12s}
+.lessonpage .opt .ring{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid #9b8e80;background:#fff}
+.lessonpage .opt.on{background:var(--soft);border-color:var(--accent);box-shadow:none}.lessonpage .opt.on .ring{border:7px solid var(--accent)}
+.lessonpage .opt:active,.lessonpage .chore:active,.lessonpage .chip:active{transform:scale(.98)}
+.lessonpage :focus-visible{outline:none;box-shadow:var(--ring-focus)}
+.lessonpage textarea,.lessonpage input.num{border:2px solid var(--line);border-radius:calc(var(--radius) - 6px)}
+.lessonpage input.num{width:140px;min-height:var(--tap);font:700 28px var(--font-ui);text-align:center}
+.lessonpage textarea:focus,.lessonpage input:focus{outline:none;box-shadow:var(--ring-focus)}
+.fig{display:flex;justify-content:center;margin:4px 0 12px}.fig.clock img{width:320px;max-width:80%;height:auto}
+.coins{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px}.coin{height:auto}
+.coin.quarter{width:88px}.coin.nickel{width:78px}.coin.penny{width:70px}.coin.dime{width:66px}
+.thermos{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--barn-red,#9E2B25) repeating-linear-gradient(90deg,transparent 0 58px,rgba(0,0,0,.12) 58px 60px);border-radius:var(--r-md,16px);padding:18px;margin:8px 0}
+.thermos .q{background:rgba(255,251,244,.92);border-radius:14px;padding:14px;border:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.thermos .fig.thermo img{width:min(260px,100%);height:auto;max-height:520px}
+.lessonpage .sort .pool{gap:12px;margin:10px 0}
+.lessonpage .chip{position:relative;border:2px solid var(--line);background:#fff;border-radius:var(--r-md,16px);font:700 var(--body) var(--font-ui);min-height:var(--tap);transition:transform .12s,box-shadow .12s}
+.lessonpage .chip.icon,.lessonpage .chip.pumpkin{width:160px;height:160px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.chip.icon img{width:104px;height:104px;object-fit:contain}.chip.icon .lab{font-size:15px;line-height:1.1}
+.chip.pumpkin img{width:140px;height:auto}.chip.pumpkin .pn{position:absolute;left:0;right:0;top:50%;transform:translateY(-36%);font:700 30px var(--font-ui);color:var(--ink)}
+.lessonpage .chip.sel{border:3px solid var(--accent);background:#fff;color:var(--ink);box-shadow:var(--shadow-lift);transform:translateY(-3px)}
+.lessonpage .chip.placed{width:96px;height:96px;min-height:0}.chip.placed.icon img{width:60px;height:60px}.chip.placed .lab{font-size:11px}
+.chip.placed.pumpkin img{width:84px}.chip.placed.pumpkin .pn{font-size:20px}
+.lessonpage .bucket{border:2px solid var(--line);background:#fff;border-radius:var(--radius);padding:12px;overflow:hidden}
+.lessonpage .bucket.empty{border:2px dashed var(--line-strong)}.lessonpage .bucket.ready{box-shadow:var(--ring-focus)}
+.bart img{display:block;width:100%;height:auto;max-height:180px;object-fit:cover;border-radius:12px}
+.lessonpage .bucket h4{font:600 var(--h3) var(--font-head);color:var(--accent);margin:8px 0}
+.lessonpage .pad{border:2px dashed var(--line);border-radius:calc(var(--radius) - 6px);background-color:var(--paper-hi);background-position:center;background-size:cover;background-repeat:no-repeat}
+.lessonpage .pad.ruled{background-image:repeating-linear-gradient(0deg,transparent 0 31px,#E6DACA 31px 32px);background-size:auto}
+.lessonpage .pad.guide{aspect-ratio:5/1;height:auto;background-size:100% 100%}
+.tools{position:absolute;right:10px;top:10px;margin:0;display:flex;gap:8px}
+.tool{width:48px;height:48px;border-radius:12px;border:0;background:var(--soft);display:grid;place-items:center;cursor:pointer}.tool.on{box-shadow:0 0 0 2px var(--accent)}
+.below{display:flex;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}
+.guide.model{position:relative;aspect-ratio:5/1;background:center/100% 100% no-repeat;border-radius:12px;margin-bottom:10px;overflow:hidden}
+.guide.model .mtext{position:absolute;left:3%;bottom:22.5%;font-family:var(--font-cursive);font-size:clamp(18px,4.2vw,40px);line-height:1;color:var(--ink);white-space:nowrap}
+.seg{display:inline-flex;border:2px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px}
+.seg button{min-height:48px;min-width:96px;border:0;background:#fff;font:700 16px var(--font-ui);color:var(--muted);cursor:pointer}.seg button.on{background:var(--accent);color:#fff}
+.both.notebook textarea{background:var(--nb) center/cover;font:400 18px/32px var(--font-head);padding:14px 18px 14px 22%;min-height:260px;background-size:100% 100%}
+.wc{color:var(--muted);font-size:13px;margin-top:6px;font-weight:600}
+.lessonpage .hint{background:var(--soft);border-left:0;border-radius:12px}.lessonpage .enc{background:var(--soft);border-left:0;border-radius:12px}
+.lessonpage .saved{color:var(--correct,#3F6B3A);font:600 13px var(--font-ui)}
+.lessonpage .foot{margin:10px 0 30px}
+@media (max-width:700px){.lessonpage .hero .ht{max-width:80%}.lessonpage .chlist{grid-template-columns:1fr}.thermos{grid-template-columns:1fr}}
+.kid-savannah{--body:16px;--story:16px;--h1:30px;--h3:19px;--pad:20px;--gap:14px;--tap:52px;--radius:16px;--hero-h:170px}
+.kid-savannah input.num{font-size:22px}
+.kid-savannah .lessonpage .story,.kid-savannah .story{font-size:max(var(--story),18px)}
+/* key gate + key (DESIGN_SPEC: Password gate, Answer key) */
+body.keypage{background:#F7F5F0;color:var(--ink);padding-top:0}
+.keypage .top{max-width:none;margin:0 -14px 18px;padding:max(10px,env(safe-area-inset-top)) 18px 10px;background:#0a0908;border-bottom:2px solid var(--gold)}
+.keypage .lockbox{max-width:440px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-card);color:var(--ink);border-radius:22px}
+.keypage .lockbox h1{font:600 28px var(--font-head);color:var(--ink);margin:12px 0 6px}
+.locktile{width:64px;height:64px;border-radius:16px;background:#F3E2CC;display:grid;place-items:center;margin:0 auto}.locktile img{width:30px}
+.keypage .lockbox form{flex-direction:column}
+.pwrow{position:relative}.pwrow input{width:100%;padding-right:64px!important;background:#fff!important;color:var(--ink)!important;border:2px solid var(--line)!important}
+.showbtn{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.keypage .btn{width:100%;background:#A2461F;color:#fff}
+.keypage .err{color:#9E2B25}.shake{animation:shake .2s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.keypage #out .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:800px){.keypage #out .cols{grid-template-columns:1fr}}
+.keypage #out .kcol{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.keypage #out h2{font:600 26px var(--font-head);color:var(--ink);text-align:center}
+.keypage #out h3{font:600 22px var(--font-head);color:var(--ink);border-bottom:2px solid #A2461F;padding-bottom:6px;margin:0 0 8px}
+.keypage #out .kr{padding:8px 0;border-bottom:1px solid var(--line)}.keypage #out .kid{font:700 13px var(--font-ui);color:#A2461F}.keypage #out .kp{font-size:12px;color:var(--muted)}
+.keypage #out .ka{font:600 16px var(--font-ui)}.keypage #out .rubric,.keypage #out .note{font-size:13px;color:var(--muted)}
+.keypage .tbar{display:flex;gap:10px;justify-content:center;margin:12px 0}
+@media print{.keypage #out .cols{grid-template-columns:1fr 1fr!important;gap:10pt}.keypage #out .kcol{border:0!important;padding:0!important}
+ .keypage #out,.keypage #out *{font-family:Inter,Arial,sans-serif!important;font-size:10.5pt!important;color:#000!important}.keypage #out h3{border-color:#000!important;font-size:13pt!important}
+ .keypage #out section{break-after:page}.tbar{display:none!important}.lockbox{display:none!important}}
