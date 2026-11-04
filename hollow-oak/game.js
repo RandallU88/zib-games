@@ -29,7 +29,7 @@ function chapterCard(i){cur=i;const c=CH[i];if(Object.keys(chProg(c.id).solved).
 let dq=[],dDone=null;
 function talk(lines,then){dq=lines.slice();dDone=then||null;nextLine()}
 function nextLine(){const l=dq.shift();if(!l){$("dlg").classList.add("hide");$("pose").classList.add("hide");const f=dDone;dDone=null;f&&f();return}
- const [who,txt]=l,t=TEAM[who];$("dlg").classList.remove("hide");$("dlgImg").src=`${AS}characters/${who}-bust.webp`;$("dlgName").textContent=t.name.split(" ")[0];$("dlgTxt").textContent=txt;
+ const [who,txt]=l,t=TEAM[who];$("dlg").classList.remove("hide");$("dlgImg").src=`${AS}characters/${who}-bust.webp`;$("dlgName").textContent=t.guest?t.name:t.name.split(" ")[0];$("dlgTxt").textContent=txt;
  const pose={biscuit:"biscuit-sniff",june:"june-point",ole:"ole-idle",wes:"wes-point"}[who]||null;$("pose").classList.toggle("hide",!pose);if(pose)$("pose").src=`${AS}characters/${pose}.webp`;S.page()}
 $("dlg").onclick=nextLine;
 // ---------- scene ----------

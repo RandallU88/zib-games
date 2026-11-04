@@ -1,0 +1,48 @@
+/* Word Forge Speedway: design tokens (Canvas, Nov 2026)
+   Google Fonts: Alfa Slab One (400), Barlow Condensed (600, 700, 800)
+   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"> */
+:root{
+  /* stage */
+  --wf-stage-w:1180px; --wf-stage-h:820px;
+  --wf-race-h:500px;      /* race window, top of stage */
+  --wf-bench-h:320px;     /* forge bench panel, bottom of stage */
+  /* iron and steel */
+  --wf-iron:#1C1918;      /* letterbox, panels */
+  --wf-char:#2B2624;      /* card backs */
+  --wf-steel:#4A4F55; --wf-steel-hi:#9AA3AD; --wf-steel-lo:#2E3236;
+  /* forge heat */
+  --wf-ember:#FF7A1A;     /* selected tile, boost, player dot */
+  --wf-hot:#FFB648;       /* active slot */
+  --wf-molten:#FFD27A;    /* correct glow, logo */
+  --wf-white-hot:#FFF4D6; /* light text, live tile letters */
+  --wf-rust:#8E3B1F;
+  /* heritage */
+  --wf-red:#B3262E; --wf-red-hi:#D9414A; --wf-red-dk:#6E1218;   /* primary buttons, plates */
+  --wf-navy:#1F2F4F; --wf-navy-hi:#34507F;                      /* round icons */
+  --wf-cream:#F3E7CF; --wf-paper:#FBF2DE; --wf-ink:#2A1D14;     /* dialogue, prompt text */
+  --wf-gold:#D9A441; --wf-gold-hi:#F6D98A; --wf-gold-lo:#8A6420;
+  --wf-dirt:#9A5B34;
+  /* feedback */
+  --wf-correct:#5FB36A; --wf-correct-dk:#2F6E3A;
+  --wf-wrong:#D04A3A; --wf-cool:#6E8499;
+  /* type */
+  --wf-font-display:"Alfa Slab One", Georgia, serif;          /* titles, tile letters, place */
+  --wf-font-body:"Barlow Condensed", "Arial Narrow", sans-serif; /* HUD, buttons, dialogue */
+  --wf-size-title:56px; --wf-size-h2:34px; --wf-size-hud:28px; --wf-size-name:22px;
+  --wf-size-dialogue:28px; --wf-size-prompt:26px; --wf-size-button:30px; --wf-size-tile:56px;
+  --wf-line:1.35;
+  /* shape */
+  --wf-radius-sm:10px; --wf-radius-md:16px; --wf-radius-lg:24px; --wf-radius-pill:999px;
+  --wf-shadow:0 4px 8px rgba(10,6,5,.5);
+  --wf-glow-ember:0 0 14px rgba(255,122,26,.85);
+  --wf-glow-molten:0 0 16px rgba(255,210,122,.9);
+  /* parallax (multiples of player speed) */
+  --wf-speed-far:.2; --wf-speed-track:1; 
+  /* motion */
+  --wf-dur-press:90ms; --wf-dur-tile:160ms; --wf-dur-boost:1200ms;
+  --wf-ease:cubic-bezier(.2,.8,.2,1);
+}
+.wf-tile-letter{font-family:var(--wf-font-display);font-size:var(--wf-size-tile);color:var(--wf-white-hot);
+  -webkit-text-stroke:1.6px #120C08;paint-order:stroke;text-shadow:0 2.5px 0 rgba(0,0,0,.55)}
+.wf-hud-num{font-family:var(--wf-font-body);font-weight:800;font-size:var(--wf-size-hud);color:var(--wf-white-hot)}
+.wf-dialogue{font-family:var(--wf-font-body);font-weight:700;font-size:var(--wf-size-dialogue);line-height:var(--wf-line);color:var(--wf-ink)}

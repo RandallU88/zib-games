@@ -1,0 +1,49 @@
+/* Clock Tower and Market Street: design tokens (Canvas, Nov 2026)
+   Google Fonts: Ultra (400), Zilla Slab (500, 600, 700)
+   <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet"> */
+:root{
+  /* stage */
+  --ct-stage-w:1180px; --ct-stage-h:820px;
+  /* palette */
+  --ct-dusk:#1B2A3A;     /* letterbox, menus, HUD pills */
+  --ct-navy:#22314F;     /* hour hand, tower numerals, headings */
+  --ct-ink:#2A1C14;      /* text, outlines */
+  --ct-brick:#A8462F;    /* primary action, minute hand, logo */
+  --ct-brick-hi:#C9644A;
+  --ct-brick-dk:#6F2A1C;
+  --ct-teal:#1F6F6B;     /* secondary action, icons, name plates */
+  --ct-teal-hi:#2F918B;
+  --ct-teal-dk:#124A47;
+  --ct-butter:#F2C14E;   /* highlights, score star */
+  --ct-cream:#FFF5E1;    /* light text on color */
+  --ct-paper:#F4E6C8;    /* dialogue, tags, cards */
+  --ct-brass:#CFA14A;    /* trim, frames */
+  --ct-brass-hi:#F4D88A;
+  --ct-brass-lo:#8C6623;
+  --ct-copper:#B87333;   /* 1 cent */
+  --ct-silver:#C9CED6;   /* 5, 10, 25 cents */
+  --ct-digital:#FF6A3D;  /* digital clock segments */
+  --ct-success:#4E8B4A;
+  --ct-error:#C0503A;
+  /* bills */
+  --ct-bill1:#E3ECD9; --ct-bill1-ink:#2F5D4A;
+  --ct-bill5:#E1E4F0; --ct-bill5-ink:#33406E;
+  --ct-bill10:#F4E3CF; --ct-bill10-ink:#7A3F1E;
+  /* type */
+  --ct-font-display:"Ultra", Georgia, serif;          /* titles, prices on tags */
+  --ct-font-body:"Zilla Slab", Georgia, serif;        /* dialogue, buttons, HUD numbers */
+  --ct-size-title:56px; --ct-size-h2:34px; --ct-size-name:22px;
+  --ct-size-dialogue:26px; --ct-size-body:20px; --ct-size-hud:28px; --ct-size-tag:24px;
+  --ct-line:1.4;
+  /* shape */
+  --ct-radius-sm:10px; --ct-radius-md:18px; --ct-radius-lg:26px; --ct-radius-pill:999px;
+  --ct-border:3px solid var(--ct-ink);
+  --ct-trim:2px solid var(--ct-brass);
+  --ct-shadow:0 6px 12px rgba(18,10,6,.45);
+  --ct-glow:0 0 18px 6px rgba(242,193,78,.6);   /* drop target, correct coin */
+  --ct-tap-min:48px;
+  /* motion */
+  --ct-ease:cubic-bezier(.2,.8,.2,1);
+  --ct-press:translateY(3px);
+  --ct-hand-snap:150ms;  /* minute hand snaps to 1 min (grade 5) or 5 min (grade 2) */
+}
