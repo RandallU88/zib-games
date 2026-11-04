@@ -7,11 +7,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Zib Games">
-<meta name="theme-color" content="#070b1f">
-<link rel="apple-touch-icon" href="icon-180.png">
-<link rel="icon" href="icon-180.png">
-<title>Zib's Space Games</title>
+<meta name="apple-mobile-web-app-title" content="Urwin Homeschool">
+<meta name="theme-color" content="#0a0908">
+<link rel="apple-touch-icon" href="urwin-icon-180.png">
+<link rel="icon" href="urwin-icon-180.png">
+<meta name="description" content="Urwin Homeschool: learning games and lessons.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<title>Urwin Homeschool</title>
 <style>
 :root{--text:#eef1ff;--muted:#aab2da;--line:rgba(255,255,255,.16);--green:#5ef0a0;--violet:#b69cff;--gold:#ffd166;
   --font:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
@@ -83,23 +86,27 @@ a.type .pt{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
 a.type .new{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#a6caf0}
 a.type .go{margin-top:0;background:#a6caf0;color:#0a246a;white-space:nowrap}
 .tip{font-size:15px;color:var(--muted);font-weight:600;max-width:560px;line-height:1.45}
+
+/* Urwin Homeschool theme */
+:root{--ugold:#C9A04A;--ugold2:#E2C06E;--serif:"Cinzel","Trajan Pro","Times New Roman",Georgia,serif}
+html,body{background:#0a0908}
+body{background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,160,74,.16),transparent 65%),linear-gradient(180deg,#0a0908 0%,#141110 60%,#1b1712 100%);background-attachment:fixed;color:#f5efe2}
+.brand{margin:4px 0 0;line-height:0;background:none;color:inherit}
+.logo{width:min(320px,82vw);height:auto;filter:drop-shadow(0 10px 24px rgba(0,0,0,.6)) drop-shadow(0 0 18px rgba(201,160,74,.18))}
+p.lede{font-family:var(--serif);font-weight:600;letter-spacing:.03em;color:var(--ugold2);font-size:clamp(16px,2.3vw,20px)}
+.rule{display:flex;align-items:center;gap:12px;width:min(420px,80%);color:var(--ugold);margin:2px 0 8px}
+.rule:before,.rule:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--ugold),transparent)}
+a.game{border:1.5px solid rgba(201,160,74,.55)!important;box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 0 1px rgba(226,192,110,.08)}
+a.game .t{font-family:var(--serif);font-weight:700;letter-spacing:.02em;color:#f3dfa8}
+.d{color:#e6dccb}
+.tip{color:#b9ab8c}
 </style>
 </head>
 <body>
-<div id="sky"></div><div class="moon"></div>
-<svg class="land" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M0 190 L110 192 L140 140 L320 138 L352 196 L500 204 L548 108 L742 106 L780 200 L900 196 L930 162 L1060 160 L1092 204 L1200 200 L1200 300 L0 300Z" fill="#1b1338"/>
-  <path d="M0 236 Q260 214 560 240 T1200 228 L1200 300 L0 300Z" fill="#110b26"/>
-  <g fill="#e8742a"><ellipse cx="180" cy="262" rx="14" ry="10"/><ellipse cx="860" cy="258" rx="15" ry="11"/><ellipse cx="560" cy="272" rx="12" ry="9"/></g>
-</svg>
 <main>
-  <svg class="ufo" viewBox="0 0 200 130" aria-hidden="true"><defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ef0a0" stop-opacity=".55"/><stop offset="1" stop-color="#5ef0a0" stop-opacity="0"/></linearGradient><linearGradient id="h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3e8ff"/><stop offset="1" stop-color="#7d86b3"/></linearGradient></defs>
-    <path d="M70 78 L48 130 L152 130 L130 78Z" fill="url(#b)"/><path d="M64 52 Q100 4 136 52Z" fill="rgba(150,220,255,.45)" stroke="#bfe9ff" stroke-width="2"/>
-    <g transform="translate(100 40) scale(.24)"><path d="M0-40c22 0 34 15 34 34 0 22-17 38-34 38S-34 16-34-6c0-19 12-34 34-34z" fill="#5ef0a0"/><ellipse cx="-13" cy="-4" rx="8" ry="12" fill="#0b1026"/><ellipse cx="13" cy="-4" rx="8" ry="12" fill="#0b1026"/></g>
-    <ellipse cx="100" cy="64" rx="92" ry="22" fill="url(#h)"/><ellipse cx="100" cy="58" rx="92" ry="13" fill="#eef1ff" opacity=".55"/>
-    <g fill="#ffd166"><circle cx="40" cy="66" r="6.5"/><circle cx="70" cy="66" r="6.5"/><circle cx="100" cy="66" r="6.5"/><circle cx="130" cy="66" r="6.5"/><circle cx="160" cy="66" r="6.5"/></g></svg>
-  <h1>Zib's Space Games</h1>
-  <p class="lede">Zib the alien needs your help over the New Mexico desert. Pick a game to play.</p>
+  <h1 class="brand"><picture><source type="image/webp" srcset="urwin-logo.webp 1x, urwin-logo@2x.webp 2x"><img class="logo" src="urwin-logo.png" srcset="urwin-logo.png 1x, urwin-logo@2x.png 2x" width="320" height="179" alt="Urwin Homeschool"></picture></h1>
+  <p class="lede">Welcome to class! Pick a lesson or game to get started.</p>
+  <div class="rule" aria-hidden="true"><span>&#10022;</span></div>
   <div class="games">
     <a class="game type" href="typing-class.html"><span class="ic">⌨️</span><span class="pt"><span class="new">New: learn to type</span><span class="t">Keyboard Academy</span><span class="d">Old school typing class. Learn home row and touch typing step by step, earn stars and certificates, then play Shark Attack and Speedway 60. Needs a keyboard.</span></span><span class="go">Play ›</span></a>
     <a class="game patch" href="pumpkin-patch-quest.html"><span class="ic">🎃</span><span class="pt"><span class="new">New for Halloween</span><span class="t">Pumpkin Patch Quest</span><span class="d">Help Hazel the friendly witch get the Harvest Festival ready: math, reading, cursive, and stories.</span></span><span class="go">Play ›</span></a>
@@ -115,9 +122,5 @@ a.type .go{margin-top:0;background:#a6caf0;color:#0a246a;white-space:nowrap}
   </div>
   <p class="tip">Tip: in Safari, tap Share, then "Add to Home Screen" to get a game icon. Progress saves on this iPad.</p>
 </main>
-<script>
-(function(){ var s=document.getElementById('sky'); for(var i=0;i<90;i++){ var d=document.createElement('div'); d.className='st'; var z=Math.random()<.85?(Math.random()<.5?1:2):3;
-  d.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*100)+'%;top:'+(Math.random()*70)+'%;animation-delay:'+(Math.random()*4).toFixed(2)+'s'; s.appendChild(d); } })();
-</script>
 </body>
 </html>
