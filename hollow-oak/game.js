@@ -61,7 +61,7 @@ function puzzle(k){const c=CH[cur],P=PZ[track][c.id][k],spot=c.spots[k];let trie
  const say=(t,bad)=>{const m=$("msg");m.className="msg"+(bad?" bad":"");m.textContent=t};
  const wrong=()=>{tries++;S.bad();say(tries>1?"Not yet. Hint: "+HINT[P.t]:"Not quite. Try again!",true)};
  const right=()=>{S.good();const p=chProg(c.id);if(!(k in p.solved))p.solved[k]=tries;E.save();
-  ov(`<div class="found"><div class="stampTxt">Clue found!</div><img class="it" src="${clueImg(spot.item)}" alt=""><p>${esc(c.clues[k])}</p><button class="imgbtn next inl" id="ok" aria-label="Next"></button></div>`,"",()=>$("ok").onclick=()=>{S.clue();closeOv();scene(cur)})};
+  ov(`<div class="found"><div class="stampTxt">Clue found!</div><div class="itGlow"><img class="it" src="${clueImg(spot.item)}" alt="${esc(spot.label)} clue"></div><p>${esc(c.clues[k])}</p><button class="imgbtn next inl" id="ok" aria-label="Next"></button></div>`,"card",()=>$("ok").onclick=()=>{S.clue();closeOv();scene(cur)})};
  let body="",wire=()=>{};
  if(P.t==="cipher"){const sl=Array(P.answer.length).fill(null);const tiles=(P.answer+P.extra).split("").sort(()=>Math.random()-.5);
   body=`<div class="key">${L26.split("").map((x,i)=>`${x}=${i+1}`).join(" ")}</div><div class="codes">${P.codes.map((q,i)=>`<div>${esc(q)}<span class="sl" data-s="${i}"></span></div>`).join("")}</div><div class="tiles">${tiles.map((x,i)=>`<button class="pbtn" data-t="${i}">${x}</button>`).join("")}</div>`;

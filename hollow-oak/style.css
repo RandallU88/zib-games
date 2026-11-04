@@ -109,8 +109,12 @@ button{touch-action:manipulation;font-family:var(--ho-font-display);cursor:point
 .lg th{font:800 20px var(--ho-font-display);padding:6px 10px}
 .lg td button{width:84px;height:62px;font:800 34px var(--ho-font-display);background:var(--ho-cream);border:2px solid var(--ho-walnut);padding:0}
 .clues{margin:4px 0;padding-left:26px}.clues li{font:22px/1.45 var(--ho-font-body)}
-.found{text-align:center}.found img.it{height:160px;margin:10px}.found p{font:24px/1.45 var(--ho-font-body);max-width:780px;margin:0 auto 14px}
-.found .stampTxt{font:800 40px var(--ho-font-display);color:var(--ho-moss)}
+.panel.card{left:310px;width:560px;top:50%;height:auto;max-height:760px;transform:translateY(-50%);padding:24px}
+.found{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.itGlow{width:220px;height:220px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle,rgba(255,214,140,.5),rgba(255,181,71,.18) 55%,transparent 72%);box-shadow:var(--ho-glow)}
+.found img.it{max-height:200px;max-width:200px}
+.found p{font:20px/1.4 var(--ho-font-body);margin:0;max-width:512px}
+.found .stampTxt{font:800 34px var(--ho-font-display);color:var(--ho-moss)}
 /* notebook pages */
 .nbL{position:absolute;left:80px;top:62px;width:390px;height:560px;overflow:auto}
 .nbR{position:absolute;left:560px;top:62px;width:300px;height:560px;overflow:auto}
