@@ -108,7 +108,7 @@ function pad(q,s){const w=el('div','padwrap');const write=q.type==='pencil_write
  mk('undo-2','Undo',()=>{const d=hist.pop();if(d==null)return;const r=pd.getBoundingClientRect();ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);ctx.restore();
   const im=new Image();im.onload=()=>{ctx.globalCompositeOperation='source-over';ctx.drawImage(im,0,0,r.width,r.height);save(q.id,{drawing:cv.toDataURL('image/png')})};im.src=d});
  const clr=el('button','linkbtn','Clear page');clr.type='button';clr.onclick=()=>{if(!confirm('Erase the whole page?'))return;hist.push(cv.toDataURL());ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);ctx.restore();save(q.id,{drawing:''})};
- pd.append(tools);const below=el('div','below');below.append(clr,el('span','small','Saves by itself as you draw.'));w.append(below);
+ if(write){tools.classList.add('row');w.insertBefore(tools,pd)}else pd.append(tools);const below=el('div','below');below.append(clr,el('span','small','Saves by itself as you draw.'));w.append(below);
  requestAnimationFrame(fit);let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(fit,200)});return w}
 function both(q,s){const w=el('div','both'+(s.notebook?' notebook':''));if(s.notebook)w.style.setProperty('--nb','url("'+AD+s.notebook+'.webp")');
  const mode=el('div','seg');mode.setAttribute('role','tablist');const tb=el('button',null,'Type'),pb=el('button',null,'Write');tb.type=pb.type='button';
