@@ -7,6 +7,6 @@ return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b
 f.addEventListener('submit',async ev=>{ev.preventDefault();err.hidden=true;const btn=f.querySelector('button');btn.disabled=true;btn.textContent='Checking...';
 try{const keys=await (await fetch('keys.json',{cache:'no-store'})).json();const ids=Object.keys(keys).sort((a,c)=>keys[c].num-keys[a].num);let h='';
 for(const id of ids){h+='<section class="paper">'+await dec(keys[id].enc,pw.value)+'</section>';}
-out.innerHTML=h+'<p class="foot"><button class="btn" onclick="location.reload()">Lock again</button></p>';out.hidden=false;lock.hidden=true;pw.value='';}
+out.innerHTML=h+'<p class="foot"><button class="btn" onclick="window.print()">Print</button> <button class="btn" onclick="location.reload()">Lock again</button></p>';out.hidden=false;lock.hidden=true;pw.value='';}
 catch(e){err.hidden=false;}btn.disabled=false;btn.textContent='Unlock';});
 })();

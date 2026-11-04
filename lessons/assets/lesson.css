@@ -121,3 +121,17 @@ body.lessonpage .hero .meta,.lessonpage .progress{color:var(--muted)}
 .lessonpage .model{font-family:"Playwrite US Trad","Snell Roundhand","Apple Chancery",cursive;font-size:clamp(24px,4vw,34px);line-height:1.8}
 .lessonpage .hint{background:var(--soft);border-left-color:var(--acc)}.lessonpage .enc{background:#eef1e6;border-left-color:#7D8F69}
 .lessonpage .saved{color:#55663F}
+@media print{
+ body,html{background:#fff!important;color:#000!important;padding:0!important}
+ .top,#lock,.foot,.back{display:none!important}
+ main.key{max-width:none}
+ #out{display:grid;grid-template-columns:1fr;gap:0}
+ #out .paper{background:#fff!important;color:#000!important;box-shadow:none!important;border:0!important;padding:0!important;margin:0!important}
+ #out h2,#out h3{color:#000!important;font-family:Georgia,serif}
+ #out h3{break-before:page;margin-top:0}#out h3:first-of-type{break-before:auto}
+ #out table{font-size:11pt;width:100%;border-collapse:collapse}
+ #out td,#out th{border:1px solid #999!important;padding:4pt 6pt;color:#000!important}
+ #out tr{break-inside:avoid}
+ #out .rubric,#out .note{color:#333!important;font-size:10pt}
+ @page{margin:14mm}
+}

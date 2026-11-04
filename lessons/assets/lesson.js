@@ -44,7 +44,7 @@ function story(s){const w=el('div');const st=el('div','story');const pager=el('d
   nx.textContent=i==s.pages.length-1?'Done reading \u2713':'Next \u203a';sv('story.'+s.id,i)};
  pv.onclick=()=>{if(i>0){i--;r()}};nx.onclick=()=>{if(i<s.pages.length-1){i++;r()}else{sv('storyDone.'+s.id,true);nx.textContent='Read! \u2713'}};
  pager.append(pv,dots,nx);w.append(st,pager);r();return w}
-function question(q){const w=el('div','q');w.dataset.qid=q.id;w.dataset.type=q.type;const p=el('p','p');p.append(el('span','qid',q.id),document.createTextNode(q.prompt));
+function question(q){const w=el('div','q');w.dataset.qid=q.id;w.dataset.type=q.type;const p=el('p','p');p.append(document.createTextNode(q.prompt));w.id='q-'+q.id;
  const s=el('span','saved','Saved');s.dataset.saved=q.id;p.append(s);w.append(p);
  const f={multiple_choice:mc,short_typed:typed,number_typed:num,tap_to_sort:sort,pencil_draw:pad,pencil_write:pad}[q.type];
  if(!f){w.append(el('p','small','Unsupported question type: '+q.type));return w}
