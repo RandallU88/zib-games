@@ -1,0 +1,241 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes"><title>Clock Tower and Market Street</title>
+<link rel="apple-touch-icon" href="../urwin-icon-180.png">
+<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html,body{margin:0;height:100%;background:#0b0b0d;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#stage{position:absolute;left:0;top:0;width:1180px;height:820px;transform-origin:0 0;overflow:hidden;background:var(--ct-dusk);font-family:var(--ct-font-body);color:var(--ct-cream)}
+.scr{position:absolute;inset:0;display:none}.scr.on{display:block}
+.bg{position:absolute;inset:0;width:1180px;height:820px;object-fit:cover}
+.dim{position:absolute;inset:0;background:rgba(8,10,16,.55)}
+.glass{position:absolute;background:rgba(14,14,18,.82);border:1px solid #C9A04A;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+h2{font-family:var(--ct-font-display);font-weight:400;color:#f3dfa8;margin:0;font-size:30px;letter-spacing:.02em}
+.pcard{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:190px;height:150px;margin:8px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(201,160,74,.7);cursor:pointer;font-size:26px;font-weight:700;color:#f3dfa8;vertical-align:top}
+.pcard .av{font-size:44px}.pcard small{font-size:16px;color:#d9cfb8;font-weight:600}
+.pcard:active,.lcard:active{transform:scale(.97)}
+.lcard{position:absolute;width:200px;height:150px;border-radius:14px;background:rgba(14,14,18,.85);border:1px solid #C9A04A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;text-align:center}
+.lcard b{font-size:26px;color:#f3dfa8}.lcard span{font-size:16px;color:#e9dfc9;padding:0 10px}.lcard.lock{opacity:.4;cursor:default}
+.stars img{width:30px;height:30px}
+.ibtn{position:absolute;width:64px;height:68px;cursor:pointer;background-size:100% 100%}
+.btn{position:absolute;width:280px;height:80px;background:url(a/ui_btn-blank-gold-normal.webp) 0 0/100% 100%;border:0;font:700 30px var(--ct-font-body);color:var(--ct-ink);cursor:pointer;padding:0 0 6px}
+.btn:active{background-image:url(a/ui_btn-blank-gold-pressed.webp)}
+.ibtn:active,.imgbtn:active{transform:translateY(3px)}
+.imgbtn{position:absolute;width:280px;height:80px;border:0;background-size:100% 100%;cursor:pointer;background-color:transparent}
+.pill{position:absolute;width:220px;height:64px;background-size:100% 100%}
+.pill b{position:absolute;left:72px;right:10px;top:0;line-height:64px;text-align:center;font-size:28px;font-weight:700;color:var(--ct-cream)}
+/* task panel: solid readable panel over a dark scrim */
+#scrim{position:absolute;inset:0;background:rgba(8,10,16,.5)}
+#panel{position:absolute;left:250px;top:92px;width:900px;height:500px;transform-origin:0 0;background:rgba(20,22,30,.92);border:1px solid #C9A04A;border-radius:20px;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+#keeper{position:absolute;left:20px;bottom:150px;height:390px;pointer-events:none;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+#dlg{position:absolute;left:140px;top:612px;width:900px;height:200px;background:url(a/ui_dialogue-box.webp) 0 0/100% 100%}
+#dlgP{position:absolute;left:32px;top:44px;width:136px;height:136px;border-radius:50%;object-fit:cover;object-position:top}
+#dlgN{position:absolute;left:190px;top:8px;width:230px;height:44px;line-height:44px;text-align:center;font-size:22px;font-weight:700;color:var(--ct-cream)}
+#dlgT{position:absolute;left:190px;top:56px;width:690px;height:126px;display:flex;align-items:center;font-size:31px;font-weight:700;color:var(--ct-ink);line-height:1.2}
+.clock{position:absolute;touch-action:none;cursor:grab}
+.clock img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ans{position:absolute;width:280px;height:80px}
+.tag{position:absolute;width:150px;height:96px;background:url(a/props_price-tag.webp) 0 0/100% 100%}
+.tag b{position:absolute;left:50px;top:14px;width:90px;height:64px;display:flex;align-items:center;justify-content:center;font:400 24px var(--ct-font-display);color:var(--ct-ink)}
+.lab{position:absolute;font-size:22px;font-weight:700;color:#f3dfa8;text-align:center}
+#tray{position:absolute;border:3px dashed #C9A04A;border-radius:18px;background:rgba(255,245,225,.06)}
+#tray.hot{background:rgba(242,193,78,.2)}
+.pocket{position:absolute;border:2px solid rgba(201,160,74,.9);border-radius:12px;background:rgba(10,10,14,.72);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;touch-action:none}
+.pocket span{font-size:18px;font-weight:700;color:#f3dfa8;margin-top:2px}
+.money{position:absolute;touch-action:none;cursor:pointer;filter:drop-shadow(0 3px 3px rgba(0,0,0,.5))}
+.drag{position:absolute;pointer-events:none;z-index:50;filter:drop-shadow(0 8px 8px rgba(0,0,0,.6))}
+.shake{animation:sh .3s 2}@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+#fb{position:absolute;left:250px;top:30px;width:900px;text-align:center;font:400 34px var(--ct-font-display);pointer-events:none;text-shadow:0 3px 6px #000}
+.mini{position:absolute;font-size:24px;color:#e9dfc9;text-align:center;font-weight:600}
+#rot{display:none;position:fixed;left:0;right:0;bottom:12px;text-align:center;color:#f3dfa8;font:600 16px Georgia,serif;z-index:9;pointer-events:none}
+@media (orientation:portrait){#rot{display:block}}
+</style></head><body>
+<div id="stage">
+ <div class="scr on" id="s-title"><img class="bg" src="a/scenes_title-bg.webp" alt="">
+  <img src="a/logo_clock-tower-logo.webp" alt="Clock Tower and Market Street" style="position:absolute;left:340px;top:20px;width:500px">
+  <div class="glass" style="left:190px;top:280px;width:800px;height:300px;text-align:center;padding-top:20px;box-sizing:border-box">
+   <h2>Who is playing?</h2><div id="profs" style="margin-top:10px"></div></div>
+  <a href="../" class="ibtn" style="left:16px;top:16px;background-image:url(a/ui_icon-home-normal.webp)" aria-label="Home"></a>
+ </div>
+ <div class="scr" id="s-levels"><img class="bg" src="a/scenes_bg-clock-square.webp" alt=""><div class="dim"></div>
+  <div class="glass" style="left:90px;top:40px;width:1000px;height:90px;display:flex;align-items:center;justify-content:center"><h2 id="lvTitle"></h2></div>
+  <div id="lvGrid"></div>
+  <div class="ibtn" id="lvBack" style="left:16px;top:16px;background-image:url(a/ui_icon-home-normal.webp)"></div>
+ </div>
+ <div class="scr" id="s-play"><img class="bg" id="pbg" src="" alt=""><div id="scrim"></div>
+  <div id="tower" class="clock" style="left:687.5px;top:166.5px;width:92px;height:92px;display:none;cursor:default"><img src="a/clock_tower-face.webp" alt=""><img id="tH" src="a/clock_hand-hour.webp" alt=""><img id="tM" src="a/clock_hand-minute.webp" alt=""><img src="a/clock_hand-cap.webp" alt=""></div>
+  <img id="keeper" src="" alt="">
+  <div id="panel"></div>
+  <div id="dlg"><img id="dlgP" src="" alt=""><div id="dlgN"></div><div id="dlgT"></div></div>
+  <div class="ibtn" id="pHome" style="left:16px;top:12px;background-image:url(a/ui_icon-home-normal.webp)"></div>
+  <div class="pill" style="left:930px;top:14px;background-image:url(a/ui_hud-score.webp)"><b id="hScore">0</b></div>
+  <div class="pill" style="left:700px;top:14px;background-image:url(a/ui_hud-timer.webp)"><b id="hTask">1 / 8</b></div>
+  <div id="fb"></div>
+ </div>
+ <div class="scr" id="s-res"><img class="bg" id="rbg" src="a/scenes_bg-clock-square.webp" alt=""><div class="dim"></div>
+  <div style="position:absolute;left:290px;top:120px;width:600px;height:460px;background:url(a/ui_level-complete-card.webp) 0 0/100% 100%">
+   <div id="rStars" style="position:absolute;left:0;right:0;top:160px;text-align:center"></div>
+   <div id="rText" style="position:absolute;left:40px;right:40px;top:300px;text-align:center;font-size:28px;font-weight:700;color:var(--ct-ink)"></div>
+  </div>
+  <button class="btn" id="rAgain" style="left:300px;top:610px">Play again</button>
+  <button class="imgbtn" id="rNext" style="left:600px;top:610px;background-image:url(a/ui_btn-next-normal.webp)" aria-label="Next"></button>
+ </div>
+</div>
+<div id="rot">Turn the iPad sideways for the biggest view.</div>
+<script>
+"use strict";
+const $=id=>document.getElementById(id), st=$("stage");
+let S=1;function fit(){const w=innerWidth,h=innerHeight;S=Math.min(w/1180,h/820);st.style.transform=`translate(${(w-1180*S)/2}px,${(h-820*S)/2}px) scale(${S})`}
+addEventListener("resize",fit);fit();
+const sp=e=>{const r=st.getBoundingClientRect();return{x:(e.clientX-r.left)/S,y:(e.clientY-r.top)/S}};
+function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.toggle("on",s.id===id))}
+// shared profile store (Keyboard Academy). Read it, add only our own games.clockTower key.
+const SK="kbAcademy.v1";
+function loadDB(){let d=null;try{d=JSON.parse(localStorage.getItem(SK)||"null")}catch(e){}
+ if(!d||!d.profiles)d={profiles:{Logan:{av:"🦖",les:{},best:0,acc:0,games:{}},Savannah:{av:"🦄",les:{},best:0,acc:0,games:{}}},muted:false};
+ if(!d.profiles.Parent)d.profiles.Parent={av:"🧑‍🏫",les:{},best:0,acc:0,games:{},test:true};return d}
+let me=null,grade=2;
+function prog(){const d=loadDB(),p=d.profiles[me];p.games=p.games||{};return p.games.clockTower||(p.games.clockTower={g2:{},g5:{}})}
+function saveProg(lv,stars){const d=loadDB(),p=d.profiles[me];p.games=p.games||{};const g=p.games.clockTower||(p.games.clockTower={g2:{},g5:{}});const k="g"+grade;g[k]=g[k]||{};
+ g[k][lv]=Math.max(g[k][lv]||0,stars);localStorage.setItem(SK,JSON.stringify(d))}
+function gradeFor(n){return /savannah/i.test(n)?5:/logan/i.test(n)?2:null}
+function titleScr(){show("s-title");const d=loadDB();
+ $("profs").innerHTML=Object.entries(d.profiles).map(([n,p])=>{const g=gradeFor(n);return `<div class="pcard" data-n="${encodeURIComponent(n)}"><span class="av">${p.av||"⭐"}</span>${n.replace(/</g,"")}<small>${g?"Grade "+g:"Pick a grade"}</small></div>`}).join("");
+ $("profs").querySelectorAll(".pcard").forEach(c=>c.onclick=()=>{me=decodeURIComponent(c.dataset.n);const g=gradeFor(me);
+  if(g){grade=g;levels()}else pickGrade()})}
+function pickGrade(){$("profs").innerHTML=`<div class="pcard" id="pg2"><span class="av">🕒</span>Grade 2<small>Logan's version</small></div><div class="pcard" id="pg5"><span class="av">⏱️</span>Grade 5<small>Savannah's version</small></div>`;
+ $("pg2").onclick=()=>{grade=2;levels()};$("pg5").onclick=()=>{grade=5;levels()}}
+const LV={2:[["Hours and Halves","Clock: o'clock and half past. Coins to $1."],["Quarter Hours","Clock: quarter past and quarter to. Coins to $1."],["Five Minutes","Clock: 5 minute steps. Coins and $1 bills."],["Big Spender","5 minute clocks. Bills and coins to $10."],["Market Day","Everything mixed, up to $10."]],
+ 5:[["To the Minute","Set and read clocks to the minute. Pay up to $10."],["Elapsed Time","How much later? Make change from $5."],["Change from $10","Elapsed minutes. Make change from $10."],["Long Shifts","Elapsed time across hours. Change from $10."],["Tower Master","Everything mixed."]]};
+function levels(){show("s-levels");const g=prog()["g"+grade]||{};$("lvTitle").textContent=`${me}: pick a level (Grade ${grade})`;
+ $("lvGrid").innerHTML=LV[grade].map((l,i)=>{const n=i+1,open=n==1||g[n-1]>0,s=g[n]||0;const x=70+i*212;
+  return `<div class="lcard ${open?"":"lock"}" data-l="${n}" style="left:${x}px;top:270px;height:260px"><b>Level ${n}</b><span style="font-weight:700;color:#f3dfa8">${l[0]}</span><span>${l[1]}</span><div class="stars">${[1,2,3].map(k=>`<img src="a/ui_star-${k<=s?"reward":"empty"}.webp" alt="">`).join("")}</div>${open?"":"<span>Locked</span>"}</div>`}).join("");
+ $("lvGrid").querySelectorAll(".lcard:not(.lock)").forEach(c=>c.onclick=()=>start(+c.dataset.l))}
+$("lvBack").onclick=titleScr;$("pHome").onclick=levels;
+// ---------- task generation ----------
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)), pick=a=>a[R(0,a.length-1)];
+const fmtT=(h,m)=>`${h}:${String(m).padStart(2,"0")}`, money=c=>"$"+(c/100).toFixed(2);
+function randTime(step){let h=R(1,12),m=step==30?pick([0,30]):step==15?pick([0,15,30,45]):R(0,59/step|0)*step;if(h==12&&m==0)h=R(1,11);return{h,m}}
+function stepFor(l){return grade==5?1:[30,15,5,5,5][l-1]}
+function payRange(l){return grade==2?[[5,95],[10,99],[105,300],[200,1000],[50,1000]][l-1]:[[150,1000],[100,450],[150,950],[110,990],[100,990]][l-1]}
+function makeTasks(l){const T=[],scenes=[["bg-clock-square","gus"],["bg-bakery","hazel"],["bg-general-store","walt"],["bg-toy-shop","iris"],["bg-mail-counter","gus"]];
+ let types;
+ if(grade==2)types=["set","pay","read","count","set","pay","read","pay"];
+ else if(l==1)types=["set","pay","read","pay","set","pay","read","pay"];
+ else types=["elapsed","change","set","change","elapsed","pay","elapsed","change"];
+ if(grade==5&&l==5)types=["set","change","elapsed","pay","read","change","elapsed","change"];
+ types.forEach((t,i)=>{const timeT=["set","read","elapsed"].includes(t);const sc=timeT?(i%2?scenes[1]:scenes[0]):pick(scenes.slice(2));
+  const o={t,bg:sc[0],who:sc[1]};
+  if(t=="set"||t=="read"){Object.assign(o,randTime(stepFor(l)))}
+  if(t=="elapsed"){const s=randTime(5);const add=l==2?R(1,3)*60+R(0,11)*5:l==3?R(10,55):R(1,4)*60+R(1,59);o.s=s;o.add=add;let tot=s.h*60+s.m+add;o.h=Math.floor(tot/60)%12||12;o.m=tot%60;}
+  const [a,b]=payRange(l);
+  if(t=="pay"||t=="count"){o.c=R(a,b);if(grade==2&&l<=2)o.c=R(1,19)*5+(l==2?R(0,4):0)}
+  if(t=="change"){o.paid=l==2?500:1000;o.c=R(Math.min(a,o.paid-50),Math.min(b,o.paid-5));if(l==2)o.c=R(105,480)}
+  T.push(o)});return T}
+const NAMES={gus:"Mr. Gus",hazel:"Mrs. Hazel",walt:"Mr. Walt",iris:"Miss Iris"};
+// ---------- play ----------
+let tasks=[],ti=0,lvl=1,score=0,firstTry=0,tries=0,cur=null,busy=false;
+function start(l){lvl=l;tasks=makeTasks(l);ti=0;score=0;firstTry=0;show("s-play");next()}
+function say(t){$("dlgT").textContent=t}
+function next(){if(ti>=tasks.length)return results();cur=tasks[ti];tries=0;busy=false;$("fb").textContent="";
+ $("hTask").textContent=`${ti+1} / ${tasks.length}`;$("hScore").textContent=score;
+ $("pbg").src=`a/scenes_${cur.bg}.webp`;$("keeper").src=`a/characters_${cur.who}-idle.webp`;$("dlgP").src=`a/characters_${cur.who}-bust.webp`;$("dlgN").textContent=NAMES[cur.who];
+ const sq=cur.bg=="bg-clock-square";$("tower").style.display=sq?"block":"none";const P=$("panel");P.innerHTML="";
+ Object.assign(P.style,sq?{left:"440px",top:"276px",transform:"scale(.66)"}:{left:"250px",top:"92px",transform:"none"});$("fb").style.top=sq?"110px":"30px";setTower(10,10);
+ ({set:taskSet,read:taskRead,elapsed:taskElapsed,pay:taskPay,count:taskCount,change:taskChange})[cur.t](P)}
+function addBtn(P,label,x,y,fn,img){const b=document.createElement("button");b.className=img?"imgbtn":"btn";if(img)b.style.backgroundImage=`url(a/ui_btn-${img}-normal.webp)`;else b.textContent=label;b.setAttribute("aria-label",label);b.style.left=x+"px";b.style.top=y+"px";b.onclick=fn;P.appendChild(b);return b}
+function good(){if(busy)return;busy=true;if(tries==0){firstTry++;score+=100}else score+=50;$("hScore").textContent=score;
+ $("fb").style.color="#9fe08f";$("fb").textContent=pick(["Right on time!","Exactly right!","Nice work!","Spot on!"]);$("keeper").src=`a/characters_${cur.who}-celebrate.webp`;
+ setTimeout(()=>{ti++;next()},1300)}
+function bad(el,reveal){tries++;$("fb").style.color="#ffb0a0";if(el){el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake")}
+ if(tries>=2){busy=true;$("fb").textContent="Here is the answer.";reveal&&reveal();setTimeout(()=>{ti++;next()},2600)}else $("fb").textContent="Not quite. Try again!"}
+// clock widget
+function clockEl(P,x,y,size,h,m,drag,step){const c=document.createElement("div");c.className="clock";Object.assign(c.style,{left:x+"px",top:y+"px",width:size+"px",height:size+"px"});
+ c.innerHTML=`<img src="a/clock_clock-face.webp" alt=""><img class="hh" src="a/clock_hand-hour.webp" alt=""><img class="mh" src="a/clock_hand-minute.webp" alt=""><img src="a/clock_hand-cap.webp" alt="">`;
+ c.st={tot:(h%12)*60+m};const draw=()=>{if(drag)setTower(Math.floor(c.st.tot/60),c.st.tot%60);const t=c.st.tot;const hh=Math.floor(t/60),mm=t%60;c.querySelector(".hh").style.transform=`rotate(${(hh%12)*30+mm*.5}deg)`;c.querySelector(".mh").style.transform=`rotate(${mm*6}deg)`;
+  if(c.onset)c.onset()};c.draw=draw;draw();
+ if(!drag){c.style.cursor="default";P.appendChild(c);return c}
+ c.tabIndex=0;let mode=null,lastM=0;
+ const ang=e=>{const p=sp(e),r=c.getBoundingClientRect(),cx=(r.left+r.width/2-st.getBoundingClientRect().left)/S,cy=(r.top+r.height/2-st.getBoundingClientRect().top)/S;return((Math.atan2(p.x-cx,cy-p.y)*180/Math.PI)+360)%360};
+ c.addEventListener("pointerdown",e=>{e.preventDefault();c.setPointerCapture(e.pointerId);const a=ang(e),t=c.st.tot,ma=(t%60)*6,ha=((Math.floor(t/60)%12)*30+(t%60)*.5);
+  const d=(x,y)=>Math.min(Math.abs(x-y),360-Math.abs(x-y));mode=d(a,ha)+8<d(a,ma)?"h":"m";lastM=t%60;move(e)});
+ const move=e=>{if(!mode)return;const a=ang(e);let t=c.st.tot;
+  if(mode=="m"){let m=Math.round(a/6/step)*step%60;const old=t%60;let h=Math.floor(t/60);if(old>=45&&m<15)h++;else if(old<15&&m>=45)h--;t=((h%12+12)%12)*60+m}
+  else{const h=Math.floor(((a+15)%360)/30)%12;t=h*60+t%60}
+  c.st.tot=t;draw()};
+ c.addEventListener("pointermove",move);c.addEventListener("pointerup",()=>mode=null);c.addEventListener("pointercancel",()=>mode=null);
+ c.addEventListener("keydown",e=>{const k=e.key;let d=k=="ArrowRight"||k=="ArrowUp"?step:k=="ArrowLeft"||k=="ArrowDown"?-step:k=="]"?60:k=="["?-60:0;if(!d)return;e.preventDefault();c.st.tot=((c.st.tot+d)%720+720)%720;draw()});
+ P.appendChild(c);return c}
+const clkMatch=(c,h,m)=>c.st.tot==((h%12)*60+m);
+function setTower(h,m){$("tH").style.transform=`rotate(${(h%12)*30+m*.5}deg)`;$("tM").style.transform=`rotate(${m*6}deg)`}
+function taskSet(P){const t=cur;say(`Set the clock to ${fmtT(t.h,t.m)}. Drag the long hand for minutes and the short hand for hours.`);
+ const L=document.createElement("div");L.className="lab";L.style.cssText+="left:500px;top:40px;width:380px;font:400 52px var(--ct-font-display);color:#f3dfa8";L.textContent=fmtT(t.h,t.m);P.appendChild(L);
+ const M=document.createElement("div");M.className="mini";M.style.cssText="left:520px;top:120px;width:340px";M.textContent=grade==2?"Minute hand snaps every 5 minutes.":"Minute hand moves one minute at a time.";if(stepFor(lvl)>=15)M.textContent=`Minute hand snaps every ${stepFor(lvl)} minutes.`;P.appendChild(M);
+ const c=clockEl(P,60,40,420,12,0,true,stepFor(lvl));c.id="setClock";
+ addBtn(P,"Check",560,330,()=>clkMatch(c,t.h,t.m)?good():bad(c,()=>{c.st.tot=(t.h%12)*60+t.m;c.draw()}),"check")}
+function choices(P,correct,wrongs,x0,y0,fmt){const opts=[correct,...wrongs].sort(()=>Math.random()-.5);opts.forEach((o,i)=>{const b=addBtn(P,fmt(o),x0,y0+i*96,()=>{if(busy)return;o===correct?good():bad(b,()=>{P.querySelectorAll(".btn").forEach(x=>{if(x.textContent==fmt(correct))x.style.outline="4px solid #9fe08f"})})})})}
+function nearTimes(h,m,step){const s=new Set([fmtT(h,m)]),out=[];const cand=[[h%12+1,m],[h,(m+step*R(1,3))%60],[(h+10)%12+1,m],[m/5||12,h*5%60]];
+ for(const [a,b] of cand){const k=fmtT(a||12,b);if(!s.has(k)){s.add(k);out.push(k)}if(out.length==3)break}
+ while(out.length<3){const r=randTime(step),k=fmtT(r.h,r.m);if(!s.has(k)){s.add(k);out.push(k)}}return out}
+function taskRead(P){const t=cur;say("What time does this clock show? Tap the answer.");clockEl(P,60,40,420,t.h,t.m,false);
+ choices(P,fmtT(t.h,t.m),nearTimes(t.h,t.m,stepFor(lvl)),560,40,x=>x)}
+function taskElapsed(P){const t=cur,hh=Math.floor(t.add/60),mm=t.add%60;const addTxt=(hh?hh+" h ":"")+(mm?mm+" min":"");
+ say(`This clock starts at the time shown. Set the big clock to ${addTxt.trim()} later.`);
+ const L=document.createElement("div");L.className="lab";L.style.cssText+="left:30px;top:24px;width:240px";L.textContent="Start";P.appendChild(L);
+ clockEl(P,40,60,220,t.s.h,t.s.m,false);
+ const A=document.createElement("div");A.className="lab";A.style.cssText+="left:30px;top:300px;width:240px;font:400 34px var(--ct-font-display);color:#F2C14E";A.textContent="+ "+addTxt.trim();P.appendChild(A);
+ const c=clockEl(P,300,40,420,12,0,true,1);c.id="setClock";
+ addBtn(P,"Check",620,400,()=>clkMatch(c,t.h,t.m)?good():bad(c,()=>{c.st.tot=(t.h%12)*60+t.m;c.draw()}),"check")}
+// money widget
+const COINS=[["coin-1c",1,38],["coin-5c",5,42],["coin-10c",10,35],["coin-25c",25,48]],BILLS=[["bill-1",100],["bill-5",500],["bill-10",1000]];
+function moneyArea(P,opts){let inTray=[];const showTotal=opts.showTotal!==false;
+ const tray=document.createElement("div");tray.id="tray";Object.assign(tray.style,{left:"340px",top:"40px",width:"530px",height:"250px"});
+ tray.innerHTML=`<img src="a/props_counter-tray.webp" alt="" style="position:absolute;left:192px;top:70px;width:146px;opacity:.55;pointer-events:none"><div class="lab" style="left:0;right:0;top:6px">${opts.label}</div><div class="lab" id="trayTot" style="left:0;right:0;bottom:6px;color:#fff"></div>`;P.appendChild(tray);
+ // decorative drawer, with our own labeled pockets on top
+ const dr=document.createElement("img");dr.src="a/props_cash-drawer.webp";dr.alt="";Object.assign(dr.style,{position:"absolute",left:"20px",top:"300px",width:"393px",height:"190px",objectFit:"cover",opacity:.5});P.appendChild(dr);
+ const items=[...COINS.map(c=>({k:c[0],v:c[1],w:c[2]*1.6,h:c[2]*1.6})),...BILLS.filter(b=>b[1]<=opts.maxBill).map(b=>({k:b[0],v:b[1],w:130,h:58}))];
+ const n=items.length,pw=Math.floor(840/n)-8;
+ items.forEach((it,i)=>{const p=document.createElement("div");p.className="pocket";p.dataset.v=it.v;Object.assign(p.style,{left:(30+i*(pw+8))+"px",top:"310px",width:pw+"px",height:"170px"});
+  p.innerHTML=`<img src="a/money_${it.k}.webp" alt="" style="width:${it.w}px;height:${it.h}px;pointer-events:none"><span>${it.v<100?it.v+"¢":"$"+it.v/100}</span>`;P.appendChild(p);
+  p.addEventListener("pointerdown",e=>startDrag(e,it,p))});
+ function render(){tray.querySelectorAll(".money").forEach(x=>x.remove());let cx=20,cy=46,bx=20;
+  const sorted=[...inTray].sort((a,b)=>b.v-a.v);sorted.forEach((it,i)=>{const im=document.createElement("img");im.className="money";im.src=`a/money_${it.k}.webp`;im.alt=it.v+"";
+   let x,y;if(it.v>=100){x=bx;y=40;bx+=46}else{if(cx>470){cx=20;cy+=50}x=cx;y=cy+(bx>20?70:0);cx+=50}
+   Object.assign(im.style,{left:x+"px",top:y+"px",width:it.w+"px",height:it.h+"px"});im.onclick=()=>{if(busy)return;inTray.splice(inTray.indexOf(it),1);render()};tray.appendChild(im)});
+  const tot=inTray.reduce((s,x)=>s+x.v,0);$("trayTot").textContent=showTotal?"In tray: "+money(tot):(inTray.length?inTray.length+" pieces":"");}
+ function startDrag(e,it,p){if(busy)return;e.preventDefault();const g=document.createElement("img");g.className="drag";g.src=`a/money_${it.k}.webp`;Object.assign(g.style,{width:it.w*1.2+"px",height:it.h*1.2+"px"});st.appendChild(g);
+  const s0=sp(e);let moved=false;const mv=ev=>{const q=sp(ev);if(Math.hypot(q.x-s0.x,q.y-s0.y)>6)moved=true;g.style.left=q.x-it.w*.6+"px";g.style.top=q.y-it.h*.6+"px";const r=tray.getBoundingClientRect();tray.classList.toggle("hot",ev.clientX>r.left&&ev.clientX<r.right&&ev.clientY>r.top&&ev.clientY<r.bottom)};mv(e);
+  const up=ev=>{removeEventListener("pointermove",mv);removeEventListener("pointerup",up);removeEventListener("pointercancel",up);g.remove();tray.classList.remove("hot");
+   const r=tray.getBoundingClientRect();const inside=ev.clientX>r.left&&ev.clientX<r.right&&ev.clientY>r.top&&ev.clientY<r.bottom;
+   if(inside||!moved){if(inTray.length<24){inTray.push({...it});render()}}};
+  addEventListener("pointermove",mv);addEventListener("pointerup",up);addEventListener("pointercancel",up)}
+ render();return{total:()=>inTray.reduce((s,x)=>s+x.v,0),tray}}
+function tagEl(P,txt,x,y,lab){const t=document.createElement("div");t.className="tag";t.style.left=x+"px";t.style.top=y+"px";t.innerHTML=`<b>${txt}</b>`;P.appendChild(t);
+ if(lab){const l=document.createElement("div");l.className="lab";l.style.cssText+=`left:${x-20}px;top:${y+100}px;width:190px`;l.textContent=lab;P.appendChild(l)}}
+function taskPay(P){const t=cur;say(`Drag money into the tray to pay exactly ${money(t.c)}. Tap money in the tray to take it back.`);tagEl(P,money(t.c),110,60,"Price");
+ const m=moneyArea(P,{label:"Pay here",maxBill:t.c>=1000?1000:t.c>=500?500:t.c>=100?100:0,showTotal:grade==2});
+ const b=addBtn(P,"Pay",20,215,()=>{if(busy)return;m.total()==t.c?good():bad(m.tray,()=>{$("fb").textContent="It needed "+money(t.c)+". You had "+money(m.total())+"."})},"pay");}
+function taskChange(P){const t=cur,ch=t.paid-t.c;say(`Price ${money(t.c)}. Paid with ${money(t.paid)}. Drag the change into the tray.`);
+ tagEl(P,money(t.c),20,30,"");const bill=document.createElement("img");bill.src=`a/money_bill-${t.paid/100}.webp`;bill.alt="";Object.assign(bill.style,{position:"absolute",left:"180px",top:"50px",width:"140px"});P.appendChild(bill);
+ const pl=document.createElement("div");pl.className="lab";pl.style.cssText+="left:20px;top:130px;width:300px";pl.textContent="Price          Paid";pl.style.whiteSpace="pre";P.appendChild(pl);
+ const m=moneyArea(P,{label:"Change",maxBill:t.paid==1000?500:100,showTotal:false});
+ addBtn(P,"Give",20,200,()=>{if(busy)return;m.total()==ch?good():bad(m.tray,()=>{$("fb").textContent="The change is "+money(ch)+"."})},"check")}
+function taskCount(P){const t=cur;say("How much money is in the tray? Tap the answer.");
+ // build the amount from real pieces
+ let left=t.c,pieces=[];for(const [k,v] of [["bill-5",500],["bill-1",100],["coin-25c",25],["coin-10c",10],["coin-5c",5],["coin-1c",1]])while(left>=v&&pieces.length<14){pieces.push([k,v]);left-=v}
+ if(left){t.c-=left}
+ const box=document.createElement("div");box.id="tray";Object.assign(box.style,{left:"40px",top:"40px",width:"480px",height:"420px"});P.appendChild(box);
+ let x=20,y=30;pieces.forEach(([k,v])=>{const im=document.createElement("img");im.src=`a/money_${k}.webp`;im.alt="";const big=v>=100,w=big?180:COINS.find(c=>c[0]==k)[2]*1.8;
+  if(x+w>460){x=20;y+=big?90:80}Object.assign(im.style,{position:"absolute",left:x+"px",top:y+"px",width:w+"px"});x+=w+12;box.appendChild(im)});
+ const w=new Set();while(w.size<3){const d=pick([-25,-10,-5,5,10,25,-1,1,100,-100]);const v=t.c+d;if(v>0&&v!=t.c)w.add(v)}
+ choices(P,t.c,[...w],570,40,money)}
+function moveBelow(){}
+// ---------- results ----------
+function results(){const n=tasks.length,stars=firstTry>=n-1?3:firstTry>=n-3?2:firstTry>=n/2?1:0;if(me)saveProg(lvl,stars);
+ show("s-res");$("rStars").innerHTML=[1,2,3].map(k=>`<img src="a/ui_star-${k<=stars?"reward":"empty"}.webp" alt="" style="width:80px;height:80px">`).join("");
+ $("rText").textContent=`${firstTry} of ${n} right first try. Score ${score}.`;$("rNext").style.display=lvl<5&&stars>0?"block":"none"}
+$("rAgain").onclick=()=>start(lvl);$("rNext").onclick=()=>start(lvl+1);
+window.__ct={start,get cur(){return cur},tasks:()=>tasks,setMe:(n,g)=>{me=n;grade=g},results,levels,good,next:()=>{ti++;next()},forceTask:t=>{cur=Object.assign(cur||{},t);tasks[ti]=Object.assign(tasks[ti],t);next()}};
+titleScr();
+</script></body></html>

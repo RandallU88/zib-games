@@ -1,0 +1,1629 @@
+{
+  "_note": "Levels labeled by skill pattern, aligned to grade-level standards (TGTB LA Level 1-2 / Level 4 style phonics & grammar). Not official TGTB lists.",
+  "logan": {
+    "grade": 2,
+    "levels": [
+      {
+        "level": 1,
+        "title": "Short Vowels",
+        "spelling": [
+          "cat",
+          "map",
+          "hen",
+          "bed",
+          "pig",
+          "fix",
+          "hop",
+          "box",
+          "sun",
+          "cup",
+          "bus",
+          "jam"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "The cat sat on the mat",
+            "right": "The cat sat on the mat.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "my dog can run.",
+            "right": "My dog can run.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The pig is in the mud",
+            "right": "The pig is in the mud.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "I hav a red cap.",
+            "right": "I have a red cap.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "The bus are big.",
+            "right": "The bus is big.",
+            "error_type": "grammar"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "hop",
+            "definition": "to jump up and down on your feet",
+            "wrong": [
+              "to sleep in a bed",
+              "to eat very fast",
+              "to swim under water"
+            ]
+          },
+          {
+            "word": "nap",
+            "definition": "a short sleep in the daytime",
+            "wrong": [
+              "a big meal",
+              "a kind of hat",
+              "a loud yell"
+            ]
+          },
+          {
+            "word": "hut",
+            "definition": "a small, simple house",
+            "wrong": [
+              "a fast car",
+              "a large lake",
+              "a sweet fruit"
+            ]
+          },
+          {
+            "word": "jog",
+            "definition": "to run at a slow, steady speed",
+            "wrong": [
+              "to sit very still",
+              "to draw a picture",
+              "to cook soup"
+            ]
+          },
+          {
+            "word": "den",
+            "definition": "a home where a wild animal rests",
+            "wrong": [
+              "a kind of boat",
+              "a tall tree",
+              "a game with a ball"
+            ]
+          },
+          {
+            "word": "tug",
+            "definition": "to pull hard on something",
+            "wrong": [
+              "to push a button",
+              "to paint a wall",
+              "to sing a song"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Blends",
+        "spelling": [
+          "frog",
+          "stop",
+          "flag",
+          "crab",
+          "drum",
+          "swim",
+          "plant",
+          "nest",
+          "jump",
+          "last",
+          "grip",
+          "sled"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "The frog can swim",
+            "right": "The frog can swim.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "we went to the pond.",
+            "right": "We went to the pond.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "I like to jumpe.",
+            "right": "I like to jump.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "She have a drum.",
+            "right": "She has a drum.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Is the sled fast.",
+            "right": "Is the sled fast?",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "crisp",
+            "definition": "dry and easy to snap, like a fresh apple",
+            "wrong": [
+              "soft and wet",
+              "very hot",
+              "old and dusty"
+            ]
+          },
+          {
+            "word": "plump",
+            "definition": "nicely round and full",
+            "wrong": [
+              "very thin",
+              "tiny and flat",
+              "sharp and pointy"
+            ]
+          },
+          {
+            "word": "grin",
+            "definition": "a big, happy smile",
+            "wrong": [
+              "a sad frown",
+              "a loud sneeze",
+              "a quick nap"
+            ]
+          },
+          {
+            "word": "stomp",
+            "definition": "to step down hard and loud",
+            "wrong": [
+              "to tiptoe quietly",
+              "to float in the air",
+              "to whisper softly"
+            ]
+          },
+          {
+            "word": "blend",
+            "definition": "to mix things together",
+            "wrong": [
+              "to break into pieces",
+              "to hide something",
+              "to count to ten"
+            ]
+          },
+          {
+            "word": "swift",
+            "definition": "very fast",
+            "wrong": [
+              "very slow",
+              "very heavy",
+              "very quiet"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Digraphs sh, ch, th, wh",
+        "spelling": [
+          "ship",
+          "shell",
+          "chop",
+          "lunch",
+          "bath",
+          "thin",
+          "with",
+          "when",
+          "what",
+          "whip",
+          "fish",
+          "much"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "The ship is on the sea",
+            "right": "The ship is on the sea.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "What is in the box.",
+            "right": "What is in the box?",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "i had fish for lunch.",
+            "right": "I had fish for lunch.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "We sat on the bench wiht Dad.",
+            "right": "We sat on the bench with Dad.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "They was at the shop.",
+            "right": "They were at the shop.",
+            "error_type": "grammar"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "chum",
+            "definition": "a good friend",
+            "wrong": [
+              "a kind of fish bait only",
+              "a tall hill",
+              "a rain cloud"
+            ]
+          },
+          {
+            "word": "shed",
+            "definition": "a small building for tools",
+            "wrong": [
+              "a large castle",
+              "a kind of shoe",
+              "a school bus"
+            ]
+          },
+          {
+            "word": "thick",
+            "definition": "wide or deep from side to side",
+            "wrong": [
+              "very thin",
+              "very bright",
+              "very cold"
+            ]
+          },
+          {
+            "word": "whisk",
+            "definition": "to stir fast with a tool",
+            "wrong": [
+              "to fold a shirt",
+              "to sweep the floor",
+              "to tie a knot"
+            ]
+          },
+          {
+            "word": "chill",
+            "definition": "to make something cold",
+            "wrong": [
+              "to make something hot",
+              "to make something loud",
+              "to make something big"
+            ]
+          },
+          {
+            "word": "thrash",
+            "definition": "to swing or toss around wildly",
+            "wrong": [
+              "to sit very still",
+              "to sleep soundly",
+              "to read slowly"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Silent E",
+        "spelling": [
+          "cake",
+          "game",
+          "bike",
+          "kite",
+          "home",
+          "rope",
+          "cube",
+          "mule",
+          "late",
+          "pine",
+          "hope",
+          "made"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "I rode my bike home",
+            "right": "I rode my bike home.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "The kite is up hi.",
+            "right": "The kite is up high.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "we made a cake.",
+            "right": "We made a cake.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "Can you tie the rope.",
+            "right": "Can you tie the rope?",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "He ride his bike yesterday.",
+            "right": "He rode his bike yesterday.",
+            "error_type": "grammar"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "blaze",
+            "definition": "a big, bright fire",
+            "wrong": [
+              "a cool breeze",
+              "a tiny drop",
+              "a soft pillow"
+            ]
+          },
+          {
+            "word": "stride",
+            "definition": "a long step",
+            "wrong": [
+              "a short nap",
+              "a loud shout",
+              "a quick blink"
+            ]
+          },
+          {
+            "word": "mule",
+            "definition": "an animal that is part horse and part donkey",
+            "wrong": [
+              "a kind of bird",
+              "a farm tool",
+              "a big boat"
+            ]
+          },
+          {
+            "word": "glide",
+            "definition": "to move smoothly and easily",
+            "wrong": [
+              "to bump and crash",
+              "to stop suddenly",
+              "to dig a hole"
+            ]
+          },
+          {
+            "word": "scrape",
+            "definition": "to rub something rough across a surface",
+            "wrong": [
+              "to pour water",
+              "to fold paper",
+              "to clap hands"
+            ]
+          },
+          {
+            "word": "prune",
+            "definition": "a dried plum",
+            "wrong": [
+              "a kind of nut",
+              "a green bean",
+              "a hard candy"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "title": "Long Vowel Teams: ee, ea, ai, ay",
+        "spelling": [
+          "tree",
+          "feet",
+          "seed",
+          "leaf",
+          "bean",
+          "meal",
+          "rain",
+          "tail",
+          "paint",
+          "play",
+          "hay",
+          "stay"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "The leaf fell from the tree",
+            "right": "The leaf fell from the tree.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "We plant a seed in may.",
+            "right": "We plant a seed in May.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The rain is cold todey.",
+            "right": "The rain is cold today.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "The cows eats hay.",
+            "right": "The cows eat hay.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Can we play in the leaves.",
+            "right": "Can we play in the leaves?",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "harvest",
+            "definition": "to gather crops when they are ripe",
+            "wrong": [
+              "to plant new seeds",
+              "to water a garden",
+              "to sell a house"
+            ]
+          },
+          {
+            "word": "feast",
+            "definition": "a big, special meal",
+            "wrong": [
+              "a small snack",
+              "a long walk",
+              "a quiet nap"
+            ]
+          },
+          {
+            "word": "stray",
+            "definition": "an animal that is lost or has no home",
+            "wrong": [
+              "a pet in its own yard",
+              "a farm tool",
+              "a kind of bird nest"
+            ]
+          },
+          {
+            "word": "grain",
+            "definition": "the seed of plants like corn or wheat",
+            "wrong": [
+              "a kind of rock",
+              "a type of cloud",
+              "a farm animal"
+            ]
+          },
+          {
+            "word": "sway",
+            "definition": "to move gently from side to side",
+            "wrong": [
+              "to stand perfectly still",
+              "to fall down fast",
+              "to roll in a ball"
+            ]
+          },
+          {
+            "word": "bleak",
+            "definition": "cold, gray, and gloomy",
+            "wrong": [
+              "bright and sunny",
+              "sweet and juicy",
+              "loud and busy"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "title": "oa, ow, and r-Controlled Vowels",
+        "spelling": [
+          "boat",
+          "coat",
+          "road",
+          "snow",
+          "grow",
+          "bowl",
+          "farm",
+          "barn",
+          "corn",
+          "bird",
+          "fern",
+          "hurt"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "The barn is red",
+            "right": "The barn is red.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "i wore my coat to the farm.",
+            "right": "I wore my coat to the farm.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The corn will groe tall.",
+            "right": "The corn will grow tall.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "The birds is in the barn.",
+            "right": "The birds are in the barn.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Did it snow last night.",
+            "right": "Did it snow last night?",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "corn crib",
+            "definition": "a building where dried corn is stored",
+            "wrong": [
+              "a bed for a baby",
+              "a basket for apples",
+              "a pen for pigs"
+            ]
+          },
+          {
+            "word": "burrow",
+            "definition": "a hole in the ground an animal lives in",
+            "wrong": [
+              "a nest at the top of a tree",
+              "a kind of farm truck",
+              "a pile of leaves"
+            ]
+          },
+          {
+            "word": "loaf",
+            "definition": "bread baked in one big piece",
+            "wrong": [
+              "a small cookie",
+              "a cup of milk",
+              "a bowl of soup"
+            ]
+          },
+          {
+            "word": "chore",
+            "definition": "a job you do to help at home",
+            "wrong": [
+              "a game you play outside",
+              "a song you sing",
+              "a toy you build"
+            ]
+          },
+          {
+            "word": "harbor",
+            "definition": "a safe place where boats stay",
+            "wrong": [
+              "a tall mountain",
+              "a field of corn",
+              "a dark cave"
+            ]
+          },
+          {
+            "word": "stern",
+            "definition": "serious and strict",
+            "wrong": [
+              "silly and goofy",
+              "sleepy and slow",
+              "tiny and soft"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "title": "Endings -ing and -ed",
+        "spelling": [
+          "jumped",
+          "played",
+          "hopped",
+          "planted",
+          "rested",
+          "running",
+          "sitting",
+          "making",
+          "baking",
+          "raking",
+          "picked",
+          "helping"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "We raked the leaves",
+            "right": "We raked the leaves.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "Logan is helpping Dad.",
+            "right": "Logan is helping Dad.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "yesterday we picked apples.",
+            "right": "Yesterday we picked apples.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "Mom baked a pie yesterday and we eated it.",
+            "right": "Mom baked a pie yesterday and we ate it.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Are you making pie.",
+            "right": "Are you making pie?",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "gathered",
+            "definition": "brought things together into one place",
+            "wrong": [
+              "threw things far away",
+              "broke things into bits",
+              "hid things under a bed"
+            ]
+          },
+          {
+            "word": "scurrying",
+            "definition": "moving fast with quick, short steps",
+            "wrong": [
+              "walking very slowly",
+              "sleeping in a tree",
+              "swimming in a lake"
+            ]
+          },
+          {
+            "word": "stacked",
+            "definition": "put things in a neat pile",
+            "wrong": [
+              "spilled things on the floor",
+              "painted things blue",
+              "cut things in half"
+            ]
+          },
+          {
+            "word": "trading",
+            "definition": "giving one thing to get another thing",
+            "wrong": [
+              "keeping everything for yourself",
+              "throwing things away",
+              "losing things"
+            ]
+          },
+          {
+            "word": "stored",
+            "definition": "put away to use later",
+            "wrong": [
+              "eaten right away",
+              "given to a friend",
+              "broken by accident"
+            ]
+          },
+          {
+            "word": "munching",
+            "definition": "chewing with a crunchy sound",
+            "wrong": [
+              "sleeping deeply",
+              "yelling loudly",
+              "running quickly"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 8,
+        "title": "Sight Words and Mixed Review",
+        "spelling": [
+          "because",
+          "friend",
+          "again",
+          "people",
+          "would",
+          "could",
+          "there",
+          "their",
+          "said",
+          "pretty",
+          "squirrel",
+          "winter"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "My friend came over again",
+            "right": "My friend came over again.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "The squirrels hid their nuts becuz it was cold.",
+            "right": "The squirrels hid their nuts because it was cold.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "we go to the Tigers game on Friday.",
+            "right": "We go to the Tigers game on Friday.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The people was happy.",
+            "right": "The people were happy.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Would you like an apple.",
+            "right": "Would you like an apple?",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "prepare",
+            "definition": "to get ready",
+            "wrong": [
+              "to give up",
+              "to fall asleep",
+              "to forget"
+            ]
+          },
+          {
+            "word": "clever",
+            "definition": "quick to think of smart ideas",
+            "wrong": [
+              "very sleepy",
+              "very messy",
+              "very loud"
+            ]
+          },
+          {
+            "word": "scarce",
+            "definition": "hard to find because there is not much",
+            "wrong": [
+              "easy to find everywhere",
+              "bright and shiny",
+              "soft and fluffy"
+            ]
+          },
+          {
+            "word": "orchard",
+            "definition": "a farm field full of fruit trees",
+            "wrong": [
+              "a big parking lot",
+              "a deep river",
+              "a city street"
+            ]
+          },
+          {
+            "word": "protect",
+            "definition": "to keep safe",
+            "wrong": [
+              "to break",
+              "to lose",
+              "to forget"
+            ]
+          },
+          {
+            "word": "plenty",
+            "definition": "more than enough",
+            "wrong": [
+              "not any at all",
+              "just one",
+              "too small"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "savannah": {
+    "grade": 5,
+    "levels": [
+      {
+        "level": 1,
+        "title": "Prefixes un-, re-, dis-, pre-",
+        "spelling": [
+          "unlock",
+          "unhappy",
+          "redo",
+          "rewrite",
+          "replant",
+          "disagree",
+          "dislike",
+          "disappear",
+          "preheat",
+          "preview",
+          "unwrap",
+          "reread"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "We had to rewrite the paragraf.",
+            "right": "We had to rewrite the paragraph.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "savannah will preheat the oven.",
+            "right": "Savannah will preheat the oven.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "Did you disagree with the plan.",
+            "right": "Did you disagree with the plan?",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "She unwrap the gift yesterday.",
+            "right": "She unwrapped the gift yesterday.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "The fog seemed to disapear by noon.",
+            "right": "The fog seemed to disappear by noon.",
+            "error_type": "spelling"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "reconsider",
+            "definition": "to think about something again",
+            "wrong": [
+              "to forget about it completely",
+              "to agree right away",
+              "to write it in cursive"
+            ]
+          },
+          {
+            "word": "disband",
+            "definition": "to break up a group",
+            "wrong": [
+              "to start a new club",
+              "to tie things together",
+              "to play in a band"
+            ]
+          },
+          {
+            "word": "precaution",
+            "definition": "a step taken ahead of time to stay safe",
+            "wrong": [
+              "a mistake made by rushing",
+              "a reward after winning",
+              "a type of weather warning siren"
+            ]
+          },
+          {
+            "word": "unanimous",
+            "definition": "agreed on by everyone",
+            "wrong": [
+              "agreed on by no one",
+              "decided by a coin flip",
+              "said very loudly"
+            ]
+          },
+          {
+            "word": "revive",
+            "definition": "to bring back to life or energy",
+            "wrong": [
+              "to put to sleep",
+              "to send away",
+              "to cover with paint"
+            ]
+          },
+          {
+            "word": "disregard",
+            "definition": "to pay no attention to",
+            "wrong": [
+              "to study carefully",
+              "to repeat out loud",
+              "to write down"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Suffixes -ful, -less, -ness, -ment, -able",
+        "spelling": [
+          "careful",
+          "hopeful",
+          "fearless",
+          "endless",
+          "kindness",
+          "darkness",
+          "harmless",
+          "payment",
+          "excitement",
+          "enjoyable",
+          "comfortable",
+          "thankful"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "We were thankfull for the harvest.",
+            "right": "We were thankful for the harvest.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "The kittens were harmless",
+            "right": "The kittens were harmless.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "on Thanksgiving we share a meal.",
+            "right": "On Thanksgiving we share a meal.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The excitement were huge.",
+            "right": "The excitement was huge.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "The chair was very comfterble.",
+            "right": "The chair was very comfortable.",
+            "error_type": "spelling"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "plentiful",
+            "definition": "existing in large amounts",
+            "wrong": [
+              "very rare",
+              "completely empty",
+              "hard to see"
+            ]
+          },
+          {
+            "word": "restless",
+            "definition": "unable to stay still or calm",
+            "wrong": [
+              "very sleepy",
+              "perfectly calm",
+              "full of food"
+            ]
+          },
+          {
+            "word": "agreement",
+            "definition": "a shared decision people accept",
+            "wrong": [
+              "a loud argument",
+              "a written test",
+              "a broken promise"
+            ]
+          },
+          {
+            "word": "dependable",
+            "definition": "able to be trusted",
+            "wrong": [
+              "easy to break",
+              "hard to understand",
+              "always late"
+            ]
+          },
+          {
+            "word": "boldness",
+            "definition": "the quality of being brave and daring",
+            "wrong": [
+              "the quality of being shy",
+              "the feeling of hunger",
+              "a type of handwriting"
+            ]
+          },
+          {
+            "word": "pointless",
+            "definition": "having no purpose",
+            "wrong": [
+              "having a sharp tip",
+              "very important",
+              "full of energy"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Homophones: their/there/they're, its/it's",
+        "spelling": [
+          "their",
+          "there",
+          "they're",
+          "its",
+          "it's",
+          "to",
+          "too",
+          "two",
+          "hear",
+          "here",
+          "whole",
+          "hole"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "Their going to the orchard.",
+            "right": "They're going to the orchard.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "The dog wagged it's tail.",
+            "right": "The dog wagged its tail.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Put the basket over their.",
+            "right": "Put the basket over there.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "We picked two many apples.",
+            "right": "We picked too many apples.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "It's cold outside",
+            "right": "It's cold outside.",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "homophone",
+            "definition": "a word that sounds like another word but has a different meaning",
+            "wrong": [
+              "a word that means the opposite of another",
+              "a very long word",
+              "a word with no vowels"
+            ]
+          },
+          {
+            "word": "contraction",
+            "definition": "two words shortened into one with an apostrophe",
+            "wrong": [
+              "a word that names a person",
+              "a sentence with no verb",
+              "a kind of poem"
+            ]
+          },
+          {
+            "word": "possessive",
+            "definition": "showing that something belongs to someone",
+            "wrong": [
+              "showing an action happening",
+              "showing a question",
+              "showing a number"
+            ]
+          },
+          {
+            "word": "apostrophe",
+            "definition": "a mark ( ' ) used in contractions and possessives",
+            "wrong": [
+              "a mark that ends a question",
+              "a mark that starts a list",
+              "a line under a title"
+            ]
+          },
+          {
+            "word": "pronoun",
+            "definition": "a word that takes the place of a noun",
+            "wrong": [
+              "a word that describes a verb",
+              "a word that joins two sentences",
+              "a word that names a place only"
+            ]
+          },
+          {
+            "word": "context",
+            "definition": "the words around a word that help show its meaning",
+            "wrong": [
+              "the first letter of a word",
+              "the title of a book",
+              "the last page of a story"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Endings -tion and -sion",
+        "spelling": [
+          "action",
+          "nation",
+          "station",
+          "section",
+          "motion",
+          "fraction",
+          "vision",
+          "decision",
+          "division",
+          "tension",
+          "mission",
+          "explosion"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "The train left the stashun at noon.",
+            "right": "The train left the station at noon.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "Making a decision takes time",
+            "right": "Making a decision takes time.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "our nation has fifty states.",
+            "right": "Our nation has fifty states.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The section of the orchard are full.",
+            "right": "The section of the orchard is full.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "What is your mission.",
+            "right": "What is your mission?",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "tradition",
+            "definition": "a custom passed down over many years",
+            "wrong": [
+              "a brand new invention",
+              "a type of train",
+              "a math problem"
+            ]
+          },
+          {
+            "word": "conclusion",
+            "definition": "the ending or final decision",
+            "wrong": [
+              "the very beginning",
+              "a middle chapter",
+              "a list of names"
+            ]
+          },
+          {
+            "word": "population",
+            "definition": "the number of people living in a place",
+            "wrong": [
+              "the size of a state's land",
+              "the weather in a town",
+              "a kind of election"
+            ]
+          },
+          {
+            "word": "erosion",
+            "definition": "the slow wearing away of land by water or wind",
+            "wrong": [
+              "the planting of new trees",
+              "a sudden earthquake",
+              "the melting of snow into rain"
+            ]
+          },
+          {
+            "word": "expansion",
+            "definition": "the act of growing larger",
+            "wrong": [
+              "the act of shrinking",
+              "the act of sleeping",
+              "the act of hiding"
+            ]
+          },
+          {
+            "word": "caution",
+            "definition": "care taken to avoid danger",
+            "wrong": [
+              "a reckless choice",
+              "a happy cheer",
+              "a type of map"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "title": "Commas in a Series and Dates",
+        "spelling": [
+          "apples",
+          "pumpkins",
+          "squash",
+          "cider",
+          "acorns",
+          "harvest",
+          "November",
+          "October",
+          "Ohio",
+          "Thanksgiving",
+          "Massillon",
+          "autumn"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "We picked apples, pumpkins and squash.",
+            "right": "We picked apples, pumpkins, and squash.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "Thanksgiving is in november.",
+            "right": "Thanksgiving is in November.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "Massillon is in ohio.",
+            "right": "Massillon is in Ohio.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "The leaves turn red, orange, and yelow.",
+            "right": "The leaves turn red, orange, and yellow.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "We buys cider, bread, and honey.",
+            "right": "We buy cider, bread, and honey.",
+            "error_type": "grammar"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "autumn",
+            "definition": "the season between summer and winter",
+            "wrong": [
+              "the coldest season",
+              "the season after winter",
+              "a type of apple"
+            ]
+          },
+          {
+            "word": "bushel",
+            "definition": "a large basket used to measure crops",
+            "wrong": [
+              "a small bush",
+              "a farm animal",
+              "a kind of tractor"
+            ]
+          },
+          {
+            "word": "cider",
+            "definition": "juice pressed from apples",
+            "wrong": [
+              "a type of bread",
+              "milk from a goat",
+              "a kind of soup"
+            ]
+          },
+          {
+            "word": "migrate",
+            "definition": "to move to another region when seasons change",
+            "wrong": [
+              "to stay in one place all year",
+              "to dig underground",
+              "to build a nest"
+            ]
+          },
+          {
+            "word": "dormant",
+            "definition": "resting and not actively growing",
+            "wrong": [
+              "growing very quickly",
+              "dead forever",
+              "freshly planted"
+            ]
+          },
+          {
+            "word": "abundant",
+            "definition": "more than plenty",
+            "wrong": [
+              "barely enough",
+              "completely gone",
+              "very costly"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "title": "Quotation Marks and Dialogue",
+        "spelling": [
+          "said",
+          "asked",
+          "replied",
+          "shouted",
+          "whispered",
+          "explained",
+          "answered",
+          "announced",
+          "suggested",
+          "wondered",
+          "believe",
+          "neighbor"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "Nora said, \"Let's trade cider.",
+            "right": "Nora said, \"Let's trade cider.\"",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "\"may I help?\" asked June.",
+            "right": "\"May I help?\" asked June.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "Dad explaned, \"The trees need water.\"",
+            "right": "Dad explained, \"The trees need water.\"",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "\"Look at the barn\" said Wes.",
+            "right": "\"Look at the barn,\" said Wes.",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "\"We is ready,\" said Milo.",
+            "right": "\"We are ready,\" said Milo.",
+            "error_type": "grammar"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "dialogue",
+            "definition": "the words characters say to each other",
+            "wrong": [
+              "the setting of a story",
+              "the title of a chapter",
+              "a list of facts"
+            ]
+          },
+          {
+            "word": "narrator",
+            "definition": "the one who tells the story",
+            "wrong": [
+              "the main villain",
+              "the person who drew the pictures",
+              "the last character introduced"
+            ]
+          },
+          {
+            "word": "exclaim",
+            "definition": "to say something suddenly with strong feeling",
+            "wrong": [
+              "to speak in a quiet whisper",
+              "to stay silent",
+              "to write a letter"
+            ]
+          },
+          {
+            "word": "mutter",
+            "definition": "to speak quietly and unclearly",
+            "wrong": [
+              "to shout loudly",
+              "to sing beautifully",
+              "to read aloud clearly"
+            ]
+          },
+          {
+            "word": "inquire",
+            "definition": "to ask for information",
+            "wrong": [
+              "to answer a question",
+              "to forget a fact",
+              "to refuse help"
+            ]
+          },
+          {
+            "word": "insist",
+            "definition": "to demand firmly",
+            "wrong": [
+              "to give up easily",
+              "to agree quietly",
+              "to ask politely once"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "title": "Verb Tense",
+        "spelling": [
+          "walked",
+          "carried",
+          "studied",
+          "began",
+          "brought",
+          "thought",
+          "caught",
+          "taught",
+          "wrote",
+          "chose",
+          "froze",
+          "grew"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "Yesterday we carryed the baskets.",
+            "right": "Yesterday we carried the baskets.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "Last week the pond freezes.",
+            "right": "Last week the pond froze.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "tomorrow we will plant trees.",
+            "right": "Tomorrow we will plant trees.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "She brung pie to the feast.",
+            "right": "She brought pie to the feast.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "Grandpa taught me to whittle",
+            "right": "Grandpa taught me to whittle.",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "past tense",
+            "definition": "a verb form that shows an action already happened",
+            "wrong": [
+              "a verb form for actions in the future",
+              "a word that describes a noun",
+              "a sentence with no subject"
+            ]
+          },
+          {
+            "word": "future tense",
+            "definition": "a verb form for actions that will happen",
+            "wrong": [
+              "a verb form for actions that already happened",
+              "a type of punctuation",
+              "a long paragraph"
+            ]
+          },
+          {
+            "word": "irregular verb",
+            "definition": "a verb that does not add -ed for the past",
+            "wrong": [
+              "a verb that is always misspelled",
+              "a verb with only two letters",
+              "a verb used only in questions"
+            ]
+          },
+          {
+            "word": "consistent",
+            "definition": "staying the same throughout",
+            "wrong": [
+              "changing all the time",
+              "very loud",
+              "hard to read"
+            ]
+          },
+          {
+            "word": "sequence",
+            "definition": "the order in which things happen",
+            "wrong": [
+              "the main idea of a story",
+              "the price of an item",
+              "a kind of rhyme"
+            ]
+          },
+          {
+            "word": "revise",
+            "definition": "to change writing to make it better",
+            "wrong": [
+              "to throw writing away",
+              "to copy writing exactly",
+              "to read writing aloud"
+            ]
+          }
+        ]
+      },
+      {
+        "level": 8,
+        "title": "Greek and Latin Roots",
+        "spelling": [
+          "telescope",
+          "microscope",
+          "autograph",
+          "biography",
+          "geography",
+          "thermometer",
+          "transport",
+          "portable",
+          "inspect",
+          "spectator",
+          "dictate",
+          "predict"
+        ],
+        "fix_sentence": [
+          {
+            "wrong": "We used a thermometer to mesure the air.",
+            "right": "We used a thermometer to measure the air.",
+            "error_type": "spelling"
+          },
+          {
+            "wrong": "The spectators cheered for the tigers.",
+            "right": "The spectators cheered for the Tigers.",
+            "error_type": "capital"
+          },
+          {
+            "wrong": "Can you predict the weather.",
+            "right": "Can you predict the weather?",
+            "error_type": "punctuation"
+          },
+          {
+            "wrong": "Each of the farmers transport crops.",
+            "right": "Each of the farmers transports crops.",
+            "error_type": "grammar"
+          },
+          {
+            "wrong": "She read a biography of Paul Brown",
+            "right": "She read a biography of Paul Brown.",
+            "error_type": "punctuation"
+          }
+        ],
+        "vocab": [
+          {
+            "word": "geography",
+            "definition": "the study of Earth's land, water, and places",
+            "wrong": [
+              "the study of living cells",
+              "the study of old stories",
+              "the study of numbers"
+            ]
+          },
+          {
+            "word": "portable",
+            "definition": "easy to carry",
+            "wrong": [
+              "too heavy to lift",
+              "fixed to the floor",
+              "very fragile"
+            ]
+          },
+          {
+            "word": "spectator",
+            "definition": "a person who watches an event",
+            "wrong": [
+              "a person who plays in the game",
+              "a person who sells tickets",
+              "a person who builds stadiums"
+            ]
+          },
+          {
+            "word": "thermal",
+            "definition": "having to do with heat",
+            "wrong": [
+              "having to do with sound",
+              "having to do with light",
+              "having to do with water"
+            ]
+          },
+          {
+            "word": "predict",
+            "definition": "to say what will happen before it happens",
+            "wrong": [
+              "to describe what already happened",
+              "to forget the past",
+              "to copy someone's words"
+            ]
+          },
+          {
+            "word": "trade-off",
+            "definition": "giving up one thing to get another",
+            "wrong": [
+              "getting everything you want",
+              "a free gift",
+              "a kind of race"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
