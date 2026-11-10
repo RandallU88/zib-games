@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#3a1f12">
+<title>Turkey Escape 2: Feather Force</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; background: #2a160c;
+    overscroll-behavior: none; touch-action: none;
+    -webkit-user-select: none; user-select: none;
+    -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+    position: fixed; inset: 0;
+    font-family: "Trebuchet MS", system-ui, -apple-system, sans-serif;
+  }
+  #game { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  #safe { position: absolute; visibility: hidden; pointer-events: none;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+  .tbtn {
+    position: absolute; border: 3px solid rgba(255, 236, 200, 0.85); border-radius: 50%;
+    background: rgba(60, 28, 12, 0.38); color: #fff3dc; font-weight: bold;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    touch-action: none; -webkit-user-select: none; user-select: none; padding: 0;
+    font-family: inherit; box-shadow: 0 4px 0 rgba(0,0,0,0.35); line-height: 1.05;
+  }
+  .tbtn.on { background: rgba(230, 120, 40, 0.8); transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.35); }
+  #bSwap { border-radius: 14px; }
+  #pad { position: absolute; border-radius: 50%; touch-action: none;
+    background: radial-gradient(circle, rgba(60,28,12,0.35) 0%, rgba(60,28,12,0.55) 70%);
+    border: 3px solid rgba(255, 236, 200, 0.7); box-sizing: border-box; }
+  #pad .ar { position: absolute; color: rgba(255,243,220,0.9); font-weight: bold; transform: translate(-50%, -50%); pointer-events: none; }
+  #pad .ar.on { color: #ffb347; }
+  #pad .knob { position: absolute; width: 34%; height: 34%; border-radius: 50%; left: 33%; top: 33%;
+    background: rgba(255, 236, 200, 0.35); border: 2px solid rgba(255,236,200,0.8); pointer-events: none; box-sizing: border-box; }
+  #touch { display: none; }
+  #touch.show { display: block; }
+  #bPause { display: none; border-radius: 14px; }
+  #bPause.show { display: flex; }
+  #rot { position: absolute; left: 0; right: 0; text-align: center; color: #f6b26b; font-weight: bold; font-size: 15px; display: none; pointer-events: none; }
+  #rot.show { display: block; }
+</style>
+</head>
+<body>
+<canvas id="game" aria-label="Turkey Escape 2 game"></canvas>
+<div id="safe"></div>
+<div id="rot">Turn sideways for the best view</div>
+<div id="touch">
+  <div id="pad" aria-label="Move pad">
+    <div class="ar" id="aU" style="left:50%;top:15%">&#9650;</div>
+    <div class="ar" id="aD" style="left:50%;top:85%">&#9660;</div>
+    <div class="ar" id="aL" style="left:15%;top:50%">&#9664;</div>
+    <div class="ar" id="aR" style="left:85%;top:50%">&#9654;</div>
+    <div class="knob" id="knob"></div>
+  </div>
+  <button class="tbtn" id="bShoot" aria-label="Shoot">SHOOT</button>
+  <button class="tbtn" id="bJump" aria-label="Jump">JUMP</button>
+  <button class="tbtn" id="bSwap" aria-label="Swap weapon">SWAP</button>
+</div>
+<button class="tbtn" id="bPause" aria-label="Pause">II</button>
+<script src="game.js?v=1"></script>
+</body>
+</html>

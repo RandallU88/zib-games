@@ -30,6 +30,8 @@
   }
   .tbtn.on { background: rgba(230, 120, 40, 0.8); transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.35); }
   .tbtn small { display: block; font-size: 11px; letter-spacing: 1px; opacity: 0.9; }
+  #bHover { border-color: rgba(255, 214, 120, 0.95); background: rgba(80, 42, 12, 0.6); }
+  #bHover.on { background: rgba(240, 180, 50, 0.85); color: #3a1f12; }
   #touch { display: none; }
   #touch.show { display: block; }
   #bPause { display: none; border-radius: 14px; }
@@ -43,9 +45,10 @@
   <button class="tbtn" id="bL" aria-label="Slow down"><span>&#9664;<small>SLOW</small></span></button>
   <button class="tbtn" id="bR" aria-label="Dash"><span>&#9654;<small>DASH</small></span></button>
   <button class="tbtn" id="bSlide" aria-label="Slide"><span>&#9660;<small>SLIDE</small></span></button>
-  <button class="tbtn" id="bJump" aria-label="Jump"><span>&#9650;<small>JUMP</small></span></button>
+  <button class="tbtn" id="bJump" aria-label="Jump, hold to hover"><span>&#9650;<small>JUMP</small></span></button>
+  <button class="tbtn" id="bHover" aria-label="Hold to hover"><span>&#8673;<small>HOVER</small></span></button>
 </div>
 <button class="tbtn" id="bPause" aria-label="Pause">II</button>
-<script src="game.js?v=1"></script>
+<script src="game.js?v=2"></script>
 </body>
 </html>

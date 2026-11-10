@@ -5,7 +5,9 @@
 // ---------- constants ----------
 const VH = 540, GROUND = 450;
 const GRAV = 2400, JUMP_V = -900;
+const HOVER_MAX = 1.25, HOVER_FALL = 90, HOVER_CEILING = GROUND - 200;
 const SAVE_KEY = 'turkeyEscape.v1';
+const TEST = /[?&]test=1/.test(location.search);
 const ZONE_NAMES = ['Kitchen', 'House', 'Backyard', 'Open Field'];
 const ZONE_BANNERS = ['Escape the Kitchen!', 'Into the House!', 'Out the Back Door!', 'The Open Field! Run for it!'];
 const ZONE_FRACS = [0, 0.27, 0.53, 0.8, 1];
@@ -112,23 +114,33 @@ function layout() {
 const tb = {
   L: document.getElementById('bL'), R: document.getElementById('bR'),
   S: document.getElementById('bSlide'), J: document.getElementById('bJump'),
+  H: document.getElementById('bHover'),
   P: document.getElementById('bPause'), wrap: document.getElementById('touch')
 };
 function place(el, x, y, s) { el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.width = s + 'px'; el.style.height = s + 'px'; el.style.fontSize = Math.round(s * 0.3) + 'px'; }
 function layoutTouch() {
   const m = 14;
-  let s;
+  let s, hs;
   if (portrait) {
-    s = Math.min(110, Math.max(78, cssW * 0.2));
+    s = Math.min(100, Math.max(72, cssW * 0.18));
+    hs = Math.round(s * 0.82);
     const gameBottom = offY + VH * scale;
     const y = Math.max(gameBottom + 70, cssH - safe.b - s - 28);
     place(tb.L, safe.l + m, y, s); place(tb.R, safe.l + m + s + 12, y, s);
-    place(tb.S, cssW - safe.r - m - 2 * s - 12, y, s); place(tb.J, cssW - safe.r - m - s, y - s * 0.35, s);
+    const jx = cssW - safe.r - m - s;
+    const sx = cssW - safe.r - m - 2 * s - 12;
+    place(tb.S, sx, y, s);
+    place(tb.J, jx, y - s * 0.35, s);
+    place(tb.H, jx + (s - hs) / 2, y - s * 0.35 - hs - 8, hs);
   } else {
-    s = Math.min(118, Math.max(70, cssH * 0.17));
+    s = Math.min(110, Math.max(66, cssH * 0.155));
+    hs = Math.round(s * 0.82);
     const y = cssH - safe.b - s - m;
     place(tb.L, safe.l + m + 6, y, s * 0.85); place(tb.R, safe.l + m + 6 + s * 0.85 + 12, y, s * 0.85);
-    place(tb.S, cssW - safe.r - m - 2 * s - 14, y + s * 0.1, s * 0.9); place(tb.J, cssW - safe.r - m - s, y - s * 0.25, s);
+    const jx = cssW - safe.r - m - s;
+    place(tb.S, cssW - safe.r - m - 2 * s - 14, y + s * 0.1, s * 0.9);
+    place(tb.J, jx, y - s * 0.22, s);
+    place(tb.H, jx + (s - hs) / 2, y - s * 0.22 - hs - 8, hs);
   }
   const ps = 52;
   tb.P.style.left = (cssW - safe.r - ps - 12) + 'px'; tb.P.style.top = (portrait ? offY + VH * scale + 12 : safe.t + 10) + 'px';
@@ -161,6 +173,7 @@ function tone(f0, f1, dur, type, vol, delay) {
 }
 const sfx = {
   jump: () => tone(320, 640, 0.14, 'square', 0.06),
+  flap: () => tone(480, 300, 0.1, 'sine', 0.03),
   slide: () => tone(260, 120, 0.18, 'triangle', 0.08),
   feather: () => { tone(880, 1320, 0.08, 'sine', 0.07); tone(1320, 1760, 0.08, 'sine', 0.05, 0.06); },
   hit: () => { tone(200, 70, 0.3, 'sawtooth', 0.09); },
@@ -178,7 +191,7 @@ let rng = mulberry(1);
 const fxRand = Math.random;
 
 // ---------- input ----------
-const input = { left: false, right: false, slide: false, jumpQ: false, slideQ: false };
+const input = { left: false, right: false, slide: false, jumpQ: false, slideQ: false, hover: false };
 const keys = {};
 window.addEventListener('keydown', e => {
   initAudio();
@@ -197,8 +210,9 @@ function syncKeys() {
   input.left = !!(keys.ArrowLeft || keys.a || keys.A) || touchHeld.L;
   input.right = !!(keys.ArrowRight || keys.d || keys.D) || touchHeld.R;
   input.slide = !!(keys.ArrowDown || keys.s || keys.S) || touchHeld.S;
+  input.hover = !!(keys.ArrowUp || keys.w || keys.W || keys[' '] || keys.Spacebar) || touchHeld.H || (touchHeld.J && P && !P.onGround);
 }
-const touchHeld = { L: false, R: false, S: false, J: false };
+const touchHeld = { L: false, R: false, S: false, J: false, H: false };
 function bindHold(el, id, onDown) {
   const down = e => { e.preventDefault(); initAudio(); touchHeld[id] = true; el.classList.add('on'); if (onDown) onDown(); syncKeys(); };
   const up = e => { e.preventDefault(); touchHeld[id] = false; el.classList.remove('on'); syncKeys(); };
@@ -211,6 +225,7 @@ function bindHold(el, id, onDown) {
 bindHold(tb.L, 'L'); bindHold(tb.R, 'R');
 bindHold(tb.S, 'S', () => { input.slideQ = true; });
 bindHold(tb.J, 'J', () => { input.jumpQ = true; });
+bindHold(tb.H, 'H');
 tb.P.addEventListener('pointerdown', e => { e.preventDefault(); initAudio(); if (state === 'play') setState('pause'); else if (state === 'pause') setState('play'); });
 
 let buttons = [];
@@ -238,7 +253,7 @@ function setState(s) {
   tb.wrap.classList.toggle('show', playing && isTouch);
   tb.P.classList.toggle('show', playing || s === 'pause');
   tb.P.textContent = s === 'pause' ? '\u25B6' : 'II';
-  if (!playing) { touchHeld.L = touchHeld.R = touchHeld.S = false; [tb.L, tb.R, tb.S, tb.J].forEach(b => b.classList.remove('on')); syncKeys(); }
+  if (!playing) { touchHeld.L = touchHeld.R = touchHeld.S = touchHeld.J = touchHeld.H = false; [tb.L, tb.R, tb.S, tb.J, tb.H].forEach(b => b.classList.remove('on')); syncKeys(); }
   if (s === 'select') selIdx = Math.max(0, Math.min(selIdx, LEVELS.length - 1));
 }
 
@@ -286,7 +301,7 @@ function makeChef(def, i) {
 function startLevel(i) {
   levelIdx = i; L = LEVELS[i];
   genLevel();
-  P = { x: 200, y: GROUND, vy: 0, onGround: true, sliding: false, slideT: 0, speed: L.base, inv: 0, stun: 0, lives: 3, anim: 0 };
+  P = { x: 200, y: GROUND, vy: 0, onGround: true, sliding: false, slideT: 0, speed: L.base, inv: 0, stun: 0, lives: 3, anim: 0, hover: HOVER_MAX, hovering: false, flapT: 0 };
   chefs = L.chefs.map(makeChef);
   projectiles = []; particles = [];
   score = 0; collected = 0; zone = 0; chefsStopped = false; shake = 0; winInfo = null;
@@ -414,31 +429,38 @@ function endLevel(won) {
 }
 
 function autopilot() {
-  // simple scripted runner used by the automated tests
+  // simple scripted runner used by the automated tests, including hover over low knives
   const sp = P.speed, px = P.x;
-  let wantJump = false, wantSlide = false, wantRight = false;
+  let wantJump = false, wantSlide = false, wantRight = false, wantHover = false;
   for (const o of obstacles) {
     const d = o.x - (px + 22);
     if (o.x + o.w < px - 32) continue;
-    if (d > sp * 0.6) break;
+    if (d > sp * 0.7) break;
     if (o.low && d > 0 && d < sp * 0.16 + 10) wantJump = true;
-    if (!o.low && d < sp * 0.22) wantSlide = true;
+    if (!o.low && d < sp * 0.28) wantSlide = true;
   }
   for (const pr of projectiles) {
     if (pr.type === 'knife') {
       const rel = pr.vx - sp, d = (px - 22) - (pr.x + 18);
-      if (pr.lane === 'low') { if (d > -60 && d < rel * 0.14 + 6) wantJump = true; } else if (d > -60 && d < rel * 0.2 + 10) wantSlide = true;
+      if (pr.lane === 'low') {
+        if (d > -70 && d < rel * 0.34 + 18) wantJump = true;
+        if (d > -80 && d < rel * 0.6 + 40) wantHover = true;
+      } else if (d > -60 && d < rel * 0.2 + 10) wantSlide = true;
     } else if (pr.type === 'cleaver') {
       const rem = pr.T - pr.t, pred = px + sp * rem;
-      if (Math.abs(pred - pr.tx) < 70) wantRight = true;
+      if (Math.abs(pred - pr.tx) < 90) {
+        wantRight = true;
+        if (rem < 0.55) { wantJump = true; wantHover = true; }
+      }
     } else if (pr.type === 'stuck') {
       const d = pr.x - 17 - (px + 22);
-      if (d > 0 && d < sp * 0.16 + 10) wantJump = true;
+      if (d > 0 && d < sp * 0.2 + 16) { wantJump = true; wantHover = true; }
     }
   }
   const main = chefs.find(c => c.kind !== 'chaser');
   if (main && main.gap < 140) wantRight = true;
-  touchHeld.R = wantRight; touchHeld.L = false; touchHeld.S = wantSlide; syncKeys();
+  if (wantSlide) wantHover = false;
+  touchHeld.R = wantRight; touchHeld.L = false; touchHeld.S = wantSlide; touchHeld.H = wantHover && !P.onGround; syncKeys();
   if (!wantSlide && wantJump && P.onGround) input.jumpQ = true;
 }
 
@@ -461,10 +483,28 @@ function update(dt) {
   }
   if (input.slideQ) { input.slideQ = false; if (P.onGround && !P.sliding) { sfx.slide(); TE.slides++; } P.slideT = 0.5; }
   if (P.slideT > 0) P.slideT -= dt;
+  if (P.onGround) {
+    P.hover = HOVER_MAX;
+    P.hovering = false;
+  }
   if (!P.onGround) {
+    syncKeys();
+    const canHover = input.hover && P.hover > 0 && P.stun <= 0 && !input.slide && P.y > HOVER_CEILING;
     if (input.slide) P.vy += 6000 * dt;
-    P.vy += GRAV * dt; P.y += P.vy * dt;
-    if (P.y >= GROUND) { P.y = GROUND; P.vy = 0; P.onGround = true; }
+    if (canHover && P.vy >= 0) {
+      P.hovering = true;
+      P.hover = Math.max(0, P.hover - dt);
+      if (P.vy > HOVER_FALL) P.vy = HOVER_FALL;
+      else P.vy += 180 * dt;
+      if (P.vy > HOVER_FALL) P.vy = HOVER_FALL;
+      P.flapT -= dt;
+      if (P.flapT <= 0) { sfx.flap(); P.flapT = 0.16; TE.flaps++; }
+    } else {
+      P.hovering = false;
+      P.vy += GRAV * dt;
+    }
+    P.y += P.vy * dt;
+    if (P.y >= GROUND) { P.y = GROUND; P.vy = 0; P.onGround = true; P.hover = HOVER_MAX; P.hovering = false; }
   }
   P.sliding = P.onGround && (input.slide || P.slideT > 0);
 
@@ -564,7 +604,7 @@ function repeat(period, par, fn) {
   for (let wx = Math.floor(cam / period) * period - period; wx < cam + VW + period; wx += period) fn(wx - cam, Math.round(wx / period));
 }
 
-function drawTurkey(x, y, slide, t, alpha, scl) {
+function drawTurkey(x, y, slide, t, alpha, scl, hovering) {
   ctx.save(); ctx.translate(x, y); ctx.globalAlpha = alpha == null ? 1 : alpha;
   const s = scl || 1; ctx.scale(s, s);
   if (slide) ctx.scale(1.2, 0.56);
@@ -588,7 +628,18 @@ function drawTurkey(x, y, slide, t, alpha, scl) {
   }
   ell(0, -32, 27, 23, '#6e3f22');
   ell(-2, -28, 17, 14, '#5a321a');
-  ctx.save(); ctx.translate(-4, -30); ctx.rotate(Math.sin(t * 2) * 0.2 - 0.2); ell(0, 0, 15, 9, '#4a2812'); ctx.restore();
+  if (hovering && !slide) {
+    const flap = Math.sin(t * 16) * 0.9;
+    ctx.save(); ctx.translate(-6, -38); ctx.rotate(-0.95 + flap);
+    ell(12, 0, 24, 10, '#4a2812'); ell(22, -3, 10, 5, '#8b5a36');
+    ctx.fillStyle = 'rgba(255, 230, 160, 0.35)'; ctx.beginPath(); ctx.ellipse(16, 0, 18, 6, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    ctx.save(); ctx.translate(-2, -28); ctx.rotate(-0.4 - flap * 0.55);
+    ell(10, 0, 16, 7, '#5a321a');
+    ctx.restore();
+  } else {
+    ctx.save(); ctx.translate(-4, -30); ctx.rotate(Math.sin(t * 2) * 0.2 - 0.2); ell(0, 0, 15, 9, '#4a2812'); ctx.restore();
+  }
   ell(20, -48, 8, 13, '#8c5a36');
   ell(25, -60, 11, 11, '#d9b38c');
   ctx.fillStyle = '#e89a2a'; ctx.beginPath(); ctx.moveTo(34, -63); ctx.lineTo(45, -59); ctx.lineTo(34, -56); ctx.fill();
@@ -873,7 +924,14 @@ function drawWorld() {
   }
   const blink = P.inv > 0 && Math.floor(time * 14) % 2 === 0;
   ctx.fillStyle = 'rgba(0,0,0,0.2)'; ctx.beginPath(); ctx.ellipse(P.x - camX, GROUND + 3, 26, 6, 0, 0, Math.PI * 2); ctx.fill();
-  drawTurkey(P.x - camX, P.y, P.sliding, P.anim, blink ? 0.35 : 1);
+  drawTurkey(P.x - camX, P.y, P.sliding, P.hovering ? time * 10 : P.anim, blink ? 0.35 : 1, 1, P.hovering);
+  if (!P.onGround && state === 'play') {
+    const tx = P.x - camX, my = P.y - 96;
+    ctx.fillStyle = 'rgba(40,20,10,0.55)'; rr(tx - 24, my, 48, 8, 4); ctx.fill();
+    ctx.fillStyle = P.hovering ? '#ffe27a' : '#c9a77a';
+    const mw = 48 * Math.max(0, P.hover / HOVER_MAX);
+    if (mw > 1) { rr(tx - 24, my, mw, 8, 4); ctx.fill(); }
+  }
   if (P.sliding) { for (let i = 0; i < 3; i++) ell(P.x - camX - 40 - i * 14, GROUND - 6 - i * 3, 6 - i, 4 - i, 'rgba(240,220,180,0.6)'); }
   for (const pr of projectiles) {
     if (pr.type === 'knife') {
@@ -924,11 +982,16 @@ function safeV() { return { l: Math.max(0, (safe.l - offX) / scale), r: Math.max
 
 function drawHUD() {
   const sv = safeV(), lx = 18 + sv.l, ty = 14 + sv.t;
-  ctx.fillStyle = 'rgba(40,20,10,0.55)'; rr(lx - 8, ty - 6, 300, 54, 14); ctx.fill();
+  ctx.fillStyle = 'rgba(40,20,10,0.55)'; rr(lx - 8, ty - 6, 300, 72, 14); ctx.fill();
   for (let i = 0; i < 3; i++) drawLifeFeather(lx + 14 + i * 26, ty + 22, i < P.lives);
   drawGoldFeather(lx + 106, ty + 22, 0.3);
   text('x' + collected, lx + 122, ty + 22, 20, '#ffe27a', 'left');
   text(Math.round(score).toString(), lx + 285, ty + 22, 22, '#fff3dc', 'right');
+  ctx.fillStyle = 'rgba(255,255,255,0.18)'; rr(lx, ty + 46, 160, 12, 6); ctx.fill();
+  const hbar = 160 * Math.max(0, P.hover / HOVER_MAX);
+  ctx.fillStyle = P.hovering ? '#ffe27a' : '#e8c38a';
+  if (hbar > 1) { rr(lx, ty + 46, hbar, 12, 6); ctx.fill(); }
+  text('HOVER', lx + 168, ty + 52, 12, '#ffe27a', 'left');
   const bw = Math.min(340, VW - lx - 300 - 110), bx = Math.max(lx + 310, VW / 2 - bw / 2), by = ty;
   ctx.fillStyle = 'rgba(40,20,10,0.55)'; rr(bx - 10, by - 6, bw + 20, 54, 14); ctx.fill();
   const zc = ['#b97a40', '#c0503a', '#6f8a34', '#e3b448'];
@@ -948,7 +1011,7 @@ function drawHUD() {
     ctx.globalAlpha = 1;
   }
   if (state === 'play' && P.x < 1100 && levelIdx === 0) {
-    const msg = isTouch ? 'Tap JUMP or SLIDE. Hold DASH to stay ahead of the chef.' : 'Space or Up: jump   Down: slide   Right: dash   Left: slow   P: pause';
+    const msg = isTouch ? 'Tap JUMP or SLIDE. Hold HOVER to float over knives. Hold DASH to stay ahead of the chef.' : 'Space or Up: jump (hold to hover)   Down: slide   Right: dash   Left: slow   P: pause';
     text(msg, VW / 2, isTouch && !portrait ? 210 : VH - 28, 17, '#fff3dc', 'center', '#3a1f12');
   }
 }
@@ -979,15 +1042,16 @@ function drawTitle() {
   const cx = VW / 2;
   text('TURKEY', cx, 80, 76, '#fff3dc', 'center', '#7a2e12');
   text('ESCAPE', cx, 148, 76, '#ffd25a', 'center', '#7a2e12');
-  text('Dodge the chefs. Reach the open field. Skip Thanksgiving.', cx, 200, 20, '#4a1e0c');
+  text('Dodge the chefs. Reach the open field. Skip Thanksgiving.', cx, 196, 20, '#4a1e0c');
+  text(isTouch ? 'Hold HOVER to float over knives for a moment.' : 'Hold Up or Space in the air to hover over knives.', cx, 218, 16, '#6b2a10');
   drawTurkey(cx + 60 + Math.sin(time) * 30, VH - 84, false, time * 6, 1, 1.15);
   const fake = { st: 'run', kind: 'straight', scarf: '#c0392b', hat: 1.1 };
   drawChef(fake, cx - 260 + Math.sin(time) * 30, VH - 80, time * 9);
   const kx = cx - 200 + ((time * 240) % 200);
   ctx.save(); ctx.translate(kx, VH - 150); drawKnifeShape('knife', 1.1); ctx.restore();
-  button('PLAY', cx - 110, 226, 220, 70, () => setState('select'), { hot: true, size: 32 });
-  button(save.muted ? 'Sound: OFF' : 'Sound: ON', cx + 134, 239, 150, 44, () => { save.muted = !save.muted; writeSave(); }, { size: 18 });
-  text(isTouch ? 'Tap PLAY to start' : 'Press Enter to start', cx, 322, 18, '#5a2a10');
+  button('PLAY', cx - 110, 236, 220, 70, () => setState('select'), { hot: true, size: 32 });
+  button(save.muted ? 'Sound: OFF' : 'Sound: ON', cx + 134, 249, 150, 44, () => { save.muted = !save.muted; writeSave(); }, { size: 18 });
+  text(isTouch ? 'Tap PLAY to start' : 'Press Enter to start', cx, 328, 18, '#5a2a10');
 }
 
 function wrapText(s, x, y, maxW, size, col) {
@@ -1076,7 +1140,7 @@ function drawLose() {
   const p = panel(340);
   const main = L.chefs[0];
   text(loseReason === 'caught' ? 'Caught by ' + main.name + '!' : 'Out of Feathers!', VW / 2, p.y + 50, 38, '#c8321e');
-  text(loseReason === 'caught' ? 'Hold DASH so the chef cannot catch up.' : 'Watch for the JUMP and SLIDE warnings.', VW / 2, p.y + 94, 18, '#6b3d1d');
+  text(loseReason === 'caught' ? 'Hold DASH so the chef cannot catch up.' : 'Watch for JUMP and SLIDE. Hold HOVER to float over knives.', VW / 2, p.y + 94, 16, '#6b3d1d');
   text('Made it to the ' + ZONE_NAMES[zone] + '.  Score ' + Math.round(score), VW / 2, p.y + 130, 20, '#6b2a10');
   drawTurkey(VW / 2, p.y + 232, false, time * 3, 1, 0.9);
   const bw = 190;
@@ -1147,11 +1211,13 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 
-// ---------- test hooks (used by the automated Playwright checks) ----------
+// ---------- test hooks (only with ?test=1, used by the Playwright checks) ----------
 const TE = window.TE = {
-  autopilot: false, invincible: false, hitLog: [], hits: 0, throws: 0, dodges: 0, jumps: 0, slides: 0,
+  autopilot: false, invincible: false, hitLog: [], hits: 0, throws: 0, dodges: 0, jumps: 0, slides: 0, flaps: 0,
   get state() { return state; }, get fps() { return fps; },
-  get player() { return P && { x: P.x, y: P.y, sliding: P.sliding, onGround: P.onGround, lives: P.lives, speed: P.speed }; },
+  get player() { return P && { x: P.x, y: P.y, vy: P.vy, sliding: P.sliding, onGround: P.onGround, lives: P.lives, speed: P.speed, hover: P.hover, hovering: P.hovering }; },
+  get hover() { return P && { stamina: P.hover, max: HOVER_MAX, hovering: P.hovering, vy: P.vy }; },
+  spawnKnife: lane => { if (P) projectiles.push({ type: 'knife', x: P.x + 90, y: lanesY(lane || 'low'), vx: P.speed + 200, lane: lane || 'low' }); },
   get level() { return L && { idx: levelIdx, name: L.name, length: L.length, zone, chefs: chefs.map(c => ({ kind: c.kind, st: c.st, gap: c.gap })) }; },
   get projectiles() { return projectiles.map(p => ({ type: p.type, x: p.x, y: p.y, lane: p.lane })); },
   get saveData() { return JSON.parse(JSON.stringify(save)); },
@@ -1160,6 +1226,7 @@ const TE = window.TE = {
   teleport: x => { if (P) P.x = x; },
   reloadSave: () => { save = loadSave(); }
 };
+if (!TEST) { delete window.TE; }
 
 layout();
 setState('title');
