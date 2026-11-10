@@ -71,9 +71,12 @@ label{font-weight:800;font-size:14px;color:var(--muted)}
 .big{font-size:64px;font-weight:900}
 #toast{position:fixed;left:50%;top:14px;transform:translate(-50%,-140%);background:rgba(14,20,52,.95);border:1px solid var(--line);border-radius:999px;padding:12px 18px;font-weight:800;z-index:30;transition:transform .2s}
 #toast.show{transform:translate(-50%,0)}
+#app, .hs-home-pad{padding-top:calc(52px + env(safe-area-inset-top, 0px))}
 </style>
+<link rel="stylesheet" href="hs-home.css?v=1">
 </head>
 <body>
+<a class="hs-home hs-home--float" href="index.html" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
 <div id="sky"></div><div class="moon"></div>
 <div id="app"></div>
 <div id="toast"></div>
@@ -138,7 +141,7 @@ var app=$('#app');
 function home(){
   var custom=loadCustom();
   function cards(list){return list.map(function(d){return '<button class="deck" data-id="'+d.id+'"><span class="sect">'+esc(d.who||'My deck')+'</span><b>'+esc(d.title)+'</b><span>'+d.cards.length+' cards</span></button>';}).join('');}
-  app.innerHTML='<div class="top"><a class="btn ghost" href="index.html">‹ Games</a></div><h1>Zib\'s Flashcards</h1><p class="lede">Tap a card to flip it. Mark Got it when you know it, or Study again to see it later.</p>'+
+  app.innerHTML='<div class="top"></div><h1>Zib\'s Flashcards</h1><p class="lede">Tap a card to flip it. Mark Got it when you know it, or Study again to see it later.</p>'+
     '<div class="sect">Logan</div><div class="grid">'+cards(BUILTIN.filter(function(d){return d.who==='Logan';}))+'</div>'+
     '<div class="sect">Savannah</div><div class="grid">'+cards(BUILTIN.filter(function(d){return d.who==='Savannah';}))+'</div>'+
     (custom.length?'<div class="sect">My decks</div><div class="grid">'+cards(custom)+'</div>':'')+
@@ -214,5 +217,6 @@ window.__cards={builtin:BUILTIN,load:loadCustom,home:home,study:study};
 home();
 })();
 </script>
+<script src="hs-home.js?v=1" defer></script>
 </body>
 </html>

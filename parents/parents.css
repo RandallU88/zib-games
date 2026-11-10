@@ -6,7 +6,8 @@ body{font-family:var(--sans);color:var(--ink);line-height:1.6;min-height:100vh;
  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,160,74,.16),transparent 65%),linear-gradient(180deg,#0a0908,#141110 60%,#1b1712);background-attachment:fixed}
 main{max-width:860px;margin:0 auto}
 a{color:var(--g2)}
-.back{display:inline-block;margin-bottom:10px;font-weight:700;text-decoration:none}
+.top-nav{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.back{display:inline-flex;align-items:center;margin:0;font-weight:700;text-decoration:none;min-height:44px;padding:8px 4px}
 .hdr{text-align:center;margin:6px 0 18px}
 .hdr img{width:min(200px,56vw);height:auto}
 h1,h2,h3{font-family:var(--serif);color:#f3dfa8;line-height:1.2;letter-spacing:.02em}

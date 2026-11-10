@@ -50,13 +50,14 @@ h2{font-family:var(--ct-font-display);font-weight:400;color:#f3dfa8;margin:0;fon
 .mini{position:absolute;font-size:24px;color:#e9dfc9;text-align:center;font-weight:600}
 #rot{display:none;position:fixed;left:0;right:0;bottom:12px;text-align:center;color:#f3dfa8;font:600 16px Georgia,serif;z-index:9;pointer-events:none}
 @media (orientation:portrait){#rot{display:block}}
-</style></head><body>
+</style><link rel="stylesheet" href="../hs-home.css?v=1">
+</head><body>
+<a class="hs-home hs-home--float" href="../" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
 <div id="stage">
  <div class="scr on" id="s-title"><img class="bg" src="a/scenes_title-bg.webp" alt="">
   <img src="a/logo_clock-tower-logo.webp" alt="Clock Tower and Market Street" style="position:absolute;left:340px;top:20px;width:500px">
   <div class="glass" style="left:190px;top:280px;width:800px;height:300px;text-align:center;padding-top:20px;box-sizing:border-box">
    <h2>Who is playing?</h2><div id="profs" style="margin-top:10px"></div></div>
-  <a href="../" class="ibtn" style="left:16px;top:16px;background-image:url(a/ui_icon-home-normal.webp)" aria-label="Home"></a>
  </div>
  <div class="scr" id="s-levels"><img class="bg" src="a/scenes_bg-clock-square.webp" alt=""><div class="dim"></div>
   <div class="glass" style="left:90px;top:40px;width:1000px;height:90px;display:flex;align-items:center;justify-content:center"><h2 id="lvTitle"></h2></div>
@@ -240,4 +241,5 @@ function results(){const n=tasks.length,stars=firstTry>=n-1?3:firstTry>=n-3?2:fi
 $("rAgain").onclick=()=>start(lvl);$("rNext").onclick=()=>start(lvl+1);
 window.__ct={fakeRes:(f,n)=>{firstTry=f;score=f*100;tasks=Array(n).fill({});results()},start,get cur(){return cur},tasks:()=>tasks,setMe:(n,g)=>{me=n;grade=g},results,levels,good,next:()=>{ti++;next()},forceTask:t=>{cur=Object.assign(cur||{},t);tasks[ti]=Object.assign(tasks[ti],t);next()}};
 titleScr();
-</script></body></html>
+</script><script src="../hs-home.js?v=1" defer></script>
+</body></html>

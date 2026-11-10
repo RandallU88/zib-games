@@ -1,0 +1,36 @@
+/* Urwin Homeschool: shared Home button. Keep a clear way back to the site home from every page. */
+.hs-home{
+  box-sizing:border-box;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:44px;
+  min-width:44px;
+  padding:8px 12px;
+  border-radius:12px;
+  text-decoration:none;
+  font:700 16px/1.1 system-ui,-apple-system,"Segoe UI",sans-serif;
+  letter-spacing:0.01em;
+  color:#f3dfa8;
+  background:rgba(20,14,8,0.88);
+  border:1.5px solid rgba(201,160,74,0.8);
+  box-shadow:0 2px 8px rgba(0,0,0,0.35);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  cursor:pointer;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.hs-home:active{transform:translateY(1px)}
+.hs-home-icon{width:20px;height:20px;flex:none;display:block}
+.hs-home-label{white-space:nowrap}
+.hs-home--float{
+  position:fixed;
+  top:max(8px, env(safe-area-inset-top, 0px));
+  left:max(8px, env(safe-area-inset-left, 0px));
+  z-index:10000;
+}
+.hs-home--inline{position:static;z-index:auto}
+.hs-home[hidden]{display:none !important}
+.top-nav{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-width:0}

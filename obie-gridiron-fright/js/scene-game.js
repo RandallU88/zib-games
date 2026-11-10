@@ -470,14 +470,15 @@ class HUDScene extends Phaser.Scene{
     // pause overlay (sound toggle lives here)
     this.pause=this.add.container(0,0).setVisible(false).setDepth(100);
     const dim=this.add.rectangle(W/2,H/2,W,H,0x111014,0.8).setInteractive();
-    const sc=Math.min(1,H/520), gap=74*sc, y0=H/2-gap*1.5+24*sc;
-    const t=UI.text(this,W/2,y0-gap*0.95,'PAUSED',48*sc,{color:OBIE.HEX.orange,stroke:5});
-    const btn=(i,label,cb,pr)=>{ const b=UI.button(this,W/2,y0+gap*i,260,64,label,cb,pr); b.setScale(sc); b.on('pointerout',()=>b.setScale(sc)); b.on('pointerup',()=>b.setScale(sc)); return b; };
+    const sc=Math.min(1,H/600), gap=62*sc, y0=H/2-gap*2+8*sc;
+    const t=UI.text(this,W/2,y0-gap*0.9,'PAUSED',44*sc,{color:OBIE.HEX.orange,stroke:5});
+    const btn=(i,label,cb,pr)=>{ const b=UI.button(this,W/2,y0+gap*i,280,58,label,cb,pr); b.setScale(sc); b.on('pointerout',()=>b.setScale(sc)); b.on('pointerup',()=>b.setScale(sc)); return b; };
     this.pause.add([dim,t,
       btn(0,'RESUME',()=>this.game_.togglePause(),true),
       btn(1,'RESTART LEVEL',()=>{ const g=this.game_; g.scene.restart({level:g.levelNum,score:g.levelStartScore,lives:g.lives}); }),
       (this.pMute=btn(2,'SOUND',()=>{ SFX.init(); this.game_.toggleMute(); })),
-      btn(3,'QUIT TO MENU',()=>{ const g=this.game_; g.scene.stop('BG'); g.scene.start('Title'); })]);
+      btn(3,'QUIT TO MENU',()=>{ const g=this.game_; g.scene.stop('BG'); g.scene.start('Title'); }),
+      btn(4,'URWIN HOME',()=>{ window.location.href='../'; })]);
     this.updateMute();
     if(this.game_.bossStarted && this.game_.boss && !this.game_.boss.dead) this.bossBar(OBIE.LEVELS[this.game_.levelNum-1].boss.name,this.game_.boss.hp/this.game_.boss.max);
     if(this.scene.isPaused('Game')) this.showPause(true);

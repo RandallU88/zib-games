@@ -54,9 +54,12 @@ h1{margin:0;font-size:clamp(32px,6vw,48px);font-weight:900;background:linear-gra
 .switch.on .tr:after{left:26px}
 #toast{position:fixed;left:50%;top:12px;transform:translate(-50%,-140%);background:rgba(14,20,52,.95);border:1px solid var(--line);border-radius:999px;padding:12px 18px;font-weight:800;z-index:5;transition:transform .2s}
 #toast.show{transform:translate(-50%,0)}
+#app, .hs-home-pad{padding-top:calc(52px + env(safe-area-inset-top, 0px))}
 </style>
+<link rel="stylesheet" href="hs-home.css?v=1">
 </head>
 <body>
+<a class="hs-home hs-home--float" href="index.html" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
 <div id="sky"></div><div class="moon"></div>
 <div id="app"></div>
 <div id="toast"></div>
@@ -91,7 +94,7 @@ function render(){
   var j = current();
   var loved = !!fav[idOf(j)];
   document.getElementById('app').innerHTML =
-    '<div class="top"><a class="btn ghost" href="index.html">‹ Games</a><h1>Zib\'s Joke Machine</h1></div>'+
+    '<div class="top"><h1>Zib\'s Joke Machine</h1></div>'+
     '<div class="chips">'+CATS.map(function(c){ return '<button class="chip'+(c===cat?' on':'')+'" data-cat="'+c+'">'+c+'</button>'; }).join('')+'</div>'+
     '<button class="switch'+(autoRead?' on':'')+'" id="auto"><span class="tr"></span><span>Read aloud</span></button>'+
     '<div class="stage"><div class="cat">'+j.cat+' · '+(pos+1)+' of '+order.length+'</div>'+
@@ -139,5 +142,6 @@ window.__jokes = { jokes: JOKES, counts: CATS.filter(function(c){return c!=='All
 deal(); lastId = idOf(current()); render();
 })();
 </script>
+<script src="hs-home.js?v=1" defer></script>
 </body>
 </html>

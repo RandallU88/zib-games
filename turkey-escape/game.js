@@ -247,6 +247,13 @@ let selIdx = 0, pauseSel = 0;
 const zoneStart = z => ZONE_FRACS[z] * L.length;
 function zoneOf(x) { for (let z = 3; z >= 0; z--) if (x >= zoneStart(z)) return z; return 0; }
 
+function goSiteHome() { location.href = '../'; }
+function syncSiteHome() {
+  const el = document.querySelector('[data-hs-home]');
+  if (!el) return;
+  el.hidden = (state === 'play');
+  el.setAttribute('data-hs-playing', '0');
+}
 function setState(s) {
   state = s; stateT = 0;
   const playing = s === 'play';
@@ -255,6 +262,7 @@ function setState(s) {
   tb.P.textContent = s === 'pause' ? '\u25B6' : 'II';
   if (!playing) { touchHeld.L = touchHeld.R = touchHeld.S = touchHeld.J = touchHeld.H = false; [tb.L, tb.R, tb.S, tb.J, tb.H].forEach(b => b.classList.remove('on')); syncKeys(); }
   if (s === 'select') selIdx = Math.max(0, Math.min(selIdx, LEVELS.length - 1));
+  syncSiteHome();
 }
 
 function genLevel() {
@@ -1108,13 +1116,14 @@ function panel(h) {
   return { x, y, w };
 }
 function drawPause() {
-  const p = panel(330);
-  text('Paused', VW / 2, p.y + 48, 40, '#6b2a10');
-  text(L.name + ', ' + ZONE_NAMES[zone], VW / 2, p.y + 90, 18, '#a0441c');
-  const bw = 240;
-  button('Resume', VW / 2 - bw / 2, p.y + 120, bw, 54, () => setState('play'), { hot: pauseSel === 0 });
-  button('Restart', VW / 2 - bw / 2, p.y + 186, bw, 54, () => startLevel(levelIdx), { hot: pauseSel === 1 });
-  button('Homes', VW / 2 - bw / 2, p.y + 252, bw, 54, () => setState('select'), { hot: pauseSel === 2 });
+  const p = panel(400);
+  text('Paused', VW / 2, p.y + 40, 36, '#6b2a10');
+  text(L.name + ', ' + ZONE_NAMES[zone], VW / 2, p.y + 78, 18, '#a0441c');
+  const bw = 260;
+  button('Resume', VW / 2 - bw / 2, p.y + 104, bw, 50, () => setState('play'), { hot: pauseSel === 0 });
+  button('Restart', VW / 2 - bw / 2, p.y + 162, bw, 50, () => startLevel(levelIdx), { hot: pauseSel === 1 });
+  button('Homes', VW / 2 - bw / 2, p.y + 220, bw, 50, () => setState('select'), { hot: pauseSel === 2 });
+  button('Urwin Homeschool home', VW / 2 - bw / 2, p.y + 278, bw, 50, goSiteHome, { hot: pauseSel === 3, size: 18 });
 }
 function drawWin() {
   const p = panel(400);
@@ -1156,10 +1165,10 @@ function menuKey(k) {
     if ((k === 'Enter' || k === ' ') && save.unlocked[selIdx]) startLevel(selIdx);
     if (k === 'Escape') setState('title');
   } else if (state === 'pause') {
-    if (k === 'ArrowUp') pauseSel = (pauseSel + 2) % 3;
-    if (k === 'ArrowDown') pauseSel = (pauseSel + 1) % 3;
+    if (k === 'ArrowUp') pauseSel = (pauseSel + 3) % 4;
+    if (k === 'ArrowDown') pauseSel = (pauseSel + 1) % 4;
     if (k === 'p' || k === 'P' || k === 'Escape') setState('play');
-    if (k === 'Enter' || k === ' ') { if (pauseSel === 0) setState('play'); else if (pauseSel === 1) startLevel(levelIdx); else setState('select'); }
+    if (k === 'Enter' || k === ' ') { if (pauseSel === 0) setState('play'); else if (pauseSel === 1) startLevel(levelIdx); else if (pauseSel === 2) setState('select'); else goSiteHome(); }
   } else if (state === 'win') {
     if (k === 'Enter' || k === ' ') { if (levelIdx + 1 < LEVELS.length) { selIdx = levelIdx + 1; startLevel(levelIdx + 1); } else setState('select'); }
     if (k === 'Escape') setState('select');

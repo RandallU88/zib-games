@@ -44,8 +44,10 @@
   #rot { position: absolute; left: 0; right: 0; text-align: center; color: #f6b26b; font-weight: bold; font-size: 15px; display: none; pointer-events: none; }
   #rot.show { display: block; }
 </style>
+<link rel="stylesheet" href="../hs-home.css?v=1">
 </head>
 <body>
+<a class="hs-home hs-home--float" href="../" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
 <canvas id="game" aria-label="Turkey Escape 2 game"></canvas>
 <div id="safe"></div>
 <div id="rot">Turn sideways for the best view</div>
@@ -62,6 +64,7 @@
   <button class="tbtn" id="bSwap" aria-label="Swap weapon">SWAP</button>
 </div>
 <button class="tbtn" id="bPause" aria-label="Pause">II</button>
-<script src="game.js?v=1"></script>
+<script src="game.js?v=2"></script>
+<script src="../hs-home.js?v=1" defer></script>
 </body>
 </html>

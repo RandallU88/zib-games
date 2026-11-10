@@ -125,8 +125,10 @@ button{font-family:inherit;color:inherit}
 .pausebox .btn{width:100%}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<link rel="stylesheet" href="hs-home.css?v=1">
 </head>
 <body>
+<a class="hs-home hs-home--float" href="index.html" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
 <canvas id="c"></canvas>
 <div id="hud" hidden>
   <div class="hrow">
@@ -419,10 +421,12 @@ function zibSvg(){ return '<svg class="zib" viewBox="0 0 120 120" aria-hidden="t
  '<path d="M46 24 L36 7" stroke="#5ef0a0" stroke-width="3.5" stroke-linecap="round"/><circle cx="36" cy="7" r="5.5" fill="#ffd166"/><path d="M74 24 L84 7" stroke="#5ef0a0" stroke-width="3.5" stroke-linecap="round"/><circle cx="84" cy="7" r="5.5" fill="#ffd166"/>'+
  '<path d="M60 18c27 0 41 18 41 41 0 27-21 47-41 47S19 86 19 59c0-23 14-41 41-41z" fill="url(#zg)"/><ellipse cx="44" cy="58" rx="10" ry="15" fill="#0b1026" transform="rotate(-18 44 58)"/><ellipse cx="76" cy="58" rx="10" ry="15" fill="#0b1026" transform="rotate(18 76 58)"/>'+
  '<circle cx="47" cy="52" r="3.4" fill="#fff"/><circle cx="79" cy="52" r="3.4" fill="#fff"/><path d="M50 85q10 7 20 0" stroke="#0b1026" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>'; }
-function showMenu(html,dim){ var m=$('#menu'); m.innerHTML=html; m.hidden=false; m.classList.toggle('dim',!!dim); m.scrollTop=0;
+function goSiteHome(){ location.href='index.html'; }
+function syncSiteHome(){ var el=document.querySelector('[data-hs-home]'); if(!el) return; el.hidden = !!(S.playing && !S.paused); }
+function showMenu(html,dim){ syncSiteHome(); var m=$('#menu'); m.innerHTML=html; m.hidden=false; m.classList.toggle('dim',!!dim); m.scrollTop=0;
   m.querySelectorAll('[data-act=snd]').forEach(function(b){ b.addEventListener('click',function(){ setSound(!soundOn); b.textContent=b.dataset.long?('Sound: '+(soundOn?'on':'off')):(soundOn?'🔊':'🔇'); sfx.tap(); }); });
   return m; }
-function hideMenu(){ $('#menu').hidden=true; }
+function hideMenu(){ $('#menu').hidden=true; syncSiteHome(); }
 function on(m,sel,fn){ m.querySelectorAll(sel).forEach(function(b){ b.addEventListener('click',function(e){ sfx.tap(); fn(b,e); }); }); }
 function bestOf(k){ var hs=kd(k).hs, b=0; for(var key in hs) b=Math.max(b,hs[key]); return b; }
 function renderTitle(){ S.screen='title'; S.playing=false; S.paused=false; document.body.className=''; $('#hud').hidden=true;
@@ -458,8 +462,10 @@ function showEnd(r){ S.screen='end'; var stars=S.wrong<=2?3:2, k=S.kid;
   on(m,'[data-act=mode]',function(){ renderMode(); }); on(m,'[data-act=again]',function(){ startRound(); }); }
 function pauseGame(){ if(!S.playing||S.paused) return; S.paused=true;
   var m=showMenu('<div class="scr"><div class="card pausebox"><h2>Paused</h2><p class="lede">Take a break. Zib will wait right here.</p><button class="btn big" data-act="resume">Resume</button>'+
-    '<button class="btn ghost" data-act="snd" data-long="1">Sound: '+(soundOn?'on':'off')+'</button><button class="btn ghost" data-act="quit">Quit round</button></div></div>',true);
-  on(m,'[data-act=resume]',function(){ resumeGame(); }); on(m,'[data-act=quit]',function(){ S.playing=false; S.paused=false; S.objs=[]; renderMode(); }); }
+    '<button class="btn ghost" data-act="snd" data-long="1">Sound: '+(soundOn?'on':'off')+'</button><button class="btn ghost" data-act="quit">Quit round</button>'+
+    '<button class="btn ghost" data-act="sitehome">Urwin Homeschool home</button></div></div>',true);
+  on(m,'[data-act=resume]',function(){ resumeGame(); }); on(m,'[data-act=quit]',function(){ S.playing=false; S.paused=false; S.objs=[]; renderMode(); });
+  on(m,'[data-act=sitehome]',function(){ goSiteHome(); }); }
 function resumeGame(){ S.paused=false; hideMenu(); last=performance.now(); }
 
 /* ---------------- input ---------------- */
@@ -487,5 +493,6 @@ T.build=buildRound; T.kd=kd; T.start=function(k,g,l){ S.kid=k; S.game=g; S.level
 resize(); renderTitle(); requestAnimationFrame(frame);
 })();
 </script>
+<script src="hs-home.js?v=1" defer></script>
 </body>
 </html>

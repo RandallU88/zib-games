@@ -62,10 +62,12 @@ button{touch-action:manipulation;font-family:var(--font);font-weight:800}
 .r-low{left:50%;top:80%;width:56%;text-align:center;font:600 1.7cqw var(--font);color:var(--sc-muted)}
 .r-low b{color:var(--sc-gold)}
 .chip{display:inline-block;background:var(--sc-navy-700);border:1px solid var(--sc-chrome-lo);border-radius:6px;padding:.3cqw .8cqw;margin:.3cqw;color:#fff;font-weight:800}
-</style></head><body>
+.hs-home--float{display:none!important}
+</style><link rel="stylesheet" href="../hs-home.css?v=1">
+</head><body>
 <div class="bg" id="bg"></div>
 <div id="app">
- <div class="bar" id="bar"><button class="ib" id="homeBtn" aria-label="Back">⬅</button><div class="t" id="title">STAR CADET MATH PATROL</div><span id="who"></span><button class="ib" id="mute">🔊</button></div>
+ <div class="bar" id="bar"><a class="hs-home hs-home--inline" href="../" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a><button class="ib" id="homeBtn" aria-label="Back">⬅</button><div class="t" id="title">STAR CADET MATH PATROL</div><span id="who"></span><button class="ib" id="mute">🔊</button></div>
  <section class="scr" id="s-prof">
   <img id="logoImg" src="assets/logo/star-cadet-logo.webp" alt="Star Cadet Math Patrol">
   <div class="glass"><div class="sub">The asteroid belt is full of number rocks. Blast the one carrying the right answer before it reaches Star Base!</div>
@@ -240,4 +242,5 @@ function draw(){const c=cx,n=G.art+1;c.save();c.fillStyle="#050A1A";c.fillRect(-
 window.__sc={get G(){return G},SECTORS,start,map,profiles,setMe:n=>{me=n;track=E.trackFor(n)},get track(){return track},setTrack:t=>track=t,
  screenOf:a=>{const r=cv.getBoundingClientRect();return{x:r.left+offX+a.x*scale,y:r.top+offY+a.y*scale}}};
 profiles();
-</script></body></html>
+</script><script src="../hs-home.js?v=1" defer></script>
+</body></html>

@@ -1210,13 +1210,13 @@ function drawSelect() {
 }
 function overlayPanel(w, h) { ctx.fillStyle = 'rgba(30,15,8,0.6)'; ctx.fillRect(0, 0, VW, VH); const x = VW / 2 - w / 2, y = VH / 2 - h / 2; ctx.fillStyle = '#fff3dc'; rr(x, y, w, h, 22); ctx.fill(); ctx.strokeStyle = '#c8481a'; ctx.lineWidth = 4; ctx.stroke(); return { x, y }; }
 function drawPause() {
-  const { x, y } = overlayPanel(460, 400), cx = VW / 2;
-  text('Paused', cx, y + 40, 36, '#7a2e12');
-  const items = [['Keep playing', () => setState('play')], ['Back to last flag', () => { respawn(false); setState('play'); }], ['Stage select', () => setState('select')], [save.muted ? 'Sound: OFF' : 'Sound: ON', () => { save.muted = !save.muted; writeSave(); }]];
-  items.forEach((it, i) => button(it[0], cx - 150, y + 74 + i * 62, 300, 50, it[1], { hot: i === pauseSel, size: 20 }));
-  text('Weapons (tap to pick):', cx, y + 330, 15, '#5a2a10');
+  const { x, y } = overlayPanel(500, 500), cx = VW / 2;
+  text('Paused', cx, y + 32, 32, '#7a2e12');
+  const items = [['Keep playing', () => setState('play')], ['Back to last flag', () => { respawn(false); setState('play'); }], ['Stage select', () => setState('select')], [save.muted ? 'Sound: OFF' : 'Sound: ON', () => { save.muted = !save.muted; writeSave(); }], ['Urwin Homeschool home', goSiteHome]];
+  items.forEach((it, i) => button(it[0], cx - 150, y + 60 + i * 54, 300, 46, it[1], { hot: i === pauseSel, size: i === 4 ? 16 : 18 }));
+  text('Weapons (tap to pick):', cx, y + 340, 15, '#5a2a10');
   const own = WEAPONS.map((w, i) => i).filter(i => save.weapons[i]);
-  own.forEach((wi, k) => { const bx = cx - (own.length * 96) / 2 + k * 96 + 4; button(WEAPONS[wi].short, bx, y + 346, 88, 40, () => { pickWeapon(wi); }, { hot: wi === curW, size: 14 }); });
+  own.forEach((wi, k) => { const bx = cx - (own.length * 96) / 2 + k * 96 + 4; button(WEAPONS[wi].short, bx, y + 356, 88, 40, () => { pickWeapon(wi); }, { hot: wi === curW, size: 14 }); });
 }
 function drawLose() {
   const { x, y } = overlayPanel(500, 300), cx = VW / 2;
@@ -1262,6 +1262,13 @@ function drawEnding() {
 }
 
 // ---------- state ----------
+function goSiteHome() { location.href = '../'; }
+function syncSiteHome() {
+  const el = document.querySelector('[data-hs-home]');
+  if (!el) return;
+  el.hidden = (state === 'play');
+  el.setAttribute('data-hs-playing', '0');
+}
 function setState(s) {
   state = s; stateT = 0; pauseSel = 0;
   const playing = s === 'play' || s === 'pause';
@@ -1270,6 +1277,7 @@ function setState(s) {
   tb.rot.classList.toggle('show', portrait && isTouch && s === 'play');
   if (s !== 'play') { for (const k in touch) touch[k] = false; padPtrs.clear(); padUpdate(); }
   if (s === 'select') selIdx = Math.min(selIdx, mansionOpen() ? 3 : 2);
+  syncSiteHome();
 }
 function menuKey(k) {
   const enter = k === 'Enter' || k === ' ' || k === 'z' || k === 'Z';
@@ -1282,9 +1290,9 @@ function menuKey(k) {
     if (enter && (selIdx < 3 || mansionOpen())) startStage(selIdx);
     if (k === 'Escape') setState('title');
   } else if (state === 'pause') {
-    if (k === 'ArrowDown') pauseSel = (pauseSel + 1) % 4; if (k === 'ArrowUp') pauseSel = (pauseSel + 3) % 4;
+    if (k === 'ArrowDown') pauseSel = (pauseSel + 1) % 5; if (k === 'ArrowUp') pauseSel = (pauseSel + 4) % 5;
     if (k === 'p' || k === 'P' || k === 'Escape') setState('play');
-    if (enter) { const acts = [() => setState('play'), () => { respawn(false); setState('play'); }, () => setState('select'), () => { save.muted = !save.muted; writeSave(); }]; acts[pauseSel](); }
+    if (enter) { const acts = [() => setState('play'), () => { respawn(false); setState('play'); }, () => setState('select'), () => { save.muted = !save.muted; writeSave(); }, goSiteHome]; acts[pauseSel](); }
   } else if (state === 'lose') {
     if (k === 'ArrowDown' || k === 'ArrowUp') pauseSel = 1 - pauseSel;
     if (enter) { if (pauseSel === 0) { respawn(false); setState('play'); } else setState('select'); }
