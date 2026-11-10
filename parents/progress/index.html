@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#0a0908">
+<link rel="icon" href="../../urwin-icon-180.png"><link rel="apple-touch-icon" href="../../urwin-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../parents.css"><link rel="stylesheet" href="progress.css?v=3"><title>Progress and Answers | Urwin Homeschool</title></head>
+<body><main>
+<a class="back" href="../">&#8249; Parents</a>
+<div class="hdr"><img src="../../urwin-logo.png" srcset="../../urwin-logo.png 1x, ../../urwin-logo@2x.png 2x" alt="Urwin Homeschool" width="200" height="112">
+<h1>Progress and Answers</h1><p class="sub">What Logan and Savannah turned in</p></div>
+<div class="rule"></div>
+<section id="lock" class="card lock">
+<span class="kick">Password locked</span><h2>Parent passcode</h2>
+<p>Enter the parent passcode to see submissions, the kids' answers and the correct answers.</p>
+<form id="f" autocomplete="on"><input type="text" name="username" value="parent" autocomplete="username" hidden>
+<label>Passcode<input id="pw" type="password" autocomplete="current-password" aria-label="Parent passcode" required></label>
+<button id="go" type="submit">Unlock</button></form>
+<p id="err" class="err" hidden></p>
+</section>
+<section id="app" hidden>
+<div class="tbar"><button type="button" id="refresh" class="ghost">Refresh</button><button type="button" id="lockbtn" class="ghost">Lock</button><span id="asof" class="asof"></span></div>
+<div id="totals" class="totals"></div>
+<div class="card"><h2>Lesson grid</h2><div class="gridwrap"><table id="grid" class="pgrid"></table></div></div>
+<div id="detail"></div>
+</section>
+</main><script src="progress.js?v=3"></script></body></html>

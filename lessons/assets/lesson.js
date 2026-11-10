@@ -4,7 +4,7 @@ const kid=D.kid.toLowerCase(),base='urwin.lessons.'+kid+'.'+D.lesson_id+'.',AD=D
 const today=new Date().toLocaleDateString('en-CA');
 const ld=(k,d)=>{try{const v=localStorage.getItem(base+k);return v?JSON.parse(v):d}catch(e){return d}};
 const sv=(k,v)=>{try{localStorage.setItem(base+k,JSON.stringify(v));return true}catch(e){alert('Could not save. The iPad may be out of storage.');return false}};
-const A=ld('answers',{});
+const A=ld('answers',{});let onProg=null;
 const setA=(id,v)=>{if(v===''||v==null)delete A[id];else A[id]=v;sv('answers',A);flash(id);prog()};
 const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e};
 const icon=(n,c)=>{const i=el('img',c||'ico');i.src=UI+'lucide-'+n+'.svg';i.alt='';i.setAttribute('aria-hidden','true');return i};
@@ -118,8 +118,41 @@ function both(q,s){const w=el('div','both'+(s.notebook?' notebook':''));if(s.not
  const set=m=>{tb.classList.toggle('on',m=='t');pb.classList.toggle('on',m=='p');tb.setAttribute('aria-selected',m=='t');pb.setAttribute('aria-selected',m=='p');t.style.display=m=='t'?'':'none';pdw.style.display=m=='p'?'':'none';if(m=='p')window.dispatchEvent(new Event('resize'));sv('mode.'+q.id,m)};
  tb.onclick=()=>set('t');pb.onclick=()=>set('p');set(ld('mode.'+q.id,'t'));return w}
 function prog(){const ids=[];D.sections.forEach(s=>{if(!/OPTIONAL/.test(s.tag||''))s.questions.forEach(q=>ids.push(q.id))});const n=ids.filter(i=>A[i]!=null).length;
- pgt.textContent=n+' of '+ids.length+' questions answered (optional parts not counted)';pgi.style.width=(100*n/ids.length)+'%'}
+ pgt.textContent=n+' of '+ids.length+' questions answered (optional parts not counted)';pgi.style.width=(100*n/ids.length)+'%';if(onProg)onProg()}
 prog();
+// turn in (submit to Dad)
+const SUB=window.HSSubmit;
+const reqIds=()=>{const ids=[];D.sections.forEach(s=>{if(!/OPTIONAL/.test(s.tag||''))s.questions.forEach(q=>ids.push(q.id))});return ids};
+const when=t=>{try{return new Date(t).toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})+' ET'}catch(e){return t}};
+const lnum=parseInt(D.lesson_id.split('-')[1]);
+const sb=el('section','paper submitbox');sb.id='turn-in';
+sb.append(el('span','tag','FINISHED?'),el('h2',null,'Turn in Lesson '+lnum));
+const sbl=el('p','sblede');sb.append(sbl);
+const send=el('button','btn sendbtn');send.type='button';send.id='send-btn';send.append(icon('list-checks','ico w'),document.createTextNode(' Done? Send to Dad'));
+const cf=el('div','sbconfirm');cf.hidden=true;cf.setAttribute('role','alertdialog');cf.setAttribute('aria-label','Confirm send');
+const cft=el('p','cft');const yes=el('button','btn yes');yes.type='button';yes.id='send-yes';yes.append(icon('check','ico w'),document.createTextNode(' Yes, send it'));
+const no=el('button','linkbtn','Not yet');no.type='button';const cfr=el('div','cfrow');cfr.append(yes,no);cf.append(cft,cfr);
+const st=el('div','sbstate');st.hidden=true;st.setAttribute('aria-live','polite');
+const badge=el('span','subbadge');badge.append(icon('check','ico w'),document.createTextNode(' Submitted'));
+const stt=el('p','sbtime'),sts=el('p','sbsync');const again=el('button','linkbtn','Send again with my latest answers');again.type='button';
+st.append(badge,stt,sts,again);sb.append(send,cf,st);
+function sbUpdate(s){const n=reqIds().filter(i=>A[i]!=null).length,tot=reqIds().length;
+ sbl.textContent=n+' of '+tot+' questions answered. When you are done, send your work to Dad. He will see your answers.';
+ if(!s){st.hidden=true;send.hidden=!cf.hidden?true:false;sb.classList.remove('done');return}
+ sb.classList.add('done');send.hidden=true;cf.hidden=true;st.hidden=false;stt.textContent='Sent '+when(s.at);
+ sts.textContent=s.synced?'Dad has it.':s.failed?'This one did not go through. Tell Dad.':'Saved on this device. It will go to Dad when Wi-Fi is back.';
+ sts.className='sbsync'+(s.synced?' ok':s.failed?' bad':' wait')}
+send.onclick=()=>{const left=reqIds().length-reqIds().filter(i=>A[i]!=null).length;
+ cft.textContent=left?('You still have '+left+' question'+(left>1?'s':'')+' with no answer. Send Lesson '+lnum+' to Dad anyway?'):('Send Lesson '+lnum+' to Dad now? You can still fix answers and send again later.');
+ send.hidden=true;cf.hidden=false;yes.focus()};
+no.onclick=()=>{cf.hidden=true;send.hidden=false};
+yes.onclick=()=>{if(!SUB){alert('Sending is not available right now.');return}yes.disabled=true;const s=SUB.submit(kid,D.lesson_id,JSON.parse(JSON.stringify(A)));yes.disabled=false;
+ if(!s){alert('Could not save. The device may be out of storage.');return}sbUpdate(s);if(navigator.vibrate)navigator.vibrate(15)};
+again.onclick=()=>{cf.hidden=false;st.hidden=true;cft.textContent='Send your latest answers for Lesson '+lnum+' to Dad?'};
+app.append(sb);
+onProg=()=>sbUpdate(SUB&&SUB.local(kid,D.lesson_id));
+sbUpdate(SUB&&SUB.local(kid,D.lesson_id));
+if(SUB){window.addEventListener('hs-sync',()=>sbUpdate(SUB.local(kid,D.lesson_id)));SUB.status(kid,[D.lesson_id]).then(m=>sbUpdate(m[D.lesson_id]||null))}
 const ft=el('div','foot');const ra=el('button','linkbtn','Start this lesson over');ra.type='button';ra.onclick=()=>{if(!confirm('Erase all answers and drawings for this lesson?'))return;
  Object.keys(localStorage).filter(k=>k.startsWith(base)&&!k.startsWith(base+'chores')).forEach(k=>localStorage.removeItem(k));location.reload()};ft.append(ra);app.append(ft);
 })();

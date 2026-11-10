@@ -218,3 +218,28 @@ body.keypage{background:#F7F5F0;color:var(--ink);padding-top:0}
 
 .tools.row{position:static;justify-content:flex-end;margin:0 0 8px}
 .lessonpage main{max-width:820px;margin-left:auto;margin-right:auto}
+/* turn in (submit to Dad) */
+.lessonpage .submitbox{border:2px solid var(--accent);text-align:left}
+.lessonpage .submitbox .tag{background:var(--accent)}
+.submitbox .sblede{margin:0 0 14px;color:var(--muted,#6B5D4F);font:500 var(--body,17px)/1.45 var(--font-ui,system-ui)}
+.submitbox .btn{width:100%;justify-content:center;min-height:max(64px,var(--tap,64px));font-size:max(19px,var(--body,19px));letter-spacing:.01em;box-shadow:0 10px 22px -12px rgba(70,45,20,.6)}
+.submitbox .btn .ico.w{margin:0 10px 0 0;width:24px;height:24px}
+.submitbox .btn:active{transform:translateY(1px)}
+.submitbox .sbconfirm{background:var(--soft,#F3E2CC);border-radius:calc(var(--radius,16px) - 4px);padding:16px}
+.submitbox .cft{margin:0 0 12px;font:600 var(--body,17px)/1.4 var(--font-ui,system-ui);color:var(--ink)}
+.submitbox .cfrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.submitbox .cfrow .btn{flex:1 1 220px;width:auto}
+.submitbox .cfrow .linkbtn{flex:0 1 auto;min-height:56px;padding:0 22px;justify-content:center}
+.submitbox .sbstate{text-align:left}
+.submitbox .subbadge{display:inline-flex;align-items:center;gap:2px;background:var(--correct,#3F6B3A);color:#fff;font:800 15px var(--font-ui,system-ui);letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:8px 16px}
+.submitbox .subbadge .ico.w{margin:0 6px 0 0}
+.submitbox .sbtime{margin:12px 0 2px;font:600 calc(var(--body,17px) + 1px) var(--font-ui,system-ui);color:var(--ink)}
+.submitbox .sbsync{margin:0 0 14px;font:500 15px var(--font-ui,system-ui);color:var(--muted,#6B5D4F)}
+.submitbox .sbsync.ok{color:var(--correct,#3F6B3A)}.submitbox .sbsync.bad{color:var(--retry,#9E2B25)}
+.submitbox.done{border-color:var(--correct,#3F6B3A)}
+@media print{.submitbox{display:none!important}}
+/* list page: submitted badge */
+.lcard .sb{display:flex;width:max-content;align-items:center;gap:4px;margin:8px 0 2px;background:#3F6B3A;color:#fff;font:800 12px var(--font-ui,system-ui);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
+.lcard .sb[hidden]{display:none}
+.lcard .sb.wait{background:#7a6440}
+.submitbox [hidden]{display:none!important}
