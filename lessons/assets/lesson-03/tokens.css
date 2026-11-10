@@ -1,0 +1,26 @@
+/* lesson-03 theme overrides */
+:root{}
+.theme-honor-square{ --accent:#1B3A5F; --accent-2:#C4A35A; --soft:#EFE6D6; }
+.kid-logan.lesson-03{ --hero:url(./logan-hero.png); }
+.kid-savannah.lesson-03{ --hero:url(./savannah-hero.png); }
+/* Cream title scrim (Honor Square) so the headline stays readable on a phone.
+   Uses ::before so hero image URLs keep resolving against lesson.css. */
+.theme-honor-square.lessonpage .hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background: linear-gradient(90deg, rgba(239,230,214,.97) 0, rgba(239,230,214,.86) 40%, rgba(239,230,214,.35) 62%, transparent 78%);
+}
+.theme-honor-square.lessonpage .hero .ht{ position:relative; z-index:1; }
+@media (max-width: 900px){
+  .theme-honor-square.lessonpage .hero::before{
+    background: linear-gradient(90deg, rgba(239,230,214,.98) 0, rgba(239,230,214,.92) 50%, rgba(239,230,214,.45) 70%, transparent 86%);
+  }
+}
+@media (max-width: 500px){
+  .theme-honor-square.lessonpage .hero::before{
+    background: linear-gradient(90deg, rgba(239,230,214,.98) 0, rgba(239,230,214,.94) 54%, rgba(239,230,214,.55) 72%, transparent 90%);
+  }
+}
