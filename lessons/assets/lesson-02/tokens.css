@@ -1,5 +1,5 @@
 /* lesson-02 theme overrides */
 :root{}
-theme-thanksgiving-table{ --accent:#8A3324; --accent-2:#C9962B; --soft:#F3DFD0; }
+.theme-thanksgiving-table{ --accent:#8A3324; --accent-2:#C9962B; --soft:#F3DFD0; }
 .kid-logan.lesson-02{ --hero:url(./logan-hero.png); }
 .kid-savannah.lesson-02{ --hero:url(./savannah-hero.png); }
