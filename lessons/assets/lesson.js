@@ -133,14 +133,18 @@ const cf=el('div','sbconfirm');cf.hidden=true;cf.setAttribute('role','alertdialo
 const cft=el('p','cft');const yes=el('button','btn yes');yes.type='button';yes.id='send-yes';yes.append(icon('check','ico w'),document.createTextNode(' Yes, send it'));
 const no=el('button','linkbtn','Not yet');no.type='button';const cfr=el('div','cfrow');cfr.append(yes,no);cf.append(cft,cfr);
 const st=el('div','sbstate');st.hidden=true;st.setAttribute('aria-live','polite');
-const badge=el('span','subbadge');badge.append(icon('check','ico w'),document.createTextNode(' Submitted'));
+const badge=el('span','subbadge');
 const stt=el('p','sbtime'),sts=el('p','sbsync');const again=el('button','linkbtn','Send again with my latest answers');again.type='button';
-st.append(badge,stt,sts,again);sb.append(send,cf,st);
+const now=el('button','btn sendbtn sendnow');now.type='button';now.id='send-now';now.textContent='Send to Dad now';now.hidden=true;
+st.append(badge,stt,sts,now,again);sb.append(send,cf,st);
+const setBadge=(cls,txt,ok)=>{badge.className='subbadge'+(cls?' '+cls:'');badge.textContent='';if(ok)badge.append(icon('check','ico w'));badge.append(document.createTextNode((ok?' ':'')+txt))};
 function sbUpdate(s){const n=reqIds().filter(i=>A[i]!=null).length,tot=reqIds().length;
  sbl.textContent=n+' of '+tot+' questions answered. When you are done, send your work to Dad. He will see your answers.';
  if(!s){st.hidden=true;send.hidden=!cf.hidden?true:false;sb.classList.remove('done');return}
- sb.classList.add('done');send.hidden=true;cf.hidden=true;st.hidden=false;stt.textContent='Sent '+when(s.at);
- sts.textContent=s.synced?'Dad has it.':s.failed?'This one did not go through. Tell Dad.':'Saved on this device. It will go to Dad when Wi-Fi is back.';
+ send.hidden=true;cf.hidden=true;st.hidden=false;sb.classList.toggle('done',!!s.synced);sb.classList.toggle('notsent',!s.synced);
+ if(s.synced){setBadge('','Submitted',true);stt.textContent='Sent '+when(s.at);sts.textContent='Dad has it.';now.hidden=true;again.hidden=false}
+ else if(s.failed){setBadge('bad','Not sent');stt.textContent='Tried '+when(s.at);sts.textContent='This did not reach Dad yet. Tap Try again. If it still does not work, tell Dad.';now.hidden=false;now.textContent='Try again';again.hidden=true}
+ else{setBadge('wait','Not sent yet');stt.textContent='Saved '+when(s.at);sts.textContent=navigator.onLine===false?'Saved on this iPad, but there is no Wi-Fi. It goes to Dad when Wi-Fi is back and this page is open.':'Sending to Dad. Keep this page open until it says Submitted.';now.hidden=false;now.textContent='Send to Dad now';again.hidden=true}
  sts.className='sbsync'+(s.synced?' ok':s.failed?' bad':' wait')}
 send.onclick=()=>{const left=reqIds().length-reqIds().filter(i=>A[i]!=null).length;
  cft.textContent=left?('You still have '+left+' question'+(left>1?'s':'')+' with no answer. Send Lesson '+lnum+' to Dad anyway?'):('Send Lesson '+lnum+' to Dad now? You can still fix answers and send again later.');
@@ -148,6 +152,7 @@ send.onclick=()=>{const left=reqIds().length-reqIds().filter(i=>A[i]!=null).leng
 no.onclick=()=>{cf.hidden=true;send.hidden=false};
 yes.onclick=()=>{if(!SUB){alert('Sending is not available right now.');return}yes.disabled=true;const s=SUB.submit(kid,D.lesson_id,JSON.parse(JSON.stringify(A)));yes.disabled=false;
  if(!s){alert('Could not save. The device may be out of storage.');return}sbUpdate(s);if(navigator.vibrate)navigator.vibrate(15)};
+now.onclick=()=>{const cur=SUB&&SUB.local(kid,D.lesson_id);if(cur&&cur.failed){const s2=SUB.submit(kid,D.lesson_id,JSON.parse(JSON.stringify(A)));if(s2)sbUpdate(s2)}else if(SUB)SUB.flush()};
 again.onclick=()=>{cf.hidden=false;st.hidden=true;cft.textContent='Send your latest answers for Lesson '+lnum+' to Dad?'};
 app.append(sb);
 onProg=()=>sbUpdate(SUB&&SUB.local(kid,D.lesson_id));

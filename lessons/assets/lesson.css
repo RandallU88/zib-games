@@ -237,6 +237,10 @@ body.keypage{background:#F7F5F0;color:var(--ink);padding-top:0}
 .submitbox .sbtime{margin:12px 0 2px;font:600 calc(var(--body,17px) + 1px) var(--font-ui,system-ui);color:var(--ink)}
 .submitbox .sbsync{margin:0 0 14px;font:500 15px var(--font-ui,system-ui);color:var(--muted,#6B5D4F)}
 .submitbox .sbsync.ok{color:var(--correct,#3F6B3A)}.submitbox .sbsync.bad{color:var(--retry,#9E2B25)}
+.submitbox .subbadge.wait{background:#8a6a2e}.submitbox .subbadge.bad{background:var(--retry,#9E2B25)}
+.submitbox .sbsync.wait{color:#7a5a1e}
+.submitbox .sendnow{margin:0 0 12px}
+.lcard .sb.bad{background:#9E2B25}
 .submitbox.done{border-color:var(--correct,#3F6B3A)}
 @media print{.submitbox{display:none!important}}
 /* list page: submitted badge */
