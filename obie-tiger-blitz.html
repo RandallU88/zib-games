@@ -904,7 +904,7 @@ function showSelect(){state='select';lvl=null;playSong(4);const three=save.beate
   h+='</div><div><button class="b alt" data-act="title">Title</button><button class="b alt" data-act="diff">Mode: '+(easy()?'Easy':'Normal')+'</button><button class="b alt" data-act="sound">Sound: Off</button></div>';
   showOv(h);}
 function pauseGame(){if(state!=='play')return;state='pause';resetInputs();audioSleep();
-  showOv('<h2>Paused</h2><div><button class="b" data-act="resume">Resume</button></div><div><button class="b alt" data-act="sound">Sound: Off</button><button class="b alt" data-act="phelp">Controls</button><button class="b alt" data-act="quit">Quarters</button></div><div><button class="b alt" data-act="sitehome">Urwin Homeschool home</button></div>');}
+  showOv('<h2>Paused</h2><div><button class="b" data-act="resume">Resume</button></div><div><button class="b alt" data-act="sound">Sound: Off</button><button class="b alt" data-act="phelp">Controls</button><button class="b alt" data-act="quit">Quarters</button></div><div><button class="b alt" data-act="arcade">Back to Arcade</button><button class="b alt" data-act="sitehome">Urwin Homeschool home</button></div>');}
 function resume(){hideOv();resetInputs();state='play';audioWake();syncSiteHome();updateChrome();}
 function showOver(){showOv('<h2>Game Over</h2><p>'+Math.floor(score/10)+' yards</p><div><button class="b" data-act="continue">Continue from first down</button></div><div><button class="b alt" data-act="quit">Quarters</button></div>');}
 function showGet(){showOv('<div class="logo" style="font-size:clamp(34px,9vmin,80px)">TOUCHDOWN!</div><p style="font-size:22px">'+stage.boss+' is beaten!</p><p>'+Math.floor(score/10)+' yards, '+tds+' TD</p><button class="b" data-act="select">Next Quarter</button>');}
@@ -915,7 +915,7 @@ OV.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(
   else if(a==='diff'){save.diff=easy()?'normal':'easy';persist();if(state==='select')showSelect();else showTitle();}
   else if(a==='sound'){setSound(!save.sound);if(save.sound)playSong(state==='pause'?(boss?5:stage.song):4);}
   else if(a==='help')showHelp();else if(a==='back')showTitle();else if(a==='phelp')showOv('<h2>Controls</h2>'+keyHelp+'<button class="b" data-act="resume">Resume</button>');
-  else if(a==='sitehome')goSiteHome();else if(a==='title')showTitle();else if(a==='select'||a==='quit')showSelect();
+  else if(a==='arcade')location.href='arcade/';else if(a==='sitehome')goSiteHome();else if(a==='title')showTitle();else if(a==='select'||a==='quit')showSelect();
   else if(a.startsWith('go:'))startStage(a.slice(3));
   else if(a==='resume')resume();
   else if(a==='continue'){lives=easy()?5:3;hideOv();respawn();}

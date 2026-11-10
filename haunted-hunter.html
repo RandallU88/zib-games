@@ -863,7 +863,7 @@ function showSelect(){state='select';lvl=null;playSong(4);const three=save.beate
   if(owned().length>1)h+='<p class="small">Your weapons: '+owned().map(w=>WEAPONS[w].name).join(', ')+'</p>';
   showOv(h);}
 function pauseGame(){if(state!=='play')return;state='pause';for(const k in tc)tc[k]=false;
-  showOv('<h2>Paused</h2><div><button class="b" data-act="resume">Resume</button></div><div><button class="b alt" data-act="sound">Sound: Off</button><button class="b alt" data-act="phelp">Controls</button><button class="b alt" data-act="quit">Stage Select</button></div><div><button class="b alt" data-act="sitehome">Urwin Homeschool home</button></div>');}
+  showOv('<h2>Paused</h2><div><button class="b" data-act="resume">Resume</button></div><div><button class="b alt" data-act="sound">Sound: Off</button><button class="b alt" data-act="phelp">Controls</button><button class="b alt" data-act="quit">Stage Select</button></div><div><button class="b alt" data-act="arcade">Back to Arcade</button><button class="b alt" data-act="sitehome">Urwin Homeschool home</button></div>');}
 function resume(){hideOv();state='play';syncSiteHome();updateChrome();}
 function showOver(){showOv('<h2>Game Over</h2><p>Score: '+score+'</p><div><button class="b" data-act="continue">Continue from checkpoint</button></div><div><button class="b alt" data-act="quit">Stage Select</button></div>');}
 function showGet(){const w=WEAPONS[stage.reward];
@@ -875,7 +875,7 @@ OV.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(
   else if(a==='diff'){save.diff=easy()?'normal':'easy';persist();if(state==='select')showSelect();else showTitle();}
   else if(a==='sound'){setSound(!save.sound);if(save.sound)playSong(state==='pause'?(boss?5:stage.song):4);}
   else if(a==='help')showHelp();else if(a==='back')showTitle();else if(a==='phelp')showOv('<h2>Controls</h2>'+keyHelp+'<button class="b" data-act="resume">Resume</button>');
-  else if(a==='sitehome')goSiteHome();else if(a==='title')showTitle();else if(a==='select'||a==='quit')showSelect();
+  else if(a==='arcade')location.href='arcade/';else if(a==='sitehome')goSiteHome();else if(a==='title')showTitle();else if(a==='select'||a==='quit')showSelect();
   else if(a.startsWith('go:'))startStage(a.slice(3));
   else if(a==='resume')resume();
   else if(a==='continue'){lives=easy()?5:3;hideOv();respawn();}
