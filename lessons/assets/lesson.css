@@ -11,6 +11,9 @@ background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(201,160,74,.16),transp
 main{max-width:900px;margin:0 auto}
 h1,h2,h3{font-family:var(--serif);letter-spacing:.02em}
 .index h1,.key h1{color:#f3dfa8;text-align:center;margin:8px 0 4px;font-size:clamp(26px,5vw,38px)}
+.index h1{display:flex;align-items:center;justify-content:center;gap:14px}
+.index h1 picture{width:64px;height:64px;flex:none;display:block}
+.index h1 img.kid-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;display:block}
 .lede{text-align:center;color:#d9c9a3;margin:0 0 18px}
 .lcards{display:grid;gap:14px}
 .lcard{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"n t g" "n d g";gap:4px 16px;align-items:center;text-decoration:none;color:#f5efe2;
@@ -106,7 +109,7 @@ body.lessonpage{background:var(--paper) url(../assets/ui/paper-tile.webp) repeat
 @media (max-width:900px){.lessonpage .hero{background:linear-gradient(90deg,rgba(244,236,220,.97) 0,rgba(244,236,220,.85) 45%,transparent 70%),var(--hero-img) 70% center/cover,var(--card)}}
 .lessonpage .kick{font:700 var(--kick-size,12px)/1.2 var(--font-ui);letter-spacing:var(--kick-track,.14em);text-transform:uppercase;color:var(--accent)}
 .lessonpage .hero h1{font:600 var(--h1)/1.08 var(--font-head);color:var(--ink);margin:8px 0 6px;letter-spacing:0}
-.lessonpage .hero .meta{font-size:13px;color:var(--muted);font-weight:600}
+.lessonpage .hero .meta{font-size:16px;color:var(--muted);font-weight:600}
 .lessonpage .progress{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px;margin:0 2px var(--gap);font-weight:600}
 .lessonpage .bar{flex:1;height:8px;border-radius:9px;background:rgba(127,127,127,.2);overflow:hidden;min-width:80px}.lessonpage .bar i{display:block;height:100%;width:0;background:var(--accent-2);border-radius:9px;transition:width .3s}
 .lessonpage .chores,.lessonpage .paper,.lessonpage details.teacher{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-card);border-radius:var(--radius);color:var(--ink)}
@@ -177,6 +180,16 @@ body.lessonpage{background:var(--paper) url(../assets/ui/paper-tile.webp) repeat
 .lessonpage .saved{color:var(--correct,#3F6B3A);font:600 13px var(--font-ui)}
 .lessonpage .foot{margin:10px 0 30px}
 @media (max-width:700px){.lessonpage .hero .ht{max-width:80%}.lessonpage .chlist{grid-template-columns:1fr}.thermos{grid-template-columns:1fr}}
+@media (max-width:500px){
+  .lessonpage .hero{
+    background:
+      radial-gradient(ellipse 90% 80% at left center,rgba(243,223,208,.85) 0%,rgba(243,223,208,0) 72%),
+      linear-gradient(90deg,rgba(243,223,208,.7) 0,rgba(243,223,208,0) 62%),
+      var(--hero-img) 30% center/cover,
+      var(--card);
+  }
+  .lessonpage .hero .meta{font-size:16px;line-height:1.4}
+}
 .kid-savannah{--body:16px;--story:16px;--h1:30px;--h3:19px;--pad:20px;--gap:14px;--tap:52px;--radius:16px;--hero-h:170px}
 .kid-savannah input.num{font-size:22px}
 .kid-savannah .lessonpage .story,.kid-savannah .story{font-size:max(var(--story),18px)}
