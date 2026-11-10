@@ -1,5 +1,12 @@
 [
  {
+  "id": "lesson-02",
+  "num": 2,
+  "title": "June and the Long Table",
+  "date": "2026-11-11",
+  "theme_word": "SPECIALIZE"
+ },
+ {
   "id": "lesson-01",
   "num": 1,
   "title": "The Orchard Choice",

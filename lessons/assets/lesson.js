@@ -11,7 +11,8 @@ const icon=(n,c)=>{const i=el('img',c||'ico');i.src=UI+'lucide-'+n+'.svg';i.alt=
 function pic(name,alt,cls){const p=el('picture',cls);const s=el('source');s.type='image/webp';s.srcset=AD+name+'.webp';const i=el('img');i.src=AD+name+'.png';i.alt=alt||'';i.loading='lazy';i.decoding='async';p.append(s,i);return p}
 function svg(name,alt,cls){const i=el('img',cls);i.src=AD+name;i.alt=alt||'';i.decoding='async';return i}
 function flash(id){const s=document.querySelector('[data-saved="'+id+'"]');if(s){s.classList.add('show');clearTimeout(s._t);s._t=setTimeout(()=>s.classList.remove('show'),1200)}}
-document.body.classList.add('lessonpage','kid-'+kid,'theme-'+D.theme_word.toLowerCase().replace(/[^a-z0-9]+/g,'-'),D.lesson_id);
+const themeClass=D.theme_class||('theme-'+D.theme_word.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
+document.body.classList.add('lessonpage','kid-'+kid,themeClass,D.lesson_id);
 document.body.dataset.theme=D.theme_word;
 const app=document.getElementById('app');
 // hero
@@ -62,7 +63,8 @@ function story(s){const w=el('div','reader');const art=el('div','panel');const s
 function question(q,s){const w=el('div','q');w.dataset.qid=q.id;w.dataset.type=q.type;w.id='q-'+q.id;const p=el('h3','p');p.append(document.createTextNode(q.prompt));
  const sd=el('span','saved','Saved');sd.dataset.saved=q.id;p.append(sd);w.append(p);
  if(q.figure){const f=el('div','fig '+q.figure.kind);f.append(svg(q.figure.src,q.figure.alt));w.append(f)}
- if(q.coins){const f=el('div','coins');f.setAttribute('role','img');f.setAttribute('aria-label','Coins to count');q.coins.forEach(c=>f.append(svg('L4-coin-'+c+'.svg',c+' coin','coin '+c)));w.append(f)}
+ if(q.coins){const f=el('div','coins');f.setAttribute('role','img');f.setAttribute('aria-label','Coins to count');const cdir=q.coin_dir||D.coin_dir||AD,cpre=q.coin_prefix!=null?q.coin_prefix:(D.coin_prefix!=null?D.coin_prefix:'L4-coin-');
+ q.coins.forEach(c=>{const i=el('img','coin '+c);i.src=cdir+cpre+c+'.svg';i.alt=c+' coin';i.decoding='async';f.append(i)});w.append(f)}
  const fn={multiple_choice:mc,short_typed:typed,number_typed:num,tap_to_sort:sort,pencil_draw:pad,pencil_write:pad}[q.type];
  if(!fn){w.append(el('p','small','Unsupported question type: '+q.type));return w}
  if(q.alt_type==='pencil_write'&&q.type==='short_typed')w.append(both(q,s));else w.append(fn(q,s));return w}
