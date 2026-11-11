@@ -1,5 +1,8 @@
 /* Simple Machine Shop: November workshop. Wood, rope, steel, enamelware.
    Distinct from Lesson 1 farm, Lesson 2 dining room, and Lesson 3 town square. */
+
+/* Shared workshop palette. Track pages also load lessons/assets/tokens.css;
+   these theme tokens fill --accent, --card, --font-head, and a paper-friendly --muted. */
 .machines-page{
   --bg:#161310;
   --panel:#2A211A;
@@ -10,18 +13,176 @@
   --wood:#6B4A2B;
   --steel:#8A9298;
   --rope:#C4A36A;
-  --muted:#C9BBA6;
 }
-.machines-page .hero{
+.theme-workshop,
+.machines-page.theme-workshop{
+  --accent:#7A4B26;
+  --accent-2:#C4A35A;
+  --soft:#EFE6D6;
+  --card:#FFFBF4;
+  --line:#E2D5BF;
+  --muted:#6B5D4F;
+  --font-head:"Fraunces",Georgia,serif;
+  --font-ui:"Inter",system-ui,sans-serif;
+}
+
+/* ---------- Picker: two proper track cards (not unstyled links or full-bleed heroes) ---------- */
+body.machines-page:not(.lessonpage){
   background:
-    linear-gradient(180deg, rgba(22,19,16,.28), rgba(22,19,16,.55)),
-    var(--hero-img, none);
-  background-size:cover;
-  background-position:center bottom;
+    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(196,163,90,.16),transparent 65%),
+    linear-gradient(180deg,#161310 0%,#1C1814 60%,#2A211A 100%);
+  color:#f5efe2;
 }
-.machines-page .lede{
-  max-width:40em;margin:8px auto 0;padding:0 16px;
-  color:var(--muted);font-size:15px;line-height:1.45;
+.machines-picker{
+  width:100%;
+  max-width:880px;
+  margin:0 auto;
+  padding:0 4px 40px;
+}
+.machines-picker h1{
+  text-align:center;
+  color:#f3dfa8;
+  margin:8px 0 8px;
+  font-size:clamp(28px,5vw,40px);
+  line-height:1.15;
+}
+.machines-picker .lede{
+  text-align:center;
+  color:#d9c9a3;
+  max-width:36em;
+  margin:0 auto 22px;
+  padding:0 8px;
+  font-size:clamp(16px,2.2vw,18px);
+  line-height:1.45;
+}
+.machines-picker .tiles{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+  width:100%;
+}
+@media (min-width:700px){
+  .machines-picker .tiles{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+}
+.machines-picker a.tile{
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+  text-decoration:none;
+  color:#e6dccb;
+  background:linear-gradient(180deg,#2A211A,#1A1612);
+  border:1.5px solid rgba(196,163,90,.65);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 14px 34px rgba(0,0,0,.55),inset 0 0 0 1px rgba(226,192,110,.08);
+  min-height:0;
+  transition:transform .15s;
+}
+.machines-picker a.tile:link,
+.machines-picker a.tile:visited{color:#e6dccb;text-decoration:none}
+.machines-picker a.tile:active{transform:scale(.98)}
+.machines-picker .tile-art{
+  display:block;
+  aspect-ratio:16/7;
+  height:auto;
+  background:#1A1612;
+  border-bottom:1px solid rgba(196,163,90,.45);
+  overflow:hidden;
+  flex:none;
+}
+.machines-picker .tile-art img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 55%;
+  display:block;
+}
+.machines-picker .tile-body{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:16px 18px 18px;
+  flex:1;
+  min-width:0;
+}
+.machines-picker .tile-kicker{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#E4D09A;
+  line-height:1.3;
+}
+.machines-picker .tile-title{
+  display:block;
+  font-family:"Cinzel",Georgia,serif;
+  font-weight:700;
+  font-size:clamp(22px,3vw,26px);
+  color:#f3dfa8;
+  line-height:1.15;
+}
+.machines-picker .tile-desc{
+  display:block;
+  font-size:16px;
+  line-height:1.45;
+  color:#e6dccb;
+  flex:1;
+}
+.machines-picker .tile-go{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  align-self:flex-start;
+  margin-top:10px;
+  background:#C4A35A;
+  color:#241a06;
+  font-weight:800;
+  font-size:17px;
+  padding:10px 18px;
+  border-radius:999px;
+  min-height:44px;
+  text-decoration:none;
+}
+
+/* ---------- Track pages ---------- */
+/* Cream title scrim so the headline stays readable on the workshop hero. */
+.theme-workshop.lessonpage .hero{
+  background:
+    linear-gradient(90deg, rgba(237,228,208,.97) 0, rgba(237,228,208,.86) 40%, rgba(237,228,208,.35) 64%, transparent 80%),
+    var(--hero-img, none) right center / cover,
+    #EDE4D0;
+  background-size:auto, cover, auto;
+  background-position:left top, right center, left top;
+}
+@media (max-width:900px){
+  .theme-workshop.lessonpage .hero{
+    background:
+      linear-gradient(90deg, rgba(237,228,208,.98) 0, rgba(237,228,208,.92) 50%, rgba(237,228,208,.45) 72%, transparent 88%),
+      var(--hero-img, none) 70% center / cover,
+      #EDE4D0;
+    background-size:auto, cover, auto;
+    background-position:left top, 70% center, left top;
+  }
+}
+@media (max-width:500px){
+  .theme-workshop.lessonpage .hero{
+    background:
+      linear-gradient(90deg, rgba(237,228,208,.98) 0, rgba(237,228,208,.94) 54%, rgba(237,228,208,.55) 74%, transparent 92%),
+      var(--hero-img, none) 70% center / cover,
+      #EDE4D0;
+    background-size:auto, cover, auto;
+    background-position:left top, 70% center, left top;
+  }
+}
+.machines-page.lessonpage .lede{
+  max-width:40em;
+  margin:0 auto 8px;
+  padding:0 16px;
+  color:#6B5D4F;
+  font-size:16px;
+  line-height:1.45;
+  text-align:center;
 }
 .machines-page .fig.machine,
 .machines-page .fig.workshop,
