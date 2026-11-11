@@ -105,7 +105,7 @@ window.URWIN_ARCADE_GAMES = [
     title: "Logic Lane",
     kicker: "New: Puzzles",
     blurb: "Read the clues, mark the grid, and figure out who used what.",
-    href: "../logic-lane/?v=1",
-    logo: "../logic-lane/assets/cabinet-logo.png"
+    href: "../logic-lane/?v=2",
+    logo: "../logic-lane/assets/cabinet-logo.png?v=2"
   }
 ];

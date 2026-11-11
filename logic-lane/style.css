@@ -1,19 +1,20 @@
-/* Logic Lane: dark gold arcade look, built for iPad Safari taps. */
+/* Logic Lane: Casebook palette (night, navy, paper, brass, wax). */
 :root{
-  --bg:#070604;
-  --panel:#120d08;
-  --panel2:#1a140c;
-  --text:#f5efe2;
-  --muted:#cbb896;
-  --gold:#C9A04A;
-  --gold2:#E2C06E;
-  --cream:#f6e3a6;
-  --ink:#241a06;
-  --ok:#6FA85A;
-  --bad:#C44B3A;
-  --cell:#1c160f;
-  --cell-border:rgba(201,160,74,.7);
+  --bg:#0E1218;
+  --panel:#1A2330;
+  --panel2:#151C27;
+  --text:#F4EFE3;
+  --muted:#C9C1B0;
+  --gold:#C4A35A;
+  --gold2:#E4D09A;
+  --cream:#E4D09A;
+  --ink:#1C242E;
+  --ok:#1A2330;
+  --bad:#7A3030;
+  --cell:#F4EFE3;
+  --cell-border:rgba(196,163,90,.7);
   --serif:"Cinzel","Trajan Pro","Times New Roman",Georgia,serif;
+  --note:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
   --sans:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
   --ll-cell:56px;
   --ll-bg-land:none;
@@ -27,7 +28,7 @@ body{
   padding:0 0 env(safe-area-inset-bottom, 0px);
   background-color:var(--bg);
   background-image:
-    linear-gradient(180deg, rgba(7,6,4,.42), rgba(7,6,4,.55)),
+    linear-gradient(180deg, rgba(14,18,24,.38), rgba(14,18,24,.55)),
     var(--ll-bg-land);
   background-size:cover, cover;
   background-position:center, center;
@@ -36,7 +37,7 @@ body{
 @media (max-width:700px) and (orientation:portrait){
   body{
     background-image:
-      linear-gradient(180deg, rgba(7,6,4,.42), rgba(7,6,4,.55)),
+      linear-gradient(180deg, rgba(14,18,24,.38), rgba(14,18,24,.55)),
       var(--ll-bg-port);
   }
 }
@@ -45,8 +46,8 @@ body{
   position:sticky;top:0;z-index:50;
   display:flex;align-items:center;gap:8px;
   padding:max(8px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px));
-  background:linear-gradient(180deg, rgba(7,6,4,.96), rgba(7,6,4,.88));
-  border-bottom:1px solid rgba(201,160,74,.35);
+  background:linear-gradient(180deg, rgba(14,18,24,.96), rgba(14,18,24,.88));
+  border-bottom:1px solid rgba(196,163,90,.35);
   backdrop-filter:blur(8px);
 }
 .ll-top-title{
@@ -59,8 +60,8 @@ body{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:44px;padding:8px 12px;border-radius:12px;
   text-decoration:none;font:700 14px/1.1 var(--sans);
-  color:#f3dfa8;background:rgba(20,14,8,.88);
-  border:1.5px solid rgba(201,160,74,.8);
+  color:#f3dfa8;background:rgba(14,18,24,.88);
+  border:1.5px solid rgba(196,163,90,.8);
   box-shadow:0 2px 8px rgba(0,0,0,.35);
   touch-action:manipulation;cursor:pointer;
 }
@@ -73,6 +74,8 @@ body{
 .ll-hero{text-align:center;margin:4px 0 18px}
 .ll-hero img{width:min(520px, 92%);height:auto;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
 .ll-lead{margin:8px auto 0;max-width:34em;color:var(--muted);font-size:15px;line-height:1.45}
+.ll-lead,.ll-story,.ll-help,.ll-clues,.ll-explain,.ll-recap,.ll-q-prompt{font-family:var(--note)}
+
 
 .ll-group{margin:0 0 22px}
 .ll-group h2{
@@ -96,7 +99,7 @@ body{
   display:flex;flex-direction:column;align-items:flex-start;gap:4px;
   min-height:88px;padding:14px 14px 12px;border-radius:16px;text-align:left;
   background:linear-gradient(180deg, #1a140c, #0c0906);
-  border:1.5px solid rgba(201,160,74,.7);
+  border:1.5px solid rgba(196,163,90,.7);
   color:inherit;font:inherit;cursor:pointer;
   box-shadow:0 6px 16px rgba(0,0,0,.35);
   touch-action:manipulation;
@@ -113,6 +116,23 @@ body{
   color:var(--gold2);font:700 15px var(--sans);cursor:pointer;
   touch-action:manipulation;
 }
+.ll-header-art{
+  display:block;
+  width:100%;
+  max-width:920px;
+  height:auto;
+  aspect-ratio:16/7;
+  object-fit:cover;
+  object-position:center 40%;
+  border-radius:14px;
+  border:1px solid rgba(196,163,90,.55);
+  box-shadow:0 8px 22px rgba(0,0,0,.4);
+  margin:0 0 12px;
+  background:#1A2330;
+}
+@media (max-width:420px){
+  .ll-header-art{aspect-ratio:16/8;margin-bottom:10px}
+}
 .ll-puzzle-head{margin:0 0 10px}
 .ll-puzzle-head h1{
   margin:0 0 6px;
@@ -127,6 +147,7 @@ body{
   .ll-puzzle-head .ll-help{display:none}
   .ll-puzzle-head .ll-story{display:none}
   .ll-puzzle-head h1{font-size:20px;margin:0 0 4px}
+  .ll-header-art{aspect-ratio:16/4;max-height:72px;margin-bottom:6px}
   .ll-back{min-height:30px;margin-bottom:0}
   .ll-puzzle-body{display:grid;grid-template-columns:minmax(210px, .85fr) minmax(0, 1.5fr);gap:8px 14px;align-items:stretch}
   .ll-actions,.ll-question,.ll-feedback{grid-column:1 / -1}
@@ -139,8 +160,8 @@ body{
 
 .ll-clues{
   margin:0;padding:12px 14px 12px 32px;
-  background:rgba(18,13,8,.82);
-  border:1px solid rgba(201,160,74,.4);
+  background:rgba(26,35,48,.82);
+  border:1px solid rgba(196,163,90,.4);
   border-radius:14px;
 }
 .ll-clues h2{margin:0 0 8px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);font-weight:800}
@@ -156,7 +177,7 @@ body{
 .ll-grid th,.ll-grid td{padding:0;vertical-align:middle}
 .ll-grid .ll-corner{background:transparent;border:0}
 .ll-cathead,.ll-colhead,.ll-rowhead,.ll-catrow{
-  background:rgba(18,13,8,.94);
+  background:rgba(26,35,48,.94);
   color:var(--cream);
   font-weight:700;
   border:1px solid var(--cell-border);
@@ -176,16 +197,16 @@ body{
   min-width:118px;width:118px;max-width:118px;
   font-size:13px;line-height:1.2;
   box-shadow:4px 0 8px rgba(0,0,0,.18);
-  background:rgba(18,13,8,.96);
+  background:rgba(26,35,48,.96);
 }
 .ll-rowhead .ll-emoji{margin-right:4px}
 .ll-blocked{background:transparent;border:0;background-image:
-  linear-gradient(135deg, rgba(201,160,74,.08) 25%, transparent 25%, transparent 50%,
-  rgba(201,160,74,.08) 50%, rgba(201,160,74,.08) 75%, transparent 75%);
+  linear-gradient(135deg, rgba(196,163,90,.08) 25%, transparent 25%, transparent 50%,
+  rgba(196,163,90,.08) 50%, rgba(196,163,90,.08) 75%, transparent 75%);
   background-size:10px 10px;opacity:.7}
 .ll-grid thead th{
   position:sticky;top:0;z-index:4;
-  background:rgba(18,13,8,.96);
+  background:rgba(26,35,48,.96);
 }
 
 .ll-cell{
@@ -198,9 +219,9 @@ body{
   cursor:pointer;touch-action:manipulation;
   border-radius:0;
 }
-.ll-cell img{width:62%;height:62%;pointer-events:none}
-.ll-cell[data-mark="check"]{background:rgba(111,168,90,.16)}
-.ll-cell[data-mark="x"]{background:rgba(196,75,58,.12)}
+.ll-cell[data-mark="check"]{background:#E8E4D8}
+.ll-cell[data-mark="x"]{background:#F0E4DC}
+.ll-cell img{width:70%;height:70%;pointer-events:none}
 .ll-cell:active{filter:brightness(1.25)}
 
 @media (min-width:1024px){:root{--ll-cell:64px}}
@@ -211,19 +232,19 @@ body{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:46px;padding:8px 16px;border-radius:999px;
   font:800 15px var(--sans);letter-spacing:.02em;
-  color:var(--cream);background:rgba(20,14,8,.9);
-  border:1.5px solid rgba(201,160,74,.8);
+  color:var(--cream);background:rgba(14,18,24,.9);
+  border:1.5px solid rgba(196,163,90,.8);
   cursor:pointer;touch-action:manipulation;text-decoration:none;
 }
-.ll-btn.ll-primary{background:var(--gold);color:var(--ink);border-color:var(--gold2);box-shadow:0 0 12px rgba(201,160,74,.35)}
-.ll-btn[aria-pressed="true"]{background:rgba(201,160,74,.35);color:var(--cream)}
+.ll-btn.ll-primary{background:var(--gold);color:var(--ink);border-color:var(--gold2);box-shadow:0 0 12px rgba(196,163,90,.35)}
+.ll-btn[aria-pressed="true"]{background:rgba(196,163,90,.35);color:var(--cream)}
 .ll-toggle-label{font-size:13px;color:var(--muted);flex-basis:100%;margin:0}
 
 .ll-feedback{
   min-height:1.4em;margin:0;
   padding:10px 12px;border-radius:12px;
-  background:rgba(18,13,8,.85);
-  border:1px solid rgba(201,160,74,.35);
+  background:rgba(26,35,48,.85);
+  border:1px solid rgba(196,163,90,.35);
   color:var(--text);font-size:15px;line-height:1.4;
 }
 .ll-feedback.ok{border-color:rgba(111,168,90,.7);color:#c8ebc0}
@@ -231,7 +252,7 @@ body{
 .ll-feedback:empty{display:none}
 
 .ll-question{margin-top:4px;padding:14px;border-radius:16px;
-  background:rgba(18,13,8,.88);border:1.5px solid rgba(201,160,74,.5)}
+  background:rgba(26,35,48,.88);border:1.5px solid rgba(196,163,90,.5)}
 .ll-question h2{margin:0 0 6px;font-family:var(--serif);font-size:22px;color:var(--cream)}
 .ll-q-prompt{margin:0 0 12px;font-size:17px;line-height:1.4}
 .ll-q-part{margin:0 0 10px}
@@ -241,7 +262,7 @@ body{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:48px;padding:8px 14px;border-radius:12px;
   font:700 16px var(--sans);color:var(--cream);
-  background:rgba(28,20,10,.9);border:1.5px solid rgba(201,160,74,.7);
+  background:rgba(26,35,48,.9);border:1.5px solid rgba(196,163,90,.7);
   cursor:pointer;touch-action:manipulation;text-align:center;
 }
 .ll-option[aria-pressed="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold2)}
@@ -253,7 +274,7 @@ body{
 .ll-win-stars{font-size:32px;color:var(--gold2);letter-spacing:.12em;margin:4px 0 10px}
 .ll-explain,.ll-recap{
   margin:0 auto 14px;max-width:36em;text-align:left;
-  background:rgba(18,13,8,.88);border:1px solid rgba(201,160,74,.4);
+  background:rgba(26,35,48,.88);border:1px solid rgba(196,163,90,.4);
   border-radius:14px;padding:12px 14px;font-size:16px;line-height:1.45;
 }
 .ll-recap h2,.ll-explain h2{margin:0 0 6px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2)}

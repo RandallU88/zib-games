@@ -448,7 +448,12 @@
     var p = current;
     var wide = p.categories.length > 2 || p.categories[0].items.length >= 4;
     var html = '<button type="button" class="ll-back" data-act="back-puzzles">‹ All puzzles</button>';
-    html += '<header class="ll-puzzle-head"><h1>' + esc(p.title) + "</h1>";
+    html += '<header class="ll-puzzle-head">';
+    var headerSrc = ART.headerFor ? ART.headerFor(p.id) : "";
+    if (headerSrc) {
+      html += '<img class="ll-header-art" src="' + esc(headerSrc) + '" alt="" width="1280" height="720" loading="lazy" decoding="async" onerror="this.remove()">';
+    }
+    html += "<h1>" + esc(p.title) + "</h1>";
     html += '<p class="ll-story">' + esc(p.story) + "</p>";
     html += '<p class="ll-help">Tap a box to cycle through blank, X, and a check. Each person matches one item in each group.</p></header>';
     html += '<div class="ll-puzzle-body">';
