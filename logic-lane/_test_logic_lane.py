@@ -198,7 +198,7 @@ async def run_device(browser, dev, opts, puzzles_first):
     # shot of a 4x4 stair-step
     if dev in ("iphone", "iphone-land", "ipad"):
         await pg.goto(f"{BASE}/logic-lane/", wait_until="domcontentloaded")
-        await click(pg, '[data-puzzle-id="sav-s1"]', touch)
+        await click(pg, '[data-puzzle-id="s-s1"]', touch)
         await pg.wait_for_timeout(200)
         await pg.screenshot(path=str(SHOTS / f"grid-4x4x2-{dev}.jpg"), type="jpeg", quality=72)
 
@@ -210,7 +210,7 @@ async def run_device(browser, dev, opts, puzzles_first):
     return rec
 
 async def main():
-    first = "logan-s1"
+    first = "l-s1"
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         for dev, opts in DEVICES.items():

@@ -6,7 +6,7 @@ import json, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DEFAULT_SRC = Path("/workspace/homeschool/arcade-puzzles/puzzles.json")
+DEFAULT_SRC = Path("/workspace/homeschool/arcade-puzzles/puzzles.renamed.json")
 
 def main():
     src = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_SRC

@@ -9,30 +9,30 @@
   "source": "Lorelai (Urwin Homeschool) for the Urwin Arcade puzzle section / Logic Lane",
   "logic_grids": [
     {
-      "id": "logan-s1",
+      "id": "l-s1",
       "kid": "Logan",
       "level": "Standard",
       "shape": "3x3x1",
       "title": "Leaf Day Tools",
-      "story": "The big maple tree dropped all its leaves at once. Logan, Dad, and Grandpa Randy each grabbed one tool to help.",
+      "story": "The big maple tree dropped all its leaves at once. Milo, Dad, and Grandpa Pete each grabbed one tool to help.",
       "categories": [
         {
           "id": "people",
           "name": "People",
           "items": [
             {
-              "id": "randall",
-              "label": "Dad Randall",
+              "id": "henry",
+              "label": "Dad Henry",
               "emoji": "👨"
             },
             {
-              "id": "logan",
-              "label": "Logan",
+              "id": "milo",
+              "label": "Milo",
               "emoji": "👦"
             },
             {
-              "id": "randy",
-              "label": "Grandpa Randy",
+              "id": "pete",
+              "label": "Grandpa Pete",
               "emoji": "👴"
             }
           ]
@@ -61,55 +61,55 @@
       ],
       "clues": [
         {
-          "text": "Logan used the rake.",
+          "text": "Milo used the rake.",
           "logic": {
             "type": "is",
-            "a": "logan",
+            "a": "milo",
             "b": "rake"
           },
           "n": 1
         },
         {
-          "text": "Dad Randall did not use the wheelbarrow.",
+          "text": "Dad Henry did not use the wheelbarrow.",
           "logic": {
             "type": "not",
-            "a": "randall",
+            "a": "henry",
             "b": "wheelbarrow"
           },
           "n": 2
         },
         {
-          "text": "Grandpa Randy did not use the leaf blower.",
+          "text": "Grandpa Pete did not use the leaf blower.",
           "logic": {
             "type": "not",
-            "a": "randy",
+            "a": "pete",
             "b": "blower"
           },
           "n": 3
         }
       ],
       "question": "Who used the wheelbarrow?",
-      "answer": "Grandpa Randy",
-      "explain": "Logan has the rake, so Dad must have the leaf blower, and Grandpa Randy gets the wheelbarrow.",
+      "answer": "Grandpa Pete",
+      "explain": "Milo has the rake, so Dad must have the leaf blower, and Grandpa Pete gets the wheelbarrow.",
       "solution": {
-        "randall": {
+        "henry": {
           "tool": "blower"
         },
-        "logan": {
+        "milo": {
           "tool": "rake"
         },
-        "randy": {
+        "pete": {
           "tool": "wheelbarrow"
         }
       },
       "solution_text": [
-        "Dad Randall: Leaf blower",
-        "Logan: Rake",
-        "Grandpa Randy: Wheelbarrow"
+        "Dad Henry: Leaf blower",
+        "Milo: Rake",
+        "Grandpa Pete: Wheelbarrow"
       ]
     },
     {
-      "id": "logan-s2",
+      "id": "l-s2",
       "kid": "Logan",
       "level": "Standard",
       "shape": "3x3x1",
@@ -121,18 +121,18 @@
           "name": "People",
           "items": [
             {
-              "id": "lana",
-              "label": "Grandma Lana",
+              "id": "pearl",
+              "label": "Grandma Pearl",
               "emoji": "👵"
             },
             {
-              "id": "tina",
-              "label": "Grandma Tina",
+              "id": "edith",
+              "label": "Grandma Edith",
               "emoji": "👵"
             },
             {
-              "id": "mackenzie",
-              "label": "Aunt Mackenzie",
+              "id": "paige",
+              "label": "Aunt Paige",
               "emoji": "👩"
             }
           ]
@@ -161,55 +161,55 @@
       ],
       "clues": [
         {
-          "text": "Grandma Tina brought the apple pie.",
+          "text": "Grandma Edith brought the apple pie.",
           "logic": {
             "type": "is",
-            "a": "tina",
+            "a": "edith",
             "b": "apple"
           },
           "n": 1
         },
         {
-          "text": "Aunt Mackenzie did not bring the pumpkin pie.",
+          "text": "Aunt Paige did not bring the pumpkin pie.",
           "logic": {
             "type": "not",
-            "a": "mackenzie",
+            "a": "paige",
             "b": "pumpkin"
           },
           "n": 2
         },
         {
-          "text": "Grandma Lana did not bring the pecan pie.",
+          "text": "Grandma Pearl did not bring the pecan pie.",
           "logic": {
             "type": "not",
-            "a": "lana",
+            "a": "pearl",
             "b": "pecan"
           },
           "n": 3
         }
       ],
-      "question": "Which pie did Grandma Lana bring?",
+      "question": "Which pie did Grandma Pearl bring?",
       "answer": "Pumpkin pie",
-      "explain": "Tina has apple. Mackenzie can't have pumpkin, so she has pecan, and Lana has pumpkin.",
+      "explain": "Edith has apple. Paige can't have pumpkin, so she has pecan, and Pearl has pumpkin.",
       "solution": {
-        "lana": {
+        "pearl": {
           "pie": "pumpkin"
         },
-        "tina": {
+        "edith": {
           "pie": "apple"
         },
-        "mackenzie": {
+        "paige": {
           "pie": "pecan"
         }
       },
       "solution_text": [
-        "Grandma Lana: Pumpkin pie",
-        "Grandma Tina: Apple pie",
-        "Aunt Mackenzie: Pecan pie"
+        "Grandma Pearl: Pumpkin pie",
+        "Grandma Edith: Apple pie",
+        "Aunt Paige: Pecan pie"
       ]
     },
     {
-      "id": "logan-s3",
+      "id": "l-s3",
       "kid": "Logan",
       "level": "Standard",
       "shape": "3x3x1",
@@ -221,18 +221,18 @@
           "name": "People",
           "items": [
             {
-              "id": "logan",
-              "label": "Logan",
+              "id": "milo",
+              "label": "Milo",
               "emoji": "👦"
             },
             {
-              "id": "savannah",
-              "label": "Savannah",
+              "id": "june",
+              "label": "June",
               "emoji": "👧"
             },
             {
-              "id": "milo",
-              "label": "Milo",
+              "id": "cal",
+              "label": "Cal",
               "emoji": "🧒"
             }
           ]
@@ -261,78 +261,78 @@
       ],
       "clues": [
         {
-          "text": "Savannah read how warm or cold it was on the thermometer.",
+          "text": "June read how warm or cold it was on the thermometer.",
           "logic": {
             "type": "is",
-            "a": "savannah",
+            "a": "june",
             "b": "thermo"
           },
           "n": 1
         },
         {
-          "text": "Milo did not check the rain gauge.",
+          "text": "Cal did not check the rain gauge.",
           "logic": {
             "type": "not",
-            "a": "milo",
+            "a": "cal",
             "b": "rain"
           },
           "n": 2
         },
         {
-          "text": "Logan did not check the wind sock.",
+          "text": "Milo did not check the wind sock.",
           "logic": {
             "type": "not",
-            "a": "logan",
+            "a": "milo",
             "b": "windsock"
           },
           "n": 3
         }
       ],
-      "question": "Which tool did Milo check?",
+      "question": "Which tool did Cal check?",
       "answer": "Wind sock",
-      "explain": "Savannah has the thermometer. Milo can't have the rain gauge, so he has the wind sock, and Logan has the rain gauge.",
+      "explain": "June has the thermometer. Cal can't have the rain gauge, so he has the wind sock, and Milo has the rain gauge.",
       "solution": {
-        "logan": {
+        "milo": {
           "tool": "rain"
         },
-        "savannah": {
+        "june": {
           "tool": "thermo"
         },
-        "milo": {
+        "cal": {
           "tool": "windsock"
         }
       },
       "solution_text": [
-        "Logan: Rain gauge",
-        "Savannah: Thermometer",
-        "Milo: Wind sock"
+        "Milo: Rain gauge",
+        "June: Thermometer",
+        "Cal: Wind sock"
       ]
     },
     {
-      "id": "logan-s4",
+      "id": "l-s4",
       "kid": "Logan",
       "level": "Standard",
       "shape": "3x3x1",
       "title": "Obie's Game Day Jobs",
-      "story": "The Massillon Tigers had a home game. Logan, Uncle Michael, and Aunt Abby each had one job in the stands.",
+      "story": "The Massillon Tigers had a home game. Milo, Uncle Craig, and Aunt Ellen each had one job in the stands.",
       "categories": [
         {
           "id": "people",
           "name": "People",
           "items": [
             {
-              "id": "michael",
-              "label": "Uncle Michael",
+              "id": "craig",
+              "label": "Uncle Craig",
               "emoji": "👨"
             },
             {
-              "id": "abby",
-              "label": "Aunt Abby",
+              "id": "ellen",
+              "label": "Aunt Ellen",
               "emoji": "👩"
             },
             {
-              "id": "logan",
-              "label": "Logan",
+              "id": "milo",
+              "label": "Milo",
               "emoji": "👦"
             }
           ]
@@ -361,55 +361,55 @@
       ],
       "clues": [
         {
-          "text": "Aunt Abby carried the popcorn.",
+          "text": "Aunt Ellen carried the popcorn.",
           "logic": {
             "type": "is",
-            "a": "abby",
+            "a": "ellen",
             "b": "popcorn"
           },
           "n": 1
         },
         {
-          "text": "Logan did not wave the flag.",
+          "text": "Milo did not wave the flag.",
           "logic": {
             "type": "not",
-            "a": "logan",
+            "a": "milo",
             "b": "flag"
           },
           "n": 2
         },
         {
-          "text": "Uncle Michael did not shake the pom-pom.",
+          "text": "Uncle Craig did not shake the pom-pom.",
           "logic": {
             "type": "not",
-            "a": "michael",
+            "a": "craig",
             "b": "pompom"
           },
           "n": 3
         }
       ],
       "question": "Who waved the flag?",
-      "answer": "Uncle Michael",
-      "explain": "Abby has the popcorn. Logan can't have the flag, so he has the pom-pom, and Uncle Michael waves the flag.",
+      "answer": "Uncle Craig",
+      "explain": "Ellen has the popcorn. Milo can't have the flag, so he has the pom-pom, and Uncle Craig waves the flag.",
       "solution": {
-        "michael": {
+        "craig": {
           "job": "flag"
         },
-        "abby": {
+        "ellen": {
           "job": "popcorn"
         },
-        "logan": {
+        "milo": {
           "job": "pompom"
         }
       },
       "solution_text": [
-        "Uncle Michael: Wave the flag",
-        "Aunt Abby: Carry the popcorn",
-        "Logan: Shake the pom-pom"
+        "Uncle Craig: Wave the flag",
+        "Aunt Ellen: Carry the popcorn",
+        "Milo: Shake the pom-pom"
       ]
     },
     {
-      "id": "logan-s5",
+      "id": "l-s5",
       "kid": "Logan",
       "level": "Standard",
       "shape": "3x3x1",
@@ -421,18 +421,18 @@
           "name": "People",
           "items": [
             {
-              "id": "nick",
-              "label": "Uncle Nick",
+              "id": "carl",
+              "label": "Uncle Carl",
               "emoji": "👨"
             },
             {
-              "id": "randall",
-              "label": "Dad Randall",
+              "id": "henry",
+              "label": "Dad Henry",
               "emoji": "👨"
             },
             {
-              "id": "june",
-              "label": "June",
+              "id": "nora",
+              "label": "Nora",
               "emoji": "👧"
             }
           ]
@@ -461,55 +461,55 @@
       ],
       "clues": [
         {
-          "text": "Uncle Nick did not use the pulley.",
+          "text": "Uncle Carl did not use the pulley.",
           "logic": {
             "type": "not",
-            "a": "nick",
+            "a": "carl",
             "b": "pulley"
           },
           "n": 1
         },
         {
-          "text": "Uncle Nick did not use the lever.",
+          "text": "Uncle Carl did not use the lever.",
           "logic": {
             "type": "not",
-            "a": "nick",
+            "a": "carl",
             "b": "lever"
           },
           "n": 2
         },
         {
-          "text": "June did not use the lever.",
+          "text": "Nora did not use the lever.",
           "logic": {
             "type": "not",
-            "a": "june",
+            "a": "nora",
             "b": "lever"
           },
           "n": 3
         }
       ],
       "question": "Who used the pulley?",
-      "answer": "June",
-      "explain": "Nick can't have the pulley or lever, so he has the ramp. June can't have the lever, so she has the pulley, and Dad has the lever.",
+      "answer": "Nora",
+      "explain": "Carl can't have the pulley or lever, so he has the ramp. Nora can't have the lever, so she has the pulley, and Dad has the lever.",
       "solution": {
-        "nick": {
+        "carl": {
           "machine": "ramp"
         },
-        "randall": {
+        "henry": {
           "machine": "lever"
         },
-        "june": {
+        "nora": {
           "machine": "pulley"
         }
       },
       "solution_text": [
-        "Uncle Nick: Ramp",
-        "Dad Randall: Lever",
-        "June: Pulley"
+        "Uncle Carl: Ramp",
+        "Dad Henry: Lever",
+        "Nora: Pulley"
       ]
     },
     {
-      "id": "logan-a1",
+      "id": "l-a1",
       "kid": "Logan",
       "level": "Advanced",
       "shape": "3x3x1",
@@ -521,18 +521,18 @@
           "name": "People",
           "items": [
             {
-              "id": "katie",
-              "label": "Mom Katie",
+              "id": "helen",
+              "label": "Mom Helen",
               "emoji": "👩"
             },
             {
-              "id": "duane",
-              "label": "Grandpa Duane",
+              "id": "curtis",
+              "label": "Grandpa Curtis",
               "emoji": "👴"
             },
             {
-              "id": "savannah",
-              "label": "Savannah",
+              "id": "june",
+              "label": "June",
               "emoji": "👧"
             }
           ]
@@ -561,10 +561,10 @@
       ],
       "clues": [
         {
-          "text": "Grandpa Duane's mug is not orange and not white.",
+          "text": "Grandpa Curtis's mug is not orange and not white.",
           "logic": {
             "type": "not_any",
-            "a": "duane",
+            "a": "curtis",
             "b": [
               "orange",
               "white"
@@ -578,34 +578,34 @@
             "type": "in",
             "a": "orange",
             "b": [
-              "savannah"
+              "june"
             ]
           },
           "n": 2
         }
       ],
       "question": "Who has the white mug?",
-      "answer": "Mom Katie",
-      "explain": "Duane's mug must be black. The only kid is Savannah, so she has orange, and Mom gets white.",
+      "answer": "Mom Helen",
+      "explain": "Curtis's mug must be black. The only kid is June, so she has orange, and Mom gets white.",
       "solution": {
-        "katie": {
+        "helen": {
           "mug": "white"
         },
-        "duane": {
+        "curtis": {
           "mug": "black"
         },
-        "savannah": {
+        "june": {
           "mug": "orange"
         }
       },
       "solution_text": [
-        "Mom Katie: White mug",
-        "Grandpa Duane: Black mug",
-        "Savannah: Orange mug"
+        "Mom Helen: White mug",
+        "Grandpa Curtis: Black mug",
+        "June: Orange mug"
       ]
     },
     {
-      "id": "logan-a2",
+      "id": "l-a2",
       "kid": "Logan",
       "level": "Advanced",
       "shape": "3x3x2",
@@ -617,18 +617,18 @@
           "name": "People",
           "items": [
             {
-              "id": "logan",
-              "label": "Logan",
+              "id": "milo",
+              "label": "Milo",
               "emoji": "👦"
             },
             {
-              "id": "lana",
-              "label": "Grandma Lana",
+              "id": "pearl",
+              "label": "Grandma Pearl",
               "emoji": "👵"
             },
             {
-              "id": "nick",
-              "label": "Uncle Nick",
+              "id": "carl",
+              "label": "Uncle Carl",
               "emoji": "👨"
             }
           ]
@@ -678,19 +678,19 @@
       ],
       "clues": [
         {
-          "text": "Uncle Nick made the rolls.",
+          "text": "Uncle Carl made the rolls.",
           "logic": {
             "type": "is",
-            "a": "nick",
+            "a": "carl",
             "b": "rolls"
           },
           "n": 1
         },
         {
-          "text": "Logan did not make the corn.",
+          "text": "Milo did not make the corn.",
           "logic": {
             "type": "not",
-            "a": "logan",
+            "a": "milo",
             "b": "corn"
           },
           "n": 2
@@ -705,40 +705,40 @@
           "n": 3
         },
         {
-          "text": "Logan sat by the window.",
+          "text": "Milo sat by the window.",
           "logic": {
             "type": "is",
-            "a": "logan",
+            "a": "milo",
             "b": "window"
           },
           "n": 4
         }
       ],
-      "question": "Where did Uncle Nick sit?",
+      "question": "Where did Uncle Carl sit?",
       "answer": "By the door",
-      "explain": "Nick made rolls and Logan didn't make corn, so Grandma Lana made the corn and sat by the fire. Logan is by the window, so Nick is by the door.",
+      "explain": "Carl made rolls and Milo didn't make corn, so Grandma Pearl made the corn and sat by the fire. Milo is by the window, so Carl is by the door.",
       "solution": {
-        "logan": {
+        "milo": {
           "dish": "beans",
           "seat": "window"
         },
-        "lana": {
+        "pearl": {
           "dish": "corn",
           "seat": "fire"
         },
-        "nick": {
+        "carl": {
           "dish": "rolls",
           "seat": "door"
         }
       },
       "solution_text": [
-        "Logan: Green beans, By the window",
-        "Grandma Lana: Corn, By the fireplace",
-        "Uncle Nick: Rolls, By the door"
+        "Milo: Green beans, By the window",
+        "Grandma Pearl: Corn, By the fireplace",
+        "Uncle Carl: Rolls, By the door"
       ]
     },
     {
-      "id": "logan-a3",
+      "id": "l-a3",
       "kid": "Logan",
       "level": "Advanced",
       "shape": "3x3x2",
@@ -750,18 +750,18 @@
           "name": "People",
           "items": [
             {
-              "id": "logan",
-              "label": "Logan",
+              "id": "milo",
+              "label": "Milo",
               "emoji": "👦"
             },
             {
-              "id": "milo",
-              "label": "Milo",
+              "id": "cal",
+              "label": "Cal",
               "emoji": "🧒"
             },
             {
-              "id": "michael",
-              "label": "Uncle Michael",
+              "id": "craig",
+              "label": "Uncle Craig",
               "emoji": "👨"
             }
           ]
@@ -820,19 +820,19 @@
           "n": 1
         },
         {
-          "text": "Uncle Michael raised the flag.",
+          "text": "Uncle Craig raised the flag.",
           "logic": {
             "type": "is",
-            "a": "michael",
+            "a": "craig",
             "b": "flag"
           },
           "n": 2
         },
         {
-          "text": "Logan did not split the log.",
+          "text": "Milo did not split the log.",
           "logic": {
             "type": "not",
-            "a": "logan",
+            "a": "milo",
             "b": "log"
           },
           "n": 3
@@ -847,31 +847,31 @@
           "n": 4
         }
       ],
-      "question": "Which machine did Uncle Michael use?",
+      "question": "Which machine did Uncle Craig use?",
       "answer": "Pulley",
-      "explain": "Michael raised the flag; Logan didn't split the log, so he hauled leaves (wheel and axle). Milo split the log (wedge), so Michael used the pulley.",
+      "explain": "Craig raised the flag; Milo didn't split the log, so he hauled leaves (wheel and axle). Cal split the log (wedge), so Craig used the pulley.",
       "solution": {
-        "logan": {
+        "milo": {
           "machine": "wheel",
           "job": "leaves"
         },
-        "milo": {
+        "cal": {
           "machine": "wedge",
           "job": "log"
         },
-        "michael": {
+        "craig": {
           "machine": "pulley",
           "job": "flag"
         }
       },
       "solution_text": [
-        "Logan: Wheel and axle, Haul the leaves",
-        "Milo: Wedge, Split the log",
-        "Uncle Michael: Pulley, Raise the flag"
+        "Milo: Wheel and axle, Haul the leaves",
+        "Cal: Wedge, Split the log",
+        "Uncle Craig: Pulley, Raise the flag"
       ]
     },
     {
-      "id": "sav-s1",
+      "id": "s-s1",
       "kid": "Savannah",
       "level": "Standard",
       "shape": "4x4x2",
@@ -883,23 +883,23 @@
           "name": "People",
           "items": [
             {
-              "id": "katie",
-              "label": "Mom Katie",
+              "id": "helen",
+              "label": "Mom Helen",
               "emoji": "👩"
             },
             {
-              "id": "tina",
-              "label": "Grandma Tina",
+              "id": "edith",
+              "label": "Grandma Edith",
               "emoji": "👵"
             },
             {
-              "id": "abby",
-              "label": "Aunt Abby",
+              "id": "ellen",
+              "label": "Aunt Ellen",
               "emoji": "👩"
             },
             {
-              "id": "savannah",
-              "label": "Savannah",
+              "id": "june",
+              "label": "June",
               "emoji": "👧"
             }
           ]
@@ -959,19 +959,19 @@
       ],
       "clues": [
         {
-          "text": "Savannah wore the orange apron, the Tigers' main color.",
+          "text": "June wore the orange apron, the Tigers' main color.",
           "logic": {
             "type": "is",
-            "a": "savannah",
+            "a": "june",
             "b": "orange"
           },
           "n": 1
         },
         {
-          "text": "Aunt Abby made the cranberry sauce.",
+          "text": "Aunt Ellen made the cranberry sauce.",
           "logic": {
             "type": "is",
-            "a": "abby",
+            "a": "ellen",
             "b": "cran"
           },
           "n": 2
@@ -986,10 +986,10 @@
           "n": 3
         },
         {
-          "text": "Mom Katie wore neither black nor plaid.",
+          "text": "Mom Helen wore neither black nor plaid.",
           "logic": {
             "type": "not_any",
-            "a": "katie",
+            "a": "helen",
             "b": [
               "black",
               "plaid"
@@ -998,45 +998,45 @@
           "n": 4
         },
         {
-          "text": "Savannah did not make the turkey.",
+          "text": "June did not make the turkey.",
           "logic": {
             "type": "not",
-            "a": "savannah",
+            "a": "june",
             "b": "turkey"
           },
           "n": 5
         }
       ],
       "question": "Who made the turkey, and what apron did they wear?",
-      "answer": "Mom Katie, striped apron",
-      "explain": "Savannah is orange; Katie can't be black or plaid, so Katie is striped. Plaid made sweet potatoes and Abby made cranberry, so Tina is plaid and Abby is black. Savannah didn't make the turkey, so Katie did and Savannah made the pie.",
+      "answer": "Mom Helen, striped apron",
+      "explain": "June is orange; Helen can't be black or plaid, so Helen is striped. Plaid made sweet potatoes and Ellen made cranberry, so Edith is plaid and Ellen is black. June didn't make the turkey, so Helen did and June made the pie.",
       "solution": {
-        "katie": {
+        "helen": {
           "dish": "turkey",
           "apron": "stripe"
         },
-        "tina": {
+        "edith": {
           "dish": "sweetpot",
           "apron": "plaid"
         },
-        "abby": {
+        "ellen": {
           "dish": "cran",
           "apron": "black"
         },
-        "savannah": {
+        "june": {
           "dish": "pie",
           "apron": "orange"
         }
       },
       "solution_text": [
-        "Mom Katie: Turkey, Striped",
-        "Grandma Tina: Sweet potatoes, Plaid",
-        "Aunt Abby: Cranberry sauce, Black",
-        "Savannah: Pie, Orange"
+        "Mom Helen: Turkey, Striped",
+        "Grandma Edith: Sweet potatoes, Plaid",
+        "Aunt Ellen: Cranberry sauce, Black",
+        "June: Pie, Orange"
       ]
     },
     {
-      "id": "sav-s2",
+      "id": "s-s2",
       "kid": "Savannah",
       "level": "Standard",
       "shape": "4x4x2",
@@ -1048,23 +1048,23 @@
           "name": "People",
           "items": [
             {
-              "id": "logan",
-              "label": "Logan",
-              "emoji": "👦"
-            },
-            {
-              "id": "savannah",
-              "label": "Savannah",
-              "emoji": "👧"
-            },
-            {
               "id": "milo",
               "label": "Milo",
-              "emoji": "🧒"
+              "emoji": "👦"
             },
             {
               "id": "june",
               "label": "June",
+              "emoji": "👧"
+            },
+            {
+              "id": "cal",
+              "label": "Cal",
+              "emoji": "🧒"
+            },
+            {
+              "id": "nora",
+              "label": "Nora",
               "emoji": "👧"
             }
           ]
@@ -1129,24 +1129,24 @@
       ],
       "clues": [
         {
-          "text": "Savannah filled 4 times as many bags as Logan.",
+          "text": "June filled 4 times as many bags as Milo.",
           "logic": {
             "type": "times",
             "cat": "bags",
-            "a": "savannah",
+            "a": "june",
             "k": 4,
-            "b": "logan"
+            "b": "milo"
           },
           "n": 1
         },
         {
-          "text": "Milo filled 2 times as many bags as Logan.",
+          "text": "Cal filled 2 times as many bags as Milo.",
           "logic": {
             "type": "times",
             "cat": "bags",
-            "a": "milo",
+            "a": "cal",
             "k": 2,
-            "b": "logan"
+            "b": "milo"
           },
           "n": 2
         },
@@ -1160,54 +1160,54 @@
           "n": 3
         },
         {
-          "text": "Logan used the tarp.",
+          "text": "Milo used the tarp.",
           "logic": {
             "type": "is",
-            "a": "logan",
+            "a": "milo",
             "b": "tarp"
           },
           "n": 4
         },
         {
-          "text": "Milo did not use the rake.",
+          "text": "Cal did not use the rake.",
           "logic": {
             "type": "not",
-            "a": "milo",
+            "a": "cal",
             "b": "rake"
           },
           "n": 5
         }
       ],
       "question": "How many bags did the rake user fill, and who was it?",
-      "answer": "8 bags, Savannah",
-      "explain": "Only 2 × 4 = 8 works for clue 1, so Logan has 2 and Savannah 8; Milo has 2 × 2 = 4, June 6 (blower). Logan has the tarp, Milo isn't the rake, so Milo has the wheelbarrow and Savannah the rake.",
+      "answer": "8 bags, June",
+      "explain": "Only 2 × 4 = 8 works for clue 1, so Milo has 2 and June 8; Cal has 2 × 2 = 4, Nora 6 (blower). Milo has the tarp, Cal isn't the rake, so Cal has the wheelbarrow and June the rake.",
       "solution": {
-        "logan": {
+        "milo": {
           "bags": "b2",
           "tool": "tarp"
         },
-        "savannah": {
+        "june": {
           "bags": "b8",
           "tool": "rake"
         },
-        "milo": {
+        "cal": {
           "bags": "b4",
           "tool": "wheelbarrow"
         },
-        "june": {
+        "nora": {
           "bags": "b6",
           "tool": "blower"
         }
       },
       "solution_text": [
-        "Logan: 2 bags, Tarp",
-        "Savannah: 8 bags, Rake",
-        "Milo: 4 bags, Wheelbarrow",
-        "June: 6 bags, Leaf blower"
+        "Milo: 2 bags, Tarp",
+        "June: 8 bags, Rake",
+        "Cal: 4 bags, Wheelbarrow",
+        "Nora: 6 bags, Leaf blower"
       ]
     },
     {
-      "id": "sav-s3",
+      "id": "s-s3",
       "kid": "Savannah",
       "level": "Standard",
       "shape": "4x4x2",
@@ -1219,23 +1219,23 @@
           "name": "People",
           "items": [
             {
-              "id": "duane",
-              "label": "Grandpa Duane",
+              "id": "curtis",
+              "label": "Grandpa Curtis",
               "emoji": "👴"
             },
             {
-              "id": "nick",
-              "label": "Uncle Nick",
+              "id": "carl",
+              "label": "Uncle Carl",
               "emoji": "👨"
             },
             {
-              "id": "savannah",
-              "label": "Savannah",
+              "id": "june",
+              "label": "June",
               "emoji": "👧"
             },
             {
-              "id": "randall",
-              "label": "Dad Randall",
+              "id": "henry",
+              "label": "Dad Henry",
               "emoji": "👨"
             }
           ]
@@ -1296,20 +1296,20 @@
       ],
       "clues": [
         {
-          "text": "Savannah's turn was the day right after Grandpa Duane's turn.",
+          "text": "June's turn was the day right after Grandpa Curtis's turn.",
           "logic": {
             "type": "next",
             "cat": "day",
-            "a": "duane",
-            "b": "savannah"
+            "a": "curtis",
+            "b": "june"
           },
           "n": 1
         },
         {
-          "text": "Savannah read the thermometer.",
+          "text": "June read the thermometer.",
           "logic": {
             "type": "is",
-            "a": "savannah",
+            "a": "june",
             "b": "thermo"
           },
           "n": 2
@@ -1324,55 +1324,55 @@
           "n": 3
         },
         {
-          "text": "Uncle Nick measured the wind.",
+          "text": "Uncle Carl measured the wind.",
           "logic": {
             "type": "is",
-            "a": "nick",
+            "a": "carl",
             "b": "anemo"
           },
           "n": 4
         },
         {
-          "text": "Uncle Nick's turn came later in the week than Savannah's.",
+          "text": "Uncle Carl's turn came later in the week than June's.",
           "logic": {
             "type": "less",
             "cat": "day",
-            "a": "savannah",
-            "b": "nick"
+            "a": "june",
+            "b": "carl"
           },
           "n": 5
         }
       ],
-      "question": "Which instrument did Grandpa Duane read, and on what day?",
+      "question": "Which instrument did Grandpa Curtis read, and on what day?",
       "answer": "Barometer, Monday",
-      "explain": "Nick has wind and Savannah the thermometer. Thursday's rain gauge can't be Duane (Savannah comes after him), so it's Dad; Duane has the barometer. Duane, Savannah, and Nick share Monday-Wednesday; Savannah comes right after Duane and before Nick, so Duane Monday, Savannah Tuesday, Nick Wednesday.",
+      "explain": "Carl has wind and June the thermometer. Thursday's rain gauge can't be Curtis (June comes after him), so it's Dad; Curtis has the barometer. Curtis, June, and Carl share Monday-Wednesday; June comes right after Curtis and before Carl, so Curtis Monday, June Tuesday, Carl Wednesday.",
       "solution": {
-        "duane": {
+        "curtis": {
           "tool": "baro",
           "day": "mon"
         },
-        "nick": {
+        "carl": {
           "tool": "anemo",
           "day": "wed"
         },
-        "savannah": {
+        "june": {
           "tool": "thermo",
           "day": "tue"
         },
-        "randall": {
+        "henry": {
           "tool": "rain",
           "day": "thu"
         }
       },
       "solution_text": [
-        "Grandpa Duane: Barometer (air pressure), Monday",
-        "Uncle Nick: Anemometer (wind), Wednesday",
-        "Savannah: Thermometer, Tuesday",
-        "Dad Randall: Rain gauge, Thursday"
+        "Grandpa Curtis: Barometer (air pressure), Monday",
+        "Uncle Carl: Anemometer (wind), Wednesday",
+        "June: Thermometer, Tuesday",
+        "Dad Henry: Rain gauge, Thursday"
       ]
     },
     {
-      "id": "sav-s4",
+      "id": "s-s4",
       "kid": "Savannah",
       "level": "Standard",
       "shape": "4x4x2",
@@ -1384,23 +1384,23 @@
           "name": "People",
           "items": [
             {
-              "id": "michael",
-              "label": "Uncle Michael",
+              "id": "craig",
+              "label": "Uncle Craig",
               "emoji": "👨"
             },
             {
-              "id": "mackenzie",
-              "label": "Aunt Mackenzie",
+              "id": "paige",
+              "label": "Aunt Paige",
               "emoji": "👩"
             },
             {
-              "id": "randy",
-              "label": "Grandpa Randy",
+              "id": "pete",
+              "label": "Grandpa Pete",
               "emoji": "👴"
             },
             {
-              "id": "lana",
-              "label": "Grandma Lana",
+              "id": "pearl",
+              "label": "Grandma Pearl",
               "emoji": "👵"
             }
           ]
@@ -1465,24 +1465,24 @@
       ],
       "clues": [
         {
-          "text": "Grandpa Randy's row number is 4 times Grandma Lana's row number.",
+          "text": "Grandpa Pete's row number is 4 times Grandma Pearl's row number.",
           "logic": {
             "type": "times",
             "cat": "row",
-            "a": "randy",
+            "a": "pete",
             "k": 4,
-            "b": "lana"
+            "b": "pearl"
           },
           "n": 1
         },
         {
-          "text": "Uncle Michael's row number is 3 times Aunt Mackenzie's row number.",
+          "text": "Uncle Craig's row number is 3 times Aunt Paige's row number.",
           "logic": {
             "type": "times",
             "cat": "row",
-            "a": "michael",
+            "a": "craig",
             "k": 3,
-            "b": "mackenzie"
+            "b": "paige"
           },
           "n": 2
         },
@@ -1496,10 +1496,10 @@
           "n": 3
         },
         {
-          "text": "Aunt Mackenzie brought the apple cider.",
+          "text": "Aunt Paige brought the apple cider.",
           "logic": {
             "type": "is",
-            "a": "mackenzie",
+            "a": "paige",
             "b": "cider"
           },
           "n": 4
@@ -1515,35 +1515,35 @@
         }
       ],
       "question": "Who brought the wings, and what row were they in?",
-      "answer": "Uncle Michael, Row 6",
-      "explain": "4 × 3 = 12 is the only 4-times pair, so Randy 12 and Lana 3; 3 × 2 = 6 gives Michael 6, Mackenzie 2. Randy has chili, Mackenzie cider, pretzels aren't row 6, so Lana has pretzels and Michael wings.",
+      "answer": "Uncle Craig, Row 6",
+      "explain": "4 × 3 = 12 is the only 4-times pair, so Pete 12 and Pearl 3; 3 × 2 = 6 gives Craig 6, Paige 2. Pete has chili, Paige cider, pretzels aren't row 6, so Pearl has pretzels and Craig wings.",
       "solution": {
-        "michael": {
+        "craig": {
           "row": "r6",
           "snack": "wings"
         },
-        "mackenzie": {
+        "paige": {
           "row": "r2",
           "snack": "cider"
         },
-        "randy": {
+        "pete": {
           "row": "r12",
           "snack": "chili"
         },
-        "lana": {
+        "pearl": {
           "row": "r3",
           "snack": "pretzels"
         }
       },
       "solution_text": [
-        "Uncle Michael: Row 6, Wings",
-        "Aunt Mackenzie: Row 2, Apple cider",
-        "Grandpa Randy: Row 12, Chili",
-        "Grandma Lana: Row 3, Pretzels"
+        "Uncle Craig: Row 6, Wings",
+        "Aunt Paige: Row 2, Apple cider",
+        "Grandpa Pete: Row 12, Chili",
+        "Grandma Pearl: Row 3, Pretzels"
       ]
     },
     {
-      "id": "sav-s5",
+      "id": "s-s5",
       "kid": "Savannah",
       "level": "Standard",
       "shape": "4x4x2",
@@ -1555,23 +1555,23 @@
           "name": "People",
           "items": [
             {
-              "id": "june",
-              "label": "June",
+              "id": "nora",
+              "label": "Nora",
               "emoji": "👧"
             },
             {
-              "id": "nick",
-              "label": "Uncle Nick",
+              "id": "carl",
+              "label": "Uncle Carl",
               "emoji": "👨"
             },
             {
-              "id": "duane",
-              "label": "Grandpa Duane",
+              "id": "curtis",
+              "label": "Grandpa Curtis",
               "emoji": "👴"
             },
             {
-              "id": "savannah",
-              "label": "Savannah",
+              "id": "june",
+              "label": "June",
               "emoji": "👧"
             }
           ]
@@ -1631,10 +1631,10 @@
       ],
       "clues": [
         {
-          "text": "June did not use the ramp, the lever, or the wedge.",
+          "text": "Nora did not use the ramp, the lever, or the wedge.",
           "logic": {
             "type": "not_any",
-            "a": "june",
+            "a": "nora",
             "b": [
               "ramp",
               "lever",
@@ -1653,18 +1653,18 @@
           "n": 2
         },
         {
-          "text": "Grandpa Duane split the log with a wedge.",
+          "text": "Grandpa Curtis split the log with a wedge.",
           "logic": {
             "type": "all",
             "of": [
               {
                 "type": "is",
-                "a": "duane",
+                "a": "curtis",
                 "b": "log"
               },
               {
                 "type": "is",
-                "a": "duane",
+                "a": "curtis",
                 "b": "wedge"
               }
             ]
@@ -1672,10 +1672,10 @@
           "n": 3
         },
         {
-          "text": "Savannah did not load the pumpkin.",
+          "text": "June did not load the pumpkin.",
           "logic": {
             "type": "not",
-            "a": "savannah",
+            "a": "june",
             "b": "pumpkin"
           },
           "n": 4
@@ -1690,36 +1690,36 @@
           "n": 5
         }
       ],
-      "question": "Which machine did Savannah use, and for what job?",
+      "question": "Which machine did June use, and for what job?",
       "answer": "Lever, to pry up the rock",
-      "explain": "June must have the pulley, so she lifted the hay. Duane split the log with the wedge. Savannah didn't load the pumpkin, so she pried the rock and Nick loaded the pumpkin on the ramp; Savannah has the lever.",
+      "explain": "Nora must have the pulley, so she lifted the hay. Curtis split the log with the wedge. June didn't load the pumpkin, so she pried the rock and Carl loaded the pumpkin on the ramp; June has the lever.",
       "solution": {
-        "june": {
+        "nora": {
           "machine": "pulley",
           "job": "hay"
         },
-        "nick": {
+        "carl": {
           "machine": "ramp",
           "job": "pumpkin"
         },
-        "duane": {
+        "curtis": {
           "machine": "wedge",
           "job": "log"
         },
-        "savannah": {
+        "june": {
           "machine": "lever",
           "job": "rock"
         }
       },
       "solution_text": [
-        "June: Pulley, Lift the hay bale",
-        "Uncle Nick: Ramp, Load the pumpkin",
-        "Grandpa Duane: Wedge, Split the log",
-        "Savannah: Lever, Pry up the rock"
+        "Nora: Pulley, Lift the hay bale",
+        "Uncle Carl: Ramp, Load the pumpkin",
+        "Grandpa Curtis: Wedge, Split the log",
+        "June: Lever, Pry up the rock"
       ]
     },
     {
-      "id": "sav-a1",
+      "id": "s-a1",
       "kid": "Savannah",
       "level": "Advanced",
       "shape": "4x4x2",
@@ -1731,23 +1731,23 @@
           "name": "People",
           "items": [
             {
-              "id": "randy",
-              "label": "Grandpa Randy",
+              "id": "pete",
+              "label": "Grandpa Pete",
               "emoji": "👴"
             },
             {
-              "id": "lana",
-              "label": "Grandma Lana",
+              "id": "pearl",
+              "label": "Grandma Pearl",
               "emoji": "👵"
             },
             {
-              "id": "tina",
-              "label": "Grandma Tina",
+              "id": "edith",
+              "label": "Grandma Edith",
               "emoji": "👵"
             },
             {
-              "id": "duane",
-              "label": "Grandpa Duane",
+              "id": "curtis",
+              "label": "Grandpa Curtis",
               "emoji": "👴"
             }
           ]
@@ -1812,24 +1812,24 @@
       ],
       "clues": [
         {
-          "text": "Grandpa Randy wrote 2 times as many notes as Grandma Lana.",
+          "text": "Grandpa Pete wrote 2 times as many notes as Grandma Pearl.",
           "logic": {
             "type": "times",
             "cat": "notes",
-            "a": "randy",
+            "a": "pete",
             "k": 2,
-            "b": "lana"
+            "b": "pearl"
           },
           "n": 1
         },
         {
-          "text": "Grandma Tina wrote 2 times as many notes as Grandpa Duane.",
+          "text": "Grandma Edith wrote 2 times as many notes as Grandpa Curtis.",
           "logic": {
             "type": "times",
             "cat": "notes",
-            "a": "tina",
+            "a": "edith",
             "k": 2,
-            "b": "duane"
+            "b": "curtis"
           },
           "n": 2
         },
@@ -1843,10 +1843,10 @@
           "n": 3
         },
         {
-          "text": "Grandma Tina is not the one thankful for veterans.",
+          "text": "Grandma Edith is not the one thankful for veterans.",
           "logic": {
             "type": "not",
-            "a": "tina",
+            "a": "edith",
             "b": "veterans"
           },
           "n": 4
@@ -1864,35 +1864,35 @@
         }
       ],
       "question": "Who was thankful for family, and how many notes did they write?",
-      "answer": "Grandma Lana, 4 notes",
-      "explain": "The 2-times pairs are 8 & 4 and 6 & 3. Veterans has 8, and Tina isn't veterans, so Tina has 6, Duane 3, Randy 8 (veterans), Lana 4. Friends = 2 × harvest means 6 & 3, so Tina friends, Duane harvest, Lana family.",
+      "answer": "Grandma Pearl, 4 notes",
+      "explain": "The 2-times pairs are 8 & 4 and 6 & 3. Veterans has 8, and Edith isn't veterans, so Edith has 6, Curtis 3, Pete 8 (veterans), Pearl 4. Friends = 2 × harvest means 6 & 3, so Edith friends, Curtis harvest, Pearl family.",
       "solution": {
-        "randy": {
+        "pete": {
           "notes": "n8",
           "thanks": "veterans"
         },
-        "lana": {
+        "pearl": {
           "notes": "n4",
           "thanks": "family"
         },
-        "tina": {
+        "edith": {
           "notes": "n6",
           "thanks": "friends"
         },
-        "duane": {
+        "curtis": {
           "notes": "n3",
           "thanks": "harvest"
         }
       },
       "solution_text": [
-        "Grandpa Randy: 8 notes, Veterans",
-        "Grandma Lana: 4 notes, Family",
-        "Grandma Tina: 6 notes, Friends",
-        "Grandpa Duane: 3 notes, Harvest"
+        "Grandpa Pete: 8 notes, Veterans",
+        "Grandma Pearl: 4 notes, Family",
+        "Grandma Edith: 6 notes, Friends",
+        "Grandpa Curtis: 3 notes, Harvest"
       ]
     },
     {
-      "id": "sav-a2",
+      "id": "s-a2",
       "kid": "Savannah",
       "level": "Advanced",
       "shape": "4x4x2",
@@ -1904,23 +1904,23 @@
           "name": "People",
           "items": [
             {
-              "id": "logan",
-              "label": "Logan",
+              "id": "milo",
+              "label": "Milo",
               "emoji": "👦"
             },
             {
-              "id": "savannah",
-              "label": "Savannah",
+              "id": "june",
+              "label": "June",
               "emoji": "👧"
             },
             {
-              "id": "michael",
-              "label": "Uncle Michael",
+              "id": "craig",
+              "label": "Uncle Craig",
               "emoji": "👨"
             },
             {
-              "id": "abby",
-              "label": "Aunt Abby",
+              "id": "ellen",
+              "label": "Aunt Ellen",
               "emoji": "👩"
             }
           ]
@@ -1985,33 +1985,33 @@
       ],
       "clues": [
         {
-          "text": "Uncle Michael's number equals Aunt Abby's number times Logan's number.",
+          "text": "Uncle Craig's number equals Aunt Ellen's number times Milo's number.",
           "logic": {
             "type": "product",
             "cat": "jersey",
-            "a": "michael",
-            "b": "abby",
-            "c": "logan"
+            "a": "craig",
+            "b": "ellen",
+            "c": "milo"
           },
           "n": 1
         },
         {
-          "text": "Savannah's number is 3 times the popcorn eater's number.",
+          "text": "June's number is 3 times the popcorn eater's number.",
           "logic": {
             "type": "times",
             "cat": "jersey",
-            "a": "savannah",
+            "a": "june",
             "k": 3,
             "b": "popcorn"
           },
           "n": 2
         },
         {
-          "text": "Aunt Abby's number is odd.",
+          "text": "Aunt Ellen's number is odd.",
           "logic": {
             "type": "odd",
             "cat": "jersey",
-            "a": "abby"
+            "a": "ellen"
           },
           "n": 3
         },
@@ -2025,45 +2025,45 @@
           "n": 4
         },
         {
-          "text": "Aunt Abby did not buy the pretzel.",
+          "text": "Aunt Ellen did not buy the pretzel.",
           "logic": {
             "type": "not",
-            "a": "abby",
+            "a": "ellen",
             "b": "pretzel"
           },
           "n": 5
         }
       ],
-      "question": "What is Logan's jersey number, and what treat did he get?",
+      "question": "What is Milo's jersey number, and what treat did he get?",
       "answer": "#4, popcorn",
-      "explain": "Only 4 × 7 = 28, so Michael is 28 and Savannah 12. Abby is odd, so Abby 7 and Logan 4. 12 = 3 × 4, so Logan has popcorn; Michael (28) has cocoa; Abby isn't pretzel, so cider, and Savannah the pretzel.",
+      "explain": "Only 4 × 7 = 28, so Craig is 28 and June 12. Ellen is odd, so Ellen 7 and Milo 4. 12 = 3 × 4, so Milo has popcorn; Craig (28) has cocoa; Ellen isn't pretzel, so cider, and June the pretzel.",
       "solution": {
-        "logan": {
+        "milo": {
           "jersey": "j4",
           "treat": "popcorn"
         },
-        "savannah": {
+        "june": {
           "jersey": "j12",
           "treat": "pretzel"
         },
-        "michael": {
+        "craig": {
           "jersey": "j28",
           "treat": "cocoa"
         },
-        "abby": {
+        "ellen": {
           "jersey": "j7",
           "treat": "cider"
         }
       },
       "solution_text": [
-        "Logan: #4, Popcorn",
-        "Savannah: #12, Pretzel",
-        "Uncle Michael: #28, Hot cocoa",
-        "Aunt Abby: #7, Apple cider"
+        "Milo: #4, Popcorn",
+        "June: #12, Pretzel",
+        "Uncle Craig: #28, Hot cocoa",
+        "Aunt Ellen: #7, Apple cider"
       ]
     },
     {
-      "id": "sav-a3",
+      "id": "s-a3",
       "kid": "Savannah",
       "level": "Advanced",
       "shape": "4x4x2",
@@ -2075,23 +2075,23 @@
           "name": "People",
           "items": [
             {
-              "id": "katie",
-              "label": "Mom Katie",
+              "id": "helen",
+              "label": "Mom Helen",
               "emoji": "👩"
             },
             {
-              "id": "randall",
-              "label": "Dad Randall",
+              "id": "henry",
+              "label": "Dad Henry",
               "emoji": "👨"
             },
             {
-              "id": "mackenzie",
-              "label": "Aunt Mackenzie",
+              "id": "paige",
+              "label": "Aunt Paige",
               "emoji": "👩"
             },
             {
-              "id": "nick",
-              "label": "Uncle Nick",
+              "id": "carl",
+              "label": "Uncle Carl",
               "emoji": "👨"
             }
           ]
@@ -2156,23 +2156,23 @@
       ],
       "clues": [
         {
-          "text": "Mom Katie spent 3 times as much as one of the other shoppers.",
+          "text": "Mom Helen spent 3 times as much as one of the other shoppers.",
           "logic": {
             "type": "times_some",
             "cat": "cost",
-            "a": "katie",
+            "a": "helen",
             "k": 3
           },
           "n": 1
         },
         {
-          "text": "Uncle Nick spent 2 times as much as Aunt Mackenzie.",
+          "text": "Uncle Carl spent 2 times as much as Aunt Paige.",
           "logic": {
             "type": "times",
             "cat": "cost",
-            "a": "nick",
+            "a": "carl",
             "k": 2,
-            "b": "mackenzie"
+            "b": "paige"
           },
           "n": 2
         },
@@ -2186,10 +2186,10 @@
           "n": 3
         },
         {
-          "text": "Dad Randall bought neither apples nor squash.",
+          "text": "Dad Henry bought neither apples nor squash.",
           "logic": {
             "type": "not_any",
-            "a": "randall",
+            "a": "henry",
             "b": [
               "apples",
               "squash"
@@ -2209,32 +2209,32 @@
           "n": 5
         }
       ],
-      "question": "What did Aunt Mackenzie buy, and how much did she spend?",
+      "question": "What did Aunt Paige buy, and how much did she spend?",
       "answer": "Apples, $4",
-      "explain": "Only 3 × 4 = 12 works, so Katie spent $12 (honey). Nick = 2 × Mackenzie means $8 and $4, so Dad spent $3. Dad has corn; squash = 2 × apples means $8 and $4, so Nick squash, Mackenzie apples.",
+      "explain": "Only 3 × 4 = 12 works, so Helen spent $12 (honey). Carl = 2 × Paige means $8 and $4, so Dad spent $3. Dad has corn; squash = 2 × apples means $8 and $4, so Carl squash, Paige apples.",
       "solution": {
-        "katie": {
+        "helen": {
           "cost": "d12",
           "item": "honey"
         },
-        "randall": {
+        "henry": {
           "cost": "d3",
           "item": "corn"
         },
-        "mackenzie": {
+        "paige": {
           "cost": "d4",
           "item": "apples"
         },
-        "nick": {
+        "carl": {
           "cost": "d8",
           "item": "squash"
         }
       },
       "solution_text": [
-        "Mom Katie: $12, Honey",
-        "Dad Randall: $3, Corn",
-        "Aunt Mackenzie: $4, Apples",
-        "Uncle Nick: $8, Squash"
+        "Mom Helen: $12, Honey",
+        "Dad Henry: $3, Corn",
+        "Aunt Paige: $4, Apples",
+        "Uncle Carl: $8, Squash"
       ]
     }
   ]
