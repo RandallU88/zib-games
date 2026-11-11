@@ -23,11 +23,18 @@ button.danger{background:transparent;color:#f0a08f;border:1.5px solid rgba(240,1
 .kidhead img{width:44px;height:44px;border-radius:50%}
 .kidhead h2{margin:0}
 details.sub-card{background:linear-gradient(180deg,#17120b,#0d0a07);border:1.5px solid rgba(201,160,74,.55);border-radius:16px;margin:0 0 14px;overflow:hidden}
-details.sub-card>summary{cursor:pointer;list-style:none;padding:14px 16px;display:grid;gap:4px}
+/* summary must stay display:list-item/block on iPad Safari; display:grid on summary itself blocks open/close. */
+details.sub-card>summary{cursor:pointer;list-style:none;padding:0;display:block}
 details.sub-card>summary::-webkit-details-marker{display:none}
+details.sub-card>summary .sum{padding:14px 16px;display:grid;gap:4px}
 details.sub-card>summary .t{font-family:var(--serif);color:#f3dfa8;font-size:18px}
 details.sub-card>summary .m{color:var(--soft);font-size:14px}
 details.sub-card>summary .chips{display:flex;gap:6px;flex-wrap:wrap}
+details.sub-card>summary .chips .c.jump{cursor:pointer;border:0}
+details.sub-card[open]>summary{border-bottom:1px solid rgba(201,160,74,.22)}
+.pgrid td.jump{cursor:pointer}
+.qrow.review{background:rgba(201,160,74,.08);border-radius:8px;padding:12px 8px}
+.review-note{margin:0 0 16px;color:var(--soft);font-size:15px;line-height:1.4}
 .c{border-radius:999px;padding:2px 10px;font-size:13px;font-weight:800}
 .c.r{background:rgba(103,160,96,.2);color:#9fd394}.c.w{background:rgba(220,110,90,.2);color:#f0a08f}.c.v{background:rgba(201,160,74,.18);color:var(--g2)}.c.b{background:rgba(185,171,140,.14);color:var(--mut)}
 .qs{padding:0 16px 14px}

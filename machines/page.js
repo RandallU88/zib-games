@@ -5,7 +5,7 @@ const D=JSON.parse(document.getElementById('lesson-data').textContent);
 const kid=D.kid.toLowerCase(),base='urwin.lessons.'+kid+'.'+D.lesson_id+'.',AD=D.art_dir,UI='../../lessons/assets/ui/';
 const ld=(k,d)=>{try{const v=localStorage.getItem(base+k);return v?JSON.parse(v):d}catch(e){return d}};
 const sv=(k,v)=>{try{localStorage.setItem(base+k,JSON.stringify(v));return true}catch(e){alert('Could not save. The iPad may be out of storage.');return false}};
-const A=ld('answers',{});let onProg=null;
+function loadAnswers(){let a=ld('answers',{});if(a&&typeof a==='object'&&Object.keys(a).length)return a;const sent=ld('sent',{});if(sent&&typeof sent==='object'&&Object.keys(sent).length){sv('answers',sent);return sent}return a&&typeof a==='object'?a:{}}const A=loadAnswers();let onProg=null;
 const setA=(id,v)=>{if(v===''||v==null)delete A[id];else A[id]=v;sv('answers',A);flash(id);prog()};
 const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e};
 const icon=(n,c)=>{const i=el('img',c||'ico');i.src=UI+'lucide-'+n+'.svg';i.alt='';i.setAttribute('aria-hidden','true');return i};
@@ -132,7 +132,7 @@ function sbUpdate(s){const n=reqIds().filter(i=>A[i]!=null).length,tot=reqIds().
  sbl.textContent=n+' of '+tot+' required questions answered. When you are done, send your work to Dad. He will see your answers.';
  if(!s){st.hidden=true;send.hidden=!cf.hidden?true:false;sb.classList.remove('done');return}
  send.hidden=true;cf.hidden=true;st.hidden=false;sb.classList.toggle('done',!!s.synced);sb.classList.toggle('notsent',!s.synced);
- if(s.synced){setBadge('','Submitted',true);stt.textContent='Sent '+when(s.at);sts.textContent='Dad has it.';now.hidden=true;again.hidden=false}
+ if(s.synced){setBadge('','Submitted',true);stt.textContent='Sent '+when(s.at);const has=reqIds().some(i=>A[i]!=null)||Object.keys(A).length;sts.textContent=has?'Dad has it. Your answers stay on this page so you can look them over.':'Dad has it. This device does not have the answers. Open Parents, then Progress and Answers, to review them (including drawings that need review).';now.hidden=true;again.hidden=false}
  else if(s.failed){setBadge('bad','Not sent');stt.textContent='Tried '+when(s.at);sts.textContent='This did not reach Dad yet. Tap Try again. If it still does not work, tell Dad.';now.hidden=false;now.textContent='Try again';again.hidden=true}
  else{setBadge('wait','Not sent yet');stt.textContent='Saved '+when(s.at);sts.textContent=navigator.onLine===false?'Saved on this iPad, but there is no Wi-Fi. It goes to Dad when Wi-Fi is back and this page is open.':'Sending to Dad. Keep this page open until it says Submitted.';now.hidden=false;now.textContent='Send to Dad now';again.hidden=true}
  sts.className='sbsync'+(s.synced?' ok':s.failed?' bad':' wait')}

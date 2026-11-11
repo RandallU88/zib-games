@@ -23,12 +23,15 @@ function score(qs){let r=0,w=0,v=0,b=0,den=0;for(const q of qs){const g=(q.grade
   if(!q.review&&(g==='right'||g==='wrong'||(g==='blank'&&!q.optional)))den++}
   return {r,w,v,b,den,pct:den?Math.round(100*r/den):null}}
 function fmtCorrect(c){if(c==null)return null;if(typeof c==='object'&&!Array.isArray(c))return Object.keys(c).map(k=>k+': '+[].concat(c[k]).join(', ')).join(' | ');return String(c)}
+function isDraw(s){return typeof s==='string'&&/^data:image\/(png|jpeg|jpg|webp)/i.test(s.trim())}
 function fmtResp(q,box){const a=q.response;if(a==null||a===''){box.append(el('span','v none','No answer'));return}
-  if(typeof a==='string'||typeof a==='number'){box.append(el('span','v',String(a)));return}
+  if(typeof a==='string'||typeof a==='number'){
+    if(isDraw(String(a))){const i=el('img');i.alt='Drawing';i.src=String(a).trim();box.append(i)}
+    else box.append(el('span','v',String(a)));return}
   if(q.type==='tap_to_sort'){const g={};for(const it in a){(g[a[it]]=g[a[it]]||[]).push(it)}box.append(el('span','v',Object.keys(g).map(k=>k+': '+g[k].join(', ')).join(' | ')));return}
   if(a.text)box.append(el('span','v',a.text));
-  if(typeof a.drawing==='string'&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(a.drawing)){const i=el('img');i.alt=q.type==='pencil_draw'?'Drawing':'Handwriting';i.src=a.drawing;box.append(i)}
-  if(!a.text&&!a.drawing)box.append(el('span','v none','No answer'))}
+  if(isDraw(a.drawing)){const i=el('img');i.alt=q.type==='pencil_draw'?'Drawing':'Handwriting';i.src=a.drawing.trim();box.append(i)}
+  if(!a.text&&!isDraw(a.drawing))box.append(el('span','v none','No answer'))}
 const MARK={right:['\u2713','Right'],wrong:['\u2717','Wrong'],review:['?','Needs review'],blank:['\u2013','No answer']};
 function render(d){$('asof').textContent='Updated '+when(d.server_time);
   const by={};for(const L of d.lessons){(by[L.kid]=by[L.kid]||[]).push(L)}
@@ -45,7 +48,9 @@ function render(d){$('asof').textContent='Updated '+when(d.server_time);
       if(!L){td.append(el('span','none','None'));tr.append(td);continue}
       td.append(el('span','lt',L.title));
       if(L.submission){td.append(el('span','pill yes','Submitted'),el('span','when',when(L.submission.submitted_at)));const s=score(L.submission.questions);
-        td.append(el('span','sc',(s.pct==null?'':s.r+' / '+s.den+' right ('+s.pct+'%)')+(s.v?' \u00b7 '+s.v+' to review':'')))}
+        td.append(el('span','sc',(s.pct==null?'':s.r+' / '+s.den+' right ('+s.pct+'%)')+(s.v?' \u00b7 '+s.v+' to review':'')));
+        td.classList.add('jump');td.title='Open this lesson\'s answers';
+        td.onclick=()=>{const d=document.querySelector('details.sub-card[data-kid="'+k+'"][data-lesson="'+L.lesson_id+'"]');if(!d)return;d.open=true;d.scrollIntoView({block:'start'});const r=d.querySelector('.qrow.review');if(r)r.scrollIntoView({block:'center'})}}
       else td.append(el('span','pill no','Not yet'));
       tr.append(td)}
     tb.append(tr)}
@@ -55,10 +60,16 @@ function render(d){$('asof').textContent='Updated '+when(d.server_time);
   const dd=$('detail');dd.textContent='';
   for(const [k,n] of KIDS){const ls=(by[k]||[]).filter(L=>L.submission);const h=el('div','kidhead');const im=el('img');im.src='../../lessons/assets/avatars/'+k+'-avatar.webp?v=2';im.alt='';h.append(im,el('h2',null,n+': answers'));dd.append(h);
     if(!ls.length){dd.append(el('p','none','Nothing submitted yet.'));continue}
+    dd.append(el('p','review-note','Tap a submitted lesson to open it. Lessons with items to review open automatically so you can see drawings and written answers.'));
     for(const L of ls){const S=L.submission,s=score(S.questions);const det=el('details','sub-card');det.dataset.kid=k;det.dataset.lesson=L.lesson_id;
-      const sm=el('summary');sm.append(el('span','t','Lesson '+L.num+': '+L.title),el('span','m','Submitted '+when(S.submitted_at)+(L.times>1?' \u00b7 sent '+L.times+' times, showing the latest':'')));
-      const ch=el('span','chips');ch.append(el('span','c r',s.r+' right'),el('span','c w',s.w+' wrong'),el('span','c v',s.v+' to review'),el('span','c b',s.b+' blank'));
-      if(s.pct!=null)ch.prepend(el('span','c v','Score '+s.r+' / '+s.den+' ('+s.pct+'%)'));sm.append(ch);det.append(sm);
+      if(s.v)det.open=true;
+      const sm=el('summary');const sum=el('div','sum');
+      sum.append(el('span','t','Lesson '+L.num+': '+L.title),el('span','m','Submitted '+when(S.submitted_at)+(L.times>1?' \u00b7 sent '+L.times+' times, showing the latest':'')));
+      const ch=el('span','chips');ch.append(el('span','c r',s.r+' right'),el('span','c w',s.w+' wrong'));
+      const rev=el('span','c v jump',s.v+' to review');rev.title='Jump to answers that need review';
+      rev.onclick=e=>{e.preventDefault();e.stopPropagation();det.open=true;const r=det.querySelector('.qrow.review');if(r)r.scrollIntoView({block:'center'})};
+      ch.append(rev,el('span','c b',s.b+' blank'));
+      if(s.pct!=null)ch.prepend(el('span','c v','Score '+s.r+' / '+s.den+' ('+s.pct+'%)'));sum.append(ch);sm.append(sum);det.append(sm);
       const qs=el('div','qs');let sec=null;
       for(const q of S.questions){if(q.section!==sec){sec=q.section;qs.append(el('h3',null,sec||''))}
         const g=(q.grade||{}).v||'blank';const row=el('div','qrow '+g);row.dataset.qid=q.id;row.dataset.verdict=g;
