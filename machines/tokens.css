@@ -1,0 +1,41 @@
+/* Simple Machine Shop: November workshop. Wood, rope, steel, enamelware.
+   Distinct from Lesson 1 farm, Lesson 2 dining room, and Lesson 3 town square. */
+.machines-page{
+  --bg:#161310;
+  --panel:#2A211A;
+  --paper:#EDE4D0;
+  --ink:#1C1814;
+  --gold:#C4A35A;
+  --gold2:#E4D09A;
+  --wood:#6B4A2B;
+  --steel:#8A9298;
+  --rope:#C4A36A;
+  --muted:#C9BBA6;
+}
+.machines-page .hero{
+  background:
+    linear-gradient(180deg, rgba(22,19,16,.28), rgba(22,19,16,.55)),
+    var(--hero-img, none);
+  background-size:cover;
+  background-position:center bottom;
+}
+.machines-page .lede{
+  max-width:40em;margin:8px auto 0;padding:0 16px;
+  color:var(--muted);font-size:15px;line-height:1.45;
+}
+.machines-page .fig.machine,
+.machines-page .fig.workshop,
+.machines-page .reader .panel img,
+.machines-page .fig img{
+  display:block;width:100%;max-width:720px;height:auto;margin:0 auto 12px;
+  background:#1A1612;border-radius:14px;border:1px solid rgba(196,163,90,.4);
+}
+.machines-page .pad.drawbg{
+  background-color:#EDE4D0;
+  background-size:cover;
+  background-position:center bottom;
+  background-repeat:no-repeat;
+}
+.machines-page .chip.icon img{
+  width:48px;height:36px;object-fit:contain;display:block;margin:0 auto 2px;
+}
