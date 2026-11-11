@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<path d="M20 22 L24 18 L28 22 L36 22 L40 18 L44 22 L46 26 L46 52 L18 52 L18 26 Z" fill="#D4651A" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<defs><clipPath id="js4"><path d="M20 22 L24 18 L28 22 L36 22 L40 18 L44 22 L46 26 L46 52 L18 52 L18 26 Z"/></clipPath></defs>
+    <g clip-path="url(#js4)">
+<rect x="16.0" y="16" width="2.8" height="40" fill="#1A1614"/>
+<rect x="24.4" y="16" width="2.8" height="40" fill="#1A1614"/>
+<rect x="32.8" y="16" width="2.8" height="40" fill="#1A1614"/>
+<rect x="41.2" y="16" width="2.8" height="40" fill="#1A1614"/>
+<rect x="49.6" y="16" width="2.8" height="40" fill="#1A1614"/>
+</g>
+<path d="M20 22 L24 18 L28 22 L36 22 L40 18 L44 22 L46 26 L46 52 L18 52 L18 26 Z" fill="none" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28 22 L32 28 L36 22" fill="#E4D9C6" stroke="#1C242E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<g stroke="#1A1614" stroke-width="2.4" stroke-linejoin="round" paint-order="stroke fill"><path transform="translate(27.760 46.480) scale(0.016000 -0.016000) translate(0.000 0)" d="M274 0V182H25V305L236 810H430V306H505V182H430V0ZM152 306H274V643Z" fill="#F7F3EA"/></g>
+</svg>

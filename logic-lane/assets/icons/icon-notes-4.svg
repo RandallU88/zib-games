@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<path d="M22 18 L46 16 L48 46 L24 48 Z" fill="#E8E0C8" stroke="#1C242E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 20 L42 20 L42 50 L16 50 Z" fill="#F7F3EA" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="20" y1="36" x2="38" y2="36" stroke="#E4D09A" stroke-width="0.8" stroke-linecap="round"/><line x1="20" y1="40" x2="38" y2="40" stroke="#E4D09A" stroke-width="0.8" stroke-linecap="round"/><line x1="20" y1="44" x2="38" y2="44" stroke="#E4D09A" stroke-width="0.8" stroke-linecap="round"/>
+<path transform="translate(23.445 35.820) scale(0.007812 -0.007812) translate(0.000 0)" d="M93 249V525L705 1490H949V1114H807L444 540V528H1329V249ZM811 0V333L819 455V1490H1150V0Z" fill="#1C242E"/>
+</svg>

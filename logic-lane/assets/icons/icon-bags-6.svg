@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<path d="M20 22 L44 22 L46 52 L18 52 Z" fill="#E6D3A8" stroke="#1C242E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 22 Q32 16 44 22" fill="#E6D3A8" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 22 L44 22 L44 26 L20 26 Z" fill="#D8C090" stroke="#1C242E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path transform="translate(25.384 47.275) scale(0.009766 -0.009766) translate(0.000 0)" d="M699 -20Q578 -20 467.0 19.5Q356 59 269.5 145.5Q183 232 132.5 373.5Q82 515 82 718Q82 903 126.0 1049.5Q170 1196 252.5 1299.0Q335 1402 450.0 1456.0Q565 1510 706 1510Q862 1510 980.5 1449.5Q1099 1389 1171.0 1287.5Q1243 1186 1256 1061H909Q893 1133 838.0 1170.5Q783 1208 706 1208Q614 1208 553.0 1154.0Q492 1100 461.5 1001.5Q431 903 431 768H440Q472 835 528.5 883.0Q585 931 660.0 956.5Q735 982 817 982Q951 982 1053.5 920.5Q1156 859 1214.5 751.0Q1273 643 1273 505Q1273 350 1200.0 231.5Q1127 113 998.0 46.5Q869 -20 699 -20ZM696 253Q764 253 816.5 284.5Q869 316 900.0 370.5Q931 425 931 494Q931 562 900.5 616.5Q870 671 817.5 702.5Q765 734 697 734Q648 734 605.5 715.5Q563 697 531.0 664.0Q499 631 481.5 587.5Q464 544 464 493Q464 426 494.0 371.5Q524 317 577.0 285.0Q630 253 696 253Z" fill="#1C242E"/>
+</svg>

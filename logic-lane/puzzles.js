@@ -22,18 +22,15 @@
           "items": [
             {
               "id": "henry",
-              "label": "Dad Henry",
-              "emoji": "👨"
+              "label": "Dad Henry"
             },
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             },
             {
               "id": "pete",
-              "label": "Grandpa Pete",
-              "emoji": "👴"
+              "label": "Grandpa Pete"
             }
           ]
         },
@@ -44,17 +41,17 @@
             {
               "id": "rake",
               "label": "Rake",
-              "emoji": "🍂"
+              "icon": "icon-rake.svg"
             },
             {
               "id": "wheelbarrow",
               "label": "Wheelbarrow",
-              "emoji": "🛒"
+              "icon": "icon-wheelbarrow.svg"
             },
             {
               "id": "blower",
               "label": "Leaf blower",
-              "emoji": "💨"
+              "icon": "icon-leaf-blower.svg"
             }
           ]
         }
@@ -122,18 +119,15 @@
           "items": [
             {
               "id": "pearl",
-              "label": "Grandma Pearl",
-              "emoji": "👵"
+              "label": "Grandma Pearl"
             },
             {
               "id": "edith",
-              "label": "Grandma Edith",
-              "emoji": "👵"
+              "label": "Grandma Edith"
             },
             {
               "id": "paige",
-              "label": "Aunt Paige",
-              "emoji": "👩"
+              "label": "Aunt Paige"
             }
           ]
         },
@@ -144,17 +138,17 @@
             {
               "id": "pumpkin",
               "label": "Pumpkin pie",
-              "emoji": "🥧"
+              "icon": "icon-pumpkin-pie.svg"
             },
             {
               "id": "apple",
               "label": "Apple pie",
-              "emoji": "🍎"
+              "icon": "icon-apple-pie.svg"
             },
             {
               "id": "pecan",
               "label": "Pecan pie",
-              "emoji": "🌰"
+              "icon": "icon-pecan-pie.svg"
             }
           ]
         }
@@ -222,18 +216,15 @@
           "items": [
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             },
             {
               "id": "cal",
-              "label": "Cal",
-              "emoji": "🧒"
+              "label": "Cal"
             }
           ]
         },
@@ -244,17 +235,17 @@
             {
               "id": "thermo",
               "label": "Thermometer",
-              "emoji": "🌡️"
+              "icon": "icon-thermometer.svg"
             },
             {
               "id": "rain",
               "label": "Rain gauge",
-              "emoji": "🌧️"
+              "icon": "icon-rain-gauge.svg"
             },
             {
               "id": "windsock",
               "label": "Wind sock",
-              "emoji": "🌬️"
+              "icon": "icon-wind-sock.svg"
             }
           ]
         }
@@ -322,18 +313,15 @@
           "items": [
             {
               "id": "craig",
-              "label": "Uncle Craig",
-              "emoji": "👨"
+              "label": "Uncle Craig"
             },
             {
               "id": "ellen",
-              "label": "Aunt Ellen",
-              "emoji": "👩"
+              "label": "Aunt Ellen"
             },
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             }
           ]
         },
@@ -344,17 +332,17 @@
             {
               "id": "flag",
               "label": "Wave the flag",
-              "emoji": "🚩"
+              "icon": "icon-flag.svg"
             },
             {
               "id": "popcorn",
               "label": "Carry the popcorn",
-              "emoji": "🍿"
+              "icon": "icon-popcorn.svg"
             },
             {
               "id": "pompom",
               "label": "Shake the pom-pom",
-              "emoji": "🧡"
+              "icon": "icon-pom-pom.svg"
             }
           ]
         }
@@ -422,18 +410,15 @@
           "items": [
             {
               "id": "carl",
-              "label": "Uncle Carl",
-              "emoji": "👨"
+              "label": "Uncle Carl"
             },
             {
               "id": "henry",
-              "label": "Dad Henry",
-              "emoji": "👨"
+              "label": "Dad Henry"
             },
             {
               "id": "nora",
-              "label": "Nora",
-              "emoji": "👧"
+              "label": "Nora"
             }
           ]
         },
@@ -444,17 +429,17 @@
             {
               "id": "pulley",
               "label": "Pulley",
-              "emoji": "🪢"
+              "icon": "icon-pulley.svg"
             },
             {
               "id": "ramp",
               "label": "Ramp",
-              "emoji": "📐"
+              "icon": "icon-ramp.svg"
             },
             {
               "id": "lever",
               "label": "Lever",
-              "emoji": "🪵"
+              "icon": "icon-lever.svg"
             }
           ]
         }
@@ -522,18 +507,15 @@
           "items": [
             {
               "id": "helen",
-              "label": "Mom Helen",
-              "emoji": "👩"
+              "label": "Mom Helen"
             },
             {
               "id": "curtis",
-              "label": "Grandpa Curtis",
-              "emoji": "👴"
+              "label": "Grandpa Curtis"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             }
           ]
         },
@@ -544,17 +526,17 @@
             {
               "id": "orange",
               "label": "Orange mug",
-              "emoji": "🟠"
+              "icon": "icon-mug-orange.svg"
             },
             {
               "id": "black",
               "label": "Black mug",
-              "emoji": "⚫"
+              "icon": "icon-mug-black.svg"
             },
             {
               "id": "white",
               "label": "White mug",
-              "emoji": "⚪"
+              "icon": "icon-mug-white.svg"
             }
           ]
         }
@@ -618,18 +600,15 @@
           "items": [
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             },
             {
               "id": "pearl",
-              "label": "Grandma Pearl",
-              "emoji": "👵"
+              "label": "Grandma Pearl"
             },
             {
               "id": "carl",
-              "label": "Uncle Carl",
-              "emoji": "👨"
+              "label": "Uncle Carl"
             }
           ]
         },
@@ -640,17 +619,17 @@
             {
               "id": "corn",
               "label": "Corn",
-              "emoji": "🌽"
+              "icon": "icon-corn.svg"
             },
             {
               "id": "rolls",
               "label": "Rolls",
-              "emoji": "🥖"
+              "icon": "icon-rolls.svg"
             },
             {
               "id": "beans",
               "label": "Green beans",
-              "emoji": "🫛"
+              "icon": "icon-green-beans.svg"
             }
           ]
         },
@@ -661,17 +640,17 @@
             {
               "id": "window",
               "label": "By the window",
-              "emoji": "🪟"
+              "icon": "icon-window.svg"
             },
             {
               "id": "fire",
               "label": "By the fireplace",
-              "emoji": "🔥"
+              "icon": "icon-fireplace.svg"
             },
             {
               "id": "door",
               "label": "By the door",
-              "emoji": "🚪"
+              "icon": "icon-door.svg"
             }
           ]
         }
@@ -751,18 +730,15 @@
           "items": [
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             },
             {
               "id": "cal",
-              "label": "Cal",
-              "emoji": "🧒"
+              "label": "Cal"
             },
             {
               "id": "craig",
-              "label": "Uncle Craig",
-              "emoji": "👨"
+              "label": "Uncle Craig"
             }
           ]
         },
@@ -773,17 +749,17 @@
             {
               "id": "pulley",
               "label": "Pulley",
-              "emoji": "🪢"
+              "icon": "icon-pulley.svg"
             },
             {
               "id": "wedge",
               "label": "Wedge",
-              "emoji": "🔺"
+              "icon": "icon-wedge.svg"
             },
             {
               "id": "wheel",
               "label": "Wheel and axle",
-              "emoji": "🛞"
+              "icon": "icon-wheel-and-axle.svg"
             }
           ]
         },
@@ -794,17 +770,17 @@
             {
               "id": "flag",
               "label": "Raise the flag",
-              "emoji": "🚩"
+              "icon": "icon-flag.svg"
             },
             {
               "id": "log",
               "label": "Split the log",
-              "emoji": "🪵"
+              "icon": "icon-split-log.svg"
             },
             {
               "id": "leaves",
               "label": "Haul the leaves",
-              "emoji": "🍂"
+              "icon": "icon-leaves.svg"
             }
           ]
         }
@@ -884,23 +860,19 @@
           "items": [
             {
               "id": "helen",
-              "label": "Mom Helen",
-              "emoji": "👩"
+              "label": "Mom Helen"
             },
             {
               "id": "edith",
-              "label": "Grandma Edith",
-              "emoji": "👵"
+              "label": "Grandma Edith"
             },
             {
               "id": "ellen",
-              "label": "Aunt Ellen",
-              "emoji": "👩"
+              "label": "Aunt Ellen"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             }
           ]
         },
@@ -911,22 +883,22 @@
             {
               "id": "turkey",
               "label": "Turkey",
-              "emoji": "🦃"
+              "icon": "icon-turkey.svg"
             },
             {
               "id": "sweetpot",
               "label": "Sweet potatoes",
-              "emoji": "🍠"
+              "icon": "icon-sweet-potatoes.svg"
             },
             {
               "id": "cran",
               "label": "Cranberry sauce",
-              "emoji": "🍒"
+              "icon": "icon-cranberry-sauce.svg"
             },
             {
               "id": "pie",
               "label": "Pie",
-              "emoji": "🥧"
+              "icon": "icon-pie.svg"
             }
           ]
         },
@@ -937,22 +909,22 @@
             {
               "id": "orange",
               "label": "Orange",
-              "emoji": "🟠"
+              "icon": "icon-apron-orange.svg"
             },
             {
               "id": "black",
               "label": "Black",
-              "emoji": "⚫"
+              "icon": "icon-apron-black.svg"
             },
             {
               "id": "plaid",
               "label": "Plaid",
-              "emoji": "🟫"
+              "icon": "icon-apron-plaid.svg"
             },
             {
               "id": "stripe",
               "label": "Striped",
-              "emoji": "🦓"
+              "icon": "icon-apron-striped.svg"
             }
           ]
         }
@@ -1049,23 +1021,19 @@
           "items": [
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             },
             {
               "id": "cal",
-              "label": "Cal",
-              "emoji": "🧒"
+              "label": "Cal"
             },
             {
               "id": "nora",
-              "label": "Nora",
-              "emoji": "👧"
+              "label": "Nora"
             }
           ]
         },
@@ -1076,26 +1044,26 @@
             {
               "id": "b2",
               "label": "2 bags",
-              "emoji": "2️⃣",
-              "value": 2
+              "value": 2,
+              "icon": "icon-bags-2.svg"
             },
             {
               "id": "b4",
               "label": "4 bags",
-              "emoji": "4️⃣",
-              "value": 4
+              "value": 4,
+              "icon": "icon-bags-4.svg"
             },
             {
               "id": "b6",
               "label": "6 bags",
-              "emoji": "6️⃣",
-              "value": 6
+              "value": 6,
+              "icon": "icon-bags-6.svg"
             },
             {
               "id": "b8",
               "label": "8 bags",
-              "emoji": "8️⃣",
-              "value": 8
+              "value": 8,
+              "icon": "icon-bags-8.svg"
             }
           ],
           "numeric": true
@@ -1107,22 +1075,22 @@
             {
               "id": "rake",
               "label": "Rake",
-              "emoji": "🍂"
+              "icon": "icon-rake.svg"
             },
             {
               "id": "blower",
               "label": "Leaf blower",
-              "emoji": "💨"
+              "icon": "icon-leaf-blower.svg"
             },
             {
               "id": "tarp",
               "label": "Tarp",
-              "emoji": "🟩"
+              "icon": "icon-tarp.svg"
             },
             {
               "id": "wheelbarrow",
               "label": "Wheelbarrow",
-              "emoji": "🛒"
+              "icon": "icon-wheelbarrow.svg"
             }
           ]
         }
@@ -1220,23 +1188,19 @@
           "items": [
             {
               "id": "curtis",
-              "label": "Grandpa Curtis",
-              "emoji": "👴"
+              "label": "Grandpa Curtis"
             },
             {
               "id": "carl",
-              "label": "Uncle Carl",
-              "emoji": "👨"
+              "label": "Uncle Carl"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             },
             {
               "id": "henry",
-              "label": "Dad Henry",
-              "emoji": "👨"
+              "label": "Dad Henry"
             }
           ]
         },
@@ -1247,22 +1211,22 @@
             {
               "id": "thermo",
               "label": "Thermometer",
-              "emoji": "🌡️"
+              "icon": "icon-thermometer.svg"
             },
             {
               "id": "rain",
               "label": "Rain gauge",
-              "emoji": "🌧️"
+              "icon": "icon-rain-gauge.svg"
             },
             {
               "id": "anemo",
               "label": "Anemometer (wind)",
-              "emoji": "💨"
+              "icon": "icon-anemometer.svg"
             },
             {
               "id": "baro",
               "label": "Barometer (air pressure)",
-              "emoji": "⏲️"
+              "icon": "icon-barometer.svg"
             }
           ]
         },
@@ -1273,22 +1237,22 @@
             {
               "id": "mon",
               "label": "Monday",
-              "emoji": "1️⃣"
+              "icon": "icon-day-monday.svg"
             },
             {
               "id": "tue",
               "label": "Tuesday",
-              "emoji": "2️⃣"
+              "icon": "icon-day-tuesday.svg"
             },
             {
               "id": "wed",
               "label": "Wednesday",
-              "emoji": "3️⃣"
+              "icon": "icon-day-wednesday.svg"
             },
             {
               "id": "thu",
               "label": "Thursday",
-              "emoji": "4️⃣"
+              "icon": "icon-day-thursday.svg"
             }
           ],
           "ordered": true
@@ -1385,23 +1349,19 @@
           "items": [
             {
               "id": "craig",
-              "label": "Uncle Craig",
-              "emoji": "👨"
+              "label": "Uncle Craig"
             },
             {
               "id": "paige",
-              "label": "Aunt Paige",
-              "emoji": "👩"
+              "label": "Aunt Paige"
             },
             {
               "id": "pete",
-              "label": "Grandpa Pete",
-              "emoji": "👴"
+              "label": "Grandpa Pete"
             },
             {
               "id": "pearl",
-              "label": "Grandma Pearl",
-              "emoji": "👵"
+              "label": "Grandma Pearl"
             }
           ]
         },
@@ -1412,26 +1372,26 @@
             {
               "id": "r2",
               "label": "Row 2",
-              "emoji": "🎟️",
-              "value": 2
+              "value": 2,
+              "icon": "icon-row-2.svg"
             },
             {
               "id": "r3",
               "label": "Row 3",
-              "emoji": "🎟️",
-              "value": 3
+              "value": 3,
+              "icon": "icon-row-3.svg"
             },
             {
               "id": "r6",
               "label": "Row 6",
-              "emoji": "🎟️",
-              "value": 6
+              "value": 6,
+              "icon": "icon-row-6.svg"
             },
             {
               "id": "r12",
               "label": "Row 12",
-              "emoji": "🎟️",
-              "value": 12
+              "value": 12,
+              "icon": "icon-row-12.svg"
             }
           ],
           "numeric": true
@@ -1443,22 +1403,22 @@
             {
               "id": "chili",
               "label": "Chili",
-              "emoji": "🌶️"
+              "icon": "icon-chili.svg"
             },
             {
               "id": "wings",
               "label": "Wings",
-              "emoji": "🍗"
+              "icon": "icon-wings.svg"
             },
             {
               "id": "pretzels",
               "label": "Pretzels",
-              "emoji": "🥨"
+              "icon": "icon-pretzel.svg"
             },
             {
               "id": "cider",
               "label": "Apple cider",
-              "emoji": "🍎"
+              "icon": "icon-apple-cider.svg"
             }
           ]
         }
@@ -1556,23 +1516,19 @@
           "items": [
             {
               "id": "nora",
-              "label": "Nora",
-              "emoji": "👧"
+              "label": "Nora"
             },
             {
               "id": "carl",
-              "label": "Uncle Carl",
-              "emoji": "👨"
+              "label": "Uncle Carl"
             },
             {
               "id": "curtis",
-              "label": "Grandpa Curtis",
-              "emoji": "👴"
+              "label": "Grandpa Curtis"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             }
           ]
         },
@@ -1583,22 +1539,22 @@
             {
               "id": "pulley",
               "label": "Pulley",
-              "emoji": "🪢"
+              "icon": "icon-pulley.svg"
             },
             {
               "id": "ramp",
               "label": "Ramp",
-              "emoji": "📐"
+              "icon": "icon-ramp.svg"
             },
             {
               "id": "lever",
               "label": "Lever",
-              "emoji": "🪵"
+              "icon": "icon-lever.svg"
             },
             {
               "id": "wedge",
               "label": "Wedge",
-              "emoji": "🔺"
+              "icon": "icon-wedge.svg"
             }
           ]
         },
@@ -1609,22 +1565,22 @@
             {
               "id": "hay",
               "label": "Lift the hay bale",
-              "emoji": "🌾"
+              "icon": "icon-hay-bale.svg"
             },
             {
               "id": "pumpkin",
               "label": "Load the pumpkin",
-              "emoji": "🟠"
+              "icon": "icon-pumpkin.svg"
             },
             {
               "id": "log",
               "label": "Split the log",
-              "emoji": "🪓"
+              "icon": "icon-split-log.svg"
             },
             {
               "id": "rock",
               "label": "Pry up the rock",
-              "emoji": "🪨"
+              "icon": "icon-rock.svg"
             }
           ]
         }
@@ -1732,23 +1688,19 @@
           "items": [
             {
               "id": "pete",
-              "label": "Grandpa Pete",
-              "emoji": "👴"
+              "label": "Grandpa Pete"
             },
             {
               "id": "pearl",
-              "label": "Grandma Pearl",
-              "emoji": "👵"
+              "label": "Grandma Pearl"
             },
             {
               "id": "edith",
-              "label": "Grandma Edith",
-              "emoji": "👵"
+              "label": "Grandma Edith"
             },
             {
               "id": "curtis",
-              "label": "Grandpa Curtis",
-              "emoji": "👴"
+              "label": "Grandpa Curtis"
             }
           ]
         },
@@ -1759,26 +1711,26 @@
             {
               "id": "n3",
               "label": "3 notes",
-              "emoji": "📝",
-              "value": 3
+              "value": 3,
+              "icon": "icon-notes-3.svg"
             },
             {
               "id": "n4",
               "label": "4 notes",
-              "emoji": "📝",
-              "value": 4
+              "value": 4,
+              "icon": "icon-notes-4.svg"
             },
             {
               "id": "n6",
               "label": "6 notes",
-              "emoji": "📝",
-              "value": 6
+              "value": 6,
+              "icon": "icon-notes-6.svg"
             },
             {
               "id": "n8",
               "label": "8 notes",
-              "emoji": "📝",
-              "value": 8
+              "value": 8,
+              "icon": "icon-notes-8.svg"
             }
           ],
           "numeric": true
@@ -1790,22 +1742,22 @@
             {
               "id": "family",
               "label": "Family",
-              "emoji": "👪"
+              "icon": "icon-family.svg"
             },
             {
               "id": "harvest",
               "label": "Harvest",
-              "emoji": "🌽"
+              "icon": "icon-harvest.svg"
             },
             {
               "id": "veterans",
               "label": "Veterans",
-              "emoji": "🎖️"
+              "icon": "icon-veterans.svg"
             },
             {
               "id": "friends",
               "label": "Friends",
-              "emoji": "🤝"
+              "icon": "icon-friends.svg"
             }
           ]
         }
@@ -1905,23 +1857,19 @@
           "items": [
             {
               "id": "milo",
-              "label": "Milo",
-              "emoji": "👦"
+              "label": "Milo"
             },
             {
               "id": "june",
-              "label": "June",
-              "emoji": "👧"
+              "label": "June"
             },
             {
               "id": "craig",
-              "label": "Uncle Craig",
-              "emoji": "👨"
+              "label": "Uncle Craig"
             },
             {
               "id": "ellen",
-              "label": "Aunt Ellen",
-              "emoji": "👩"
+              "label": "Aunt Ellen"
             }
           ]
         },
@@ -1932,26 +1880,26 @@
             {
               "id": "j4",
               "label": "#4",
-              "emoji": "👕",
-              "value": 4
+              "value": 4,
+              "icon": "icon-jersey-4.svg"
             },
             {
               "id": "j7",
               "label": "#7",
-              "emoji": "👕",
-              "value": 7
+              "value": 7,
+              "icon": "icon-jersey-7.svg"
             },
             {
               "id": "j12",
               "label": "#12",
-              "emoji": "👕",
-              "value": 12
+              "value": 12,
+              "icon": "icon-jersey-12.svg"
             },
             {
               "id": "j28",
               "label": "#28",
-              "emoji": "👕",
-              "value": 28
+              "value": 28,
+              "icon": "icon-jersey-28.svg"
             }
           ],
           "numeric": true
@@ -1963,22 +1911,22 @@
             {
               "id": "popcorn",
               "label": "Popcorn",
-              "emoji": "🍿"
+              "icon": "icon-popcorn.svg"
             },
             {
               "id": "pretzel",
               "label": "Pretzel",
-              "emoji": "🥨"
+              "icon": "icon-pretzel.svg"
             },
             {
               "id": "cocoa",
               "label": "Hot cocoa",
-              "emoji": "☕"
+              "icon": "icon-hot-cocoa.svg"
             },
             {
               "id": "cider",
               "label": "Apple cider",
-              "emoji": "🍎"
+              "icon": "icon-apple-cider.svg"
             }
           ]
         }
@@ -2076,23 +2024,19 @@
           "items": [
             {
               "id": "helen",
-              "label": "Mom Helen",
-              "emoji": "👩"
+              "label": "Mom Helen"
             },
             {
               "id": "henry",
-              "label": "Dad Henry",
-              "emoji": "👨"
+              "label": "Dad Henry"
             },
             {
               "id": "paige",
-              "label": "Aunt Paige",
-              "emoji": "👩"
+              "label": "Aunt Paige"
             },
             {
               "id": "carl",
-              "label": "Uncle Carl",
-              "emoji": "👨"
+              "label": "Uncle Carl"
             }
           ]
         },
@@ -2103,26 +2047,26 @@
             {
               "id": "d3",
               "label": "$3",
-              "emoji": "💵",
-              "value": 3
+              "value": 3,
+              "icon": "icon-dollars-3.svg"
             },
             {
               "id": "d4",
               "label": "$4",
-              "emoji": "💵",
-              "value": 4
+              "value": 4,
+              "icon": "icon-dollars-4.svg"
             },
             {
               "id": "d8",
               "label": "$8",
-              "emoji": "💵",
-              "value": 8
+              "value": 8,
+              "icon": "icon-dollars-8.svg"
             },
             {
               "id": "d12",
               "label": "$12",
-              "emoji": "💵",
-              "value": 12
+              "value": 12,
+              "icon": "icon-dollars-12.svg"
             }
           ],
           "numeric": true
@@ -2134,22 +2078,22 @@
             {
               "id": "apples",
               "label": "Apples",
-              "emoji": "🍎"
+              "icon": "icon-apples.svg"
             },
             {
               "id": "squash",
               "label": "Squash",
-              "emoji": "🟡"
+              "icon": "icon-squash.svg"
             },
             {
               "id": "honey",
               "label": "Honey",
-              "emoji": "🍯"
+              "icon": "icon-honey.svg"
             },
             {
               "id": "corn",
               "label": "Corn",
-              "emoji": "🌽"
+              "icon": "icon-corn.svg"
             }
           ]
         }

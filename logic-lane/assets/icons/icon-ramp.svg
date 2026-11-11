@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<line x1="11" y1="52" x2="56" y2="52" stroke="#4A3018" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M50 34 L57 28 L57 46 L50 52 Z" fill="#4A3018" stroke="#1C242E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 34 L50 34 L50 52 L34 52 Z" fill="#6B4A2A" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 34 L41 28 L57 28 L50 34 Z" fill="#8E6340" stroke="#1C242E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 50 L34 34 L38 38 L16 54 Z" fill="#8E6340" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17 48 L32 37" fill="none" stroke="#4A3018" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(21 42) rotate(-36)"><rect x="-4.5" y="-6" width="9" height="7" rx="0.5" fill="#F7F3EA" stroke="#1C242E" stroke-width="1.25"/><path d="M-4.5 -6 L-2.8 -8 L6.2 -8 L4.5 -6 Z" fill="#E4D09A" stroke="#1C242E" stroke-width="1.1" stroke-linejoin="round"/><path d="M4.5 -6 L6.2 -8 L6.2 -1 L4.5 1 Z" fill="#C4A35A" stroke="#1C242E" stroke-width="1.1" stroke-linejoin="round"/><path d="M-4.5 -2.3 L4.5 -2.3" stroke="#1C242E" stroke-width="0.8"/></g>
+</svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<circle cx="32" cy="33" r="18" fill="#F7F3EA" stroke="#C4A35A" stroke-width="2.4"/>
+<circle cx="32" cy="33" r="15.6" fill="none" stroke="#E4D09A" stroke-width="0.8"/>
+<line x1="32.0" y1="19.6" x2="32.0" y2="16.8" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="39.87632238071914" y1="22.159172275375703" x2="41.52212108713806" y2="19.893924691125854" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="44.74415731835506" y1="28.859172275375705" x2="47.407115563981485" y2="27.99392469112585" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="44.74415731835506" y1="37.140827724624295" x2="47.407115563981485" y2="38.006075308874145" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="39.87632238071914" y1="43.8408277246243" x2="41.52212108713806" y2="46.106075308874146" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="32.0" y1="46.4" x2="32.0" y2="49.2" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="24.123677619280862" y1="43.8408277246243" x2="22.47787891286194" y2="46.106075308874146" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="19.255842681644943" y1="37.140827724624295" x2="16.592884436018515" y2="38.00607530887415" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="19.255842681644943" y1="28.859172275375705" x2="16.59288443601851" y2="27.993924691125855" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="24.12367761928086" y1="22.159172275375706" x2="22.477878912861932" y2="19.893924691125854" stroke="#1C242E" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="28.468209628564292" y1="34.877886251143565" x2="41.7124235214482" y2="27.8358128093552" stroke="#7A3030" stroke-width="2.0" stroke-linecap="round"/>
+<circle cx="32" cy="33" r="2.1" fill="#C4A35A" stroke="#1C242E" stroke-width="0.9"/>
+</svg>

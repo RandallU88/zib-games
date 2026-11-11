@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<path d="M24 34 L51 13" fill="none" stroke="#6B4A2A" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 34 L51 13" fill="none" stroke="#4A3018" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.5 38.6 L7.0 51.5" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.6 36.9 L11.2 52.5" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.8 35.6 L15.5 53.3" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.9 34.9 L19.8 53.8" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.0 34.6 L24.0 53.9" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.1 34.9 L28.2 53.8" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.2 35.6 L32.5 53.3" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33.4 36.9 L36.8 52.5" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36.5 38.6 L41.0 51.5" fill="none" stroke="#1C242E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 39 Q24 34.5 38 39" fill="none" stroke="#1C242E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="24" cy="34" r="2.2" fill="#C4A35A" stroke="#1C242E" stroke-width="0.9"/>
+<g transform="translate(41 47) rotate(32) scale(0.72)"><path d="M0 -5 Q5 0 0 6 Q-5 0 0 -5 Z" fill="#D4651A" stroke="#1C242E" stroke-width="1.74" stroke-linejoin="round"/><path d="M0 -3.5 L0 4.5" stroke="#1C242E" stroke-width="1.18"/></g><g transform="translate(8 44) rotate(-42) scale(0.62)"><path d="M0 -5 Q5 0 0 6 Q-5 0 0 -5 Z" fill="#C46A28" stroke="#1C242E" stroke-width="2.02" stroke-linejoin="round"/><path d="M0 -3.5 L0 4.5" stroke="#1C242E" stroke-width="1.37"/></g>
+</svg>

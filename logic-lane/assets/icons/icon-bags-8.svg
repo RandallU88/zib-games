@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<path d="M20 22 L44 22 L46 52 L18 52 Z" fill="#E6D3A8" stroke="#1C242E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 22 Q32 16 44 22" fill="#E6D3A8" stroke="#1C242E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 22 L44 22 L44 26 L20 26 Z" fill="#D8C090" stroke="#1C242E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path transform="translate(25.359 47.275) scale(0.009766 -0.009766) translate(0.000 0)" d="M679 -20Q506 -20 371.5 35.5Q237 91 159.5 186.5Q82 282 82 402Q82 495 126.5 572.0Q171 649 246.5 701.0Q322 753 415 768V777Q293 802 214.5 893.5Q136 985 136 1108Q136 1224 206.5 1314.5Q277 1405 400.0 1457.5Q523 1510 679 1510Q836 1510 959.0 1457.5Q1082 1405 1153.0 1314.0Q1224 1223 1224 1108Q1224 985 1145.0 893.5Q1066 802 945 777V768Q1038 753 1113.5 701.0Q1189 649 1233.5 572.0Q1278 495 1278 402Q1278 282 1200.5 186.5Q1123 91 988.0 35.5Q853 -20 679 -20ZM679 231Q747 231 798.0 256.5Q849 282 878.0 327.5Q907 373 907 432Q907 491 877.5 536.0Q848 581 797.0 607.5Q746 634 679 634Q614 634 563.0 608.0Q512 582 482.5 536.5Q453 491 453 432Q453 373 481.5 328.0Q510 283 561.5 257.0Q613 231 679 231ZM679 884Q737 884 781.5 908.0Q826 932 852.0 973.5Q878 1015 878 1068Q878 1122 852.5 1162.5Q827 1203 782.5 1226.0Q738 1249 679 1249Q622 1249 577.0 1226.0Q532 1203 507.0 1162.5Q482 1122 482 1068Q482 1015 507.0 973.5Q532 932 577.0 908.0Q622 884 679 884Z" fill="#1C242E"/>
+</svg>

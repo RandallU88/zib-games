@@ -73,6 +73,49 @@
   }
   function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
+  function iconSrc(file) {
+    if (ART.iconSrc) return ART.iconSrc(file);
+    if (!file) return "";
+    var name = String(file).replace(/^.*\//, "").replace(/@2x/g, "").replace(/\.png$/i, ".svg");
+    if (!/\.svg$/i.test(name)) name += ".svg";
+    return "assets/icons/" + name + "?v=3";
+  }
+  function itemIcon(it) {
+    if (!it || !it.icon) return "";
+    return '<img class="ll-icon" src="' + esc(iconSrc(it.icon)) + '" alt="' + esc(it.label) +
+      '" width="32" height="32" decoding="async">';
+  }
+  function decorateItems(text, puzzle) {
+    if (!text) return "";
+    puzzle = puzzle || current;
+    if (!puzzle) return esc(text);
+    var items = [];
+    puzzle.categories.forEach(function (cat) {
+      if (cat.id === "people") return;
+      cat.items.forEach(function (it) { if (it.icon) items.push(it); });
+    });
+    items.sort(function (a, b) { return b.label.length - a.label.length; });
+    var ranges = [];
+    items.forEach(function (it) {
+      var re = new RegExp(escapeRe(it.label), "ig");
+      var m;
+      while ((m = re.exec(text))) {
+        var overlap = ranges.some(function (r) { return m.index < r.end && m.index + m[0].length > r.start; });
+        if (!overlap) ranges.push({ start: m.index, end: m.index + m[0].length, item: it, text: m[0] });
+      }
+    });
+    ranges.sort(function (a, b) { return a.start - b.start; });
+    var out = "", i = 0;
+    ranges.forEach(function (r) {
+      out += esc(text.slice(i, r.start));
+      out += '<span class="ll-chip">' + itemIcon(r.item) + '<span class="ll-chip-label">' + esc(r.text) + "</span></span>";
+      i = r.end;
+    });
+    out += esc(text.slice(i));
+    return out;
+  }
+
+
   function cellKey(c1, i1, c2, i2) {
     var p = current;
     if (catIndex(p, c1) <= catIndex(p, c2)) return c1 + ":" + i1 + "|" + c2 + ":" + i2;
@@ -374,15 +417,14 @@
     html += "</tr><tr>";
     others.forEach(function (cat) {
       cat.items.forEach(function (it) {
-        html += '<th class="ll-colhead"><span class="ll-emoji">' + (it.emoji ? esc(it.emoji) : "") +
-          '</span><span class="ll-iname">' + esc(it.label) + "</span></th>";
+        html += '<th class="ll-colhead">' + itemIcon(it) +
+          '<span class="ll-iname">' + esc(it.label) + "</span></th>";
       });
     });
     html += "</tr></thead><tbody>";
     people.items.forEach(function (person, pi) {
       html += "<tr>";
-      html += '<th class="ll-rowhead"><span class="ll-emoji">' + (person.emoji ? esc(person.emoji) : "") +
-        "</span> " + esc(person.label) + "</th>";
+      html += '<th class="ll-rowhead"><span class="ll-rlabel">' + esc(person.label) + "</span></th>";
       others.forEach(function (cat) {
         cat.items.forEach(function (it) {
           html += cellButton(people.id, person.id, person.label, cat.id, it.id, it.label);
@@ -394,8 +436,8 @@
       var A = others[0], B = others[1];
       A.items.forEach(function (aItem, ai) {
         html += "<tr>";
-        html += '<th class="ll-rowhead"><span class="ll-emoji">' + (aItem.emoji ? esc(aItem.emoji) : "") +
-          "</span> " + esc(aItem.label) + "</th>";
+        html += '<th class="ll-rowhead">' + itemIcon(aItem) +
+          '<span class="ll-rlabel">' + esc(aItem.label) + "</span></th>";
         html += '<td class="ll-blocked" colspan="' + n + '"></td>';
         B.items.forEach(function (bItem) {
           html += cellButton(A.id, aItem.id, aItem.label, B.id, bItem.id, bItem.label);
@@ -423,7 +465,7 @@
   function renderQuestion() {
     var p = current;
     var targets = answerTargets(p);
-    var html = '<section class="ll-question"><h2>Question</h2><p class="ll-q-prompt">' + esc(p.question) + "</p>";
+    var html = '<section class="ll-question"><h2>Question</h2><p class="ll-q-prompt">' + decorateItems(p.question, p) + "</p>";
     targets.forEach(function (t) {
       html += '<div class="ll-q-part">';
       if (targets.length > 1) html += '<span class="ll-q-part-label">' + esc(t.cat.name) + "</span>";
@@ -433,7 +475,7 @@
         var cls = "ll-option" + (qWrong && on ? " bad" : "");
         html += '<button type="button" class="' + cls + '" data-part="' + esc(t.cat.id) +
           '" data-option="' + esc(it.id) + '" aria-pressed="' + (on ? "true" : "false") + '">' +
-          (it.emoji ? esc(it.emoji) + " " : "") + esc(it.label) + "</button>";
+          itemIcon(it) + '<span class="ll-olabel">' + esc(it.label) + "</span></button>";
       });
       html += "</div></div>";
     });
@@ -458,7 +500,7 @@
     html += '<p class="ll-help">Tap a box to cycle through blank, X, and a check. Each person matches one item in each group.</p></header>';
     html += '<div class="ll-puzzle-body">';
     html += '<aside class="ll-clues"><h2>Clues</h2><ol>';
-    p.clues.forEach(function (c) { html += "<li>" + esc(c.text) + "</li>"; });
+    p.clues.forEach(function (c) { html += "<li>" + decorateItems(c.text, p) + "</li>"; });
     html += "</ol></aside>";
     html += '<div class="ll-grid-panel">';
     if (wide) html += '<p class="ll-grid-hint">Swipe the grid if you need more room.</p>';
@@ -517,11 +559,11 @@
     html += "<h1>You figured it out!</h1>";
     html += '<div class="ll-win-stars" data-stars="' + lastStars + '">' + starsHtml(lastStars) + "</div>";
     if (p.explain) {
-      html += '<div class="ll-explain"><h2>How it fits</h2><p>' + esc(p.explain) + "</p></div>";
+      html += '<div class="ll-explain"><h2>How it fits</h2><p>' + decorateItems(p.explain, p) + "</p></div>";
     }
     if (p.solution_text && p.solution_text.length) {
       html += '<div class="ll-recap"><h2>The full match-up</h2><ul>';
-      p.solution_text.forEach(function (line) { html += "<li>" + esc(line) + "</li>"; });
+      p.solution_text.forEach(function (line) { html += "<li>" + decorateItems(line, p) + "</li>"; });
       html += "</ul></div>";
     }
     html += '<div class="ll-win-actions">';

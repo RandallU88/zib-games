@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<ellipse cx="32" cy="48" rx="20" ry="5" fill="#C4A35A" stroke="#1C242E" stroke-width="1.4"/>
+<path d="M20 40 Q12 46 16 50 Q22 48 24 42" fill="#B06030" stroke="#1C242E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M44 40 Q52 46 48 50 Q42 48 40 42" fill="#B06030" stroke="#1C242E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="32" cy="36" rx="14" ry="11" fill="#C4783A" stroke="#1C242E" stroke-width="1.6"/>
+<path d="M22 32 Q16 28 20 24 Q26 28 26 32" fill="#D4884A" stroke="#1C242E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

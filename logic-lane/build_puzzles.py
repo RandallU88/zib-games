@@ -1,12 +1,61 @@
 #!/usr/bin/env python3
 """Turn Lorelai's puzzles.json into logic-lane/puzzles.js.
 Only logic_grids are shipped. ideas_for_later and art briefs stay out.
+Attaches Casebook item icons from assets/icons/map.json and drops emoji.
 """
 import json, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_SRC = Path("/workspace/homeschool/arcade-puzzles/puzzles.renamed.json")
+ICON_MAP = HERE / "assets" / "icons" / "map.json"
+
+
+def load_icon_index():
+    if not ICON_MAP.is_file():
+        sys.exit("missing icon map: " + str(ICON_MAP))
+    data = json.loads(ICON_MAP.read_text(encoding="utf-8"))
+    by_puzzle = {}
+    for pid, pz in (data.get("puzzles") or {}).items():
+        rec = {}
+        for it in pz.get("items") or []:
+            rec[it["id"]] = it
+            rec[("label", it["label"])] = it
+        by_puzzle[pid] = rec
+    return by_puzzle
+
+
+def icon_filename(rec):
+    if not rec or rec.get("text_only"):
+        return None
+    name = rec.get("icon") or rec.get("svg") or ""
+    if not name:
+        return None
+    stem = Path(name).stem
+    return stem + ".svg"
+
+
+def attach_icons(grids, index):
+    missing = []
+    for g in grids:
+        recs = index.get(g["id"]) or {}
+        for cat in g.get("categories") or []:
+            people = cat.get("id") == "people"
+            for it in cat.get("items") or []:
+                it.pop("emoji", None)
+                if people:
+                    it.pop("icon", None)
+                    continue
+                rec = recs.get(it.get("id")) or recs.get(("label", it.get("label")))
+                fname = icon_filename(rec)
+                path = HERE / "assets" / "icons" / fname if fname else None
+                if not fname or not path.is_file():
+                    missing.append(f"{g['id']}:{it.get('id')} {it.get('label')}")
+                    continue
+                it["icon"] = fname
+    if missing:
+        sys.exit("non-person items missing icons:\n  " + "\n  ".join(missing))
+
 
 def main():
     src = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_SRC
@@ -18,6 +67,7 @@ def main():
     for g in grids:
         item = {k: g[k] for k in g if k != "art_hint"}
         out_grids.append(item)
+    attach_icons(out_grids, load_icon_index())
     payload = {
         "schema_version": data.get("schema_version", 1) if isinstance(data, dict) else 1,
         "source": data.get("source", "") if isinstance(data, dict) else "",
@@ -39,6 +89,7 @@ def main():
     dest = HERE / "puzzles.js"
     dest.write_text(js, encoding="utf-8")
     print("wrote", dest, "grids=", len(out_grids), "bytes=", dest.stat().st_size)
+
 
 if __name__ == "__main__":
     main()

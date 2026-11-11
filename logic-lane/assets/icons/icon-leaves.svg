@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+
+  <defs>
+    <linearGradient id="paperGrad" x1="16" y1="4" x2="48" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#E4D9C6"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.4" flood-color="#1A2330" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="url(#paperGrad)" filter="url(#soft)"/>
+  <rect x="2.2" y="2.2" width="59.6" height="59.6" rx="12" fill="none" stroke="#C4A35A" stroke-width="2.2"/>
+  <rect x="4.6" y="4.6" width="54.8" height="54.8" rx="10" fill="none" stroke="#E4D09A" stroke-width="0.7" opacity="0.85"/>
+
+<g transform="translate(24 38) rotate(-30)">
+          <path d="M0 -8 Q8 0 0 10 Q-8 0 0 -8 Z" fill="#A44C12" stroke="#1C242E" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M0 -6 L0 8" stroke="#1C242E" stroke-width="0.9"/>
+        </g>
+<g transform="translate(40 40) rotate(20)">
+          <path d="M0 -8 Q8 0 0 10 Q-8 0 0 -8 Z" fill="#C46A28" stroke="#1C242E" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M0 -6 L0 8" stroke="#1C242E" stroke-width="0.9"/>
+        </g>
+<g transform="translate(32 32) rotate(-8)">
+          <path d="M0 -8 Q8 0 0 10 Q-8 0 0 -8 Z" fill="#C4893A" stroke="#1C242E" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M0 -6 L0 8" stroke="#1C242E" stroke-width="0.9"/>
+        </g>
+<g transform="translate(22 28) rotate(40)">
+          <path d="M0 -8 Q8 0 0 10 Q-8 0 0 -8 Z" fill="#8A3E14" stroke="#1C242E" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M0 -6 L0 8" stroke="#1C242E" stroke-width="0.9"/>
+        </g>
+<g transform="translate(42 28) rotate(-40)">
+          <path d="M0 -8 Q8 0 0 10 Q-8 0 0 -8 Z" fill="#D4651A" stroke="#1C242E" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M0 -6 L0 8" stroke="#1C242E" stroke-width="0.9"/>
+        </g>
+<g transform="translate(32 42) rotate(10)">
+          <path d="M0 -8 Q8 0 0 10 Q-8 0 0 -8 Z" fill="#A85A20" stroke="#1C242E" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M0 -6 L0 8" stroke="#1C242E" stroke-width="0.9"/>
+        </g>
+</svg>

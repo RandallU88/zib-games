@@ -17,6 +17,49 @@ DEVICES = {
 
 results = []
 
+ROOT = Path(__file__).resolve().parent
+
+def check_icon_coverage():
+    """Fail if any non-person item in puzzles.js lacks a real icon file."""
+    rec = {"game": "logic-lane", "device": "icon-coverage", "checks": [], "fail": False}
+    js = (ROOT / "puzzles.js").read_text(encoding="utf-8")
+    start = js.find("root.LOGIC_LANE_DATA = ")
+    end = js.find(";" + chr(10) + "  root.LOGIC_LANE_PUZZLES")
+    ok(start >= 0 and end > start, "puzzles.js data payload present", rec)
+    data = json.loads(js[start + len("root.LOGIC_LANE_DATA = "):end])
+    missing = []
+    leftover_emoji = []
+    seen = 0
+    for g in data["logic_grids"]:
+        for cat in g["categories"]:
+            for it in cat["items"]:
+                if "emoji" in it:
+                    leftover_emoji.append(f"{g['id']}:{it.get('id')}")
+                if cat.get("id") == "people":
+                    if it.get("icon"):
+                        missing.append(f"{g['id']}:{it.get('id')} person should be text only")
+                    continue
+                seen += 1
+                icon = it.get("icon") or ""
+                path = ROOT / "assets" / "icons" / Path(icon).name
+                if Path(icon).suffix.lower() == ".png":
+                    path = path.with_suffix(".svg")
+                if not icon:
+                    missing.append(f"{g['id']}:{it.get('id')} {it.get('label')} has no icon")
+                elif not path.is_file():
+                    missing.append(f"{g['id']}:{it.get('id')} {it.get('label')} missing file {icon}")
+    ok(seen >= 78, f"found {seen} non-person items", rec)
+    ok(not leftover_emoji, "no emoji fields left in puzzles.js" if not leftover_emoji else "emoji left: " + ", ".join(leftover_emoji[:12]), rec)
+    ok(not missing, "every non-person item has an icon" if not missing else "missing icons: " + "; ".join(missing)[:500], rec)
+    results.append(rec)
+    status = "FAIL" if rec["fail"] else "PASS"
+    print(f"{status} icon-coverage  {sum(c.startswith('PASS') for c in rec['checks'])}/{len(rec['checks'])} checks")
+    for c in rec["checks"]:
+        if c.startswith("FAIL"):
+            print("   ", c)
+    return rec
+
+
 def ok(cond, msg, rec):
     rec["checks"].append(("PASS" if cond else "FAIL") + " " + msg)
     if not cond:
@@ -116,6 +159,30 @@ async def run_device(browser, dev, opts, puzzles_first):
     ok(await pg.locator("[data-ll-view=puzzle]").count() == 1, "opened puzzle", rec)
     ok(await home.is_visible(), "Home visible on puzzle", rec)
     ok(await arcade.first.is_visible(), "Back to Arcade visible on puzzle", rec)
+    # Icons replace emoji on item headers and question choices; people stay text.
+    col_icons = await pg.locator(".ll-colhead .ll-icon").count()
+    ok(col_icons >= 3, f"column header icons present ({col_icons})", rec)
+    loaded = await pg.evaluate(
+        """() => Array.from(document.querySelectorAll('.ll-colhead .ll-icon')).every(
+             img => img.complete && img.naturalWidth > 0)"""
+    )
+    ok(loaded, "column header icons loaded", rec)
+    alts = await pg.evaluate(
+        """() => Array.from(document.querySelectorAll('.ll-colhead .ll-icon')).map(img => [img.alt, img.closest('th').querySelector('.ll-iname')?.textContent.trim()])"""
+    )
+    ok(all(a[0] and a[0] == a[1] for a in alts), "header icon alt text matches item name", rec)
+    people_imgs = await pg.evaluate(
+        """() => {
+          const people = (__logicLane.puzzle.categories[0].items || []).map(i => i.label);
+          return Array.from(document.querySelectorAll('.ll-rowhead')).filter(th => {
+            const lab = th.querySelector('.ll-rlabel')?.textContent.trim();
+            return people.includes(lab) && th.querySelector('img');
+          }).length;
+        }"""
+    )
+    ok(people_imgs == 0, "people row headers are text only", rec)
+    leftover = await pg.locator(".ll-emoji").count()
+    ok(leftover == 0, "no leftover emoji slots in the grid", rec)
     auto_pressed = await pg.locator('[data-act=autoX]').get_attribute("aria-pressed")
     level = await pg.evaluate("__logicLane.puzzle.level")
     if level == "Advanced":
@@ -195,12 +262,45 @@ async def run_device(browser, dev, opts, puzzles_first):
             fb = await pg.evaluate("(__logicLane.feedback && __logicLane.feedback.text) || document.body.innerText.slice(0,400)")
             rec["checks"].append("INFO fail state " + pid + ": " + str(fb)[:200])
 
-    # shot of a 4x4 stair-step
-    if dev in ("iphone", "iphone-land", "ipad"):
+    # shot of a 4x4 stair-step, plus a clip check on Savannah Advanced
+    for pid in ("s-s1", "s-a1", "s-a2", "s-a3"):
         await pg.goto(f"{BASE}/logic-lane/", wait_until="domcontentloaded")
-        await click(pg, '[data-puzzle-id="s-s1"]', touch)
+        await click(pg, f'[data-puzzle-id="{pid}"]', touch)
         await pg.wait_for_timeout(200)
-        await pg.screenshot(path=str(SHOTS / f"grid-4x4x2-{dev}.jpg"), type="jpeg", quality=72)
+        clips = await pg.evaluate(
+            """() => {
+              const hits = [];
+              const nodes = document.querySelectorAll('.ll-icon, .ll-iname, .ll-rlabel, .ll-chip, .ll-colhead, .ll-rowhead');
+              nodes.forEach((el) => {
+                const r = el.getBoundingClientRect();
+                if (r.width === 0 || r.height === 0) return;
+                let p = el.parentElement;
+                while (p && p !== document.body) {
+                  const st = getComputedStyle(p);
+                  const clips = st.overflowX === 'hidden' || st.overflowY === 'hidden' || st.overflow === 'hidden';
+                  if (clips) {
+                    const pr = p.getBoundingClientRect();
+                    if (r.left < pr.left - 1 || r.right > pr.right + 1 || r.top < pr.top - 1 || r.bottom > pr.bottom + 1) {
+                      hits.push((el.className || el.tagName) + ' in ' + (p.className || p.tagName));
+                    }
+                    break;
+                  }
+                  p = p.parentElement;
+                }
+              });
+              return hits.slice(0, 8);
+            }"""
+        )
+        ok(not clips, f"{pid} no clipped headers/icons" if not clips else f"{pid} clipped: {clips}", rec)
+        icons_ok = await pg.evaluate(
+            """() => {
+              const imgs = Array.from(document.querySelectorAll('.ll-icon'));
+              return imgs.length > 0 && imgs.every(img => img.complete && img.naturalWidth > 0);
+            }"""
+        )
+        ok(icons_ok, f"{pid} icons loaded", rec)
+        if dev in ("iphone", "iphone-land", "ipad") and pid in ("s-s1", "s-a1"):
+            await pg.screenshot(path=str(SHOTS / f"grid-{pid}-{dev}.jpg"), type="jpeg", quality=72)
 
     js_ok = not errs
     ok(js_ok, "0 JS errors" if js_ok else ("JS errors: " + " | ".join(errs)[:400]), rec)
@@ -211,6 +311,7 @@ async def run_device(browser, dev, opts, puzzles_first):
 
 async def main():
     first = "l-s1"
+    check_icon_coverage()
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         for dev, opts in DEVICES.items():
