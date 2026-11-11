@@ -51,5 +51,53 @@ window.URWIN_ARCADE_GAMES = [
     blurb: "Whip, jump and blast past skeletons, ghosts and werewolves, then beat the Witch Queen.",
     href: "../haunted-hunter.html",
     monogram: "HH"
+  },
+  {
+    id: "urwin-snake",
+    title: "Urwin Snake",
+    kicker: "New: Classic",
+    blurb: "Steer the snake to the golden apples and grow longer with every bite. Rocks show up as it speeds up.",
+    href: "../urwin-snake/?v=1",
+    monogram: "US"
+  },
+  {
+    id: "brick-blitz",
+    title: "Brick Blitz",
+    kicker: "New: Classic",
+    blurb: "Bounce the ball off your paddle and smash the whole brick wall. Tough bricks take two or three hits.",
+    href: "../brick-blitz/?v=1",
+    monogram: "BB"
+  },
+  {
+    id: "star-defenders",
+    title: "Star Defenders",
+    kicker: "New: Classic",
+    blurb: "Space drones are marching down on Urwin. Slide, dodge and blast every wave before they land.",
+    href: "../star-defenders/?v=1",
+    monogram: "SD"
+  },
+  {
+    id: "maze-muncher",
+    title: "Maze Muncher",
+    kicker: "New: Classic",
+    blurb: "Gobble every glow dot in the maze and dodge the Glooms. Grab a power gem and chase them back.",
+    href: "../maze-muncher/?v=1",
+    monogram: "MM"
+  },
+  {
+    id: "road-hopper",
+    title: "Road Hopper",
+    kicker: "New: Classic",
+    blurb: "Hop Pip the chick across five lanes of traffic and a rushing river to fill all five nests.",
+    href: "../road-hopper/?v=1",
+    monogram: "RH"
+  },
+  {
+    id: "block-drop",
+    title: "Block Drop",
+    kicker: "New: Classic",
+    blurb: "Turn and stack seven kinds of falling blocks. Fill a row to clear it, and every 10 rows they fall faster.",
+    href: "../block-drop/?v=1",
+    monogram: "BD"
   }
 ];
