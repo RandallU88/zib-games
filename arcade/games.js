@@ -99,5 +99,13 @@ window.URWIN_ARCADE_GAMES = [
     blurb: "Turn and stack seven kinds of falling blocks. Fill a row to clear it, and every 10 rows they fall faster.",
     href: "../block-drop/?v=1",
     monogram: "BD"
+  },
+  {
+    id: "logic-lane",
+    title: "Logic Lane",
+    kicker: "New: Puzzles",
+    blurb: "Read the clues, mark the grid, and figure out who used what.",
+    href: "../logic-lane/?v=1",
+    logo: "../logic-lane/assets/cabinet-logo.png"
   }
 ];
