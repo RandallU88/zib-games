@@ -1,5 +1,5 @@
 /* lesson-04 theme overrides */
 :root{}
 .theme-butter-kitchen{ --accent:#1F6F78; --accent-2:#C45C3A; --soft:#F4EBDD; }
-.kid-logan.lesson-04{ --hero:url(./logan-hero.png); }
-.kid-savannah.lesson-04{ --hero:url(./savannah-hero.png); }
+.kid-logan.lesson-04{ --hero:url(../lesson-04-v2/logan-hero.png); }
+.kid-savannah.lesson-04{ --hero:url(../lesson-04-v2/savannah-hero.png); }
