@@ -1,17 +1,92 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#161310">
-<link rel="apple-touch-icon" href="../urwin-icon-180.png"><link rel="icon" href="../urwin-icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@500;600;700&family=Playwrite+US+Trad&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../hs-home.css?v=1"><link rel="stylesheet" href="../lessons/assets/lesson.css?v=5"><link rel="stylesheet" href="tokens.css"><title>Simple Machine Shop</title></head>
-<body class="machines-page"><header class="top"><div class="top-nav"><a class="hs-home hs-home--inline" href="../index.html" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a></div>
-<a class="brandlink" href="../index.html"><img src="../urwin-logo.png" alt="Urwin Homeschool" width="160" height="90"></a>
-<p class="sub">Simple Machine Shop</p></header><main class="index machines-picker">
-<h1>Simple Machine Shop</h1>
-<p class="lede">A November workshop page about force and simple machines. Pick your own track. The two tracks are separate, and Advanced parts are optional.</p>
-<div class="tiles">
-<a class="tile" href="logan/"><span class="tile-art"><img src="assets/logan-card.svg" alt="" width="1200" height="525"></span><span class="tile-body"><span class="tile-kicker">Grade 2</span><span class="tile-title">Workshop Helpers</span><span class="tile-desc">Logan&#39;s track. Meet the ramp, the wedge, the pulley, and the lever. Optional Advanced adds the wheel and axle, the screw, and a pulley puzzle.</span><span class="tile-go">Open &rsaquo;</span></span></a>
-<a class="tile" href="savannah/"><span class="tile-art"><img src="assets/savannah-card.svg" alt="" width="1200" height="525"></span><span class="tile-body"><span class="tile-kicker">Grade 5</span><span class="tile-title">Machine Works</span><span class="tile-desc">Savannah&#39;s track. All six simple machines, the force-for-distance trade, a workshop hunt, and a loft invention. Optional Advanced compares fixed and movable pulleys.</span><span class="tile-go">Open &rsaquo;</span></span></a>
-</div>
-</main><script src="../hs-home.js?v=1" defer></script></body></html>
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1A1612">
+<title>Simple Machine Shop | Urwin Homeschool</title>
+<link rel="icon" href="../urwin-icon-180.png">
+<link rel="apple-touch-icon" href="../urwin-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../hs-home.css?v=1">
+<link rel="stylesheet" href="shop.css?v=1">
+</head>
+<body>
+  <header class="top">
+    <div class="top-nav">
+      <a class="hs-home hs-home--inline" href="../index.html" data-hs-home aria-label="Urwin Homeschool home">
+        <svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/>
+        </svg>
+        <span class="hs-home-label">Home</span>
+      </a>
+    </div>
+    <a class="brand" href="../index.html"><img src="../urwin-logo.png" width="140" height="79" alt="Urwin Homeschool"></a>
+  </header>
+
+  <main class="shop">
+    <header class="intro">
+      <p class="kicker">Workshop</p>
+      <h1>Simple Machine Shop</h1>
+      <p class="lede">Work is force times distance. These six machines do not get rid of the work. They let you trade a smaller force for a longer path, or the other way around. Pick a machine and use it. The model and the ideal mechanical advantage update as you drag, pull, or turn.</p>
+    </header>
+
+    <nav class="machine-nav" aria-label="Simple machines">
+      <button type="button" class="mnav on" data-machine="lever" aria-pressed="true">
+        <svg viewBox="0 0 48 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" d="M4 22h40"/><path fill="currentColor" d="M22 22l4 8h-8z"/><circle cx="10" cy="22" r="3.2"/><circle cx="40" cy="22" r="3.2"/></svg>
+        Lever
+      </button>
+      <button type="button" class="mnav" data-machine="pulley" aria-pressed="false">
+        <svg viewBox="0 0 48 32" aria-hidden="true"><circle cx="24" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M18 8v20M30 8v12H24"/><rect x="20" y="20" width="8" height="7" rx="1"/></svg>
+        Pulley
+      </button>
+      <button type="button" class="mnav" data-machine="wheel" aria-pressed="false">
+        <svg viewBox="0 0 48 32" aria-hidden="true"><circle cx="22" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="22" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M26 16h16"/></svg>
+        Wheel &amp; axle
+      </button>
+      <button type="button" class="mnav" data-machine="plane" aria-pressed="false">
+        <svg viewBox="0 0 48 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M4 28V10h8v18"/><path fill="none" stroke="currentColor" stroke-width="2.2" d="M12 28L42 28 12 10"/><rect x="22" y="16" width="8" height="6" rx="1"/></svg>
+        Inclined plane
+      </button>
+      <button type="button" class="mnav" data-machine="wedge" aria-pressed="false">
+        <svg viewBox="0 0 48 32" aria-hidden="true"><path fill="currentColor" d="M10 28L24 6l14 22z" opacity=".35"/><path fill="none" stroke="currentColor" stroke-width="2.2" d="M10 28L24 6l14 22z"/></svg>
+        Wedge
+      </button>
+      <button type="button" class="mnav" data-machine="screw" aria-pressed="false">
+        <svg viewBox="0 0 48 32" aria-hidden="true"><rect x="20" y="2" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M22 8v22M26 8v22M22 12h4M22 16h4M22 20h4M22 24h4"/></svg>
+        Screw
+      </button>
+    </nav>
+
+    <section class="workspace" aria-live="polite">
+      <div class="stage-wrap">
+        <div id="stage" class="stage" role="img" aria-label="Interactive model of the selected simple machine"></div>
+        <p class="hint" id="hint">Drag the highlighted parts.</p>
+      </div>
+      <aside class="panel" id="panel">
+        <h2 id="m-title">Lever</h2>
+        <p class="explain" id="explain"></p>
+        <div class="readout" id="readout"></div>
+        <div class="try" id="try" hidden>
+          <p class="try-kicker">Try this</p>
+          <p id="try-text"></p>
+          <p class="try-status" id="try-status" data-ok="false">Not yet</p>
+        </div>
+        <p class="formula" id="formula"></p>
+      </aside>
+    </section>
+
+    <footer class="assume">
+      <p>Numbers on this page are the <strong>ideal mechanical advantage</strong> (IMA): a perfect machine with no friction. In general, IMA is also the distance you move the effort divided by the distance the load moves. Formulas follow OpenStax <cite>Physics</cite>, section 9.3 (Urone and Hinrichs). A real tool always loses some of this advantage to friction. That gap is especially large for a screw.</p>
+    </footer>
+  </main>
+  <script src="../hs-home.js?v=1" defer></script>
+  <script src="shop.js?v=1"></script>
+</body>
+</html>
