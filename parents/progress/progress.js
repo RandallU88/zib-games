@@ -19,10 +19,36 @@ $('f').addEventListener('submit',async e=>{e.preventDefault();const b=$('go'),er
 $('lockbtn').onclick=()=>{PASS=null;DATA=null;$('app').hidden=true;$('lock').hidden=false;$('grid').textContent='';$('totals').textContent='';if($('asof'))$('asof').textContent='';if($('picker'))$('picker').textContent='';if($('review')){$('review').textContent='';$('review').hidden=true}$('pw').focus()};
 async function reload(){if(!PASS)return;const d=await rpc('homeschool_parent_progress',{p_pass:PASS});if(!d.ok){$('lockbtn').onclick();$('err').textContent=errMsg(d);$('err').hidden=false;return}render(d)}
 $('refresh').onclick=()=>reload().catch(()=>alert('Could not reach the server.'));
-function score(qs){let r=0,w=0,v=0,b=0,den=0;for(const q of qs||[]){const g=(q.grade||{}).v;
+function parentVerdict(q){
+  const pr=q&&q.parent_review;
+  if(pr&&(pr.verdict==='right'||pr.verdict==='wrong'))return pr.verdict;
+  return null}
+function effectiveGrade(q){return parentVerdict(q)||(q.grade||{}).v||'blank'}
+function score(qs){let r=0,w=0,v=0,b=0,den=0;for(const q of qs||[]){const g=effectiveGrade(q);
   if(g==='right')r++;else if(g==='wrong')w++;else if(g==='review')v++;else b++;
-  if(!q.review&&(g==='right'||g==='wrong'||(g==='blank'&&!q.optional)))den++}
+  const auto=(q.grade||{}).v,pv=parentVerdict(q);
+  if(pv)den++;
+  else if(!q.review&&(auto==='right'||auto==='wrong'||(auto==='blank'&&!q.optional)))den++}
   return {r,w,v,b,den,pct:den?Math.round(100*r/den):null}}
+function statusLabel(q){
+  const pv=parentVerdict(q);
+  if(pv==='right')return 'Approved';
+  if(pv==='wrong')return 'Marked incorrect';
+  return (MARK[effectiveGrade(q)]||MARK.blank)[1]}
+function reviewErr(d){
+  if(d&&d.error==='locked')return 'Too many wrong tries. Wait 15 minutes and try again.';
+  if(d&&d.error==='bad_passcode')return 'That passcode did not work.';
+  if(d&&d.error==='feedback_too_long')return 'That note is too long. Keep it under 1,000 characters.';
+  return 'Could not save the review. Try again.'}
+async function saveReview(kid,lesson,q,verdict,feedback){
+  if(!PASS)return null;
+  const r=await rpc('homeschool_parent_review',{p_pass:PASS,p_kid:kid,p_lesson:lesson,p_question:q.id,p_verdict:verdict,p_feedback:feedback||null});
+  if(!r.ok)throw new Error(reviewErr(r));
+  q.parent_review=r.review;
+  const L=(DATA&&DATA.lessons||[]).find(x=>x.kid===kid&&x.lesson_id===lesson);
+  const qq=L&&L.submission&&(L.submission.questions||[]).find(x=>x.id===q.id);
+  if(qq)qq.parent_review=r.review;
+  return r.review}
 function fmtCorrect(c){if(c==null)return null;if(typeof c==='object'&&!Array.isArray(c))return Object.keys(c).map(k=>k+': '+[].concat(c[k]).join(', ')).join(' | ');return String(c)}
 function isDraw(s){return typeof s==='string'&&/^data:image\/(png|jpeg|jpg|webp)/i.test(s.trim())}
 function fmtResp(q,box){const a=q.response;if(a==null||a===''){box.append(el('span','v none','No answer'));return}
@@ -190,18 +216,71 @@ function renderPicker(d){
   box.append(list);
 }
 
-function paintQuestions(qs,into){
+function reviewControls(q,kid,lesson){
+  const pv=parentVerdict(q);
+  const waiting=effectiveGrade(q)==='review';
+  const head=el('div','qact qact-head');head.dataset.testid='review-actions-'+q.id;
+  head.append(el('div','rev-label', waiting
+    ? 'Tap Correct or Incorrect. You can add a note if you want.'
+    : 'You can change this mark and add a note if you want.'));
+  const status=el('div','rev-status');status.dataset.testid='review-status-'+q.id;
+  if(pv){
+    status.append(el('span','rev-pill '+pv, pv==='right'?'Approved':'Marked incorrect'));
+    if(q.parent_review.reviewed_at)status.append(el('span','rev-when','Saved '+when(q.parent_review.reviewed_at)));
+    if(q.parent_review.feedback)status.append(el('p','rev-note',q.parent_review.feedback));
+    head.append(status);
+  }else if(waiting){
+    status.append(el('span','rev-pill review','Needs review'));
+    head.append(status);
+  }
+  const btns=el('div','rev-btns');
+  const ok=el('button','rev-ok','Correct');ok.type='button';ok.dataset.testid='review-correct-'+q.id;
+  const bad=el('button','rev-bad','Incorrect');bad.type='button';bad.dataset.testid='review-incorrect-'+q.id;
+  if(pv==='right'){ok.classList.add('on');ok.setAttribute('aria-pressed','true')}else ok.setAttribute('aria-pressed','false');
+  if(pv==='wrong'){bad.classList.add('on');bad.setAttribute('aria-pressed','true')}else bad.setAttribute('aria-pressed','false');
+  btns.append(ok,bad);head.append(btns);
+  const foot=el('div','qact qact-foot');
+  const fb=el('textarea','rev-feedback');fb.dataset.testid='review-feedback-'+q.id;
+  fb.rows=3;fb.maxLength=1000;fb.placeholder='Feedback (optional)';
+  fb.setAttribute('aria-label','Feedback for this answer');
+  if(q.parent_review&&q.parent_review.feedback)fb.value=q.parent_review.feedback;
+  const save=el('button','rev-save','Save');save.type='button';save.dataset.testid='review-save-'+q.id;
+  const err=el('p','rev-err');err.hidden=true;
+  async function commit(verdict){
+    const mark=verdict||pv;
+    err.hidden=true;
+    if(!mark){err.textContent='Tap Correct or Incorrect first, then save your note.';err.hidden=false;return}
+    ok.disabled=bad.disabled=save.disabled=true;save.textContent='Saving...';
+    try{
+      await saveReview(kid,lesson,q,mark,fb.value);
+      const y=window.scrollY;paint();window.scrollTo(0,y);
+    }catch(x){err.textContent=x&&x.message?x.message:'Could not save the review. Try again.';err.hidden=false}
+    finally{ok.disabled=bad.disabled=save.disabled=false;save.textContent='Save'}
+  }
+  ok.onclick=()=>commit('right');
+  bad.onclick=()=>commit('wrong');
+  save.onclick=()=>commit(pv);
+  foot.append(fb,save,err);
+  return {head,foot};
+}
+
+function paintQuestions(qs,into,kid,lesson){
   let sec=null;
   for(const q of qs||[]){if(q.section!==sec){sec=q.section;into.append(el('h3',null,sec||''))}
-    const g=(q.grade||{}).v||'blank';const row=el('div','qrow '+g);row.dataset.qid=q.id;row.dataset.verdict=g;
-    const mk=el('span','mark '+g,MARK[g][0]);mk.setAttribute('aria-label',MARK[g][1]);row.append(mk);
+    const g=effectiveGrade(q);const row=el('div','qrow '+g);row.dataset.qid=q.id;row.dataset.verdict=g;
+    if(parentVerdict(q))row.classList.add('parent-marked');
+    const mk=el('span','mark '+g,MARK[g][0]);mk.setAttribute('aria-label',statusLabel(q));row.append(mk);
     const top=el('div','qid',q.id);if(q.optional)top.append(el('span','opt-tag','optional'));row.append(top,el('div','qp',q.prompt||''));
+    const ctr=reviewControls(q,kid,lesson);
+    row.append(ctr.head);
     const qa=el('div','qa');qa.append(el('b',null,'Answered:'));fmtResp(q,qa);row.append(qa);
     const qc=el('div','qc');const cc=fmtCorrect(q.correct);
     if(cc!=null&&!q.review){qc.append(el('b',null,'Correct:'),document.createTextNode(cc))}
     else{qc.append(el('b',null,q.rubric?'Look for:':'Correct:'),document.createTextNode(q.rubric||cc||'Parent judges this one'))}
-    const vt=el('span','vt '+g,'  '+MARK[g][1]+((q.grade||{}).part?' ('+q.grade.part+' placed right)':''));qc.append(document.createTextNode(' '),vt);
-    row.append(qc);into.append(row)}
+    const vt=el('span','vt '+g,'  '+statusLabel(q)+((!parentVerdict(q)&&(q.grade||{}).part)?' ('+q.grade.part+' placed right)':''));
+    qc.append(document.createTextNode(' '),vt);
+    row.append(qc,ctr.foot);
+    into.append(row)}
 }
 
 function renderKidLesson(L,n,k,into){
@@ -220,7 +299,7 @@ function renderKidLesson(L,n,k,into){
   rev.onclick=()=>{const r=card.querySelector('.qrow.review');if(r)r.scrollIntoView({block:'center'})};
   ch.append(rev,el('span','c b',s.b+' blank'));
   sum.append(ch);card.append(sum);
-  const qs=el('div','qs');paintQuestions(S.questions,qs);card.append(qs);
+  const qs=el('div','qs');paintQuestions(S.questions,qs,k,L.lesson_id);card.append(qs);
   const ft=el('div','subfoot');ft.append(el('span',null,'Un-submit to let '+n+' send this lesson fresh. Their answers stay on their device.'));
   const rb=el('button','danger','Un-submit');rb.type='button';rb.onclick=async()=>{if(!confirm('Un-submit '+lessonLabel(L,[k])+' for '+n+'? This removes every copy they sent for this lesson.'))return;
     rb.disabled=true;try{const r=await rpc('homeschool_parent_reset',{p_pass:PASS,p_kid:k,p_lesson:L.lesson_id});if(!r.ok){alert(errMsg(r));return}await reload()}catch(x){alert('Could not reach the server.')}finally{rb.disabled=false}};
@@ -285,6 +364,7 @@ window.addEventListener('hashchange',()=>{if(!DATA)return;VIEW=parseHash();paint
 window.Progress={
   open:openLesson,
   state:()=>({kid:VIEW.kid,lesson:VIEW.lesson}),
-  render
+  render,
+  saveReview
 };
 })();

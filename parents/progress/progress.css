@@ -90,3 +90,30 @@ button.lesson-card .when{margin:0}
 @media (max-width:600px){
   .kid-seg button{flex:1 1 30%;min-width:0}
 }
+
+/* Parent review actions on each answer card. Full width on a narrow iPhone. */
+.qact{grid-column:1 / -1;display:grid;gap:8px;margin-top:10px;padding-top:8px}
+.qact-head{margin-bottom:6px}
+.qact-foot{margin-top:8px}
+.rev-label{margin:0;color:var(--soft);font-size:14px;line-height:1.4;font-weight:600}
+.rev-status{display:grid;gap:4px}
+.rev-pill{display:inline-block;justify-self:start;border-radius:999px;padding:4px 10px;font-size:13px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.rev-pill.right{background:#3F6B3A;color:#fff}
+.rev-pill.wrong{background:#9E2B25;color:#fff}
+.rev-pill.review{background:#C9A04A;color:#241a06}
+.rev-when{color:var(--mut);font-size:13px}
+.rev-note{margin:0;color:var(--ink);font-size:15px;line-height:1.4;white-space:pre-wrap}
+.rev-btns{display:flex;gap:8px}
+.rev-btns button,.qact button.rev-save{flex:1 1 0;min-height:48px;min-width:0;padding:10px 12px;border-radius:14px;font-weight:800;font-size:16px;border:1.5px solid transparent}
+button.rev-ok{background:#2a4a28;color:#d6f0d2;border-color:#3F6B3A}
+button.rev-ok.on,button.rev-ok[aria-pressed="true"]{background:#3F6B3A;color:#fff}
+button.rev-bad{background:#4a1f1c;color:#f7d0c8;border-color:#9E2B25}
+button.rev-bad.on,button.rev-bad[aria-pressed="true"]{background:#9E2B25;color:#fff}
+.rev-feedback{width:100%;box-sizing:border-box;min-height:72px;padding:10px 12px;border-radius:12px;border:1.5px solid rgba(201,160,74,.55);background:#0d0a07;color:var(--ink);font:inherit;font-size:16px;resize:vertical}
+button.rev-save{background:transparent;color:var(--g2);border:1.5px solid rgba(201,160,74,.6);justify-self:stretch}
+.rev-err{margin:0;color:#f0a08f;font-weight:700;font-size:14px}
+@media (max-width:480px){
+  .qact{grid-column:1 / -1}
+  .rev-btns{flex-direction:row}
+  .rev-btns button,.qact button.rev-save{min-height:48px;width:100%}
+}
