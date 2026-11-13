@@ -66,3 +66,27 @@ details.sub-card[open]>summary{border-bottom:1px solid rgba(201,160,74,.22)}
  .pgrid tfoot tr{display:flex;flex-wrap:wrap;gap:4px 14px;border:0}
  .pgrid tfoot td{width:auto;border:0;padding:4px 0;margin:0}
 }
+
+/* Kids' answers picker: one lesson at a time. No details>summary grid (iPad Safari bug). */
+.answers{margin-top:22px}
+.answers-head h2{margin:0 0 6px}
+.kid-seg{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.kid-seg button{min-height:48px;min-width:88px;padding:10px 16px;border-radius:14px;background:#17120b;color:var(--ink);border:1.5px solid rgba(201,160,74,.55);font-weight:800}
+.kid-seg button.on,.kid-seg button[aria-pressed="true"]{background:var(--g);color:#241a06;border-color:var(--g)}
+.lesson-list{display:grid;gap:10px}
+button.lesson-card{display:block;width:100%;text-align:left;background:linear-gradient(180deg,#17120b,#0d0a07);color:var(--ink);border:1.5px solid rgba(201,160,74,.55);border-radius:16px;padding:14px 16px;min-height:64px;border-radius:16px;font-weight:600}
+button.lesson-card .t{display:block;font-family:var(--serif);color:#f3dfa8;font-size:18px;font-weight:700;margin:0 0 6px}
+button.lesson-card .meta{display:grid;gap:6px}
+button.lesson-card .kid-status{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:14px;color:var(--soft);font-weight:600}
+button.lesson-card .kid-status .who{color:var(--g2);font-weight:800}
+button.lesson-card .when{margin:0}
+.back-lessons{display:inline-flex;align-items:center;min-height:48px;padding:10px 16px;margin:0 0 14px;background:transparent;color:var(--g2);border:1.5px solid rgba(201,160,74,.6);border-radius:14px;font-weight:800}
+#review .sub-card{background:linear-gradient(180deg,#17120b,#0d0a07);border:1.5px solid rgba(201,160,74,.55);border-radius:16px;margin:0 0 14px;overflow:hidden}
+#review .sum{padding:14px 16px;display:grid;gap:4px}
+#review .sum .t{font-family:var(--serif);color:#f3dfa8;font-size:18px}
+#review .sum .m{color:var(--soft);font-size:14px}
+#review .chips{display:flex;gap:6px;flex-wrap:wrap}
+#review .chips .c.jump{cursor:pointer}
+@media (max-width:600px){
+  .kid-seg button{flex:1 1 30%;min-width:0}
+}
