@@ -1,3 +1,4 @@
+/* Shared arcade shell. Game pages load this one copy from ../arcade/. */
 /* Urwin Arcade kit: canvas sizing, safe areas, touch controls, menus, sound, high score.
    Each game folder carries its own copy so the folder is self-contained. */
 (function () {

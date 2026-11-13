@@ -2,7 +2,6 @@
  "scale_note": "@2x files are master art; 1x files are half size. Sprite atlases have a JSON per sheet in game/sprites/.",
  "sprites": {
   "obie": "game/sprites/obie.json",
-  "obie_v1": "game/sprites/obie_v1.json (superseded, kept for reference)",
   "enemies": "game/sprites/enemies.json",
   "bosses": "game/sprites/bosses.json",
   "football_projectile": "game/sprites/football_projectile@2x.png"
