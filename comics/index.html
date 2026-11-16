@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="The Urwins">
+<meta name="theme-color" content="#0a0908">
+<link rel="apple-touch-icon" href="../urwin-icon-180.png">
+<link rel="icon" href="../urwin-icon-180.png">
+<meta name="description" content="The Urwins: Urwin Comic Book. Family comics to read on the iPad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<title>The Urwins · Urwin Comic Book</title>
+<link rel="stylesheet" href="../hs-home.css?v=1">
+<link rel="stylesheet" href="comics.css?v=1">
+</head>
+<body>
+  <div id="shelf" class="shelf-page">
+    <div class="top-nav">
+      <a class="hs-home hs-home--inline" href="../index.html" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
+    </div>
+    <header class="mast">
+      <a class="brandlink" href="../index.html">
+        <picture>
+          <source type="image/webp" srcset="../urwin-logo.webp 1x, ../urwin-logo@2x.webp 2x">
+          <img class="logo" src="../urwin-logo.png" srcset="../urwin-logo.png 1x, ../urwin-logo@2x.png 2x" width="200" height="112" alt="Urwin Homeschool">
+        </picture>
+      </a>
+      <p class="eyebrow">Urwin Comic Book</p>
+      <h1>The Urwins</h1>
+      <p class="tag">Family comics to read on the iPad. Tap a cover to start reading.</p>
+      <div class="rule" aria-hidden="true"><span>&#10022;</span></div>
+    </header>
+    <main class="wrap">
+      <section class="shelf-block" aria-labelledby="singles-heading">
+        <h2 id="singles-heading" class="section-title">The shelf</h2>
+        <div class="covers" id="covers"></div>
+      </section>
+      <section class="shelf-block series-block" id="series-block" hidden aria-labelledby="series-heading">
+        <h2 id="series-heading" class="section-title">The Long Dark</h2>
+        <p class="series-blurb" id="series-blurb"></p>
+        <div class="covers" id="series-covers"></div>
+        <p class="series-actions" id="series-actions"></p>
+      </section>
+    </main>
+  </div>
+
+  <div id="reader" class="reader" hidden>
+    <div class="reader-chrome reader-top">
+      <div class="reader-left">
+        <a class="hs-home hs-home--inline" href="../index.html" data-hs-home aria-label="Urwin Homeschool home"><svg class="hs-home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2 2.8 11.2a1 1 0 0 0 1.3 1.52L5.2 11.7V20a1 1 0 0 0 1 1h4.3v-5.5h3V21h4.3a1 1 0 0 0 1-1v-8.3l1.1 1.02A1 1 0 1 0 21.2 11L12 3.2z"/></svg><span class="hs-home-label">Home</span></a>
+        <button type="button" class="bar-btn" id="btn-shelf" aria-label="Back to the comics shelf">Shelf</button>
+      </div>
+      <div class="reader-title-wrap">
+        <h2 class="reader-title" id="reader-title">Comic</h2>
+        <p class="page-counter" id="page-counter" aria-live="polite">Page 1 of 1</p>
+      </div>
+      <div class="reader-right">
+        <button type="button" class="bar-btn icon-btn" id="btn-thumbs" aria-label="Show or hide page thumbnails" aria-pressed="true" title="Pages">Pages</button>
+        <button type="button" class="bar-btn icon-btn" id="btn-full" aria-label="Enter fullscreen" title="Fullscreen">Full</button>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <button type="button" class="edge edge-left" id="edge-left" aria-label="Previous page"></button>
+      <div class="page-frame" id="page-frame">
+        <div class="page-zoom" id="page-zoom">
+          <picture id="page-picture">
+            <source id="page-webp" type="image/webp" srcset="">
+            <img id="page-img" src="" alt="" width="900" height="1200" draggable="false">
+          </picture>
+        </div>
+      </div>
+      <button type="button" class="edge edge-right" id="edge-right" aria-label="Next page"></button>
+    </div>
+
+    <div class="reader-chrome reader-bottom" id="thumb-bar">
+      <div class="thumbs" id="thumbs" role="list" aria-label="Jump to a page"></div>
+    </div>
+  </div>
+
+  <script src="comics.js?v=1"></script>
+  <script src="../hs-home.js?v=1" defer></script>
+</body>
+</html>

@@ -1,0 +1,1046 @@
+{
+  "title": "The Urwins",
+  "subtitle": "Urwin Comic Book",
+  "homeHref": "../index.html",
+  "unusedSources": [
+    "The_Urwins_Locked_In.pdf",
+    "The_Urwins_Locked_In_v2.pdf",
+    "The_Urwins_The_Long_Dark_Complete.pdf"
+  ],
+  "notes": [
+    "Used Locked In v3 (final). Skipped The_Urwins_Locked_In.pdf and The_Urwins_Locked_In_v2.pdf.",
+    "Complete reading uses Part 1-4 page images. The Complete PDF was not re-exported."
+  ],
+  "comics": [
+    {
+      "id": "lights-out",
+      "title": "Lights Out",
+      "kicker": "Family comic",
+      "blurb": "The lights go out at the Urwin house.",
+      "sourcePdf": "The_Urwins_Lights_Out.pdf",
+      "pageCount": 5,
+      "cover": "lights-out/page-01.webp",
+      "coverJpg": "lights-out/page-01.jpg",
+      "pages": [
+        {
+          "webp": "lights-out/page-01.webp",
+          "jpg": "lights-out/page-01.jpg",
+          "thumb": "lights-out/thumbs/page-01.webp",
+          "thumbJpg": "lights-out/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "lights-out/page-02.webp",
+          "jpg": "lights-out/page-02.jpg",
+          "thumb": "lights-out/thumbs/page-02.webp",
+          "thumbJpg": "lights-out/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "lights-out/page-03.webp",
+          "jpg": "lights-out/page-03.jpg",
+          "thumb": "lights-out/thumbs/page-03.webp",
+          "thumbJpg": "lights-out/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "lights-out/page-04.webp",
+          "jpg": "lights-out/page-04.jpg",
+          "thumb": "lights-out/thumbs/page-04.webp",
+          "thumbJpg": "lights-out/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "lights-out/page-05.webp",
+          "jpg": "lights-out/page-05.jpg",
+          "thumb": "lights-out/thumbs/page-05.webp",
+          "thumbJpg": "lights-out/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "katies-nightmare",
+      "title": "Katie's Nightmare",
+      "kicker": "Family comic",
+      "blurb": "Katie has a nightmare.",
+      "sourcePdf": "The_Urwins_Katies_Nightmare.pdf",
+      "pageCount": 5,
+      "cover": "katies-nightmare/page-01.webp",
+      "coverJpg": "katies-nightmare/page-01.jpg",
+      "pages": [
+        {
+          "webp": "katies-nightmare/page-01.webp",
+          "jpg": "katies-nightmare/page-01.jpg",
+          "thumb": "katies-nightmare/thumbs/page-01.webp",
+          "thumbJpg": "katies-nightmare/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katies-nightmare/page-02.webp",
+          "jpg": "katies-nightmare/page-02.jpg",
+          "thumb": "katies-nightmare/thumbs/page-02.webp",
+          "thumbJpg": "katies-nightmare/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katies-nightmare/page-03.webp",
+          "jpg": "katies-nightmare/page-03.jpg",
+          "thumb": "katies-nightmare/thumbs/page-03.webp",
+          "thumbJpg": "katies-nightmare/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katies-nightmare/page-04.webp",
+          "jpg": "katies-nightmare/page-04.jpg",
+          "thumb": "katies-nightmare/thumbs/page-04.webp",
+          "thumbJpg": "katies-nightmare/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katies-nightmare/page-05.webp",
+          "jpg": "katies-nightmare/page-05.jpg",
+          "thumb": "katies-nightmare/thumbs/page-05.webp",
+          "thumbJpg": "katies-nightmare/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "locked-in",
+      "title": "Locked In",
+      "kicker": "Family comic",
+      "blurb": "Locked in, and looking for a way out.",
+      "sourcePdf": "The_Urwins_Locked_In_v3.pdf",
+      "pageCount": 5,
+      "cover": "locked-in/page-01.webp",
+      "coverJpg": "locked-in/page-01.jpg",
+      "pages": [
+        {
+          "webp": "locked-in/page-01.webp",
+          "jpg": "locked-in/page-01.jpg",
+          "thumb": "locked-in/thumbs/page-01.webp",
+          "thumbJpg": "locked-in/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "locked-in/page-02.webp",
+          "jpg": "locked-in/page-02.jpg",
+          "thumb": "locked-in/thumbs/page-02.webp",
+          "thumbJpg": "locked-in/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "locked-in/page-03.webp",
+          "jpg": "locked-in/page-03.jpg",
+          "thumb": "locked-in/thumbs/page-03.webp",
+          "thumbJpg": "locked-in/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "locked-in/page-04.webp",
+          "jpg": "locked-in/page-04.jpg",
+          "thumb": "locked-in/thumbs/page-04.webp",
+          "thumbJpg": "locked-in/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "locked-in/page-05.webp",
+          "jpg": "locked-in/page-05.jpg",
+          "thumb": "locked-in/thumbs/page-05.webp",
+          "thumbJpg": "locked-in/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ],
+      "note": "Used Locked In v3 (final). Skipped The_Urwins_Locked_In.pdf and The_Urwins_Locked_In_v2.pdf."
+    },
+    {
+      "id": "katie-goes-overboard",
+      "title": "Katie Goes Overboard",
+      "kicker": "Halloween",
+      "blurb": "Katie's Halloween comic.",
+      "sourcePdf": "The_Urwins_Katie_Goes_Overboard.pdf",
+      "pageCount": 4,
+      "cover": "katie-goes-overboard/page-01.webp",
+      "coverJpg": "katie-goes-overboard/page-01.jpg",
+      "pages": [
+        {
+          "webp": "katie-goes-overboard/page-01.webp",
+          "jpg": "katie-goes-overboard/page-01.jpg",
+          "thumb": "katie-goes-overboard/thumbs/page-01.webp",
+          "thumbJpg": "katie-goes-overboard/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katie-goes-overboard/page-02.webp",
+          "jpg": "katie-goes-overboard/page-02.jpg",
+          "thumb": "katie-goes-overboard/thumbs/page-02.webp",
+          "thumbJpg": "katie-goes-overboard/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katie-goes-overboard/page-03.webp",
+          "jpg": "katie-goes-overboard/page-03.jpg",
+          "thumb": "katie-goes-overboard/thumbs/page-03.webp",
+          "thumbJpg": "katie-goes-overboard/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "katie-goes-overboard/page-04.webp",
+          "jpg": "katie-goes-overboard/page-04.jpg",
+          "thumb": "katie-goes-overboard/thumbs/page-04.webp",
+          "thumbJpg": "katie-goes-overboard/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "welcome-home-dad",
+      "title": "Welcome Home, Dad!",
+      "kicker": "Family comic",
+      "blurb": "Dad comes home to what the kids left behind.",
+      "sourcePdf": "The_Urwins_Welcome_Home_Dad.pdf",
+      "pageCount": 5,
+      "cover": "welcome-home-dad/page-01.webp",
+      "coverJpg": "welcome-home-dad/page-01.jpg",
+      "pages": [
+        {
+          "webp": "welcome-home-dad/page-01.webp",
+          "jpg": "welcome-home-dad/page-01.jpg",
+          "thumb": "welcome-home-dad/thumbs/page-01.webp",
+          "thumbJpg": "welcome-home-dad/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "welcome-home-dad/page-02.webp",
+          "jpg": "welcome-home-dad/page-02.jpg",
+          "thumb": "welcome-home-dad/thumbs/page-02.webp",
+          "thumbJpg": "welcome-home-dad/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "welcome-home-dad/page-03.webp",
+          "jpg": "welcome-home-dad/page-03.jpg",
+          "thumb": "welcome-home-dad/thumbs/page-03.webp",
+          "thumbJpg": "welcome-home-dad/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "welcome-home-dad/page-04.webp",
+          "jpg": "welcome-home-dad/page-04.jpg",
+          "thumb": "welcome-home-dad/thumbs/page-04.webp",
+          "thumbJpg": "welcome-home-dad/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "welcome-home-dad/page-05.webp",
+          "jpg": "welcome-home-dad/page-05.jpg",
+          "thumb": "welcome-home-dad/thumbs/page-05.webp",
+          "thumbJpg": "welcome-home-dad/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "logan-and-the-brick-rex",
+      "title": "Logan and the Brick-Rex",
+      "kicker": "Logan's comic",
+      "blurb": "Logan builds a Brick-Rex.",
+      "sourcePdf": "The_Urwins_Logan_and_the_Brick_Rex.pdf",
+      "pageCount": 5,
+      "cover": "logan-and-the-brick-rex/page-01.webp",
+      "coverJpg": "logan-and-the-brick-rex/page-01.jpg",
+      "pages": [
+        {
+          "webp": "logan-and-the-brick-rex/page-01.webp",
+          "jpg": "logan-and-the-brick-rex/page-01.jpg",
+          "thumb": "logan-and-the-brick-rex/thumbs/page-01.webp",
+          "thumbJpg": "logan-and-the-brick-rex/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "logan-and-the-brick-rex/page-02.webp",
+          "jpg": "logan-and-the-brick-rex/page-02.jpg",
+          "thumb": "logan-and-the-brick-rex/thumbs/page-02.webp",
+          "thumbJpg": "logan-and-the-brick-rex/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "logan-and-the-brick-rex/page-03.webp",
+          "jpg": "logan-and-the-brick-rex/page-03.jpg",
+          "thumb": "logan-and-the-brick-rex/thumbs/page-03.webp",
+          "thumbJpg": "logan-and-the-brick-rex/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "logan-and-the-brick-rex/page-04.webp",
+          "jpg": "logan-and-the-brick-rex/page-04.jpg",
+          "thumb": "logan-and-the-brick-rex/thumbs/page-04.webp",
+          "thumbJpg": "logan-and-the-brick-rex/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "logan-and-the-brick-rex/page-05.webp",
+          "jpg": "logan-and-the-brick-rex/page-05.jpg",
+          "thumb": "logan-and-the-brick-rex/thumbs/page-05.webp",
+          "thumbJpg": "logan-and-the-brick-rex/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "the-long-dark-part-1",
+      "title": "The Long Dark, Part 1",
+      "kicker": "Series",
+      "blurb": "A year without the power grid.",
+      "sourcePdf": "The_Urwins_The_Long_Dark_Part_1.pdf",
+      "pageCount": 10,
+      "cover": "the-long-dark-part-1/page-01.webp",
+      "coverJpg": "the-long-dark-part-1/page-01.jpg",
+      "pages": [
+        {
+          "webp": "the-long-dark-part-1/page-01.webp",
+          "jpg": "the-long-dark-part-1/page-01.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-01.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-02.webp",
+          "jpg": "the-long-dark-part-1/page-02.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-02.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-03.webp",
+          "jpg": "the-long-dark-part-1/page-03.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-03.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-04.webp",
+          "jpg": "the-long-dark-part-1/page-04.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-04.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-05.webp",
+          "jpg": "the-long-dark-part-1/page-05.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-05.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-06.webp",
+          "jpg": "the-long-dark-part-1/page-06.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-06.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-07.webp",
+          "jpg": "the-long-dark-part-1/page-07.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-07.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-08.webp",
+          "jpg": "the-long-dark-part-1/page-08.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-08.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-09.webp",
+          "jpg": "the-long-dark-part-1/page-09.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-09.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-1/page-10.webp",
+          "jpg": "the-long-dark-part-1/page-10.jpg",
+          "thumb": "the-long-dark-part-1/thumbs/page-10.webp",
+          "thumbJpg": "the-long-dark-part-1/thumbs/page-10.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ],
+      "series": "the-long-dark",
+      "part": 1
+    },
+    {
+      "id": "the-long-dark-part-2",
+      "title": "The Long Dark, Part 2",
+      "kicker": "Series",
+      "blurb": "A year without the power grid.",
+      "sourcePdf": "The_Urwins_The_Long_Dark_Part_2.pdf",
+      "pageCount": 10,
+      "cover": "the-long-dark-part-2/page-01.webp",
+      "coverJpg": "the-long-dark-part-2/page-01.jpg",
+      "pages": [
+        {
+          "webp": "the-long-dark-part-2/page-01.webp",
+          "jpg": "the-long-dark-part-2/page-01.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-01.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-02.webp",
+          "jpg": "the-long-dark-part-2/page-02.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-02.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-03.webp",
+          "jpg": "the-long-dark-part-2/page-03.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-03.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-04.webp",
+          "jpg": "the-long-dark-part-2/page-04.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-04.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-05.webp",
+          "jpg": "the-long-dark-part-2/page-05.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-05.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-06.webp",
+          "jpg": "the-long-dark-part-2/page-06.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-06.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-07.webp",
+          "jpg": "the-long-dark-part-2/page-07.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-07.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-08.webp",
+          "jpg": "the-long-dark-part-2/page-08.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-08.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-09.webp",
+          "jpg": "the-long-dark-part-2/page-09.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-09.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-2/page-10.webp",
+          "jpg": "the-long-dark-part-2/page-10.jpg",
+          "thumb": "the-long-dark-part-2/thumbs/page-10.webp",
+          "thumbJpg": "the-long-dark-part-2/thumbs/page-10.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ],
+      "series": "the-long-dark",
+      "part": 2
+    },
+    {
+      "id": "the-long-dark-part-3",
+      "title": "The Long Dark, Part 3",
+      "kicker": "Series",
+      "blurb": "A year without the power grid.",
+      "sourcePdf": "The_Urwins_The_Long_Dark_Part_3.pdf",
+      "pageCount": 10,
+      "cover": "the-long-dark-part-3/page-01.webp",
+      "coverJpg": "the-long-dark-part-3/page-01.jpg",
+      "pages": [
+        {
+          "webp": "the-long-dark-part-3/page-01.webp",
+          "jpg": "the-long-dark-part-3/page-01.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-01.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-02.webp",
+          "jpg": "the-long-dark-part-3/page-02.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-02.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-03.webp",
+          "jpg": "the-long-dark-part-3/page-03.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-03.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-04.webp",
+          "jpg": "the-long-dark-part-3/page-04.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-04.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-05.webp",
+          "jpg": "the-long-dark-part-3/page-05.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-05.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-06.webp",
+          "jpg": "the-long-dark-part-3/page-06.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-06.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-07.webp",
+          "jpg": "the-long-dark-part-3/page-07.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-07.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-08.webp",
+          "jpg": "the-long-dark-part-3/page-08.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-08.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-09.webp",
+          "jpg": "the-long-dark-part-3/page-09.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-09.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-3/page-10.webp",
+          "jpg": "the-long-dark-part-3/page-10.jpg",
+          "thumb": "the-long-dark-part-3/thumbs/page-10.webp",
+          "thumbJpg": "the-long-dark-part-3/thumbs/page-10.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ],
+      "series": "the-long-dark",
+      "part": 3
+    },
+    {
+      "id": "the-long-dark-part-4",
+      "title": "The Long Dark, Part 4",
+      "kicker": "Series",
+      "blurb": "A year without the power grid.",
+      "sourcePdf": "The_Urwins_The_Long_Dark_Part_4.pdf",
+      "pageCount": 10,
+      "cover": "the-long-dark-part-4/page-01.webp",
+      "coverJpg": "the-long-dark-part-4/page-01.jpg",
+      "pages": [
+        {
+          "webp": "the-long-dark-part-4/page-01.webp",
+          "jpg": "the-long-dark-part-4/page-01.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-01.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-02.webp",
+          "jpg": "the-long-dark-part-4/page-02.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-02.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-03.webp",
+          "jpg": "the-long-dark-part-4/page-03.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-03.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-04.webp",
+          "jpg": "the-long-dark-part-4/page-04.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-04.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-05.webp",
+          "jpg": "the-long-dark-part-4/page-05.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-05.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-06.webp",
+          "jpg": "the-long-dark-part-4/page-06.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-06.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-07.webp",
+          "jpg": "the-long-dark-part-4/page-07.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-07.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-08.webp",
+          "jpg": "the-long-dark-part-4/page-08.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-08.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-09.webp",
+          "jpg": "the-long-dark-part-4/page-09.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-09.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-long-dark-part-4/page-10.webp",
+          "jpg": "the-long-dark-part-4/page-10.jpg",
+          "thumb": "the-long-dark-part-4/thumbs/page-10.webp",
+          "thumbJpg": "the-long-dark-part-4/thumbs/page-10.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ],
+      "series": "the-long-dark",
+      "part": 4
+    }
+  ],
+  "series": [
+    {
+      "id": "the-long-dark",
+      "title": "The Long Dark",
+      "blurb": "A year without the power grid.",
+      "parts": [
+        "the-long-dark-part-1",
+        "the-long-dark-part-2",
+        "the-long-dark-part-3",
+        "the-long-dark-part-4"
+      ],
+      "completeId": "the-long-dark-complete"
+    }
+  ],
+  "complete": {
+    "id": "the-long-dark-complete",
+    "title": "The Long Dark",
+    "kicker": "Read all 40 pages",
+    "blurb": "All four parts, one after another.",
+    "sourcePdf": "The_Urwins_The_Long_Dark_Complete.pdf (pages taken from Parts 1-4 so files are not duplicated)",
+    "pageCount": 40,
+    "cover": "the-long-dark-part-1/page-01.webp",
+    "coverJpg": "the-long-dark-part-1/page-01.jpg",
+    "pages": [
+      {
+        "webp": "the-long-dark-part-1/page-01.webp",
+        "jpg": "the-long-dark-part-1/page-01.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-01.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-01.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-02.webp",
+        "jpg": "the-long-dark-part-1/page-02.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-02.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-02.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-03.webp",
+        "jpg": "the-long-dark-part-1/page-03.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-03.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-03.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-04.webp",
+        "jpg": "the-long-dark-part-1/page-04.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-04.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-04.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-05.webp",
+        "jpg": "the-long-dark-part-1/page-05.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-05.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-05.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-06.webp",
+        "jpg": "the-long-dark-part-1/page-06.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-06.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-06.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-07.webp",
+        "jpg": "the-long-dark-part-1/page-07.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-07.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-07.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-08.webp",
+        "jpg": "the-long-dark-part-1/page-08.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-08.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-08.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-09.webp",
+        "jpg": "the-long-dark-part-1/page-09.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-09.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-09.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-1/page-10.webp",
+        "jpg": "the-long-dark-part-1/page-10.jpg",
+        "thumb": "the-long-dark-part-1/thumbs/page-10.webp",
+        "thumbJpg": "the-long-dark-part-1/thumbs/page-10.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-01.webp",
+        "jpg": "the-long-dark-part-2/page-01.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-01.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-01.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-02.webp",
+        "jpg": "the-long-dark-part-2/page-02.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-02.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-02.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-03.webp",
+        "jpg": "the-long-dark-part-2/page-03.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-03.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-03.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-04.webp",
+        "jpg": "the-long-dark-part-2/page-04.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-04.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-04.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-05.webp",
+        "jpg": "the-long-dark-part-2/page-05.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-05.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-05.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-06.webp",
+        "jpg": "the-long-dark-part-2/page-06.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-06.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-06.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-07.webp",
+        "jpg": "the-long-dark-part-2/page-07.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-07.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-07.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-08.webp",
+        "jpg": "the-long-dark-part-2/page-08.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-08.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-08.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-09.webp",
+        "jpg": "the-long-dark-part-2/page-09.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-09.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-09.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-2/page-10.webp",
+        "jpg": "the-long-dark-part-2/page-10.jpg",
+        "thumb": "the-long-dark-part-2/thumbs/page-10.webp",
+        "thumbJpg": "the-long-dark-part-2/thumbs/page-10.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-01.webp",
+        "jpg": "the-long-dark-part-3/page-01.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-01.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-01.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-02.webp",
+        "jpg": "the-long-dark-part-3/page-02.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-02.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-02.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-03.webp",
+        "jpg": "the-long-dark-part-3/page-03.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-03.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-03.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-04.webp",
+        "jpg": "the-long-dark-part-3/page-04.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-04.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-04.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-05.webp",
+        "jpg": "the-long-dark-part-3/page-05.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-05.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-05.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-06.webp",
+        "jpg": "the-long-dark-part-3/page-06.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-06.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-06.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-07.webp",
+        "jpg": "the-long-dark-part-3/page-07.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-07.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-07.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-08.webp",
+        "jpg": "the-long-dark-part-3/page-08.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-08.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-08.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-09.webp",
+        "jpg": "the-long-dark-part-3/page-09.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-09.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-09.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-3/page-10.webp",
+        "jpg": "the-long-dark-part-3/page-10.jpg",
+        "thumb": "the-long-dark-part-3/thumbs/page-10.webp",
+        "thumbJpg": "the-long-dark-part-3/thumbs/page-10.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-01.webp",
+        "jpg": "the-long-dark-part-4/page-01.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-01.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-01.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-02.webp",
+        "jpg": "the-long-dark-part-4/page-02.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-02.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-02.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-03.webp",
+        "jpg": "the-long-dark-part-4/page-03.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-03.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-03.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-04.webp",
+        "jpg": "the-long-dark-part-4/page-04.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-04.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-04.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-05.webp",
+        "jpg": "the-long-dark-part-4/page-05.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-05.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-05.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-06.webp",
+        "jpg": "the-long-dark-part-4/page-06.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-06.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-06.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-07.webp",
+        "jpg": "the-long-dark-part-4/page-07.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-07.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-07.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-08.webp",
+        "jpg": "the-long-dark-part-4/page-08.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-08.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-08.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-09.webp",
+        "jpg": "the-long-dark-part-4/page-09.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-09.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-09.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "webp": "the-long-dark-part-4/page-10.webp",
+        "jpg": "the-long-dark-part-4/page-10.jpg",
+        "thumb": "the-long-dark-part-4/thumbs/page-10.webp",
+        "thumbJpg": "the-long-dark-part-4/thumbs/page-10.jpg",
+        "width": 900,
+        "height": 1200
+      }
+    ],
+    "series": "the-long-dark",
+    "virtual": true,
+    "note": "Complete reading uses Part 1-4 page images. The Complete PDF was not re-exported."
+  }
+}
