@@ -190,6 +190,13 @@ body.lessonpage{background:var(--paper) url(../assets/ui/paper-tile.webp) repeat
       var(--card);
   }
   .lessonpage .hero .meta{font-size:16px;line-height:1.4}
+  /* Phone hero band, opt-in: a lesson's tokens.css sets --hero-band:1 (and paints the band art).
+     Unset = 0, so older lessons compute exactly as before. */
+  .lessonpage .hero{padding-top:calc(var(--hero-band,0)*(100% - 2px)/var(--hero-band-ratio,1.6))}
+  .lessonpage .hero .ht{max-width:calc(80% + var(--hero-band,0)*20%)}
+  /* Phone progress bar wrap (all lessons, 500px and under). */
+  .lessonpage .progress{flex-wrap:wrap}
+  .lessonpage .progress .bar{flex-basis:100%}
 }
 .kid-savannah{--body:16px;--story:16px;--h1:30px;--h3:19px;--pad:20px;--gap:14px;--tap:52px;--radius:16px;--hero-h:170px}
 .kid-savannah input.num{font-size:22px}

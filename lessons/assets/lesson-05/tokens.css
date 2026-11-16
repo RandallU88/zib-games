@@ -3,3 +3,10 @@
 .theme-harvest-postcard{ --accent:#2F5D50; --accent-2:#9B2F3F; --soft:#F2E8D5; }
 .kid-logan.lesson-05{ --hero:url(./logan-hero.png); }
 .kid-savannah.lesson-05{ --hero:url(./savannah-hero.png); }
+
+.kid-logan.lesson-05{ --hero-img-phone:url(./lesson-05-logan-hero-phone.webp); }
+.kid-savannah.lesson-05{ --hero-img-phone:url(./lesson-05-savannah-hero-phone.webp); }
+@media (max-width:500px){
+  .lesson-05.lessonpage{ --hero-band:1; --hero-band-ratio:1.6; }
+  .lesson-05.lessonpage .hero{ background:var(--hero-img-phone) center top/100% auto no-repeat,var(--card); }
+}
