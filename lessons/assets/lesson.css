@@ -248,3 +248,11 @@ body.keypage{background:#F7F5F0;color:var(--ink);padding-top:0}
 .lcard .sb[hidden]{display:none}
 .lcard .sb.wait{background:#7a6440}
 .submitbox [hidden]{display:none!important}
+
+/* faith card (lesson-05+) */
+.verse{margin:0 0 14px;padding:16px 18px;border-radius:14px;background:var(--soft,#F4ECDC);border:1px solid var(--line,#e3d4ac)}
+.verse .vtext{margin:0 0 6px;font:600 clamp(20px,3.2vw,26px)/1.35 var(--font-head,Georgia,serif);color:var(--ink)}
+.verse .vref{font:700 15px var(--font-ui,system-ui);letter-spacing:.02em;color:var(--accent,#8A3324);margin-bottom:8px}
+.verse .hear{margin:4px 0 8px;min-height:44px}
+.verse .vhelp{margin:8px 0;font-size:18px;font-style:italic}
+.verse .vline{margin:6px 0;font-size:18px}

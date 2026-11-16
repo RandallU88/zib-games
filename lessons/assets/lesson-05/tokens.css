@@ -1,0 +1,5 @@
+/* lesson-05 theme overrides */
+:root{}
+.theme-harvest-postcard{ --accent:#2F5D50; --accent-2:#9B2F3F; --soft:#F2E8D5; }
+.kid-logan.lesson-05{ --hero:url(./logan-hero.png); }
+.kid-savannah.lesson-05{ --hero:url(./savannah-hero.png); }

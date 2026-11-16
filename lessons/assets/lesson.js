@@ -45,11 +45,17 @@ D.sections.forEach(s=>{const p=el('section','paper sec');p.id=s.id;const t=s.tag
  if(s.banner&&!s.panels)p.append(pic(s.banner,'','banner'));
  if(s.encouragement)p.append(el('p','enc',s.encouragement));
  if(s.hint)p.append(el('p','hint','Strategy hint: '+s.hint));
+ if(s.verse)p.append(verseCard(s));
  if(s.pages)p.append(story(s));
  if(s.layout==='thermo'){const row=el('div','thermos');const qs=s.questions.filter(q=>q.figure&&q.figure.kind==='thermo');
   qs.forEach(q=>row.append(question(q,s)));p.append(row);s.questions.filter(q=>!qs.includes(q)).forEach(q=>p.append(question(q,s)))}
  else s.questions.forEach(q=>p.append(question(q,s)));
  app.append(p)});
+// faith card (lesson-05+): verse, reference, a 'Hear it' button, a labeled helper line, and short labeled lines
+function verseCard(s){const v=s.verse;const c=el('figure','verse');c.append(el('blockquote','vtext',v.text),el('figcaption','vref',v.ref+(v.version?' ('+v.version+')':'')));
+ if('speechSynthesis' in window&&window.SpeechSynthesisUtterance){const b=el('button','linkbtn hear','Hear it');b.type='button';b.onclick=()=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(v.speak||(v.text+' '+v.ref));u.rate=.85;speechSynthesis.speak(u)}catch(e){}};c.append(b)}
+ if(s.helper)c.append(el('p','vhelp',s.helper));
+ (s.card_lines||[]).forEach(l=>{const q=el('p','vline');q.append(el('b',null,l.label+' '),document.createTextNode(l.text));c.append(q)});return c}
 function story(s){const w=el('div','reader');const art=el('div','panel');const st=el('div','story');const pager=el('div','pager');
  const pv=el('button','linkbtn');pv.append(icon('chevron-left'),document.createTextNode(' Back'));const nx=el('button','btn'),dots=el('div','dots');
  pv.type=nx.type='button';let i=Math.min(ld('story.'+s.id,0),s.pages.length-1);const word=kid==='savannah'?'Chapter':'Part';
