@@ -1,0 +1,17 @@
+/* Urwin Homeschool · Lesson 06 · Grandma's Thanksgiving */
+.theme-grandmas-thanksgiving{
+  --accent:#3E5C76;
+  --accent-2:#B5562E;
+  --soft:#FAF1E3;
+}
+.kid-logan.lesson-06{ --hero:url(./logan-hero.png); }
+.kid-savannah.lesson-06{ --hero:url(./savannah-hero.png); }
+/* Phone hero band (lesson.css reads --hero-band). The url() is used in this same file on purpose:
+   Chromium resolves a url() inside a custom property against the stylesheet that USES it, so a
+   --hero-img-phone consumed in lesson.css would point at lessons/assets/ and 404. */
+.kid-logan.lesson-06{ --hero-img-phone:url(./lesson-06-logan-hero-phone.webp); }
+.kid-savannah.lesson-06{ --hero-img-phone:url(./lesson-06-savannah-hero-phone.webp); }
+@media (max-width:500px){
+  .lesson-06.lessonpage{ --hero-band:1; --hero-band-ratio:1.6; }
+  .lesson-06.lessonpage .hero{ background:var(--hero-img-phone) center top/100% auto no-repeat,var(--card); }
+}
