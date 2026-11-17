@@ -692,6 +692,174 @@
       ],
       "series": "the-long-dark",
       "part": 4
+    },
+    {
+      "id": "alien-invasion-part-1",
+      "title": "Alien Invasion, Part 1: Lights in the Sky",
+      "kicker": "Logan's comic",
+      "blurb": "Made at Logan's request. Aliens crash the cookout at Grandma Tina and Grandpa Duane's and beam away Nick's burgers. Logan finds a gadget they dropped, and it ends on a cliffhanger when the mothership takes Dad and Uncle Nick.",
+      "sourcePdf": "The_Urwins_Alien_Invasion_Part_1.pdf",
+      "pageCount": 9,
+      "cover": "alien-invasion-part-1/page-01.webp",
+      "coverJpg": "alien-invasion-part-1/page-01.jpg",
+      "pages": [
+        {
+          "webp": "alien-invasion-part-1/page-01.webp",
+          "jpg": "alien-invasion-part-1/page-01.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-01.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-02.webp",
+          "jpg": "alien-invasion-part-1/page-02.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-02.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-03.webp",
+          "jpg": "alien-invasion-part-1/page-03.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-03.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-04.webp",
+          "jpg": "alien-invasion-part-1/page-04.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-04.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-05.webp",
+          "jpg": "alien-invasion-part-1/page-05.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-05.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-06.webp",
+          "jpg": "alien-invasion-part-1/page-06.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-06.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-07.webp",
+          "jpg": "alien-invasion-part-1/page-07.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-07.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-08.webp",
+          "jpg": "alien-invasion-part-1/page-08.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-08.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-1/page-09.webp",
+          "jpg": "alien-invasion-part-1/page-09.jpg",
+          "thumb": "alien-invasion-part-1/thumbs/page-09.webp",
+          "thumbJpg": "alien-invasion-part-1/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "alien-invasion-part-2",
+      "title": "Alien Invasion, Part 2: Logan Saves the Day",
+      "kicker": "Logan's comic",
+      "blurb": "Made at Logan's request. Logan uses the gadget to get the family aboard, Savannah pops the bubble cage with her hair clip, and Logan stands up to the five-eyed captain and earns a gold star badge. Everyone ends up back home at the cookout.",
+      "sourcePdf": "The_Urwins_Alien_Invasion_Part_2.pdf",
+      "pageCount": 9,
+      "cover": "alien-invasion-part-2/page-01.webp",
+      "coverJpg": "alien-invasion-part-2/page-01.jpg",
+      "pages": [
+        {
+          "webp": "alien-invasion-part-2/page-01.webp",
+          "jpg": "alien-invasion-part-2/page-01.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-01.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-02.webp",
+          "jpg": "alien-invasion-part-2/page-02.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-02.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-03.webp",
+          "jpg": "alien-invasion-part-2/page-03.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-03.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-04.webp",
+          "jpg": "alien-invasion-part-2/page-04.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-04.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-05.webp",
+          "jpg": "alien-invasion-part-2/page-05.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-05.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-06.webp",
+          "jpg": "alien-invasion-part-2/page-06.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-06.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-07.webp",
+          "jpg": "alien-invasion-part-2/page-07.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-07.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-08.webp",
+          "jpg": "alien-invasion-part-2/page-08.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-08.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "alien-invasion-part-2/page-09.webp",
+          "jpg": "alien-invasion-part-2/page-09.jpg",
+          "thumb": "alien-invasion-part-2/thumbs/page-09.webp",
+          "thumbJpg": "alien-invasion-part-2/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
     }
   ],
   "series": [
