@@ -1,0 +1,20 @@
+/* Urwin Homeschool · Lesson 07 · The Great Pie Rescue */
+.theme-great-pie-rescue{
+  --accent:#7A2E3B;
+  --accent-2:#C0812F;
+  --soft:#FBF2E4;
+}
+.kid-logan.lesson-07{ --hero:url(./logan-hero.png); }
+.kid-savannah.lesson-07{ --hero:url(./savannah-hero.png); }
+/* Phone hero band (lesson.css reads --hero-band). The url() is used in this same file on purpose:
+   Chromium resolves a url() inside a custom property against the stylesheet that USES it, so a
+   --hero-img-phone consumed in lesson.css would point at lessons/assets/ and 404. */
+.kid-logan.lesson-07{ --hero-img-phone:url(./lesson-07-logan-hero-phone.webp); }
+.kid-savannah.lesson-07{ --hero-img-phone:url(./lesson-07-savannah-hero-phone.webp); }
+@media (max-width:500px){
+  .lesson-07.lessonpage{ --hero-band:1; --hero-band-ratio:1.6; }
+  .lesson-07.lessonpage .hero{ background:var(--hero-img-phone) center top/100% auto no-repeat,var(--card); }
+}
+
+/* Map figure (no shared lesson.css rule for .fig.map yet) */
+.lesson-07 .fig.map img{ width:100%; max-width:720px; height:auto; }
