@@ -860,6 +860,190 @@
           "height": 1200
         }
       ]
+    },
+    {
+      "id": "the-snowy-thankful-jar",
+      "title": "The Snowy Thankful Jar",
+      "kicker": "Thanksgiving comic",
+      "blurb": "On a snowy Thanksgiving, the Thankful Jar goes missing. Logan slows down, finds it, and learns that thanks comes before pie.",
+      "sourcePdf": "The_Urwins_The_Snowy_Thankful_Jar.pdf",
+      "pageCount": 10,
+      "cover": "the-snowy-thankful-jar/page-01.webp",
+      "coverJpg": "the-snowy-thankful-jar/page-01.jpg",
+      "pages": [
+        {
+          "webp": "the-snowy-thankful-jar/page-01.webp",
+          "jpg": "the-snowy-thankful-jar/page-01.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-01.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-02.webp",
+          "jpg": "the-snowy-thankful-jar/page-02.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-02.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-03.webp",
+          "jpg": "the-snowy-thankful-jar/page-03.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-03.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-04.webp",
+          "jpg": "the-snowy-thankful-jar/page-04.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-04.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-05.webp",
+          "jpg": "the-snowy-thankful-jar/page-05.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-05.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-06.webp",
+          "jpg": "the-snowy-thankful-jar/page-06.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-06.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-07.webp",
+          "jpg": "the-snowy-thankful-jar/page-07.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-07.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-08.webp",
+          "jpg": "the-snowy-thankful-jar/page-08.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-08.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-09.webp",
+          "jpg": "the-snowy-thankful-jar/page-09.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-09.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "the-snowy-thankful-jar/page-10.webp",
+          "jpg": "the-snowy-thankful-jar/page-10.jpg",
+          "thumb": "the-snowy-thankful-jar/thumbs/page-10.webp",
+          "thumbJpg": "the-snowy-thankful-jar/thumbs/page-10.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "mom-and-the-great-outdoors",
+      "title": "Mom and the Great Outdoors",
+      "kicker": "Family comic",
+      "blurb": "The family goes camping. Mom is not a fan of tents. Logan notices what she needs, and they camp their own way under the stars.",
+      "sourcePdf": "The_Urwins_Mom_and_the_Great_Outdoors.pdf",
+      "pageCount": 10,
+      "cover": "mom-and-the-great-outdoors/page-01.webp",
+      "coverJpg": "mom-and-the-great-outdoors/page-01.jpg",
+      "pages": [
+        {
+          "webp": "mom-and-the-great-outdoors/page-01.webp",
+          "jpg": "mom-and-the-great-outdoors/page-01.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-01.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-01.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-02.webp",
+          "jpg": "mom-and-the-great-outdoors/page-02.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-02.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-02.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-03.webp",
+          "jpg": "mom-and-the-great-outdoors/page-03.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-03.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-03.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-04.webp",
+          "jpg": "mom-and-the-great-outdoors/page-04.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-04.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-04.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-05.webp",
+          "jpg": "mom-and-the-great-outdoors/page-05.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-05.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-05.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-06.webp",
+          "jpg": "mom-and-the-great-outdoors/page-06.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-06.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-06.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-07.webp",
+          "jpg": "mom-and-the-great-outdoors/page-07.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-07.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-07.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-08.webp",
+          "jpg": "mom-and-the-great-outdoors/page-08.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-08.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-08.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-09.webp",
+          "jpg": "mom-and-the-great-outdoors/page-09.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-09.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-09.jpg",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "webp": "mom-and-the-great-outdoors/page-10.webp",
+          "jpg": "mom-and-the-great-outdoors/page-10.jpg",
+          "thumb": "mom-and-the-great-outdoors/thumbs/page-10.webp",
+          "thumbJpg": "mom-and-the-great-outdoors/thumbs/page-10.jpg",
+          "width": 900,
+          "height": 1200
+        }
+      ]
     }
   ],
   "series": [
