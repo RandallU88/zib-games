@@ -1,0 +1,17 @@
+/* Urwin Homeschool · Lesson 09 · Mom and the Great Outdoors */
+.theme-great-outdoors{
+  --accent:#2F5D3A;
+  --accent-2:#C8612B;
+  --soft:#F5F0E3;
+}
+.kid-logan.lesson-09{ --hero:url(./logan-hero.png); }
+.kid-savannah.lesson-09{ --hero:url(./savannah-hero.png); }
+/* Phone hero band (lesson.css reads --hero-band). The url() is used in this same file on purpose:
+   Chromium resolves a url() inside a custom property against the stylesheet that USES it, so a
+   --hero-img-phone consumed in lesson.css would point at lessons/assets/ and 404. */
+.kid-logan.lesson-09{ --hero-img-phone:url(./lesson-09-logan-hero-phone.webp); }
+.kid-savannah.lesson-09{ --hero-img-phone:url(./lesson-09-savannah-hero-phone.webp); }
+@media (max-width:500px){
+  .lesson-09.lessonpage{ --hero-band:1; --hero-band-ratio:1.6; }
+  .lesson-09.lessonpage .hero{ background:var(--hero-img-phone) center top/100% auto no-repeat,var(--card); }
+}

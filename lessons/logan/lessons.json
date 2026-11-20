@@ -1,5 +1,19 @@
 [
  {
+  "id": "lesson-09",
+  "num": 9,
+  "title": "Mom and the Great Outdoors",
+  "date": "2026-11-19",
+  "theme_word": "FAMILY"
+ },
+ {
+  "id": "lesson-08",
+  "num": 8,
+  "title": "Logan and the Snowy Thankful Jar",
+  "date": "2026-11-19",
+  "theme_word": "THANKFUL"
+ },
+ {
   "id": "lesson-07",
   "num": 7,
   "title": "Logan and the Great Pie Rescue",
